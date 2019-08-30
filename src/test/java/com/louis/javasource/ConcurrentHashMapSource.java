@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Date: 2019/7/15
  * Description:
  */
-public class ConcurrenthashMapSource {
+public class ConcurrentHashMapSource {
 
     public static void main(String[] args) {
         ConcurrentHashMap<String, String> concurrentHashMap = new ConcurrentHashMap<>();
@@ -17,5 +17,7 @@ public class ConcurrenthashMapSource {
         for (Map.Entry<String, String> stringStringEntry : concurrentHashMap.entrySet()) {
 
         }
+        int i = 1 >> 30;
+        System.out.println(i);
     }
 }

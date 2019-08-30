@@ -15,11 +15,11 @@ spring:
     username: root
     password: Root
     driver-class-name: com.mysql.cj.jdbc.Driver
-
-logging:
-  level:
-      org.springframework: DEBUG
-      com: INFO
+#
+#logging:
+#  level:
+#      org.springframework: DEBUG
+#      com: INFO
 mybatis:
   config-location:
 server:

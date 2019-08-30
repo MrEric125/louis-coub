@@ -69,7 +69,7 @@ public class App {
 
     public static void run3() {
         List<Shop> shops = new ArrayList<>(225);
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 4; i++) {
             shops.add(new Shop("BuyItDDal"));
 
         }
@@ -111,7 +111,7 @@ public class App {
      */
     public static List<String> findPrices4(List<Shop> shops,String product) {
         Executor executor = Executors.newFixedThreadPool(128);
-        List<CompletableFuture<String>> priceFutures = shops
+        return shops
                 .stream()
                 .map(shop -> CompletableFuture.supplyAsync(() ->
                         String.format("%s price is %.2f",
@@ -119,23 +119,18 @@ public class App {
         )
 //                .map(future->future.thenApply())
 //                .map(future->future.thenCompose())
+                .map(CompletableFuture::join)
                 .collect(toList());
-        return priceFutures.stream().map(CompletableFuture::join).collect(toList());
 
 
     }
 
     public static List<String> findPrices3(List<Shop> shops,String product) {
-        List<CompletableFuture<String>> priceFutures =
-                shops.stream()
-                        .map(shop -> CompletableFuture.supplyAsync(
-                                () ->
-                                        String.format("%s price is %.2f",
-                                                shop.getShopName(), shop.getPrice(product))
 
-                        ))
-                        .collect(toList());
-        return priceFutures.stream()
+        return shops.stream()
+                .map(shop -> CompletableFuture.supplyAsync(() ->
+                        String.format("%s price is %.2f",
+                                shop.getShopName(), shop.getPrice(product))))
                 .map(CompletableFuture::join)
                 .collect(toList());
     }
