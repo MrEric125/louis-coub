@@ -1,4 +1,4 @@
-package com.louis;
+package com;
 
 import com.louis.bootmybatis.common.WrapMapper;
 import com.louis.bootmybatis.common.Wrapper;
@@ -7,15 +7,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.Collections;
-import java.util.List;
 
 
 /**
@@ -25,6 +23,8 @@ import java.util.List;
 @Slf4j
 @SpringBootApplication
 @Controller
+//@EnableCircuitBreaker
+@EnableHystrix
 @RequestMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class BootMybatisApplication {
 

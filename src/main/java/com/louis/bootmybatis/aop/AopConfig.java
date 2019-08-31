@@ -48,7 +48,7 @@ public class AopConfig {
 
 
 
-//    @Pointcut("execution(* com.louis.BootMybatisApplication.*(..))")
+//    @Pointcut("execution(* com.BootMybatisApplication.*(..))")
     @Pointcut("@annotation(org.springframework.web.bind.annotation.RequestMapping)")
     public void conference() {}
 

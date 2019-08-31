@@ -1,3 +1,4 @@
+/*
 package com.louis.swift;
 
 import lombok.extern.slf4j.Slf4j;
@@ -10,12 +11,14 @@ import swiftsdk.errors.SfOssException;
 
 import java.util.List;
 
+*/
 /**
  * @author louis
  * <p>
  * Date: 2019/8/12
  * Description:
- */
+ *//*
+
 @Slf4j
 public class SwiftTest {
 
@@ -66,3 +69,4 @@ public class SwiftTest {
 
     }
 }
+*/
