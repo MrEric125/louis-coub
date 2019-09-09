@@ -1,4 +1,4 @@
-package com.concurrent;
+package com.concurrent.executor;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;

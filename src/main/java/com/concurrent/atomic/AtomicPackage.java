@@ -1,8 +1,6 @@
-package com.concurrent;
+package com.concurrent.atomic;
 
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicStampedReference;
 
 /**
  * @author louis

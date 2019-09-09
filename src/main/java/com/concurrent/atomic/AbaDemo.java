@@ -1,4 +1,6 @@
-package com.concurrent;
+package com.concurrent.atomic;
+
+import com.concurrent.User;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;

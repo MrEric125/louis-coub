@@ -3,9 +3,12 @@ package com.louis.objectcontainer;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPut;
+import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.entity.AbstractHttpEntity;
 import org.apache.http.entity.FileEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import swiftsdk.SfOssClient;
 import swiftsdk.SwiftConfiguration;
 import swiftsdk.errors.SfOssException;
@@ -14,6 +17,7 @@ import swiftsdk.util.TokenCache;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author louis
@@ -57,7 +61,29 @@ public class SwiftExtender {
         // TODO: 2019/8/15  输出日志
         return flag;
 
+    }
 
+    public boolean uploadTar(String container, File file,String filename) throws SfOssException {
+//        sfOssClient.uploadTar()
+        String url = this.swiftConfig.getSfossServerUrl() + "/v1/AUTH_" + this.swiftConfig.getAccount() + "/" + container;
+        return doUpload(url, new FileEntity(file));
+
+    }
+
+    public String getObjectPath(String container, String objectName) {
+        String path = null;
+        try {
+            List<String> objectList = sfOssClient.getObjectList(container, objectName, 1000);
+            if (!CollectionUtils.isEmpty(objectList)) {
+                String name = objectList.get(0);
+                path=swiftConfig.getSfossServerUrl() + "/v1/AUTH_" + swiftConfig.getAccount() + "/" + container + "/" + name;
+            }
+
+
+        } catch (SfOssException e) {
+            e.printStackTrace();
+        }
+        return path;
 
     }
 
@@ -91,6 +117,72 @@ public class SwiftExtender {
         httpPut.releaseConnection();
         return false;
     }
+
+
+    private boolean doUpload(String url, AbstractHttpEntity entity) throws SfOssException {
+        try {
+            HttpPut put = new HttpPut(url);
+            put.setEntity(entity);
+
+            try {
+                CloseableHttpResponse response;
+                response = this.doHttp(put);
+
+                int statusCode = response.getStatusLine().getStatusCode();
+                if (statusCode != 200 && statusCode != 202 && statusCode != 201) {
+                    if (statusCode == 404) {
+                        put.releaseConnection();
+                        throw new SfOssException("Resource does not exist");
+                    }
+                    return false;
+                } else {
+                    put.releaseConnection();
+                    return true;
+                }
+            } catch (Exception e) {
+                put.releaseConnection();
+                throw e;
+            }
+        } catch (SfOssException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new SfOssException(e);
+        }
+
+    }
+
+    private CloseableHttpResponse doHttp(HttpRequestBase requestBase) throws Exception {
+        String token = tokenCache.getToken();
+        CloseableHttpResponse response;
+        if (token == null) {
+            throw new SfOssException("无法登录Sfoss");
+        }
+        else {
+            requestBase.setHeader("X-Auth-Token", token);
+            if (this.swiftConfig.getSecure()) {
+                response = HttpClientFactory.getHttpsClient().execute(requestBase);
+            } else {
+                response = HttpClientFactory.getHttpsClient().execute(requestBase);
+            }
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode >= 300) {
+                throw new SfOssException("http 操作异常");
+            }
+        }
+        return response;
+
+    }
+
+    public boolean deleteContainersWithFile(String containerName) {
+        try {
+            return sfOssClient.deleteContainer(containerName, true);
+        } catch (SfOssException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
 
     /**
      * 上传zip 文件

@@ -1,5 +1,6 @@
 package com.louis;
 
+import com.concurrent.User;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -30,5 +31,11 @@ public class DataSourceConfig {
     @ConfigurationProperties(prefix = "spring.datasource.secondary")
     public DataSource secondaryDataSource() {
         return DataSourceBuilder.create().build();
+    }
+
+
+    public static void main(String[] args) {
+        User user = new User();
+        System.out.println(user);
     }
 }

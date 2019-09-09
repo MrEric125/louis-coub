@@ -4,9 +4,17 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.louis.bootmybatis.common.WrapMapper;
 import com.louis.bootmybatis.common.Wrapper;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.FileUploadException;
+import org.apache.tomcat.util.http.fileupload.RequestContext;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import swiftsdk.SfOssClient;
@@ -17,9 +25,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author louis
@@ -27,6 +34,7 @@ import java.util.UUID;
  * Date: 2019/8/12
  * Description:
  */
+@Slf4j
 @Controller
 public class SwiftController {
 
@@ -37,7 +45,9 @@ public class SwiftController {
     private static final String UNZIPPATH = "/nfsc/ELOG_FLUX_WMO/issue/unzip/";
     private static final String UNZIPDEST = "/nfsc/ELOG_FLUX_WMO/issue/target/";
 
+    public static final String YYYYMMDD = "yyyy-MM-dd";
 
+    private static final String PATH_SEPERATE="/";
 
 
 
@@ -50,47 +60,22 @@ public class SwiftController {
     @Autowired
     SwiftExtender swiftExtender;
 
-    @RequestMapping("/obj/{path}")
-    public String getObject(@PathVariable("path") String path, @RequestParam("obj") String obj, HttpServletResponse response) throws IOException {
 
-        InputStream object = null;
-        try {
-            object = sfOssClient.getObject(path, obj);
-
-        } catch (SfOssException e) {
-            e.printStackTrace();
-        }
-        // 配置文件下载
-        response.setHeader("content-type", "application/octet-stream");
-        response.setContentType("application/octet-stream");
-        // 下载文件能正常显示中文
-        try {
-            response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("zhangsan", "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        System.out.println(object.available());
-
-
-        return null;
-    }
-
-
-
-    @RequestMapping("/con/containers")
+    @RequestMapping("/deleteContainer")
     @ResponseBody
-    public Wrapper getContainers() throws SfOssException {
-        List<String> containerList = sfOssClient.getContainerList(null, 100);
-        return WrapMapper.ok(containerList);
+    public Wrapper deleteContainers(@RequestParam String container) {
+        boolean b = swiftExtender.deleteContainersWithFile(container);
+        return WrapMapper.ok(b);
     }
+
+
 
     @RequestMapping("/upload")
     @ResponseBody
-
-    public Wrapper uploadFile(@RequestParam("objName")String objName,@RequestParam("filePath")String filePath) {
+    public Wrapper uploadFile(@RequestParam("objName")String objName,@RequestParam("path")String path) {
         Boolean b ;
         try {
-            b= sfOssClient.uploadFile("nfsc", objName, filePath );
+            b= sfOssClient.uploadFile("nfsc", objName, path );
 
 
         } catch (SfOssException e) {
@@ -99,18 +84,92 @@ public class SwiftController {
         }
         return WrapMapper.ok(b);
     }
+
+
+
+
     @RequestMapping("/uploadTar")
     @ResponseBody
+    public Wrapper uploadTar( @RequestParam(required = false) String container,@RequestParam String path) {
+        boolean nfsc;
+        String unzipPath = "";
 
-    public Wrapper uploadTar(@RequestParam("filePath")String filePath) {
-        boolean nfsc = false;
+        String targetBasePath =UNZIPDEST;
+
+        String unZipDest = unzipPath + FileUtil.uuID() + File.separator;
+
+        String dataString= new SimpleDateFormat(YYYYMMDD).format(new Date());
+//        首先将文件上传到unZipDest
+
+        String warehouseCode = "523DCE";
+
+        String username = "123456";
+        String diviceId = "diviceId";
+        String destDirPath = targetBasePath + StringUtils
+                .join(Lists.newArrayList(dataString, warehouseCode, username, diviceId), PATH_SEPERATE) + PATH_SEPERATE;
+
         try {
-             nfsc = sfOssClient.uploadTar("nfsc", filePath);
+
+            nfsc = sfOssClient.uploadTar(container == null ? "tmp" : container,path);
+            List<String> objectList = sfOssClient.getObjectList("tmp", null, 1000);
+            List<String> containerList = sfOssClient.getContainerList(null, null);
+            log.info("objName:{}", objectList);
+            objectList.forEach(x->{
+                try {
+                    if (CollectionUtils.isEmpty(containerList) || !containerList.contains("nfsc")) {
+                        sfOssClient.createContainer("nfsc");
+                    }
+                    swiftExtender.copyObj("tmp", "nfsc",
+                            x, destDirPath + FileUtil.convertFileName(x));
+
+                } catch (SfOssException e) {
+                    e.printStackTrace();
+                }
+            });
+            //删除缓存文件夹
+            sfOssClient.deleteContainer("tmp", true);
+
         } catch (SfOssException e) {
             e.printStackTrace();
             return WrapMapper.error(e.getMessage());
         }
         return WrapMapper.ok(nfsc);
+    }
+
+    @RequestMapping("/uploadTarByFile")
+    @ResponseBody
+    public Wrapper uploadTarByFile(@RequestParam("file") MultipartFile multipartFile) throws IOException, SfOssException {
+
+        String filename = multipartFile.getOriginalFilename();
+        String prefix = filename.substring(filename.lastIndexOf("."));
+        File file=File.createTempFile(UUID.randomUUID().toString(), prefix);
+        multipartFile.transferTo(file);
+        sfOssClient.createContainer("tmp");
+        boolean tmp = sfOssClient.uploadTar("tmp", file.getPath());
+
+//        boolean tmp = swiftExtender.uploadTar("tmp", file, multipartFile.getOriginalFilename());
+        return WrapMapper.ok(tmp);
+    }
+
+    @RequestMapping("/getContainer")
+    @ResponseBody
+    public Wrapper getContainer(
+                          @RequestParam(required = false) String beganName,
+                          @RequestParam(required = false) Integer limit,
+                          @RequestParam(required = false) String prefix,
+                          @RequestParam(required = false) String endMarker
+                         ) throws SfOssException {
+        List<String> objectList = sfOssClient.getContainerList(
+                beganName, limit == null ? 1000 : limit, prefix, endMarker);
+        return WrapMapper.ok(objectList);
+
+    }
+
+    @RequestMapping("/createContainer")
+    @ResponseBody
+    public Wrapper createContainer(@RequestParam String container) throws SfOssException {
+        boolean container1 = sfOssClient.createContainer(container);
+        return WrapMapper.ok(container1);
     }
 
     /**
@@ -120,22 +179,40 @@ public class SwiftController {
      */
     @RequestMapping("/uploadZip")
     @ResponseBody
+    public Wrapper uploadZip(HttpServletRequest request,HttpServletResponse response) throws IOException, SfOssException, FileUploadException {
 
-    public Wrapper uploadZip(@RequestParam MultipartFile file) throws FileNotFoundException {
+//        InputStream inputStream = file.getInputStream();
+//        sfOssClient.uploadObject("tmp", file.getOriginalFilename(), inputStream);
+//        Map<String ,Object> map = new HashMap<>();
+//        map.put("original", file.getOriginalFilename());
+//        map.put("name", file.getName());
 
-        String upZipDest=UNZIPDEST + StringUtils.replace(UUID.randomUUID().toString(), "-", "") + File.separator;
+        String tmp = swiftExtender.getObjectPath("tmp", null);
+        log.info("objPath====<<<<<{}", tmp);
 
-        File zipFile = new File("");
-        InputStream inputStream = new FileInputStream(zipFile);
 
-        try {
-            sfOssClient.uploadObject("nfsc",file.getOriginalFilename(), file.getInputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SfOssException e) {
-            e.printStackTrace();
+//        sfOssClient.uploadTar("tmp", map1);
+//        sfOssClient.uploadTar("tmp", tmp);
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        List<FileItem> fileItems = upload.parseRequest((RequestContext) request);
+        for (FileItem file : fileItems) {
+            if (file.isFormField()) {
+                String fieldName = file.getFieldName();
+                String name = file.getName();
+                log.info("fieldName:===>>>{}", fieldName);
+                log.info("fileName:===>>>{}", name);
+                InputStream inputStream = file.getInputStream();
+
+
+            }
+
+
         }
-        return WrapMapper.ok(file.getOriginalFilename());
+
+
+        return WrapMapper.ok(tmp);
+
     }
 
 
@@ -162,62 +239,6 @@ public class SwiftController {
 
     }
 
-    @RequestMapping("/token")
-    @ResponseBody
-
-    public Wrapper getToken() {
-        String token = tokenCache.getToken();
-        return WrapMapper.ok(token);
-    }
-
-    @RequestMapping("/writeuuid")
-    @ResponseBody
-
-    public  Wrapper writeFileWithUUIDFileName(@RequestParam MultipartFile file) {
-        String destObjName =  FileUtil.convertFileName(file.getOriginalFilename());
-        try {
-//            InputStream inputStream = new FileInputStream(file);
-            sfOssClient.uploadObject("nfsc", destObjName, file.getInputStream());
-            return WrapMapper.ok(destObjName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SfOssException e) {
-            e.printStackTrace();
-        }
-        return WrapMapper.error();
-    }
-
-
-    @RequestMapping("/mataData")
-    @ResponseBody
-
-    public Wrapper mateData(@RequestParam(required = false) String container, @RequestParam String objName) {
-        Map<String, String> map = Maps.newHashMap();
-        try {
-            map = sfOssClient.headObjectMeta(container == null ? "nfsc" : container, objName);
-        } catch (SfOssException e) {
-            e.printStackTrace();
-        }
-        return WrapMapper.ok(map);
-    }
-
-
-    @RequestMapping("/getObjList")
-    @ResponseBody
-
-    public Wrapper deleteByTime() {
-        List<String> objectList = Lists.newArrayList();
-
-        try {
-            objectList=sfOssClient.getObjectList("nfsc", null, null, "ELOG_FLUX_WMO", null, null);
-//            objectList= sfOssClient.getObjectList("nfsc", "ELOG_FLUX_WMO", 100);
-
-        } catch (SfOssException e) {
-            e.printStackTrace();
-        }
-        return WrapMapper.ok(objectList);
-    }
-
     @RequestMapping("/copyFile")
     @ResponseBody
 
@@ -225,6 +246,21 @@ public class SwiftController {
         boolean b = swiftExtender.copyObj("nfsc", "nfsc", fromObjName, destObjName);
         return WrapMapper.ok(b);
     }
+
+    @RequestMapping("/getObj")
+    @ResponseBody
+    public Wrapper getObj(@RequestParam(required = false) String container,
+                          @RequestParam(required = false) String beganName,
+                          @RequestParam(required = false) Integer limit,
+                          @RequestParam(required = false) String prefix,
+                          @RequestParam(required = false) String endMarker,
+                          @RequestParam(required = false) String delimiter) throws SfOssException {
+        List<String> objectList = sfOssClient.getObjectList(container == null ? "tmp" : container,
+                beganName, limit == null ? 1000 : limit, prefix, endMarker, delimiter);
+        return WrapMapper.ok(objectList);
+
+    }
+
 
 
 
