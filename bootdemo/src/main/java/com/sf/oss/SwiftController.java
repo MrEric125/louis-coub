@@ -258,6 +258,15 @@ public class SwiftController {
         return WrapMapper.ok(objectList);
 
     }
+    @RequestMapping("/rename")
+    @ResponseBody
+    public Wrapper rename(@RequestParam(required = false) String container,
+                          @RequestParam(required = false) String fromObj,
+                          @RequestParam(required = false) String destObj) {
+        boolean b = swiftExtender.renameObj(container, fromObj, destObj);
+        return WrapMapper.ok(b);
+
+    }
 
 
 

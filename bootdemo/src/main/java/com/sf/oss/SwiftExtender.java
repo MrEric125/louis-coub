@@ -104,6 +104,15 @@ public class SwiftExtender {
         CloseableHttpResponse response ;
 
         try {
+            List<String> containerList = sfOssClient.getContainerList(null, 1000);
+            //判断destContainer是否存在
+            if (!containerList.contains(destContainer)) {
+                sfOssClient.createContainer(destContainer);
+            }
+            List<String> objectList = sfOssClient.getObjectList(fromContainer, null, 1000, fromObjName, "", "");
+            if (CollectionUtils.isEmpty(objectList)) {
+                return false;
+            }
             response = HttpClientFactory.getHttpClient().execute(httpPut);
             int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode >= 200 && statusCode < 300) {
@@ -112,6 +121,8 @@ public class SwiftExtender {
             }
         } catch (IOException e) {
             httpPut.releaseConnection();
+            e.printStackTrace();
+        } catch (SfOssException e) {
             e.printStackTrace();
         }
         httpPut.releaseConnection();

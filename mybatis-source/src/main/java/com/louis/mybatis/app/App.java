@@ -25,7 +25,7 @@ public class App {
 
     static {
         try {
-            reader = Resources.getResourceAsReader("SqlMapConfig.xml");
+            reader = Resources.getResourceAsReader("mybatis/SqlMapConfig.xml");
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
         } catch (IOException e) {
             e.printStackTrace();

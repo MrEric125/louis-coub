@@ -29,10 +29,15 @@
 
 
 
+<!--        <dependency>-->
+<!--            <groupId>tk.mybatis</groupId>-->
+<!--            <artifactId>mapper</artifactId>-->
+<!--            <version>4.0.4</version>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>tk.mybatis</groupId>
-            <artifactId>mapper</artifactId>
-            <version>4.0.4</version>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.2</version>
         </dependency>
 
 <!--        <dependency>-->
@@ -54,15 +59,6 @@
 <!--            <artifactId>zookeeper</artifactId>-->
 <!--            <version>3.3.5</version>-->
 <!--        </dependency>-->
-
-
-
-
-
-
-
-
-
 
 
 
