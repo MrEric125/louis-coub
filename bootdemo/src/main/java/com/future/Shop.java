@@ -52,16 +52,17 @@ public class Shop {
 
 
 
-    public double getPrice(String produce) {
-        return calculatePrice(produce);
 
-    }
 
     public String getPrice(String product, String type) {
         double price = calculatePrice(product);
         Discount.Code code = Discount.Code.values()[
                 random.nextInt(Discount.Code.values().length)];
         return String.format("%s:%.2f:%s", shopName, price, code);
+    }
+    public double getPrice(String produce) {
+        return calculatePrice(produce);
+
     }
 
     private double calculatePrice(String product) {

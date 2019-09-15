@@ -1,16 +1,58 @@
 package com.mybatis.provider;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import com.mybatis.Exclude;
-import com.mybatis.PrimaryKey;
-import com.mybatis.Tool;
+import com.mybatis.*;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.jdbc.SQL;
 
 public class BaseSqlProvider<T> {
+
+	 public Class<T> getCurrentClassGeneric() {
+		Class<T> returnType = null;
+		Type genericSuperclass = this.getClass().getGenericSuperclass();
+		System.out.println("generic superclass"+genericSuperclass);
+		Type[] genericInterfaces = this.getClass().getGenericInterfaces();
+
+		if (genericSuperclass instanceof ParameterizedType) {
+			ParameterizedType type = (ParameterizedType) genericSuperclass;
+			returnType = (Class<T>) type.getActualTypeArguments()[0];
+		}
+		return returnType;
+	}
+
+	public String getTableName() {
+		Class<T> tableClass = getCurrentClassGeneric();
+		Table annotation = tableClass.getAnnotation(Table.class);
+		String tableName;
+		if (annotation != null) {
+			tableName = annotation.name();
+		} else {
+			throw new TableNoDefineException("实例类上面没有 @Table 注解");
+		}
+		return tableName;
+	}
+
+	public List<String > getField() {
+		Class<T> currentClass = getCurrentClassGeneric();
+		Field[] fields = currentClass.getDeclaredFields();
+		return Arrays.stream(fields).map(field -> {
+			String original = field.getName();
+
+			return Tool.humpToLine(original);
+		}).collect(Collectors.toList());
+	}
+
+	public String add() {
+		String select = "select ";
+		return select + "* from" + getTableName() + "where " + getField();
+	}
 
 
  

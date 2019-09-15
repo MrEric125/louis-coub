@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p>i</p>
+<p>am</p>
+<p>louis</p>
+<script>
+    let set = new Set();
+    let arr=[2, 3, 3, 4, 5, 1,6,8];
+    arr.map(x => set.add(x));
+    for (let i of set) {
+        console.log(i);
+    }
+    let ps = document.querySelectorAll('p');
+    //拓展运算符
+    const arrs=[...ps];
+    Array.from(ps);
+    const toArray = ((x) => Array.from(x) ? Array.from : obj => [].slice.call(obj));
+    const arrLike=Array.from(set, x => x * x);
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>
