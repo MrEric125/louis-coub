@@ -79,6 +79,12 @@ public class App {
         System.out.println("Done in " + duration + " msecs");
     }
 
+    /**
+     *
+     * @param shops
+     * @param product
+     * @return
+     */
     public static List<Integer> findPrices5(List<Shop> shops, String product) {
         ExecutorService executor = Executors.newFixedThreadPool(8);
         List<CompletableFuture<Integer>> priceFutures = shops.stream().map(shop -> CompletableFuture.supplyAsync(() ->
