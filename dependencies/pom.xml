@@ -91,12 +91,20 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- Apache Dubbo -->
+            <dependency>
+                <groupId>com.alibaba.spring</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${alibaba-spring-context-support.version}</version>
+            </dependency>
+
+
             <dependency>
                 <groupId>com.alibaba.nacos</groupId>
                 <artifactId>nacos-client</artifactId>
                 <version>${dubbo-nacos.version}</version>
             </dependency>
+
+            <!-- Apache Dubbo -->
 
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
@@ -151,11 +159,7 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            <dependency>
-                <groupId>com.alibaba.spring</groupId>
-                <artifactId>spring-context-support</artifactId>
-                <version>${alibaba-spring-context-support.version}</version>
-            </dependency>
+
 
             <!-- DataSource -->
             <dependency>

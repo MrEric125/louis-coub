@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("consumer")
 public class ConsumerController {
 
-    @Reference(version = "1.0.0",protocol = "rest")
+    @Reference
     private DefautDemoService defautDemoService;
 
     @GetMapping("/")

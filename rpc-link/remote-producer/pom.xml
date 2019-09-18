@@ -11,7 +11,6 @@
 
     <artifactId>remote-producer</artifactId>
 
-
     <licenses>
         <license>
             <name>Apache 2.0</name>
@@ -34,9 +33,30 @@
         <netty4_version>4.1.25.Final</netty4_version>
         <resteasy_version>3.0.19.Final</resteasy_version>
         <swagger.webjar.version>3.20.3</swagger.webjar.version>
+        <jetty.version>9.4.19.v20190610</jetty.version>
+<!--        <tomcat_embed_version>8.5.31</tomcat_embed_version>-->
+        <tomcat_embed_version>9.0.22</tomcat_embed_version>
+
+        <mortbay_jetty_version>6.1.26</mortbay_jetty_version>
+        <jetty_version>9.4.11.v20180605</jetty_version>
     </properties>
     <dependencies>
 
+
+
+        <!-- Spring Boot dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+
+<!--        dubbo dependencies-->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
@@ -57,33 +77,13 @@
             </exclusions>
         </dependency>
 
-        <!-- Spring Boot dependencies -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
             <version>${dubbo.version}</version>
         </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.5.0</version>
-        </dependency>
-        <!-- swagger-ui -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.5.0</version>
-        </dependency>
+
+
 
         <!-- Zookeeper dependencies -->
         <dependency>
@@ -100,45 +100,38 @@
         </dependency>
 
 <!--        rest start-->
+<!--        使用netty服务器-->
 
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-            <version>${netty4_version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jaxrs</artifactId>
-            <version>${resteasy_version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-client</artifactId>
-            <version>${resteasy_version}</version>
-        </dependency>
-
+        <!--        java.lang.NoClassDefFoundError: org/jboss/resteasy/plugins/server/netty/NettyJaxrsServer-->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-netty4</artifactId>
             <version>${resteasy_version}</version>
         </dependency>
 
+
+<!--        使用jetty服务器-->
+
+<!--        java.lang.NoClassDefFoundError: org/eclipse/jetty/util/log/StdErrLog-->
+<!--        <dependency>-->
+<!--            <groupId>org.eclipse.jetty</groupId>-->
+<!--            <artifactId>jetty-servlet</artifactId>-->
+<!--            <version>${jetty_version}</version>-->
+<!--        </dependency>-->
+
+<!--        </dependency>-->
+<!--        使用tomcat服务器-->
         <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>${tomcat_embed_version}</version>
         </dependency>
 
+<!--Caused by: java.lang.NoClassDefFoundError: javax/ws/rs/WebApplicationException-->
+        <!--rest 接口-->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jackson-provider</artifactId>
-            <version>${resteasy_version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jaxb-provider</artifactId>
+            <artifactId>resteasy-jaxrs</artifactId>
             <version>${resteasy_version}</version>
         </dependency>
 
@@ -149,6 +142,18 @@
             <groupId>com.louis</groupId>
             <artifactId>remote-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!-- swagger-ui -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.5.0</version>
         </dependency>
 
 

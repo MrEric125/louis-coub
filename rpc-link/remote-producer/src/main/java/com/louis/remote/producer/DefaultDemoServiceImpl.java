@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
  * Date: 2019/9/16
  * Description:
  */
-@Service(version = "1.0.0")
+@Service
 public class DefaultDemoServiceImpl implements DefautDemoService {
 
 
@@ -20,5 +20,4 @@ public class DefaultDemoServiceImpl implements DefautDemoService {
     public String sayHello(String name) {
         return String.format("[%s] : Hello, %s", serviceName, name);
     }
-
 }
