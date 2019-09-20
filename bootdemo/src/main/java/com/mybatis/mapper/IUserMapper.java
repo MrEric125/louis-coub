@@ -2,6 +2,7 @@ package com.mybatis.mapper;
 
 import com.mybatis.entity.User;
 import org.springframework.stereotype.Repository;
+import tk.mybatis.mapper.common.BaseMapper;
 
 /**
  * @author louis

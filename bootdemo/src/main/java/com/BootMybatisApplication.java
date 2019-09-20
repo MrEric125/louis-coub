@@ -2,17 +2,13 @@ package com;
 
 import com.louis.bootmybatis.common.WrapMapper;
 import com.louis.bootmybatis.common.Wrapper;
-import com.louis.bootmybatis.service.ConferenceService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,18 +28,6 @@ public class BootMybatisApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BootMybatisApplication.class, args);
-    }
-
-    @Autowired
-    private ConferenceService conferenceService;
-
-
-    @RequestMapping("/con/{size}")
-    @ResponseBody
-    public Wrapper getConference(@PathVariable("size") int size) {
-        String[] characters = new String[size * size * size];
-        conferenceService.conference();
-        return WrapMapper.ok("测试conf成功" + getSomeThing());
     }
 
     public String getSomeThing() {

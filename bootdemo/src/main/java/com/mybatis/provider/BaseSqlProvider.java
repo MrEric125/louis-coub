@@ -29,13 +29,13 @@ public class BaseSqlProvider<T> {
 
 	public String getTableName() {
 		Class<T> tableClass = getCurrentClassGeneric();
-		Table annotation = tableClass.getAnnotation(Table.class);
-		String tableName;
-		if (annotation != null) {
-			tableName = annotation.name();
-		} else {
-			throw new TableNoDefineException("实例类上面没有 @Table 注解");
-		}
+//		Table annotation = tableClass.getAnnotation(Table.class);
+		String tableName = null;
+//		if (annotation != null) {
+//			tableName = annotation.name();
+//		} else {
+//			throw new TableNoDefineException("实例类上面没有 @Table 注解");
+//		}
 		return tableName;
 	}
 

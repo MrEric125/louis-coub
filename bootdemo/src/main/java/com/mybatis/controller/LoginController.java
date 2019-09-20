@@ -24,9 +24,9 @@ public class LoginController {
 //    @RequestMapping(value = "/add")
 //    public Integer add() {
 //        User userEntity = new User();
-//        userEntity.setName("test");
+//        userEntity.setUserName("test");
 //        userEntity.setType(3);
-//        Integer num = iUserMapper.add(userEntity);
+//        Integer num = iUserMapper.insert(userEntity);
 //        return num;
 //    }
 //

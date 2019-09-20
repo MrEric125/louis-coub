@@ -1,6 +1,6 @@
 package com.mybatis.entity;
 
-import com.mybatis.Table;
+//import com.mybatis.Table;
 import lombok.Data;
 
 /**
@@ -10,7 +10,7 @@ import lombok.Data;
  * Description:
  */
 @Data
-@Table(name = "test_user")
+//@Table(name = "test_user")
 public class User {
 
     private long id;

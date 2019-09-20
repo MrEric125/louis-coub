@@ -1,5 +1,7 @@
 package com.mybatis;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,7 +34,16 @@ public class Tool {
             matcher.appendReplacement(sb, "_" + matcher.group(0).toLowerCase());
         }
         matcher.appendTail(sb);
-        return sb.toString();
+        String returnStr = sb.toString();
+        if (returnStr.startsWith("_")) {
+            returnStr = returnStr.substring(1);
+        }
+        return returnStr;
+    }
+
+    public static void main(String[] args) {
+        String entityHelper = humpToLine("EntityHelper");
+        System.out.println(entityHelper);
     }
 
 }
