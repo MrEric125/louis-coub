@@ -1,8 +1,8 @@
 package com.future.future2;
 
 import com.google.common.collect.ImmutableMap;
-import com.louis.bootmybatis.common.WrapMapper;
-import com.louis.bootmybatis.common.Wrapper;
+import com.louis.common.common.WrapMapper;
+import com.louis.common.common.Wrapper;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;

@@ -1,6 +1,7 @@
-package com.louis.mybatis;
+package com.louis.mybatis.tkmybatis.controller;
 
-import com.louis.mybatis.dynamic.entity.LocalUser;
+import com.louis.mybatis.tkmybatis.entity.LocalUser;
+import com.louis.mybatis.tkmybatis.mapper.LocalUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class LouisController {
 
     @Autowired
-    LouisMapper louisMapper;
+    LocalUserMapper louisMapper;
 
-    @RequestMapping("/select")
+    @RequestMapping("/select/{id}")
     public LocalUser select(@PathVariable Long id) {
         return louisMapper.selectByPrimaryKey(id);
     }

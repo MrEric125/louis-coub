@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Date: 2019/9/11
  * Description:
  */
+//@MapperScan("com.louis.mybatis.tkmybatis.mapper")
 @SpringBootApplication
 public class Application {
 

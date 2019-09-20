@@ -1,6 +1,6 @@
 
 
-package com.louis.bootmybatis.common;
+package com.louis.common.common;
 
 
 import org.apache.commons.lang3.StringUtils;

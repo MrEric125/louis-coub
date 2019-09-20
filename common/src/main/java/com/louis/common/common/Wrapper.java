@@ -1,6 +1,6 @@
 
 
-package com.louis.bootmybatis.common;
+package com.louis.common.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

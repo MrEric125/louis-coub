@@ -1,4 +1,4 @@
-package com.louis.bootmybatis.common;
+package com.louis.common.common;
 
 import java.io.Serializable;
 

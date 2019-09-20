@@ -1,9 +1,8 @@
 package com.ajax;
 
 import com.google.common.collect.ImmutableMap;
-import com.louis.bootmybatis.common.WrapMapper;
-import com.louis.bootmybatis.common.Wrapper;
-import org.springframework.util.MultiValueMap;
+import com.louis.common.common.WrapMapper;
+import com.louis.common.common.Wrapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;

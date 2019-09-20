@@ -16,6 +16,7 @@
         <module>rpc-link</module>
         <module>dependencies</module>
         <module>webFlux</module>
+        <module>common</module>
     </modules>
     <groupId>com.louis</groupId>
     <artifactId>boot-mybatis</artifactId>

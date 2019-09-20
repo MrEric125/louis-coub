@@ -1,7 +1,7 @@
 package com;
 
-import com.louis.bootmybatis.common.WrapMapper;
-import com.louis.bootmybatis.common.Wrapper;
+import com.louis.common.common.WrapMapper;
+import com.louis.common.common.Wrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
