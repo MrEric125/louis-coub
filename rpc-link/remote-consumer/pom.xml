@@ -35,6 +35,15 @@
     </properties>
     <dependencies>
 
+
+<!--        kafka dependencies-->
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.12</artifactId>
+        </dependency>
+
+
+<!--    dubbo dependencies-->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>

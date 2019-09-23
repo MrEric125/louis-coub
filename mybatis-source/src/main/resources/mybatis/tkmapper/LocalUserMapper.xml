@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.mybatis.tkmybatis.mapper.LocalUserMapper">
+  <resultMap id="BaseResultMap" type="com.louis.mybatis.tkmybatis.entity.LocalUser">
+    <!--@mbg.generated generated on Fri Sep 20 15:50:42 CST 2019.-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="fivarite" jdbcType="VARCHAR" property="fivarite" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Fri Sep 20 15:50:42 CST 2019.-->
+    id, username, age, fivarite
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated generated on Fri Sep 20 15:50:42 CST 2019.-->
+    update local_user
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="username = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.username,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="age = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.age,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="fivarite = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.fivarite,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated generated on Fri Sep 20 15:50:42 CST 2019.-->
+    insert into local_user
+    (username, age, fivarite)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.username,jdbcType=VARCHAR}, #{item.age,jdbcType=INTEGER}, #{item.fivarite,jdbcType=VARCHAR}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.louis.mybatis.tkmybatis.entity.LocalUser" useGeneratedKeys="true">
+    <!--@mbg.generated generated on Fri Sep 20 15:50:42 CST 2019.-->
+    insert into local_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      username,
+      age,
+      fivarite,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{username,jdbcType=VARCHAR},
+      #{age,jdbcType=INTEGER},
+      #{fivarite,jdbcType=VARCHAR},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      username = #{username,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      fivarite = #{fivarite,jdbcType=VARCHAR},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.louis.mybatis.tkmybatis.entity.LocalUser" useGeneratedKeys="true">
+    <!--@mbg.generated generated on Fri Sep 20 15:50:42 CST 2019.-->
+    insert into local_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="fivarite != null">
+        fivarite,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="fivarite != null">
+        #{fivarite,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="fivarite != null">
+        fivarite = #{fivarite,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

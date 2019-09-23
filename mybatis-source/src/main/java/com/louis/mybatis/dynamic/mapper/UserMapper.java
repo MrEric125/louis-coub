@@ -1,44 +1,18 @@
 package com.louis.mybatis.dynamic.mapper;
 
-
-import com.louis.mybatis.dynamic.entity.LocalUser;
-import org.apache.ibatis.annotations.*;
+import com.louis.mybatis.dynamic.base.BaseMapper;
+import com.louis.mybatis.tkmybatis.entity.LocalUser;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
 /**
- * @author John·Louis
- * @date create in 2019/8/31
- * description:
+ * @author louis
+ * <p>
+ * Date: 2019/9/23
+ * Description:
  */
-
-public interface UserMapper {
-
-    LocalUser getUser(long id);
-
-
-    int inserUser(LocalUser user);
-
-//    @Results(id = "localresultMap",value = {
-//            @Result(property = "id",column = "id",id = true),
-//            @Result(property = "age",column = "age"),
-//            @Result(property = "username",column = "username"),
-//            @Result(property = "fivarite",column = "fivarite")
-//
-//    })
-//    @ResultMap("localresultMap")
-    @Select("select * from local_user;")
-    List<LocalUser> selectAll();
-
-    @Insert("insert into `local_user` (id, username, age, fivarite) VALUES (#{id},#{username},#{age},#{fivarite})")
-    @Options(useGeneratedKeys = true,keyProperty = "id")
-    int inser2(LocalUser localUser);
-
-
-
-
-
-
-
-
+public interface UserMapper extends BaseMapper<LocalUser,Long> {
+    @Select("SELECT id,account,password FROM user")
+    public List<LocalUser> list();
 }

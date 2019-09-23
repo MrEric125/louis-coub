@@ -15,4 +15,6 @@ spring:
     username: root
     password: Root
     driver-class-name: com.mysql.cj.jdbc.Driver
-
+mybatis:
+  mapper-locations: classpath*:mybatis/tkmapper/*.xml
+  type-aliases-package: com.louis.mybatis.tkmybatis.entity

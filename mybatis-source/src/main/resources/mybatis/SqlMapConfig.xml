@@ -11,6 +11,11 @@
 <!--        <typeAlias alias="User" type="com.louis.mybatis.dynamic.entity.LocalUser" />-->
         <package name="com.louis.mybatis.dynamic.entity"/>
     </typeAliases>
+    <plugins>
+        <plugin interceptor="">
+            <property name="" value=""/>
+        </plugin>
+    </plugins>
 
     <environments default="development">
         <environment id="development">
