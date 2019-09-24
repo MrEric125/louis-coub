@@ -34,8 +34,9 @@ public class MapperTest {
         // 新增测试
         System.out.println("------------ 新增测试 ------------");
         user = new LocalUser();
-        user.setId(1L);
+//        user.setId(1L);
         user.setFivarite("conanli");
+        user.setUsername("louis");
         user.setAge(123);
         System.out.println("insert: " + userMapper.insert(user));
         sqlSession.commit();
@@ -44,31 +45,21 @@ public class MapperTest {
 
     }
 
-    public void test2() {
+    @Test
+    public void testselect() {
         SqlSessionFactory sessionFactory = MybatisConfig.getSessionFactory();
         SqlSession sqlSession= sessionFactory.openSession();
 
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 
-        LocalUser user = null;
-        // 更新测试
-        System.out.println("------------ 更新测试 ------------");
-        user = new LocalUser();
-        user.setId(1L);
-        user.setAge(123);
-        System.out.println("update: " + userMapper.updateById(user));
+        LocalUser user;
+
 
         // 获取测试
         System.out.println("------------ 获取测试 ------------");
-        System.out.println("user: " + userMapper.getById(1L));
+        user = userMapper.getById(1L);
+        System.out.println("user: " + user);
 
-        // 删除测试
-        System.out.println("------------ 删除测试 ------------");
-        System.out.println("delete: " + userMapper.deleteById(1L));
-
-        // 存在测试
-        System.out.println("------------ 存在测试 ------------");
-        System.out.println("exist: " + userMapper.existById(1L));
 
         sqlSession.commit();
         sqlSession.close();

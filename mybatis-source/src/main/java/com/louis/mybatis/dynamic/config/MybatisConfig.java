@@ -1,5 +1,6 @@
 package com.louis.mybatis.dynamic.config;
 
+import com.louis.mybatis.dynamic.base.ProviderSourceBuilder;
 import com.louis.mybatis.dynamic.base.SqlSourceBuilder;
 import com.louis.mybatis.dynamic.mapper.UserMapper;
 import org.apache.ibatis.datasource.pooled.PooledDataSource;
@@ -20,13 +21,14 @@ public class MybatisConfig {
     private static SqlSessionFactory sessionFactory;
 
     public static SqlSessionFactory getSessionFactory() {
+        ProviderSourceBuilder sqlSourceBuilder = new ProviderSourceBuilder();
         if (sessionFactory == null) {
             PooledDataSource dataSource = getDataSource();
             TransactionFactory transactionFactory = new JdbcTransactionFactory();
             Environment environment = new Environment("development", transactionFactory, dataSource);
             Configuration configuration = new Configuration(environment);
             configuration.addMapper(UserMapper.class);
-            SqlSourceBuilder.build(configuration);
+            sqlSourceBuilder.build(configuration);
             sessionFactory = new SqlSessionFactoryBuilder().build(configuration);
         }
         return sessionFactory;
