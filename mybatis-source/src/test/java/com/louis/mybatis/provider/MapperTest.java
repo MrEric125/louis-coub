@@ -5,10 +5,7 @@ import com.louis.mybatis.dynamic.mapper.UserMapper;
 import com.louis.mybatis.tkmybatis.entity.LocalUser;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.springframework.test.context.jdbc.Sql;
 
 /**
  * @author louis
@@ -23,6 +20,7 @@ public class MapperTest {
 
     @Test
     public void test() throws Exception {
+        long startTime = System.currentTimeMillis();
         SqlSessionFactory sessionFactory = MybatisConfig.getSessionFactory();
         SqlSession sqlSession= sessionFactory.openSession();
 
@@ -41,6 +39,8 @@ public class MapperTest {
         System.out.println("insert: " + userMapper.insert(user));
         sqlSession.commit();
         sqlSession.close();
+        long endTime = System.currentTimeMillis();
+        System.out.println("total Time" + (endTime - startTime));
 
 
     }

@@ -35,7 +35,7 @@ public class MybatisConfig {
     }
 
     private static PooledDataSource getDataSource() {
-        PooledDataSource dataSource = dataSource = new PooledDataSource();
+        PooledDataSource dataSource  = new PooledDataSource();
         dataSource.setDriver("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/mybatis_source?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC");
         dataSource.setUsername("root");

@@ -1,8 +1,8 @@
 package com.louis.mybatis;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import tk.mybatis.spring.annotation.MapperScan;
 
 /**
  * @author louis
@@ -10,7 +10,8 @@ import tk.mybatis.spring.annotation.MapperScan;
  * Date: 2019/9/11
  * Description:
  */
-@MapperScan("com.louis.mybatis.tkmybatis.mapper")
+//@MapperScan("com.louis.mybatis.tkmybatis.mapper")
+@MapperScan("com.louis.mybatis.dynamic.mapper")
 @SpringBootApplication
 public class Application {
 
