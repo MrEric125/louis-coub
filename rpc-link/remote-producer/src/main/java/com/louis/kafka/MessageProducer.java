@@ -18,12 +18,12 @@ public class MessageProducer {
     @Autowired
     KafkaProducer<String ,String> kafkaProducer;
 
-    public void send(Message<String> message) {
-        ProducerRecord<String,String > record = new ProducerRecord<>(message.getTopic(), message.getData());
+    public void send(Message message) {
+        ProducerRecord<String,String > record = new ProducerRecord<>(message.getTopic(), message.getMsg());
         kafkaProducer.send(record);
     }
-    public void send(Message<String> message,Callback callback){
-        ProducerRecord<String,String > record = new ProducerRecord<>(message.getTopic(), message.getData());
+    public void send(Message message,Callback callback){
+        ProducerRecord<String,String > record = new ProducerRecord<>(message.getTopic(), message.getMsg());
         kafkaProducer.send(record, callback);
 
     }

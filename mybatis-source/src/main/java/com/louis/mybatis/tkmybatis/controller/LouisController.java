@@ -1,7 +1,7 @@
 package com.louis.mybatis.tkmybatis.controller;
 
-import com.louis.mybatis.tkmybatis.entity.LocalUser;
-import com.louis.mybatis.tkmybatis.mapper.LocalUserMapper;
+//import com.louis.mybatis.tkmybatis.entity.LocalUser;
+//import com.louis.mybatis.tkmybatis.mapper.LocalUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LouisController {
 
-    @Autowired
-    LocalUserMapper louisMapper;
-
-    @RequestMapping("/select/{id}")
-    public LocalUser select(@PathVariable Long id) {
-        return louisMapper.selectByPrimaryKey(id);
-    }
+//    @Autowired
+//    LocalUserMapper louisMapper;
+//
+//    @RequestMapping("/select/{id}")
+//    public LocalUser select(@PathVariable Long id) {
+//        return louisMapper.selectByPrimaryKey(id);
+//    }
 }
