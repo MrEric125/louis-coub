@@ -1,5 +1,6 @@
 package com.concurrent.tools;
 
+
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -17,11 +18,8 @@ public class CountDownLatchTest {
     public static void main(String[] args) {
         CountDownLatch countDownLatch = new CountDownLatch(Num);
         ExecutorService executorService = Executors.newCachedThreadPool();
-        for (int i = 0; i < N; i++) {
-
-
-
-        }
+        int processors = Runtime.getRuntime().availableProcessors();
+        System.out.println(processors);
 
 
     }

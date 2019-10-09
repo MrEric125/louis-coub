@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Vector;
+
 
 /**
  * #2019-07-10 17:45:44.852|INFO |qtp6750210-57| com.sf.novatar.deploy.interceptor.ModuleInterceptor.intercept(ModuleInterceptor.java:70)|Response /frame.pvt in 780 ms.
@@ -39,6 +44,9 @@ public class BootMybatisApplication {
     public Wrapper login() {
         String returenData = "this is login test data";
         log.info(returenData);
+
+        List<String> vactor = new ArrayList<>();
+        List<String> list = Collections.synchronizedList(vactor);
         return WrapMapper.ok(returenData);
     }
 
