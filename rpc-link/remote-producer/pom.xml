@@ -116,6 +116,16 @@
             <artifactId>resteasy-netty4</artifactId>
             <version>${resteasy_version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.0.7.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.thrift</groupId>
+            <artifactId>libthrift</artifactId>
+            <version>0.12.0</version>
+        </dependency>
 
 
 <!--        使用jetty服务器-->
