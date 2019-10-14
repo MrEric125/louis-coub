@@ -1,6 +1,7 @@
 import org.junit.Test;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -59,9 +60,32 @@ public class NIOTest1 {
             buffer.flip();
             channel.write(buffer);
         }
+    }
+//    将一个文件中的内容读取到另一个文件
+    public void test3() throws IOException {
+        try (FileInputStream inputStream = new FileInputStream("input.txt");
+             FileOutputStream outputStream = new FileOutputStream("output.txt")) {
+            FileChannel inputChannel = inputStream.getChannel();
+            FileChannel outputChannel = outputStream.getChannel();
 
+            ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
 
+            while (true) {
+//                如果注释掉这行代码会出现什么？
+                byteBuffer.clear();
+//                读的字节的个数
+                int read = inputChannel.read(byteBuffer);
 
+                System.out.println(read);
+
+                if (-1 == read) {
+                    break;
+                }
+                byteBuffer.flip();
+                outputChannel.write(byteBuffer);
+
+            }
+        }
 
 
 

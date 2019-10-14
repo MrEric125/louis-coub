@@ -1,10 +1,11 @@
 package com.thrift;
 
+import com.thrift.thriftgen.thrift.Person;
+import com.thrift.thriftgen.thrift.PersonService;
 import org.apache.thrift.protocol.TCompactProtocol;
+import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.server.THsHaServer;
-import org.apache.thrift.transport.TFramedTransport;
-import org.apache.thrift.transport.TNonblockingServerSocket;
-import org.apache.thrift.transport.TTransportException;
+import org.apache.thrift.transport.*;
 
 /**
  * @author John·Louis
@@ -13,17 +14,22 @@ import org.apache.thrift.transport.TTransportException;
  */
 public class ThriftClient {
     public static void main(String[] args) throws TTransportException {
-        TNonblockingServerSocket socket = new TNonblockingServerSocket(8899);
-        THsHaServer.Args arg = new THsHaServer
-                .Args(socket)
-                .minWorkerThreads(2)
-                .maxWorkerThreads(4);
+        TTransport transport = new TFramedTransport(new TSocket("localhost", 8899), 600);
+        TProtocol protocol = new TCompactProtocol(transport);
+        PersonService.Client client = new PersonService.Client(protocol);
 
-//        接口
+        try {
+            transport.open();
+            Person person = client.getPersonByUsername("zhangsan");
+            System.out.println(person);
 
-        arg.protocolFactory(new TCompactProtocol.Factory());
-        arg.transportFactory(new TFramedTransport.Factory());
-//        arg.processorFactory(new TProcessorFactory(processor))
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            transport.close();
+        }
+
+
     }
 
 }

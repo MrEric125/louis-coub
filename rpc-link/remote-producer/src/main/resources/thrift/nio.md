@@ -15,3 +15,16 @@ Channel是值得可以通过向其中写入数据或是从其中读取数据的�
 所有的数据的读写都是通过Buffer来进行的，永远不可能出现直接向Channel中写入数据的情况，或者直接同Channel读取数据的情况
 
 由于Channel是双向的，因此它能够更好的反映操作系统底层的执行情况
+
+0<= mark <= position <= limit <=capacity
+
+通过NIO读取文件涉及到三个不住
+
+
+1. 从FileInputStream 获取到FileChannel 对象
+2. 创建Buffer
+3. 将数据从Channel读取到Buffer中
+
+绝对方法与相对方法的含义：
+ 1. 相对方法:  limit值与position值会在操作时会被考虑到
+ 2. 绝对方法，完全忽略到limit和Position的值
