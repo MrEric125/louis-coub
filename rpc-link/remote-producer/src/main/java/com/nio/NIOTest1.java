@@ -9,6 +9,7 @@ import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.nio.channels.FileChannel;
 import java.security.SecureRandom;
+import java.util.stream.Stream;
 
 /**
  * @author John·Louis
@@ -87,8 +88,17 @@ public class NIOTest1 {
 
             }
         }
+    }
 
+    /**
+     * reduce
+     * flatmap
+     */
+    @Test
+    public void test4() {
 
+        Integer  reduce= Stream.of( 5, 7, 9).reduce(1,(x, y) -> x * y, Integer::sum);
+        System.out.println(reduce);
 
     }
 }

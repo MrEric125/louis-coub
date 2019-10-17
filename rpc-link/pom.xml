@@ -32,6 +32,8 @@
         <module>remote-api</module>
         <module>remote-producer</module>
         <module>remote-consumer</module>
+        <module>remote-server1</module>
+        <module>remote-server2</module>
     </modules>
     <dependencies>
         <dependency>

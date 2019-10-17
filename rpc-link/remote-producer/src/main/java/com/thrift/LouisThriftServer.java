@@ -28,7 +28,7 @@ import org.apache.thrift.transport.TTransportException;
  * }
  * Thrift 传输格式
  */
-public class ThriftServer {
+public class LouisThriftServer {
 
     public static void main(String[] args) throws TTransportException {
         TNonblockingServerSocket socket = new TNonblockingServerSocket(8899);

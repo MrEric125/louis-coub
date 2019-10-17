@@ -47,6 +47,14 @@ public class BootMybatisApplication {
 
         List<String> vactor = new ArrayList<>();
         List<String> list = Collections.synchronizedList(vactor);
+        byte b1;
+        char c;
+        boolean b;
+        short s;
+        int i;
+        float f;
+        double d;
+        long l;
         return WrapMapper.ok(returenData);
     }
 

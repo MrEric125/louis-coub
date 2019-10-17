@@ -121,7 +121,7 @@ public class FutureTask<V> implements RunnableFuture<V> {
     private Object outcome; 
      // 真正执行callable的线程
     private volatile Thread runner;
-    正在等待执行线程的栈
+//    正在等待执行线程的栈
     private volatile WaitNode waiters;
 
     public FutureTask(Runnable runnable, V result) {

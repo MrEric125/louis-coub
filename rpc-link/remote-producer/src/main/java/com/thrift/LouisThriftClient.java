@@ -4,7 +4,6 @@ import com.thrift.thriftgen.thrift.Person;
 import com.thrift.thriftgen.thrift.PersonService;
 import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.protocol.TProtocol;
-import org.apache.thrift.server.THsHaServer;
 import org.apache.thrift.transport.*;
 
 /**
@@ -12,7 +11,7 @@ import org.apache.thrift.transport.*;
  * @date create in 2019/10/13
  * description:
  */
-public class ThriftClient {
+public class LouisThriftClient {
     public static void main(String[] args) throws TTransportException {
         TTransport transport = new TFramedTransport(new TSocket("localhost", 8899), 600);
         TProtocol protocol = new TCompactProtocol(transport);
