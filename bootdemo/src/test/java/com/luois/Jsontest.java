@@ -34,17 +34,28 @@ public class Jsontest {
     }
     @Test
     public void test2() {
-        Random random = new Random(2);
-        int i = random.nextInt(2);
-        List<Integer> resultList = null;
-        if (i <= 0) {
-            resultList = new ArrayList<>();
+        Random random = new Random();
 
+        for (int i = 0; i < 10; i++) {
+            int j = random.nextInt(2);
+            List<Integer> resultList = null;
+            if (j <= 0) {
+                resultList = new ArrayList<>();
+                resultList.add(423);
+                resultList.add(332);
+            }
+            String s = resultList
+                    .stream().findFirst().map(String::valueOf).orElse("zhang");
+            System.out.println(s);
         }
-        String s = Optional.ofNullable(resultList)
-                .orElse(new ArrayList<>())
-                .stream().findFirst().map(String::valueOf).orElse("zhang");
-        System.out.println(s);
+
+
+    }
+
+    @Test
+    public void test3() {
+
+
 
     }
 }
