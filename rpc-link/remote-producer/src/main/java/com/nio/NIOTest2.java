@@ -1,10 +1,8 @@
 package com.nio;
 
 import org.junit.Test;
-import scala.util.control.Exception;
 
 import java.nio.ByteBuffer;
-import java.util.Arrays;
 
 /**
  * @author John·Louis
@@ -39,19 +37,31 @@ public class NIOTest2 {
         buffer.limit(buffer.capacity());
         byte[] array = buffer.array();
         for (byte b : array) {
-            System.out.println(b);
+            System.out.println( b);
         }
     }
 
     /**
      * 只读buffer
+     * 存取
+     * 填充
+     * 翻转
+     * 释放
+     * 压缩
+     * 标记
      */
     @Test
     public void test2() {
         ByteBuffer buffer = ByteBuffer.allocate(10);
 
+        buffer.put((byte) 'H').put((byte) 'E').put((byte) 'L').put((byte) 'L').put((byte) 'O');
+        buffer.position(2).mark().position(4);
+        buffer.reset();
+        buffer.flip();
+
 
         ByteBuffer readOnlyBuffer = buffer.asReadOnlyBuffer();
+
 
     }
 }
