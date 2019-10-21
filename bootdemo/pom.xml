@@ -30,11 +30,11 @@
 
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>swift-java-sdk</groupId>-->
-<!--            <artifactId>swift-java-api</artifactId>-->
-<!--            <version>1.6.5</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>swift-java-sdk</groupId>
+            <artifactId>swift-java-api</artifactId>
+            <version>1.6.5</version>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>javax.persistence</groupId>-->
 <!--            <artifactId>persistence-api</artifactId>-->
@@ -60,6 +60,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.1</version>
+        </dependency>
+
 
         <!--        <dependency>-->
         <!--            <groupId>com.netflix.hystrix</groupId>-->
