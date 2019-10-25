@@ -34,7 +34,7 @@ import java.util.*;
  * Description:
  */
 @Slf4j
-@Controller
+@RestController
 public class SwiftController {
 
     private HttpServletRequest request;
@@ -67,6 +67,13 @@ public class SwiftController {
         return WrapMapper.ok(b);
     }
 
+    @RequestMapping("/clearContainer")
+    @ResponseBody
+    public Wrapper clearContainer(@RequestParam String container) throws SfOssException {
+        boolean b = sfOssClient.clearContainer(container);
+        return WrapMapper.ok(b);
+    }
+
 
 
     @RequestMapping("/upload")
@@ -87,13 +94,13 @@ public class SwiftController {
     @RequestMapping("/deleteObjByPrefix")
     @ResponseBody
     public Wrapper deleteObj(@RequestParam("container") String container) {
-        String basePath = "/nfsc/ELOG_FLUX_WMO/zip/real/";
+        String basePath = "ELOG_FLUX_WMO/";
 //        Date beforeDate = DateUtils.addWeeks(new Date(), -1);
-        Date beforeDate = new Date();
-        String beforeDateStr = DateFormatUtils.format(beforeDate, DateFormatUtils.ISO_DATE_FORMAT.getPattern());
+//        Date beforeDate = new Date();
+//        String beforeDateStr = DateFormatUtils.format(beforeDate, DateFormatUtils.ISO_DATE_FORMAT.getPattern());
 
         String prefixBasePath = FileUtil.splitContainer(basePath, container);
-        Boolean flag = swiftExtender.deleteObj(container, prefixBasePath + beforeDateStr);
+        Boolean flag = swiftExtender.deleteObj(container, prefixBasePath);
         return WrapMapper.ok(flag);
 
     }
@@ -229,23 +236,23 @@ public class SwiftController {
     }
 
 
-    @RequestMapping("/deleteFile")
+    @RequestMapping("/deleteFileAndContainer")
     @ResponseBody
-
-    public Wrapper delete(@RequestParam(name = "objName",required = false)String objName) {
+    public Wrapper delete(@RequestParam(required = false)String container ,@RequestParam(name = "objName",required = false)String objName) {
         boolean b = false;
         Map<String, String> map = Maps.newHashMap();
         InputStream inputStream = null;
         try {
-//            map = sfOssClient.headObjectMeta("nfsc", objName);
-            inputStream = sfOssClient.getObject("nfsc", objName);
-//            b= sfOssClient.deleteObject("nfsc", objName);
+            map = sfOssClient.headObjectMeta(container!=null?container:"nfsc", objName);
+//            inputStream = sfOssClient.getObject("nfsc", objName);
+            b= sfOssClient.deleteObject(container!=null?container:"nfsc", objName);
         } catch (SfOssException e) {
             if (!StringUtils.equals("Resource does not exist", e.getMessage())) {
                 e.printStackTrace();
             }
         }
         map.put("isExist", String.valueOf(inputStream != null));
+        map.put("delete status", String.valueOf(b));
 //        map.put("delete", String.valueOf(b));
         return WrapMapper.ok(map);
 

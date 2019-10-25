@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +23,7 @@ import java.util.Vector;
  * #2019-07-10 17:45:44.852|INFO |qtp6750210-57| com.sf.novatar.deploy.interceptor.ModuleInterceptor.intercept(ModuleInterceptor.java:70)|Response /frame.pvt in 780 ms.
  * 2019-07-10 17:43:52.404  INFO 12572 --- [      Thread-39] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
  */
+@EnableElasticsearchRepositories
 @Slf4j
 @SpringBootApplication
 @Controller
