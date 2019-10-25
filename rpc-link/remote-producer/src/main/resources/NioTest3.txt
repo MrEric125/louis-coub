@@ -1,0 +1,19 @@
+helloWorld
+welcome
+
+java网络编程
+ServerSocket serverSocket =...
+serverSocket.bind(8899)
+serverSocket.accept(): 阻塞方法
+
+//每一个连接建立一个新连接，这个地方也是传统的socket编程的复杂点和弊端（Thread 占用资源以及资源之间的切换性能消耗）
+new Thread(socket){
+    run(){
+        socket.getInputStream()
+    }
+}
+
+每个客户端都会在创建一个随机未被占用的端口号
+Socket socket =new Socket("localhost",8899)
+制定一个空闲的端口号
+socket.connect()
