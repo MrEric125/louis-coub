@@ -30,11 +30,14 @@
 
 
     <dependencies>
-        <dependency>
-            <groupId>swift-java-sdk</groupId>
-            <artifactId>swift-java-api</artifactId>
-            <version>1.6.5</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>swift-java-sdk</groupId>-->
+<!--            <artifactId>swift-java-api</artifactId>-->
+
+
+
+<!--            <version>1.6.5</version>-->
+<!--        </dependency>-->
 <!--        <dependency>-->
 <!--            <groupId>javax.persistence</groupId>-->
 <!--            <artifactId>persistence-api</artifactId>-->
