@@ -35,7 +35,7 @@
 5. 使用动态语言(java.lang.invoke.MethodHandle)支持的时候,最后解析结果为REF_getStatic、REF_putStatic、REF_invokeStatic的时候，如果一个类还没有初始化的时候那么就会执行类的初始化
 
 **类加载器**   
-![类加载器](../../etc/jvm/jvm-classLoader.png)
+![类加载器](../../../etc/jvm/jvm-classLoader.png)
 
  
  
