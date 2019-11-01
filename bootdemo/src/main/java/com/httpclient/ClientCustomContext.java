@@ -18,9 +18,8 @@ import org.apache.http.util.EntityUtils;
  */
 public class ClientCustomContext {
 
-    public final static void main(String[] args) throws Exception {
-        CloseableHttpClient httpclient = HttpClients.createDefault();
-        try {
+    public static void main(String[] args) throws Exception {
+        try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
             // Create a local instance of cookie store
             CookieStore cookieStore = new BasicCookieStore();
 
@@ -33,20 +32,15 @@ public class ClientCustomContext {
             System.out.println("Executing request " + httpget.getRequestLine());
 
             // Pass local context as a parameter
-            CloseableHttpResponse response = httpclient.execute(httpget, localContext);
-            try {
+            try (CloseableHttpResponse response = httpclient.execute(httpget, localContext)) {
                 System.out.println("----------------------------------------");
                 System.out.println(response.getStatusLine());
                 List<Cookie> cookies = cookieStore.getCookies();
-                for (int i = 0; i < cookies.size(); i++) {
-                    System.out.println("Local cookie: " + cookies.get(i));
+                for (Cookie cookie : cookies) {
+                    System.out.println("Local cookie: " + cookie);
                 }
                 EntityUtils.consume(response.getEntity());
-            } finally {
-                response.close();
             }
-        } finally {
-            httpclient.close();
         }
     }
 
