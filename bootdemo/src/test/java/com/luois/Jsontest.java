@@ -1,9 +1,20 @@
 package com.luois;
 
 import com.google.gson.Gson;
+import com.luois.test.Person;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 import org.junit.Test;
+import sun.misc.BASE64Decoder;
 
-import java.util.*;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 /**
  * @author louis
@@ -12,7 +23,19 @@ import java.util.*;
  * Description:
  */
 
+@NoArgsConstructor
+@Data
 public class Jsontest {
+
+    /**
+     * name : zhangsan
+     * age : 20
+     * job : 20
+     */
+
+    private String name;
+    private String age;
+    private String job;
 
     @Test
     public void test() {
@@ -50,9 +73,20 @@ public class Jsontest {
     }
 
     @Test
-    public void test3() {
+    public void test3() throws IOException {
+        String json = "{\"name\":\"zhangsan\",\"age\":\"20\",\"job\":\"20\"}";
+//        String json = "{\"name\":\"zhangsan\",\"age\":\"20\"}";
 
-
-
+        ObjectMapper objectMapper = new ObjectMapper();
+        Person test = objectMapper.readValue(json, new TypeReference<Person>(){});
+        System.out.println(test);
+    }
+    @Test
+    public void test4() throws IOException {
+        String code = "c2l0LUVMT0ctV01PLVNKUzpzaXQtRUxPRy1XTU8tU0pT";
+        BASE64Decoder decoder = new BASE64Decoder();
+        byte[] b = decoder.decodeBuffer(code);
+        String str = new String(b, StandardCharsets.UTF_8);
+        System.out.println(str);
     }
 }
