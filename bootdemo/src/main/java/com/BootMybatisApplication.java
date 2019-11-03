@@ -12,10 +12,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 
 //@EnableElasticsearchRepositories
 @Slf4j
@@ -40,17 +36,12 @@ public class BootMybatisApplication {
     public Wrapper login() {
         String returenData = "this is login test data";
         log.info(returenData);
-
-        List<String> vactor = new ArrayList<>();
-        List<String> list = Collections.synchronizedList(vactor);
-
         return WrapMapper.ok(returenData);
     }
 
     @RequestMapping("/")
     @ResponseBody
     public Wrapper home() {
-        Integer integer = new Integer(4);
         String returnData = "home page";
         log.info(returnData);
         return WrapMapper.ok(returnData);

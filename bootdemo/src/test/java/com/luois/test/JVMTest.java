@@ -7,6 +7,8 @@ import java.util.Arrays;
  * <p>
  * Date: 2019/11/1
  * Description:
+ *  -XX:+UseG1GC
+ *  -XX:InitialHeapSize=266562496 -XX:MaxHeapSize=4264999936 -XX:+PrintCommandLineFlags -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:-UseLargePagesIndividualAllocation -XX:+UseParallelGC
  */
 public class JVMTest {
     public static void main(String[] args) {
