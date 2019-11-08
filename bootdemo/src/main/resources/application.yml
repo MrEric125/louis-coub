@@ -15,6 +15,14 @@ spring:
     username: root
     password: Root
     driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    sentinel:
+      nodes:
+        - flux-wms1.cachesit.sfdc.com.cn:8001
+        - flux-wms2.cachesit.sfdc.com.cn:8001
+        - flux-wms3.cachesit.sfdc.com.cn:8001
+      master: FLUX_REDIS_C01
+    password: 0qvt1wgi03wnt7x2
 
 #logging:
 #  level:
