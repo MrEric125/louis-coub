@@ -30,14 +30,12 @@
 
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>swift-java-sdk</groupId>-->
-<!--            <artifactId>swift-java-api</artifactId>-->
-
-
-
-<!--            <version>1.6.5</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>swift-java-sdk</groupId>
+            <artifactId>swift-java-api</artifactId>
+<!---->
+            <version>1.7.2</version>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>javax.persistence</groupId>-->
 <!--            <artifactId>persistence-api</artifactId>-->
@@ -193,6 +191,11 @@
             <artifactId>jackson-mapper-asl</artifactId>
             <version>1.9.13</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
 
