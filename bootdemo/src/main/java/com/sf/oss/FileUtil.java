@@ -2,7 +2,6 @@ package com.sf.oss;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
-import org.apache.commons.lang3.time.DateUtils;
 
 import java.util.Date;
 import java.util.UUID;
@@ -14,7 +13,6 @@ import java.util.UUID;
  * Description:
  */
 public class FileUtil {
-    private String fileName;
 
     public FileUtil(String fileName) {
         System.out.println(fileName);

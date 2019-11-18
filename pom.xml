@@ -17,6 +17,7 @@
         <module>dependencies</module>
         <module>webFlux</module>
         <module>common</module>
+        <module>security</module>
     </modules>
     <groupId>com.louis</groupId>
     <artifactId>boot-mybatis</artifactId>
