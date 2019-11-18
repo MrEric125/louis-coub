@@ -2,6 +2,8 @@ package com.louis.kafka;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,9 @@ import org.springframework.stereotype.Service;
 public class MessageConsumer {
 
     String consumerMessage ;
+
+    @Autowired
+    private KafkaConsumer kafkaConsumer;
 
 
     @KafkaListener(topics = "louis",groupId = "louis")

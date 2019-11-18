@@ -1,6 +1,5 @@
 package com.redis;
 
-import com.HashMap;
 import com.alibaba.fastjson.JSONObject;
 import com.louis.common.common.WrapMapper;
 import com.louis.common.common.Wrapper;
@@ -29,8 +28,8 @@ public class RedisController {
     @RequestMapping("/get")
     public Wrapper getRedis(@RequestParam String redisParam) {
         Object object = redisTemplate.opsForValue().get(redisParam);
-        HashMap hashMap = new HashMap();
-        object = hashMap.getName();
+//        HashMap hashMap = new HashMap();
+//        object = hashMap.getName();
         return WrapMapper.ok(JSONObject.toJSON(object));
     }
 }

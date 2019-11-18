@@ -1,5 +1,6 @@
 package com.louis.config;
 
+import org.apache.curator.framework.schema.Schema;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +30,9 @@ public class KafkaConsumerConfig {
 
     @Bean
     public KafkaProducer kafkaProducer() {
+        String schemaString = "";
+        Schema schema = Schema.builder(schemaString).build();
+
         return new KafkaProducer<String, String>(init(), new StringSerializer(), new StringSerializer());
     }
 

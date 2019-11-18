@@ -1,7 +1,11 @@
 package com.luois;
 
+import com.google.common.collect.Maps;
+import org.junit.Test;
+
 import java.io.*;
 import java.nio.channels.FileChannel;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,6 +51,20 @@ public class NumTest {
                 e.printStackTrace();
             }
         }
+
+    }
+
+    @Test
+    public void test() {
+
+        Map<String, Object> hashMap = Maps.newHashMap();
+
+        hashMap.put("active", "true");
+
+        if (!Boolean.TRUE.equals(hashMap.get("active"))) {
+            System.out.println("ttttttt");
+        }
+        System.out.println("fffffff");
 
     }
 
