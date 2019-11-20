@@ -1,0 +1,14 @@
+
+logging:
+  level:
+    org.springframework.security:  DEBUG
+spring:
+  profiles:
+    active: dev
+  task:
+    execution:
+      pool:
+        max-size: 16
+        core-size: 8
+        keep-alive: 60s
+      threadNamePrefix: louis-task

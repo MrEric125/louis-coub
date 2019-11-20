@@ -1,4 +1,4 @@
-package com;
+package com.datastructure;
 
 import org.junit.Test;
 

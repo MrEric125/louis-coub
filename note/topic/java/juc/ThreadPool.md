@@ -67,6 +67,7 @@ public interface ExecutorService extends Executor {
 
 }
 
+```
 #### 各个线程池的功能：
 1. newFixedThreadPool
     固定线程数，无界队列，适用于任务数量不均匀的场景，对内存压力不敏感，单系统负载比较敏感的场景
@@ -79,7 +80,6 @@ public interface ExecutorService extends Executor {
 5. newWorkStralingPool
     使用ForkJoinPool，多任务队列的固定并行度。适合任务执行时长不均匀的场景
 
-```
 https://www.cnblogs.com/CarpenterLee/p/9558026.html
 
 
