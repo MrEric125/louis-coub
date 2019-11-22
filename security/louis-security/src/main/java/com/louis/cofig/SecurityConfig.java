@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        super.configure(web);
+        web.ignoring().antMatchers("/webjars/**/*", "/**/*.css", "/**/*.js");
 
     }
 
@@ -61,13 +61,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.formLogin().defaultSuccessUrl("/user/select").
-                and()
-                .httpBasic();
+        http.authorizeRequests()
+                .antMatchers("/", "/index.html","login").permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .failureUrl("/login-error.html").permitAll()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/login.html")
+                .and()
+                .authorizeRequests().anyRequest().authenticated();
+
 
 //        我们可以看到不论我们配置的是antMatches("/**").hasAnyRole("/admin"),
 //        其实就是配置了一个ExpressionInterceptUrlRegistry，所依我们用一下的方式自动配置一个查询url的方式
         authorizeConfigManager.config(http.authorizeRequests());
+
+        http.authorizeRequests().anyRequest().authenticated();
 
 
     }

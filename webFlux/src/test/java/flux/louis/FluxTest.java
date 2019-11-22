@@ -1,9 +1,15 @@
 package flux.louis;
 
+import com.google.common.collect.Maps;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 import reactor.core.publisher.Flux;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author louis
@@ -31,7 +37,7 @@ public class FluxTest {
         System.out.println();
 
         Flux<String> stringFlux = Flux.fromIterable(words)
-//                .flatMap(words -> Flux.fromArray(words.split("")))
+                .flatMap(words -> Flux.fromArray(words.split("")))
                 .distinct()
 
                 .sort()
@@ -40,7 +46,25 @@ public class FluxTest {
         stringFlux.subscribe(System.out::println);
 
 
+    }
+    @Test
+    public void  test() {
+        Map<String, String> map = Maps.newHashMap();
+        map.put("zhangsan", "zzz");
+        map.put("lisi", "lll");
+        map.put("zhaoliu", "zzz");
 
+
+        List<String> keyList = map
+                .entrySet()
+                .stream()
+                .filter(x -> StringUtils.equals("zzz", x.getValue()))
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+        Map<String, String> map1 = Maps.filterEntries(map, entry -> StringUtils.equals("zzz", entry != null ? entry.getValue() : null));
+        map1.forEach((key, value) -> System.out.println(key));
+
+        keyList.forEach(System.out::println);
 
     }
 }

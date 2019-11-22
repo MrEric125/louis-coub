@@ -13,12 +13,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.security.Principal;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author louis
@@ -29,8 +27,6 @@ import java.util.stream.Stream;
 @NoArgsConstructor
 public class SecurityUtils {
 
-    private static final String AUTH_LOGIN_AFTER_URL = "/user/loginAfter/*";
-    private static final String AUTH_LOGOUT_URL = "/user/logout";
 
     /**
      * Gets current login name.
@@ -42,23 +38,17 @@ public class SecurityUtils {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal instanceof UserDetails) {
-
             return ((UserDetails) principal).getUsername();
-
         }
 
         if (principal instanceof Principal) {
-
             return ((Principal) principal).getName();
-
         }
 
         return String.valueOf(principal);
-
     }
 
     public static Set<String> getCurrentAuthorityUrl(List<UserAction> lists) {
-        Set<String> path = Optional.ofNullable(lists).orElse(Lists.newArrayList()).stream().map(UserAction::getUrl).collect(Collectors.toSet());
-        return path;
+        return Optional.ofNullable(lists).orElse(Lists.newArrayList()).stream().map(UserAction::getUrl).collect(Collectors.toSet());
     }
 }

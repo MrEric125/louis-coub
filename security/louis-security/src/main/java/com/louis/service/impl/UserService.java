@@ -17,6 +17,7 @@ import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
@@ -76,10 +77,8 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Collection<GrantedAuthority> grantedAuthorities;
-        SysUser user = this.findByLoginName(username);
-        if (user == null) {
-            throw new BadCredentialsException("用户名不存在或者密码错误");
-        }
+        SysUser user=Optional.ofNullable(this.findByLoginName(username)).orElseThrow(()-> new BadCredentialsException("用户名不存在或者密码错误"));
+
         grantedAuthorities = loadUserAuthorities(user.getId());
         return new User(user.getUserName(), user.getLoginPwd(), grantedAuthorities);
 
