@@ -12,3 +12,7 @@ spring:
         core-size: 8
         keep-alive: 60s
       threadNamePrefix: louis-task
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/views/
+#      suffix: .html

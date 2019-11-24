@@ -49,6 +49,18 @@ public class BootMybatisApplication {
         return WrapMapper.ok(returnData);
     }
 
+    @RequestMapping("demo")
+    public String index() {
+        log.info("index.html>>>>>>>>>>>>>");
+        return "index.html";
+    }
+    @RequestMapping("demo2")
+    public String demo2() {
+        log.info("index>>>>>>>>>>>>>");
+        return "index";
+    }
+
+
 
 
 }

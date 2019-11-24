@@ -15,6 +15,10 @@ public class WebFluxTest {
 
     ReactorHttpHandlerAdapter adapter = new ReactorHttpHandlerAdapter(handler);
 
+    public static void main(String[] args) {
+
+    }
+
 
 
 

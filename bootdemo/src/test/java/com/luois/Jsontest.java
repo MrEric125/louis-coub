@@ -10,17 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.junit.Test;
-import sun.misc.BASE64Decoder;
-
-import javax.crypto.*;
-import javax.crypto.spec.DESedeKeySpec;
-import javax.crypto.spec.IvParameterSpec;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.Key;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -95,8 +84,7 @@ public class Jsontest {
     @Test
     public void test4() throws IOException {
         String code = "c2l0LUVMT0ctV01PLVNKUzpzaXQtRUxPRy1XTU8tU0pT";
-        BASE64Decoder decoder = new BASE64Decoder();
-        byte[] b = decoder.decodeBuffer(code);
+        byte[] b = Base64.getDecoder().decode(code);
         String str = new String(b, StandardCharsets.UTF_8);
         System.out.println(str);
     }

@@ -1,4 +1,12 @@
 spring:
+
+  freemarker:
+    expose-request-attributes: true
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    template-loader-path: classpath:/templates/
+
+  #    suffix: .html
   jpa:
     database: MYSQL
     show-sql: true
@@ -23,7 +31,8 @@ spring:
         - flux-wms3.cachesit.sfdc.com.cn:8001
       master: FLUX_REDIS_C01
     password: 0qvt1wgi03wnt7x2
-
+  resources:
+    static-locations: classpath:/templates/,classpath:/static/
 #logging:
 #  level:
 #      org.springframework: DEBUG
