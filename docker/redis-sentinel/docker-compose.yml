@@ -3,7 +3,7 @@ services:
   master:
     image: redis
     container_name: redis-master
-    restart: always
+    restart: no
     command: redis-server /usr/local/etc/redis/redis.conf  --requirepass test@dbuser2018
     ports:
       - 6379:6379
@@ -14,7 +14,7 @@ services:
   slave1:
     image: redis
     container_name: redis-slave-1
-    restart: always
+    restart: no
     command: redis-server --slaveof localhost 6379 --port 6380  --requirepass test@dbuser2018 --masterauth test@dbuser2018
     ports:
       - 6380:6380
@@ -25,7 +25,7 @@ services:
   slave2:
     image: redis
     container_name: redis-slave-2
-    restart: always
+    restart: no
     command: redis-server --slaveof localhost 6379 --port 6381  --requirepass test@dbuser2018 --masterauth test@dbuser2018
     ports:
       - 6381:6381
