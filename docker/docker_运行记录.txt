@@ -1,0 +1,32 @@
+
+2019年11月25日21:26:39
+
+docker run -d --name kafka --publish 9082:9092 --link zookeeper:zookeeper --env KAFKA_BROKER_ID=100 --env HOST_IP=192.168.1.108 --env KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 --env KAFKA_ADVERTISED_HOST_NAME=localhost --env KAFKA_ADVERTISED_PORT=9082  wurstmeister/kafka
+
+docker run -d --name kafka-manager --link zookeeper:zookeeper --link kafka:kafka -p 9001:9000 --env ZK_HOSTS=zookeeper:2181 sheepkiller/kafka-manager
+
+创建一个centos7镜像（这个镜像不要随便删除）
+docker run -it --name centos7 centos:centos7 /bin/bash
+运行之前创建的centos7镜像
+docker start centos7
+
+yum upgrade 
+安装ifconfig之类的网络工具
+yum install net-tools
+
+yum install openssl openssh-server
+启动ssh
+> /usr/sbin/sshd -D
+
+报错执行以下命名
+ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N ""
+ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N ""
+ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ""
+
+修改配置文件
+vim /etc/ssh/sshd_config
+
+提交自己的container 到images
+ docker commit containerid imagename
+
+
