@@ -2,7 +2,6 @@ package flux.louis;
 
 import org.junit.Test;
 
-import java.lang.invoke.VarHandle;
 
 /**
  * @author John·Louis
@@ -12,7 +11,6 @@ import java.lang.invoke.VarHandle;
 
 public class java9Test {
 
-    private VarHandle varHandle;
 
     @Test
     public void test() {

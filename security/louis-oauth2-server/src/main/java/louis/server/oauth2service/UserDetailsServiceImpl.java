@@ -1,0 +1,20 @@
+package louis.server.oauth2service;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+/**
+ * @author louis
+ * <p>
+ * Date: 2019/11/29
+ * Description:
+ */
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
+    }
+}

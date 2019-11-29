@@ -62,18 +62,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.authorizeRequests()
-                .antMatchers("/", "/index.html","login").permitAll()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .failureUrl("/login-error.html").permitAll()
-                .and()
+        http.formLogin()                                // 定义当需要用户登录时候，转到的登录页面。
+                .loginPage("/login.html")                        // 设置登录页面
+                .loginProcessingUrl("/user/login")            // 自定义的登录接口
+                .defaultSuccessUrl("/index.html").permitAll()        // 登录成功之后，默认跳转的页面
+                .and().authorizeRequests()                    // 定义哪些URL需要被保护、哪些不需要被保护
+                .antMatchers("/", "/index", "/user/login").permitAll()        // 设置所有人都可以访问登录页面
+                .anyRequest().authenticated()                // 任何请求,登录后可以访问
+                .and().csrf().disable()                    // 关闭csrf防护
                 .logout()
-                .logoutSuccessUrl("/login.html")
-                .and()
-                .authorizeRequests().anyRequest().authenticated();
+                .logoutSuccessUrl("login.html");
 
 
 //        我们可以看到不论我们配置的是antMatches("/**").hasAnyRole("/admin"),

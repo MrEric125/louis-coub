@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginController {
 
-    @RequestMapping(value = "/login-success", produces = {MediaType.TEXT_PLAIN_VALUE, "charset-utf-8"})
+    @RequestMapping(value = "/login-success", produces = {MediaType.TEXT_PLAIN_VALUE})
     public String loginSuccess() {
         return "login success";
     }
