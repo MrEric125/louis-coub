@@ -1,6 +1,9 @@
 package louis.server.entity;
 
 import lombok.*;
+import louis.server.entity.asocciate.ClientDetailsToAuthorizedGrantType;
+import louis.server.entity.asocciate.ClientDetailsToResourceId;
+import louis.server.entity.asocciate.ClientDetailsToScopes;
 import louis.server.entity.authbase.AbstractAuditable;
 
 import javax.persistence.*;
@@ -38,5 +41,17 @@ public class ClientDetailsEntity extends AbstractAuditable<Long> {
     @Singular("redirectUri")
     @OneToMany(mappedBy = "clientDetails", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL )
     private Set<RedirectUriEntity> redirectUris;
+
+    @Singular
+    @OneToMany(mappedBy = "clientDetails", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
+    private Set<ClientDetailsToAuthorizedGrantType> authorizedGrantTypes;
+
+    @Singular
+    @OneToMany(mappedBy = "clientDetails", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
+    private Set<ClientDetailsToScopes> scopes;
+
+    @Singular
+    @OneToMany(mappedBy = "clientDetails", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
+    private Set<ClientDetailsToResourceId> resourceIds;
 
 }
