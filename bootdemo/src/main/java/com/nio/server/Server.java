@@ -1,25 +1,30 @@
+package com.nio.server;
 
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 public class Server{
 
     private ServerSocket serverSocket;
 
-    public Server(int port){
+    public Server(int port) throws IOException {
         this.serverSocket=new ServerSocket(port);
-        Sout("服务器启动成功，端口： "+port);
+        System.out.println(("服务器启动成功，端口： " + port));
 
     }
     public void start(){
-        new Thread(new Runnable(){
-            public void run(){
-                doStart()
-            }
-        })
+        new Thread(this::doStart);
     }
-    public void doStart(){
+    private void doStart(){
         while(true){
-            Socket server=serverSocket.accept();
-            new ClientHandler(server).start();
+            try {
+                Socket server = serverSocket.accept();
+                new ClientHandler(server).start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
