@@ -1,0 +1,14 @@
+docker run --privileged  -itd -p 8888:22 --name centos7 centos7：louis /usr/sbin/init
+----privileged 启动后让docker容器具备超级特权。
+	-itd  交互式、终端、后台运行
+	-p  把宿主机的8888端口映射到docker的22端口。
+	※宿主机就是运行docker的机器，这样访问宿主机IP:8888端口，实际访问的是docker的22端口。
+	--name 给启动的容器命名，方便后续操作
+
+docker exec -it centos7 /bin/bash
+
+yum install -y openssh-server openssh-clients
+
+systemctl start sshd
+
+netstat -antp | grep sshd

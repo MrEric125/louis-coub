@@ -18,6 +18,7 @@
         <module>webFlux</module>
         <module>common</module>
         <module>security</module>
+        <module>netty</module>
     </modules>
     <groupId>com.louis</groupId>
     <artifactId>boot-mybatis</artifactId>

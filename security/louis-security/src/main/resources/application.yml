@@ -12,6 +12,14 @@ spring:
         core-size: 8
         keep-alive: 60s
       threadNamePrefix: louis-task
+#静态资源配置
+  freemarker:
+    expose-request-attributes: true
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    template-loader-path: classpath:/templates/
+  resources:
+    static-locations: classpath:/templates/,classpath:/static/
 #  mvc:
 #    view:
 #      prefix: /WEB-INF/views/

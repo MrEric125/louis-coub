@@ -23,16 +23,14 @@ spring:
     username: root
     password: Root
     driver-class-name: com.mysql.cj.jdbc.Driver
-  redis:
-    sentinel:
-      nodes:
-        - flux-wms1.cachesit.sfdc.com.cn:8001
-        - flux-wms2.cachesit.sfdc.com.cn:8001
-        - flux-wms3.cachesit.sfdc.com.cn:8001
-      master: FLUX_REDIS_C01
-    password: 0qvt1wgi03wnt7x2
   resources:
     static-locations: classpath:/templates/,classpath:/static/
+  redis:
+    host: 129.28.189.234
+    port: 6379
+    password: redis
+
+
 #logging:
 #  level:
 #      org.springframework: DEBUG
@@ -41,3 +39,12 @@ mybatis:
   config-location:
 server:
   port: 8113
+#logging:
+#  pattern:
+#    console:
+logging:
+  pattern:
+    console: "%clr(%d{${LOG_DATEFORMAT_PATTERN}}){faint} %clr(${LOG_LEVEL_PATTERN}) %clr(${PID: }){magenta} %clr(--){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD}"
+    level: "%5p"
+    dateformat: yyyy-MM-dd HH:mm:ss.SSS
+  exception-conversion-word: "%wEx"

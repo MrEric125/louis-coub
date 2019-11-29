@@ -57,14 +57,15 @@ public class NumTest {
     @Test
     public void test() {
 
-        Map<String, Object> hashMap = Maps.newHashMap();
+        Map<String, String> hashMap = Maps.newHashMap();
 
         hashMap.put("active", "true");
-
-        if (!Boolean.TRUE.equals(hashMap.get("active"))) {
-            System.out.println("ttttttt");
-        }
-        System.out.println("fffffff");
+        hashMap.computeIfAbsent("active", key -> key + "absent");
+        hashMap.compute("active",(key,value)->"compute");
+//        hashMap.computeIfPresent();
+//        hashMap.merge();
+//        hashMap.replaceAll();
+        hashMap.forEach((key, value) -> System.out.println("key:" + key + ", value: " + value));
 
     }
 
