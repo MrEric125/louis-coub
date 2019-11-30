@@ -19,6 +19,7 @@ import java.util.Optional;
 public class ClientDetailEntityService {
 
     public Cache<String, ClientDetailsEntity> cache = CacheConfig.createCache();
+
     @Autowired
     private ClientDetailsRepository clientDetailsRepository;
 

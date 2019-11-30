@@ -1,5 +1,7 @@
 package louis.server.oauth2service;
 
+import com.google.common.cache.Cache;
+import louis.server.config.CacheConfig;
 import louis.server.entity.ClientDetailsEntity;
 import louis.server.entity.RedirectUriEntity;
 import louis.server.entity.asocciate.ClientDetailsToScopes;
@@ -28,6 +30,8 @@ import java.util.stream.Collectors;
 @Service
 public class ClientDetailsServiceImpl implements ClientDetailsService {
 
+    private Cache<String, ClientDetails> clientDetailsCache = CacheConfig.createCache();
+
     @Autowired
     ClientDetailEntityService clientDetailEntityService;
 
@@ -43,9 +47,15 @@ public class ClientDetailsServiceImpl implements ClientDetailsService {
 
     @Override
     public ClientDetails loadClientByClientId(String s) throws ClientRegistrationException {
-        return Optional.ofNullable(clientDetailEntityService.loadClientByClientId(s))
-                .map(entityToDomain)
-                .orElseThrow(() -> new RuntimeException("没有找到对应的clientDetail" + s));
+        return Optional.ofNullable(clientDetailsCache.getIfPresent(s))
+                .orElseGet(() -> {
+                    BaseClientDetails clientDetails = Optional
+                            .ofNullable(clientDetailEntityService.loadClientByClientId(s))
+                            .map(entityToDomain)
+                            .orElseThrow(() -> new RuntimeException("没有找到对应的clientDetail" + s));
+                    clientDetailsCache.put(s, clientDetails);
+                    return clientDetails;
+                });
     }
 
     private final Function<? super ClientDetailsEntity, ? extends BaseClientDetails> entityToDomain = entity -> {

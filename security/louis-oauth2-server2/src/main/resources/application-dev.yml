@@ -6,7 +6,7 @@ spring:
   jackson:
     serialization.indent_output: true
   datasource:
-    url: jdbc:mysql://localhost:3306/louis_oauth2_server?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/louis_oauth2_server2?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     name:
     username: root
     password: Root
@@ -23,8 +23,6 @@ spring:
         cache.use_query_cache: false
         generate_statistics: false
         cache.region.factory_class: org.hibernate.cache.internal.NoCachingRegionFactory
-  resources:
-    static-locations:  classpath:/templates/,classpath:/static/
 
 logging:
   level:
