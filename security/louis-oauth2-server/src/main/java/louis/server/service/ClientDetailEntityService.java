@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * @author louis
@@ -24,17 +26,22 @@ public class ClientDetailEntityService {
     private ClientDetailsRepository clientDetailsRepository;
 
     public ClientDetailsEntity loadClientByClientId(String clientId) {
-       return Optional.
-               ofNullable(cache.getIfPresent(clientId))
-               .orElseGet(
-                       () -> clientDetailsRepository.findOneByClientId(clientId)
-                       .map(clientDetailsEntity -> {
-                           cache.put(clientId, clientDetailsEntity);
-                           return clientDetailsEntity;
-                       }).orElseThrow(() -> new RuntimeException("没有找到对应 client id" + clientId)
-                       )
-               );
+
+        Optional<ClientDetailsEntity> cacheIfPresent = Optional.ofNullable(cache.getIfPresent(clientId));
+
+        if (!cacheIfPresent.isPresent()) {
+            Optional<ClientDetailsEntity> detailFromJdbc = clientDetailsRepository.findOneByClientId(clientId);
+            return detailFromJdbc.map(clientDetailsEntity -> {
+                cache.put(clientId, clientDetailsEntity);
+                return clientDetailsEntity;
+
+            }).orElseThrow(() -> new RuntimeException("没有找到对应的clientDetail" + clientId));
+        }
+        return cacheIfPresent.get();
 
     }
+
+
+
 
 }

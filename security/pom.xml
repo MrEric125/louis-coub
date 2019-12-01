@@ -16,8 +16,8 @@
         <module>louis-oauth2-server</module>
         <module>louis-oauth2-resources</module>
         <module>louis-oauth2-client</module>
-        <module>louis-oauth2-server2</module>
         <module>louis-oauth2-core</module>
+        <module>louis-oauth2-server3</module>
     </modules>
 
     <dependencies>
