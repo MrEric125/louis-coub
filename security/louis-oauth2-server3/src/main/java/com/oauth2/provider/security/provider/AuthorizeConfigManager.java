@@ -1,4 +1,4 @@
-package com.oauth2.provider.provider;
+package com.oauth2.provider.security.provider;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;

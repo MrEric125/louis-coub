@@ -1,4 +1,4 @@
-package com.oauth2.provider.token;
+package com.oauth2.provider.security.token;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;

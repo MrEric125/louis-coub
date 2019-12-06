@@ -1,6 +1,6 @@
-package com.oauth2.provider.provider.impl;
+package com.oauth2.provider.security.provider.impl;
 
-import com.oauth2.provider.provider.AuthorizeConfigProvider;
+import com.oauth2.provider.security.provider.AuthorizeConfigProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.stereotype.Component;

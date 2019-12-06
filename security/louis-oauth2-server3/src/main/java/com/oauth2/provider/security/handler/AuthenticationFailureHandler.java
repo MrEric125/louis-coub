@@ -1,4 +1,4 @@
-package com.oauth2.provider.handler;
+package com.oauth2.provider.security.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,7 @@
-package com.oauth2.provider.token;
+package com.oauth2.provider.security.token;
 
 
-import com.oauth2.provider.token.properties.TokenProperties;
+import com.oauth2.provider.security.token.properties.TokenProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,6 @@
-package com.oauth2.provider.token;
+package com.oauth2.provider.security.token;
 
-import com.oauth2.provider.token.properties.TokenProperties;
+import com.oauth2.provider.security.token.properties.TokenProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

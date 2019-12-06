@@ -1,4 +1,4 @@
-package com.oauth2.provider.token;
+package com.oauth2.provider.security.token;
 
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;

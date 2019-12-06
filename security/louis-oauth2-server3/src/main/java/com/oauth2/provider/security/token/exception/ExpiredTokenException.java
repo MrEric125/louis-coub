@@ -1,6 +1,6 @@
-package com.oauth2.provider.token.exception;
+package com.oauth2.provider.security.token.exception;
 
-import com.oauth2.provider.token.Token;
+import com.oauth2.provider.security.token.Token;
 import org.springframework.security.core.AuthenticationException;
 
 /**

@@ -1,4 +1,4 @@
-package com.oauth2.provider.token.properties;
+package com.oauth2.provider.security.token.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
