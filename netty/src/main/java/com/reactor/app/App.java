@@ -82,7 +82,7 @@ import java.util.List;
  * The application utilizes single thread to listen for requests on all ports. It does not create a
  * separate thread for each client, which provides better scalability under load (number of clients
  * increase).
- * The example uses Java NIO framework to implement the Reactor.
+ * The example uses Java NIO framework to implement the reactor.
  *
  *
  *
