@@ -72,8 +72,6 @@ public class UserService implements UserDetailsService {
                 .collect(Collectors.toList());
     }
 
-
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Collection<GrantedAuthority> grantedAuthorities;
@@ -81,7 +79,6 @@ public class UserService implements UserDetailsService {
 
         grantedAuthorities = loadUserAuthorities(user.getId());
         return new User(user.getUserName(), user.getLoginPwd(), grantedAuthorities);
-
     }
 
 }
