@@ -62,4 +62,12 @@ public class RedisController {
         return WrapMapper.ok(clientList);
 
     }
+    @RequestMapping("/zSetOperate")
+    public Wrapper zSetOperate() {
+//        redisTemplate.opsForZSet().range()
+        redisTemplate.opsForZSet().range("mySet", 0, -1);
+
+        return WrapMapper.ok();
+
+    }
 }
