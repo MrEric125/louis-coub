@@ -1,7 +1,8 @@
 package com.concurrent.executor;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.concurrent.*;
 
 /**
  * @author louis
@@ -9,10 +10,29 @@ import java.util.concurrent.Executors;
  * Date: 2019/8/21
  * Description:
  */
+@Slf4j
 public class ExecutorsTest {
 
+
     public static void main(String[] args) {
-        ExecutorService executorService = Executors.newCachedThreadPool();
+        for (int i = 0; i < 10; i++) {
+            ThreadUtils utils = new ThreadUtils();
+            String s = String.valueOf(i);
+            log.info(utils.toString());
+            utils.execute(
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            log.info("sout:{}", s);
+
+                        }
+            }
+        ,10);
+//            utils.shutdown();
+        }
+
+
+
 
     }
 }
