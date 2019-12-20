@@ -16,10 +16,10 @@ import static java.util.stream.Collectors.toList;
  * Description:
  */
 @NoArgsConstructor
-
 public class Shop {
     private String shopName;
     Random random = new Random();
+    private Integer price;
 
     public Shop(String shopName) {
         this.shopName = shopName;
@@ -77,6 +77,14 @@ public class Shop {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public String toString() {
+        return "Shop{" +
+                "shopName='" + shopName + '\'' +
+                ", random=" + random +
+                '}';
     }
 
     public String getShopName() {

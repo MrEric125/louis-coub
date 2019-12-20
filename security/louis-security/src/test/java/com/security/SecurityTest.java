@@ -1,8 +1,10 @@
 package com.security;
 
+import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Random;
+import java.util.UUID;
 
 /**
  * @author louis
@@ -15,10 +17,12 @@ public class SecurityTest {
 
     @Test
     public void test() {
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//        boolean matches = passwordEncoder.matches("admin", "$10$GV6ODucmont6Ja51ibBUx.l.falrOYVdVhIn3VmOwDkJinXHOltke");
-        String encode = passwordEncoder.encode("123456");
-        System.out.println(encode);
-
+        Person request = new Person();
+        request.setAge("11");
+        request.setName("zhangsan");
+        String string = JSONObject.toJSONString(request);
+        System.out.println(request);
+        System.out.println("format:  "+ string);
     }
 }
+
