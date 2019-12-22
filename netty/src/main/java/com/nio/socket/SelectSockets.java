@@ -16,7 +16,7 @@ import java.util.Iterator;
 public class SelectSockets {
 
 
-    public static int PORT = 1234;
+    public static int PORT = 9876;
 
 
     private ByteBuffer buffer = ByteBuffer.allocateDirect(1024);

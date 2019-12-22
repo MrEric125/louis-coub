@@ -22,13 +22,15 @@ public class ChannelTest1 {
     public static void main(String[] args) throws IOException {
         ReadableByteChannel source = Channels.newChannel(System.in);
         WritableByteChannel dest = Channels.newChannel(System.out);
-//        channelCopy1(source, dest);
-        channelCopy2(source, dest);
+        channelCopy1(source, dest);
+//        channelCopy2(source, dest);
         source.close();
         dest.close();
 
 
     }
+
+
 
     /**
      * 将src的数据复制到desc
