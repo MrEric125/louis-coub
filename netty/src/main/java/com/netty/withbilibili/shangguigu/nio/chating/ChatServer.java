@@ -46,20 +46,26 @@ public class ChatServer {
 
     public void listen() {
         try {
+
             while (true) {
+//                相当于Reactor 单线程中的Reactor,
                 int count = selector.select(2000);
 //                有事件处理
                 if (count > 0) {
                     Iterator<SelectionKey> keyIterator = selector.selectedKeys().iterator();
                     while (keyIterator.hasNext()) {
                         SelectionKey selectionKey = keyIterator.next();
+                        //                相当于Reactor 单线程中的建立连接
                         if (selectionKey.isAcceptable()) {
+                            System.out.println("处理连接的线程:"+Thread.currentThread().getName());
                             SocketChannel socketChannel = listener.accept();
                             socketChannel.configureBlocking(false);
                             socketChannel.register(selector, SelectionKey.OP_READ);
                             System.out.println(socketChannel.getRemoteAddress()+" 上线了");
                         }
+                        //                相当于Reactor 单线程中处理请求
                         if (selectionKey.isReadable()) {
+                            System.out.println("处理读请求:"+Thread.currentThread().getName());
                             readContent(selectionKey);
                         }
 //                        将事件从迭代器中移除
@@ -67,7 +73,6 @@ public class ChatServer {
 
                     }
                 }
-
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -78,14 +83,9 @@ public class ChatServer {
     private void readContent(SelectionKey selectionKey) {
 //        定义一个socketChannel
         SocketChannel socketChannel = null;
-
-
-
         try {
             socketChannel = (SocketChannel) selectionKey.channel();
-
             ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-
             socketChannel.configureBlocking(false);
 
             int read = socketChannel.read(byteBuffer);
@@ -110,6 +110,7 @@ public class ChatServer {
 
     private void sendInfoToOthers(String msg, SocketChannel self) throws IOException {
         System.out.println("服务器转发消息");
+        System.out.println("转发线程" + Thread.currentThread().getName());
 //        获取所有Select上注册的SocketChannel
         for (SelectionKey selectionKey : selector.keys()) {
             SelectableChannel targetChannel = selectionKey.channel();
@@ -119,7 +120,6 @@ public class ChatServer {
                 ByteBuffer buffer = ByteBuffer.wrap(msg.getBytes());
                 dest.write(buffer);
             }
-
         }
 
     }
