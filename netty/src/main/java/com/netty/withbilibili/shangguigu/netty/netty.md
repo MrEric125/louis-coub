@@ -62,3 +62,18 @@ netty 线程模型是基于主从reactor 多线程模型进行改进
  1.BossGroup线程维护Selector,只关注Accept
  2.当接收到Accept时间，获取对应的SocketChannel，封装成NIOSocketChannel并注册到Worker线程时间循环中，并维护
  3.当worker线程坚挺到selector中通道发生自己感兴趣的事情后，就进行处理（由handler）
+ 
+ 工作原理：  
+ 1.netty抽象出两组线程池，bossGroup 专门负责接收客户端的连接，workergroup专门负责网络读写 
+ 2.bossGroup 和workergroup类型都是nioEventLoopGroup, 
+ 3.nioEventLoopGroup相当于一个时间循环组，这个组中含有多个时间循环，每个时间循环就是一个NIOEventLoop
+ 4.NIOEventLoop 表示一个不断循环的执行处理任务的线程，每个NioEventLoop都有一个selector,用于监听绑定在其上的socket的网络通信     
+ 5.NioEventLoopGroup 可以有多个线程，即可以含有多个NioEventLoop    
+ 6.每个BossNioEventLoop执行的步骤有三步    
+  * 轮询accept事件    
+  * 处理accept事件，与client建立连接，生成nioSocketChannel并将其注册到某个worker nioEventLoop上的selector
+  * 处理人物队列中的任务 即runALlTask  
+          
+7.每个worker nioEventLoop循环执行的步骤
+  * 轮询read,write事件
+  * 处理io事件，即read,write 事件，在对应nioSocketChannel处理任务队列的任务， 即runAllTask

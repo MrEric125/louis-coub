@@ -21,11 +21,13 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
     private static  String path;
 
     static {
+//        获取URL的时候将空格转换了，以至于找不到index.html文件
         URL location = HttpRequestHandler.class.getProtectionDomain()
                 .getCodeSource()
                 .getLocation();
             try {
                 path=location.toURI() + "index.html";
+                path = !path.contains("%20") ? path : path.replace("%20", " ");
                 path = !path.contains("file:") ? path : path.substring(5);
 
             } catch (URISyntaxException e) {
