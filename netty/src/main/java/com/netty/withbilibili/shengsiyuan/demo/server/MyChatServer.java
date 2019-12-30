@@ -42,17 +42,6 @@ public class MyChatServer {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }
-
-
-
-
-
-
-
-
-
-
-
     }
 
 }
