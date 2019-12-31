@@ -1,4 +1,4 @@
-package com.chapter3;
+package com.netty.inaction.chapter3;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
