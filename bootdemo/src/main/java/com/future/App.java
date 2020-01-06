@@ -69,7 +69,7 @@ public class App {
 
     public static void run3() {
         List<Shop> shops = new ArrayList<>(225);
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 32; i++) {
             shops.add(new Shop("BuyItDDal"));
 
         }
@@ -86,11 +86,14 @@ public class App {
      * @return
      */
     public static List<Integer> findPrices5(List<Shop> shops, String product) {
-        ExecutorService executor = Executors.newFixedThreadPool(8);
-        List<CompletableFuture<Integer>> priceFutures = shops.stream().map(shop -> CompletableFuture.supplyAsync(() ->
-                String.format("%s price is %.2f",
-                        shop.getShopName(), shop.getPrice(product)), executor)
-        ).map(future -> future.thenApply(String::hashCode)).collect(toList());
+        ExecutorService executor = Executors.newFixedThreadPool(16);
+        List<CompletableFuture<Integer>> priceFutures =
+                shops.stream()
+                        .map(
+                                shop -> CompletableFuture.supplyAsync(() ->
+                                        String.format("%s price is %.2f", shop.getShopName(), shop.getPrice(product)), executor))
+                        .map(future -> future.thenApply(String::hashCode))
+                        .collect(toList());
         executor.shutdown();
         return priceFutures.stream().map(CompletableFuture::join).collect(toList());
 
