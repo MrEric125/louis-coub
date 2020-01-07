@@ -19,6 +19,7 @@
         <module>common</module>
         <module>security</module>
         <module>netty</module>
+        <module>algorithm</module>
     </modules>
     <groupId>com.louis</groupId>
     <artifactId>boot-mybatis</artifactId>

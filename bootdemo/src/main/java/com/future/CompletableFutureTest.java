@@ -43,7 +43,7 @@ public class CompletableFutureTest {
         List<CompletableFuture> list = Lists.newArrayList();
         ExecutorService executor = Executors.newFixedThreadPool(8);
         for (int i = 0; i < 8; i++) {
-            list.add(CompletableFuture.supplyAsync(() -> calculate(8), executor));
+            list.add(CompletableFuture.supplyAsync(() -> calculate(8)));
         }
         long start = System.currentTimeMillis();
         List<Integer> collect = list.stream().map(CompletableFuture<Integer>::join).collect(Collectors.toList());
