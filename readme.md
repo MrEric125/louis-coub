@@ -17,7 +17,7 @@ vue
 需要深入学习的知识
 docker(网络，dockerFile docker-compose,容器编排技术)
 
-redis 
+redis
 高性能的基石（单线程模型， epoll多路复用机制，集群模式，哨兵模式）
 缓存容错机制，如何防止缓存穿透，缓存击穿，等问题
 redis 如何实现分布式锁
@@ -33,7 +33,7 @@ kafka
 
 mysql, 性能调优，索引实现相关技术还需要继续深入
 
-java8 
+java8
 除了常用的几种特性，Collectors中的静态方法还是需要搞熟练
 
 spring
