@@ -35,6 +35,7 @@ public class StaticsTest {
         Person person1 = Person.builder().age(22).weight(140).build();
         Person person2 = Person.builder().age(33).weight(150).build();
         List<Person> personList = Lists.newArrayList(person1, person2);
+
         long sum = personList.stream().mapToInt(Person::getWeight).summaryStatistics().getSum();
         double average = personList.stream().mapToInt(Person::getAge).average().orElse(0);
 
