@@ -145,3 +145,25 @@ netty 线程模型是基于主从reactor 多线程模型进行改进
 ​		Future-Listener: 当Future对象刚刚创建时，处于非完成状态，调用者可以通过返回的ChannelFuture来获取操作执行的状态，注册监听函数来执行完成之后的操作，常见方法（isDone(),isSuccess(),getCause() addListener()）
 
 **工作原理:**  将一系列的Handler 放到Pipeline 中，pipeline相当于是一个责任链模式。
+
+**netty 核心组件**
+`bootstrap`,
+`serverBootstrap`,
+`Future`,
+`ChannelFuture`(可以返回当前正在操作的通道),
+`Channel`(执行网络IO操作的通道，可以获取网络连接的状态，不同协议，不同阻塞类型的连接都有不同的Channel类型与之对应)
+    NIOSocketChannel: 异步的客户端TCPSocket连接
+    NioServerSocketChannel:异步服务器端的TCPSocket连接
+    NioDatagramChannel:异步的UDP连接
+    NioSctpChannel:异步的客户端Sctp连接
+    NioSctpServerChannel: 异步的Sctp服务器端连接，这些通道涵盖了UDP和TCP网络IO以及文件IO
+`Selector`:netty通过Selector对象实现IO多路复用，
+`ChannelHandler`:
+`pipeline`
+`ChannelPipeline`:   
+`ChannelHandlerContext`:保存Channel相关的上下文信息，同事关联一个ChannelHandler对象，也就是说ChannelHandlerContext中也绑定了对应的pipeline和Channel的信息，
+方便对ChannelHandler调用
+`ChannelOption`
+`EventLoopGroup`
+`NioEventLoopGroup`
+`Unpooled`:是netty提供的一个专门用来操作缓冲区的工具类（readerIndex,WriterIndex,Capacity）

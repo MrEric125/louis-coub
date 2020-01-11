@@ -26,12 +26,14 @@ public class NettyServer {
 
 //          注册服务器  一个Chanel在生命周期内只注册一个EventLoop
             bootstrap.group(bossGroup, workerGroup)
+//                    这个地方如果加了handler,那么就是在bossGroup中使用的
+                    .handler(null)
 //                    使用nioServerSocketChannel作为服务器的通道实现
                     .channel(NioServerSocketChannel.class)
 //                    设置下连城队列到的线程个数
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true)
-//                    关联一个子处理器
+//                    关联一个子处理器,常用于业务处理
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
