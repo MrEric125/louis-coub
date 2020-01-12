@@ -12,6 +12,7 @@ import java.util.Arrays;
  * description: 快排的一般的速度还是要比归并排序要快一些的
  *
  *<p>归并排序和快速排序的思路都是使用了分治算法</p>
+ * 首先分区，然后将分区左边的元素排序，然后将分区右边的元素排序
  *
  */
 public class QuickSortBase<T extends Comparable<T>> extends AbstractQuickSort<T>{
@@ -26,7 +27,7 @@ public class QuickSortBase<T extends Comparable<T>> extends AbstractQuickSort<T>
     }
 
     /**
-     * 返回
+     * 核心，返回的是p所在的位置
      * @param arr
      * @param lo
      * @param hi

@@ -17,16 +17,24 @@
 
 ### 各种排序的复杂度
 
-| 类型               | 时间复杂度  |   空间复杂度   |
-| ------------------ |   --------  |    ----------  |
-| Insertion          |             |                |
-| BinaryInsertion    |             |                |
-| InsertionX         |             |                |
-| Merge              |             |                |
-| MergeBU            |             |                |
-| Selection          |             |                |
-| Shell              |             |                |
-| QuickSortBase      |             |                |
-| QuickSortIdentical |             |                |
-| QuickSortNearOrder |             |                |
-| QuickSortThreadWay |             |                |
+| 类型               | 时间复杂度（平均）   | 时间复杂度（最坏）   | 时间复杂度（最好）   | 空间复杂度           | 稳定性 |
+| ------------------ | -------------------- | -------------------- | -------------------- | -------------------- | ------ |
+| Insertion          | O(n2)                | O(n2)                | O(n)                 | O(1)                 | 稳定   |
+| BinaryInsertion    |                      |                      |                      |                      |        |
+| InsertionX         |                      |                      |                      |                      |        |
+| Merge              | O(nlog<sub>2</sub>n) | O(nlog<sub>2</sub>n) | O(nlog<sub>2</sub>n) | O(n)                 | 稳定   |
+| MergeBU            |                      |                      |                      |                      |        |
+| Selection          | O(n<sup>2</sup>)     | O(n<sup>2</sup>)     | O(n<sup>2</sup>)     | O(1)                 | 稳定   |
+| Shell              | O(n<sup>1.3</sup>)   | O(n<sup>2</sup>)     | O(n)                 | O(1)                 | 不稳定 |
+| QuickSortBase      | O(nlog<sub>2</sub>n) | O(n<sup>2</sup>)     | O(nlog<sub>2</sub>n) | O(nlog<sub>2</sub>n) | 不稳定 |
+| QuickSortIdentical |                      |                      |                      |                      |        |
+| QuickSortNearOrder |                      |                      |                      |                      |        |
+| QuickSortThreadWay |                      |                      |                      |                      |        |
+| 堆排序             | O(nlog<sub>2</sub>n) | O(nlog<sub>2</sub>n) | O(nlog<sub>2</sub>n) | O(1)                 | 稳定   |
+| 冒泡排序           | O(n<sup>2</sup>)     | O(n<sup>2</sup>)     | O(n<sup>2</sup>)     | O(1)                 | 稳定   |
+| 计数排序           | O(n+k)               | O(n+k)               | O(n+k)               | O(n+k)               | 稳定   |
+| 桶排序             | O(n+k)               | O(n<sup>2</sup>)     | O(n)                 | O(n+k)               | 稳定   |
+| 技术排序           | O(n+k)               | O(n*k)               | O(n*k)               | O(n+k)               | 稳定   |
+
+
+遍历方式：(深度优先搜索，广度优先搜索，前序遍历，中序遍历，后序遍历)

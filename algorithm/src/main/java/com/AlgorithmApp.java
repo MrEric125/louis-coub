@@ -11,6 +11,10 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 
+/**
+ * 讲解： https://www.cnblogs.com/onepixel/p/7674659.html
+ * 视图演示：https://visualgo.net/zh/
+ */
 @Slf4j
 @EnableAsync
 @SpringBootApplication(scanBasePackages = "com.web")

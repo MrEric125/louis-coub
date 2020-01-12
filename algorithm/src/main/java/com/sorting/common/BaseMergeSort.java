@@ -48,6 +48,8 @@ public class BaseMergeSort<T extends Comparable<T>> {
 
     /**
      * 归并排序用接口将a[lo....]和a[mid+1...hi]两部分数据进行归并
+     * 详细看图片
+     * <a src="/algorithm/etc/merge.png">图片</a>
      * @param arr 需要排序的数组
      * @param aux 复制的aux
      * @param lo  排序的最低位

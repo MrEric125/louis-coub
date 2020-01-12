@@ -18,9 +18,11 @@
 #### 基础
 ##### 网络
 
-> 基于网络的面试题，主要搞清楚两个点`TCP`,`UDP`，然后就是通用的基础知识点比方说`4/7层网络模型`,`Http`相关知识点
+> 基于网络的面试题，主要搞清楚两个点`TCP`,`UDP`，然后就是通用的基础知识点比方说`4/7层网络模型`,`Http`相关知识点，这块可以通过 [JavaGuide](https://gitee.com/SnailClimb/JavaGuide/tree/master)来 详细学习
 
+TCP/IP四层协议：应用层（SMTP,FTP,Telnet），传输层（TCP/UDP）,网络层（IP）,网络接口层
 
+OSI七层：应用层，表现层，会话层，传输层，网络层，数据链路层，物理层
 
 1. **TCP特点:** 
    1. 基于链接(点对点)
@@ -521,6 +523,14 @@ zookeeper实现分布式所的原理，以及redis具体怎么实现分布式锁
 谈谈秒杀如何防止超卖？
 
 
+
+可以想把和几个git上的项目pull 下来，学习
+
+https://github.com/frank-lam/fullstack-tutorial/blob/master/notes/MySQL.md
+
+https://github.com/hadyang/interview
+
+https://github.com/doocs/advanced-java
 
 ------
 
