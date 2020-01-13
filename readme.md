@@ -529,17 +529,17 @@ java基础
    
      1. 接收端正常收到两个数据包
    
-        ![](\note\etc\netty\tcp_combine_package_0.png)
+        ![](/note/etc/netty/tcp_combine_package_0.png)
    
      2. 接收端只收到一个数据包
    
-        ![](\note\etc\netty\tcp_combine_package_1.png)
+        ![](/note/etc/netty/tcp_combine_package_1.png)
    
      3. 接收端收到了两个数据包，但是这两个数据包要么是不完整的，要么就是多出来一块
    
-        ![](\note\etc\netty\tcp_combine_package_2.png)
+        ![](/note/etc/netty/tcp_combine_package_2.png)
    
-        ![](\note\etc\netty\tcp_combine_package_3.png)
+        ![](/note/etc/netty/tcp_combine_package_3.png)
    
      **发生原因：**
    
