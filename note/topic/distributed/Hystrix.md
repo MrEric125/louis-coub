@@ -1,4 +1,4 @@
-## Hystrix
+#### Hystrix
 >通常我们在进行远程服务调用的时候，为了让某些服务发生了错误或者表现不佳的时候，能够不影响到另外的一些服务，引入了一个所谓的
 "所谓的客户端弹性模式"，这个模式的目的就是为了让客户端能够快速的失败，而不消耗诸如线程池或者数据库之类的资源，，并且可以
 防止远程服务的问题在服务与服务之间传播，导致批量服务挂掉
@@ -28,7 +28,7 @@
 ```
 如果我们想让Hystrix生效，需要将@EnableCircuitBreaker或者@EnableHystrix 加入到引导类上，是Hystrix能够生效
 
-1. 断路器模式   
+##### 断路器模式
   其实断路器模式超级简单，原理就是 当我们调用服务超过指定时间，那么就将该服务断开，避免异常会在其他服务之间蔓延，导致其他服务不可用  
 
   简单测试代码如下
@@ -88,7 +88,7 @@ public class TimeOutUtils {
 就出现了后备模式
 
 
-2. 后备处理模式
+##### 后备处理模式
 
 后备模式很简单的意见就是需要指定一个fallbackMethod方法，需要注意的是，这个fallbackMethod指定的后备方法必须得和当前@HystrixCommand注解的方法放在同一个类中，并且有相同的参数，否则就会跑出一个`com.netflix.hystrix.contrib.javanica.exception.FallbackDefinitionException: fallback method wasn't found: fallback([int, long])`异常，示例代码如下：
 
@@ -109,7 +109,7 @@ public class TimeOutUtils {
 
 
 
-3. 舱壁模式
+##### 舱壁模式
 
 >前面说到，@HystrixCommand默认会将所有的服务调用都使用同一批线程来执行，那么这些线程是为了处理整个java预留的，所以如果出现大量请求的话，一个服务出现性能问题，也会导致java容器的所有县城被刷爆并等待线程处理工作，同时阻塞新的请求。这个时候就会该使用舱壁模式，舱壁模式会将所有的远程调用，隔离在自己的线程池中。
 
@@ -132,7 +132,7 @@ public class TimeOutUtils {
     }
 
 ```
-详细的配置说明看后面的参数配置表：
+##### 详细的配置说明看后面的参数配置表：
 
 @HystrixCommand 参数详细配置说明
 
