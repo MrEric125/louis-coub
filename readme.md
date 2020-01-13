@@ -151,6 +151,8 @@ java基础
  ##### 并发相关面试题(topic里面的内容还不够系统)
 
 > 并发考察是对实际并发场景的应用，可以和线程`Thread`以及`Thread`行为组织起来，比方说线程的六种状态(New,Runnable,Blocked,Waiting,Timed_Waiting,Terminated)以及其相互转化的过程，线程之间的通信(wait,notify notifyAll)
+>
+> 关于这块的知识点后期可以啃啃《java并发编程之美》，《java并发编程的艺术》，《java高并发编程详解》。《Java并发编程实战（中文版）》这本书比较老，可以放下了
 
 1. **锁类型，以及锁优化策略**
 
@@ -316,13 +318,21 @@ java基础
 1. **dubbo**
    
    - 如何设置dubbo的一致性hash负载均衡算法？
-   
    - dubbo都有哪些模块，底层通信的原理都有哪些？
-   
+   - [如何自己设计一个类似 Dubbo 的 RPC 框架？](https://github.com/doocs/advanced-java/blob/master/docs/distributed-system/dubbo-rpc-design.md)
+   - [分布式服务接口请求的顺序性如何保证？](https://github.com/doocs/advanced-java/blob/master/docs/distributed-system/distributed-system-request-sequence.md)
+   - [分布式服务接口的幂等性如何设计（比如不能重复扣款）？](https://github.com/doocs/advanced-java/blob/master/docs/distributed-system/distributed-system-idempotency.md)
+   - [如何基于 Dubbo 进行服务治理、服务降级、失败重试以及超时重试？](https://github.com/doocs/advanced-java/blob/master/docs/distributed-system/dubbo-service-management.md)
+   - [Dubbo 的 spi 思想是什么？](https://github.com/doocs/advanced-java/blob/master/docs/distributed-system/dubbo-spi.md)
+   - [Dubbo 负载均衡策略和集群容错策略都有哪些？动态代理策略呢？](https://github.com/doocs/advanced-java/blob/master/docs/distributed-system/dubbo-load-balancing.md)
+   - [Dubbo 支持哪些序列化协议？说一下 Hessian 的数据结构？PB 知道吗？为什么 PB 的效率是最高的？](https://github.com/doocs/advanced-java/blob/master/docs/distributed-system/dubbo-serialization-protocol.md)
+   - [说一下 Dubbo 的工作原理？注册中心挂了可以继续通信吗？](https://github.com/doocs/advanced-java/blob/master/docs/distributed-system/dubbo-operating-principle.md)
    
 
 #### 组件
 ##### mysql 相关面试题
+
+> mysql相关面试题，只需要把[高性能mysql第三版]()啃透，基本就没有问题了
 
 1. **schema**
 
@@ -371,16 +381,16 @@ java基础
 
 6. **调优**
    - 项目数据库表是你设计的吗？一般要注意什么？如何考虑扩展性？
-
-   - 项目 MySQL 的数据量和并发量有多大？量大后的影响有哪些，有考虑吗？SQL 调优有哪些技巧？
-
+- 项目 MySQL 的数据量和并发量有多大？量大后的影响有哪些，有考虑吗？SQL 调优有哪些技巧？
    - sql 优化有哪些思路？
-
-   - 索引使用注意事项？
-
+- 索引使用注意事项？
    - 常见的mysql主从同步方案都有哪些？优劣势都有哪些？
 
+
+
 ##### redis相关面试题
+
+> redis在项目中使用得比较多，虽然比较简单，但其实底层有很多可圈可点的知识点需要学习，比如说`epoll单线程模型`，`持久化方式`,`过期策略`,`分布式相关设置`等,关于这一点可以参考[石杉码农笔记](https://github.com/doocs/advanced-java)，视频和文档一起食用，效果更佳
 
 1. **redis数据结构，以及原理**
    
@@ -396,16 +406,14 @@ java基础
      Object ENCODING objName
      ```
    
-     | 类型   | 实现方式           |      |      |
-     | ------ | ------------------ | ---- | ---- |
-     | String | int,raw,embstr     |      |      |
-     | List   | zipList,LinkedList |      |      |
-     | Set    | intset,hashtable   |      |      |
-     | Hash   | zipList,hashtable  |      |      |
-     | ZSet   |                    |      |      |
-     |        |                    |      |      |
-     |        |                    |      |      |
-   
+     | 类型   | 实现方式           |
+     | ------ | ------------------ |
+     | String | int,raw,embstr     |
+     | List   | zipList,LinkedList |
+     | Set    | intset,hashtable   |
+     | Hash   | zipList,hashtable  |
+     | ZSet   |                    |
+     
    - 一个字符串类型的值能存储最大容量是多少？
      一个键最大能够存储512MB
    
@@ -421,6 +429,29 @@ java基础
    
    - 如何手写一个LRU算法？
    
+     ```java
+     public class LRUCache<K, V> extends LinkedHashMap<K, V> {
+         private final int CACHE_SIZE;
+     
+         /**
+          * 传递进来最多能缓存多少数据
+          *
+          * @param cacheSize 缓存大小
+          */
+         public LRUCache(int cacheSize) {
+             // true 表示让 linkedHashMap 按照访问顺序来进行排序，最近访问的放在头部，最老访问的放在尾部。
+             super((int) Math.ceil(cacheSize / 0.75) + 1, 0.75f, true);
+             CACHE_SIZE = cacheSize;
+         }
+     
+         @Override
+         protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+             // 当 map中的数据量大于指定的缓存个数的时候，就自动删除最老的数据。
+             return size() > CACHE_SIZE;
+         }
+     }
+     ```
+     
      
    
 2. **集群**
@@ -469,9 +500,13 @@ java基础
 
 ##### elasticsearch相关面试题
 
+> 针对搜索引擎，以及搜索引擎底层相关知识点的考察，原理性的东西，可以参考可以石杉码农笔记](https://github.com/doocs/advanced-java)，具体api使用参考[官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/index.html)(官方文档写的真的详细)，[中文官方文档](https://www.elastic.co/guide/cn/elasticsearch/guide/current/foreword_id.html)只有2.x
+
 1. **分布式原理**
 
    - es是如何实现分布式的
+
+     https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/es-architecture.md
 
    - 分布式搜索引擎的架构是怎么设计的？
 
@@ -518,6 +553,8 @@ java基础
 ​	 kafka相关面试题[kafka专题](./note/topic/kafka/0.题目总览.md)
 
 ##### netty相关面试题
+
+> 针对netty相关的面试题，其实是涉及到的网络编程，RPC相关的知识点，可以将redisjava客户端中使用到netty,elasticsearch java客户端使用了netty,dubbo中使用了netty等来说明netty中的重要性
 
 1. **特性**
    
@@ -582,18 +619,28 @@ java基础
    
      https://www.jianshu.com/p/3bfe0de2b022
    
+     
+   
    - NIO 组成部分？
    
      ByteBuffer,Selector,Channel
    
+     
+   
    - netty的高性能体现在什么地方？（心跳，串行无锁化设计，可靠性，安全性，流量整型）
-     https://www.cnblogs.com/wuzhenzhao/p/11202952.html
-   
-     https://www.cnblogs.com/itxiaok/p/10358052.html
-   
+     
+   https://www.cnblogs.com/wuzhenzhao/p/11202952.html
+     
+   https://www.cnblogs.com/itxiaok/p/10358052.html
+     
+     
+     
    - webSocket帧结构的理解，如何实现WebSocket长连接
-     https://www.zhihu.com/question/20215561
-   
+     
+   https://www.zhihu.com/question/20215561
+     
+     
+     
    - 主要概念包括哪些方面？他们之间的关系是什么样点的
    
    ​		
@@ -607,23 +654,32 @@ java基础
      ![Reactor](/note/etc/netty/netty线程模型.jpeg)
 
    - 说说 Netty 的零拷贝？
-  https://my.oschina.net/plucury/blog/192577
-   
-- Netty 内部执行流程？
+    https://my.oschina.net/plucury/blog/192577
+     
+   - Netty 内部执行流程？
+     
      见 Netty 线程模型图
-
+     
+     
+     
    - Netty如何 重连实现？
-
+     
+     https://segmentfault.com/a/1190000006931568
+     
    - 开源RPC框架了解哪些?
-   
+     
      dubbo,Thrift,gRPC,Spring cloud,等吧
+     
+     
    
    - RPC与HTTP的区别是什么？什么场景选用RPC,什么场景适合HTTP？
      todo 搞清楚RPC HTTP RESTFul几者之间的关系吧
    
-   - RPC的交互流程是什么样子的？
-     https://www.cnblogs.com/SamllBaby/p/5695478.html
+     
    
+   - RPC的交互流程是什么样子的？
+   
+     https://www.cnblogs.com/SamllBaby/p/5695478.html
 
 ##### git相关面试题
 
@@ -637,23 +693,23 @@ java基础
 
 #### 项目相关
 
-zookeeper实现分布式所的原理，以及redis具体怎么实现分布式锁？
+1. 项目实战相关问题
 
+   - zookeeper实现分布式所的原理，以及redis具体怎么实现分布式锁？
 
+   - 如果让你实现一个MQ,怎么保证消息不丢失？
 
-如果让你实现一个MQ,怎么保证消息不丢失？
+   - 分布式事务的实现？
 
-硬盘IO速度会变慢？有什么好的解决办法？
+     https://www.zhihu.com/question/64921387
 
-分布式事务的实现？
+     https://www.jianshu.com/p/ee4071d0c951
 
-线程同步，并发操作怎么控制？
+   - 如何解决redis和mysql中数据一致性问题？
 
-如何解决redis和mysql中数据一致性问题？
+   - 先谈谈秒杀的设计思路？
 
-先谈谈秒杀的设计思路？
-
-谈谈秒杀如何防止超卖？
+   - 谈谈秒杀如何防止超卖？
 
 
 
