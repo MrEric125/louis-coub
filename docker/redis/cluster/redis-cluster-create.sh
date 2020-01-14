@@ -1,0 +1,2 @@
+# redis --cluster
+docker exec -it  node-80 redis-cli -p 6380 --cluster create 172.20.0.5:6380  172.20.0.6:6381   172.20.0.3:6382   172.20.0.7:6383   172.20.0.2:6384   172.20.0.4:6385 --cluster-replicas 1
