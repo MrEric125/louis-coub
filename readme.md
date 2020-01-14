@@ -15,9 +15,7 @@
 
 ### 面试准备
 
-#### todo 
 
-[待办列表](note/readme.md)
 
 #### 基础
 ##### 网络
@@ -906,6 +904,3 @@ https://github.com/doocs/advanced-java
 
 ------
 
-2020年3月之后
-
-深入学习spring 源码
