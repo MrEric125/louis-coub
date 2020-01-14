@@ -531,35 +531,37 @@ java基础
         - 文档少，用例多，估计因为太简单了
    
      2. **Redisson**
-   - 基于Netty实现，采用非阻塞IO，性能高
      
-   - 支持异步请求
+        1. 基于Netty实现，采用非阻塞IO，性能高
      
-   - 支持连接池
+        2. 支持异步请求
      
-   - 支持pipelining、LUA Scripting、Redis Sentinel、Redis Cluster
+        3. 支持连接池
      
-   - 不支持事务，官方建议以LUA Scripting代替事务
+        4. 支持pipelining、LUA Scripting、Redis Sentinel、Redis Cluster
      
-   - 支持在Redis Cluster架构下使用pipelining
+        5. 不支持事务，官方建议以LUA Scripting代替事务
      
-   - 支持读写分离，支持读负载均衡，在主从复制和Redis Cluster架构下都可以使用
+        6. 支持在Redis Cluster架构下使用pipelining
      
-   - 内建Tomcat Session Manager，为Tomcat 6/7/8提供了会话共享功能
+        7. 支持读写分离，支持读负载均衡，在主从复制和Redis Cluster架构下都可以使用
      
-- 可以与Spring Session集成，实现基于Redis的会话共享
-  
-- 文档较丰富，有中文文档
+        8. 内建Tomcat Session Manager，为Tomcat 6/7/8提供了会话共享功能
+     
+        9. 可以与Spring Session集成，实现基于Redis的会话共享
+     
+        10. 文档较丰富，有中文文档
+
+     
+     3. **Lettuce**
+
+        1. 与Jedis 相比，Lettuce 则完全克服了其线程不安全的缺点。
         
-3. **Lettuce**
-   
-      - 与Jedis 相比，Lettuce 则完全克服了其线程不安全的缺点。
-      
-   - Lettuce 是一个可伸缩的线程安全的 Redis 客户端，支持同步、异步和响应式模式。多个线程可以共享一个连接实例，而不必担心多线程并发问题。
-     
-   - 它基于优秀 Netty NIO 框架构建。
-     
-   - 支持 Redis 的高级功能，如 Sentinel，集群，流水线，自动重新连接和 Redis 数据模型。
+        2. Lettuce 是一个可伸缩的线程安全的 Redis 客户端，支持同步、异步和响应式模式。多个线程可以共享一个连接实例，而不必担心多线程并发问题。
+        
+        3. 它基于优秀 Netty NIO 框架构建。
+        
+        4. 支持 Redis 的高级功能，如 Sentinel，集群，流水线，自动重新连接和 Redis 数据模型。
      
    - Redis回收进程如何工作的？
    
@@ -628,7 +630,7 @@ java基础
          }
      }
      ```
-     
+   
      
    
 2. **集群**
@@ -679,17 +681,17 @@ java基础
    
 
 4. **应用调优**
-   
+
    - MySQL里有2000w数据，redis中只存20w的数据，如何保证redis中的数据都是热点数据？
-   
+
    - Redis有哪些适合的场景？
-   
+
    - Redis如何做内存优化
-   
+
    - 贵司之前的redis架构如何做的
-   
+
    - redis缓存穿透，缓存击穿，缓存雪崩解决方案
-   
+
    
 
 ##### elasticsearch相关面试题
@@ -907,6 +909,18 @@ java基础
 
    - 先谈谈秒杀的设计思路？
 
+     1. 限流与降级（客户端限流（控制单个客户端发送请求的速率），服务端限流）
+   
+     2. 队列
+   
+     3. 缓存
+   
+     4. 结果响应
+   
+     https://blog.csdn.net/u010013573/article/details/89979149
+   
+     https://blog.csdn.net/bigtree_3721/article/details/72760538
+   
    - 谈谈秒杀如何防止超卖？
 
 
