@@ -13,8 +13,17 @@ import java.util.stream.Collectors;
  * Date: 2019/9/24
  * Description:
  */
-public class App {
+public class App extends PubApp {
+
+    public App() {
+        System.out.println("bbb");
+    }
+    static {
+        System.out.println("aaaaa");
+    }
+
     public static void main(String[] args) {
+        ss();
 
         Person person = Person.builder().age(11).name("zhangsan").build();
         Person person1 = Person.builder().age(12).name("lisi").build();
@@ -26,6 +35,7 @@ public class App {
 
         Map<String, Person> stringMap = list.stream().collect(Collectors.toMap(Person::getName, y -> y));
         System.out.println(stringMap);
+        App app = new App();
 
     }
 

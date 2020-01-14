@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -18,11 +20,18 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Slf4j
 @EnableAsync
 @SpringBootApplication(scanBasePackages = "com.web")
-public class AlgorithmApp {
+public class AlgorithmApp extends Pub{
 
     public static void main(String[] args) {
-
         SpringApplication.run(AlgorithmApp.class, args);
+    }
+
+    @RequestMapping("/test")
+    @ResponseBody
+    public void test() {
+        tt();
+
+
     }
 
     @Bean

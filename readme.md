@@ -22,7 +22,7 @@
 #### 基础
 ##### 网络
 
-> 基于网络的面试题，主要搞清楚两个点`TCP`,`UDP`，然后就是通用的基础知识点比方说`4/7层网络模型`,`Http`相关知识点，这块可以通过 [JavaGuide](https://gitee.com/SnailClimb/JavaGuide/tree/master)来 详细学习
+> 基于网络的面试题，主要搞清楚两个点`TCP`,`UDP`，然后就是通用的基础知识点比方说`4/7层网络模型`,`Http`相关知识点，这块可以通过 [JavaGuide](https://gitee.com/SnailClimb/JavaGuide/tree/master)来 详细学习，javaGuide上面讲的基础知识还是挺全面的
 
 TCP/IP四层协议：应用层（SMTP,FTP,Telnet），传输层（TCP/UDP）,网络层（IP）,网络接口层
 
@@ -36,8 +36,13 @@ OSI七层：应用层，表现层，会话层，传输层，网络层，数据�
    5. 基于字节流而非报文
 2. **TCP实现细节：**
    1. 8种报文状态
+   
+      ![报文相互转换](note/etc/tcp/tcp_status.gif)
+   
    2. 滑动窗口机制
+   
    3. KeepAlive
+   
    4. Nagel算法
 3. **UDP特点:**
    1. 非链接
@@ -68,7 +73,7 @@ java基础
 
 ##### **jvm相关面试题**
 
-> 对于jvm更多是考察的我们的知识面，以及面试高级工程师的时候会用到的知识点，虽然比较鸡肋，但是对于理解java执行过程，以及性能调优的时候提供了一种可行的执行方案
+> 对于jvm更多是考察的我们的知识面，以及面试高级工程师的时候会用到的知识点，虽然比较鸡肋，但是对于理解java执行过程，以及性能调优的时候提供了一种可行的执行方案。这里有一副[脑图](note/etc/mind/jvm.xmind) ,配合学习
 
 1. **类加载机制**
    
@@ -152,7 +157,7 @@ java基础
 
 > 并发考察是对实际并发场景的应用，可以和线程`Thread`以及`Thread`行为组织起来，比方说线程的六种状态(New,Runnable,Blocked,Waiting,Timed_Waiting,Terminated)以及其相互转化的过程，线程之间的通信(wait,notify notifyAll)
 >
-> 关于这块的知识点后期可以啃啃《java并发编程之美》，《java并发编程的艺术》，《java高并发编程详解》。《Java并发编程实战（中文版）》这本书比较老，可以放下了
+> 关于这块的知识点后期可以啃啃《java并发编程之美》，《java并发编程的艺术》，《java高并发编程详解》。《Java并发编程实战（中文版）》这本书比较老，可以放下了 .这里有一副[脑图](note/etc/mind/JUC.xmind) ,配合学习
 
 1. **锁类型，以及锁优化策略**
 
@@ -227,13 +232,21 @@ java基础
 
 ##### spring相关面试题
 
+> 这里有两副脑图[spring-boot](note/etc/mind/spring-boot.xmind)，[spring]()配合学习
+
 1. **ioc**
    
    - 说下 Bean 在 Spring 中的生命周期？
    
+     
+   
    - BeanFactory 和 ApplicationContext 有什么区别
    
+     一个事低配版的，一个是高配版的, ApplicationContext可以支持一些国际化，基于事件发布等特性
+   
    - Spring IOC 如何实现
+   
+     `IOC`的定义:(Inversion of Control)，就是控制翻转，什么意思呢？就是以前对象的创建权，在它自己，现在把这个权利交给Spring来做，默认情况下，Spring创建的对象是单例的，其实就是将创建好的对象实例放在`DefaultSingletonBeanRegistry`中的`singletonObjects`中，等到下次需要使用的时候就直接从这个里面取出来使用，
    
    - spring context的初始化流程
    
@@ -255,19 +268,43 @@ java基础
   
 - Spring MVC的工作原理
   
+  ![Spring mvc 工作原理](note/etc/spring/spring-mvc工作流程.png)
+  
+  第一步:用户发起请求到前端控制器（DispatcherServlet） 
+  
+    第二步：前端控制器请求处理器映射器（HandlerMappering）去查找处理器（Handle）：通过xml配置或者注解进行查找 
+  
+    第三步：找到以后处理器映射器（HandlerMappering）像前端控制器返回执行链（HandlerExecutionChain） 
+  
+    第四步：前端控制器（DispatcherServlet）调用处理器适配器（HandlerAdapter）去执行处理器（Handler） 
+  
+    第五步：处理器适配器去执行Handler 
+  
+    第六步：Handler执行完给处理器适配器返回ModelAndView 
+  
+    第七步：处理器适配器向前端控制器返回ModelAndView 
+  
+    第八步：前端控制器请求视图解析器（ViewResolver）去进行视图解析 
+  
+    第九步：视图解析器像前端控制器返回View 
+  
+    第十步：前端控制器对视图进行渲染 
+  
+    第十一步：前端控制器向用户响应结果
+  
 - Spring中的@requestMapping的工作原理，以及@ResponseBody的工作原理
   
   这是原文： https://dzone.com/articles/using-the-spring-requestmapping-annotation
   
-     这是译文： https://blog.csdn.net/sunshine_yg/article/details/80493604
+  这是译文： https://blog.csdn.net/sunshine_yg/article/details/80493604
   
-     
-  
-   
+    
   
 4. **transaction**
 
    - Spring 事务知道吗？有了解过吗？
+
+     
 
    - Spring 事务实现方式
 
@@ -305,18 +342,39 @@ java基础
 
    - mybatis是如何实现配置动态sql的？有哪些动态SQL标签？
    
+     < if> < foreach> < choose>
+   
    - mybatis缓存是如何实现的？
    
    - mybatis中的主要对象有哪些？
    
    - mybatis执行流程是什么样子的？
    
+     执行流程查看一下几张图片：
    
+     ![](note/etc/mybatis/mybatis-process.jpg)
+
+   
+     ![](note/etc/mybatis/mybatis_process2.webp)
+
+
+
+![](note/etc/mybatis/mybatis_3.webp)
+
+   
+
+
+
+![](note/etc/mybatis/mybatis_4.webp)
+
+   
+
 
 ##### dubbo相关面试题
 
+> [dubbo 官方文档](http://dubbo.apache.org/zh-cn/docs/user/quick-start.html)里面的内容有时间可以好好研究一下。配合自己整理的[配置表](note/etc/distributed/dubbo/dubbo_config.xlsx)
+
 1. **dubbo**
-   
    - 如何设置dubbo的一致性hash负载均衡算法？
    - dubbo都有哪些模块，底层通信的原理都有哪些？
    - [如何自己设计一个类似 Dubbo 的 RPC 框架？](https://github.com/doocs/advanced-java/blob/master/docs/distributed-system/dubbo-rpc-design.md)
@@ -332,7 +390,7 @@ java基础
 #### 组件
 ##### mysql 相关面试题
 
-> mysql相关面试题，只需要把[高性能mysql第三版]()啃透，基本就没有问题了
+> mysql相关面试题，只需要把[高性能mysql第三版]()啃透，这里有一副[脑图](note/etc/mind/MYSQL.xmind) ,配合学习
 
 1. **schema**
 
@@ -381,16 +439,40 @@ java基础
 
 6. **调优**
    - 项目数据库表是你设计的吗？一般要注意什么？如何考虑扩展性？
-- 项目 MySQL 的数据量和并发量有多大？量大后的影响有哪些，有考虑吗？SQL 调优有哪些技巧？
+
+   - 项目 MySQL 的数据量和并发量有多大？量大后的影响有哪些，有考虑吗？SQL 调优有哪些技巧？
+
    - sql 优化有哪些思路？
-- 索引使用注意事项？
+
+     优化的前提条件就是因为查询速度太慢了，所依我们需要考虑为什么我们的查询速度会慢？我们在`explain`中的返回数据中有filtered,我们可以看看我们的sql写的是否良好，
+
+     1. 扫描了太多的行
+     2. 请求了不需要的数据
+     3. 是否扫描了额外的数据
+     4. 有没有使用索引，使用索引是否合理
+   
+     **重构查询的方式：**
+   
+     1. 增加合适的索引
+     2. 缓存重复查询的数据
+     3. 切分查询，一个复杂的查询可以切分成多个简单的查询
+   
+   - 索引使用注意事项？
+   
    - 常见的mysql主从同步方案都有哪些？优劣势都有哪些？
+   
+   - 在项目中遇到哪些可以优化的sql
+   
+     **实际日志查询的优化点**：
+   
+     1. (**联合索引**)虽然建了联合索引，传入的参数应该满足最左原则，但是没有没有**必传的要求**，这就导致，如果这个参数不传，那么久会导致全表扫描
+     2. (**分页**)单次跳转到最后一页，导致数据库查询了大量不需要的数据，导致数据库挂点了，后来修复之后进去，直接没有最后一页的按钮，并且，当我直接输入的页码相隔太多的时候，也会给予提示，无法一次跳转这么多页，
 
 
 
 ##### redis相关面试题
 
-> redis在项目中使用得比较多，虽然比较简单，但其实底层有很多可圈可点的知识点需要学习，比如说`epoll单线程模型`，`持久化方式`,`过期策略`,`分布式相关设置`等,关于这一点可以参考[石杉码农笔记](https://github.com/doocs/advanced-java)，视频和文档一起食用，效果更佳
+> redis在项目中使用得比较多，虽然比较简单，但其实底层有很多可圈可点的知识点需要学习，比如说`epoll单线程模型`，`持久化方式`,`过期策略`,`分布式相关设置`等,关于这一点可以参考[石杉码农笔记](https://github.com/doocs/advanced-java)，视频和文档一起食用，效果更佳， 这里有一副[脑图](note/etc/mind/redis.xmind) ,配合学习
 
 1. **redis数据结构，以及原理**
    
@@ -417,15 +499,95 @@ java基础
    - 一个字符串类型的值能存储最大容量是多少？
      一个键最大能够存储512MB
    
-   - Redis和Redisson有什么关系？
-   
+     
+     
    - Redis支持的Java客户端都有哪些？官方推荐用哪个？
    
+     Redisson, jedis,lettuce,官方推荐使用Redisson,可以讲讲自己使用的经历，Spring-data-redis中使用的是lettuce这种方式实现的
+   
+     我们来分析这几个客户端的特点：
+   
+     1. **jedis**
+   
+        - 轻量，简洁，便于集成和改造
+        - 支持连接池
+        - 支持pipelining、事务、LUA Scripting、Redis Sentinel、Redis Cluster
+        - 不支持读写分离，需要自己实现
+        - 文档少，用例多，估计因为太简单了
+   
+     2. **Redisson**
+   - 基于Netty实现，采用非阻塞IO，性能高
+     
+   - 支持异步请求
+     
+   - 支持连接池
+     
+   - 支持pipelining、LUA Scripting、Redis Sentinel、Redis Cluster
+     
+   - 不支持事务，官方建议以LUA Scripting代替事务
+     
+   - 支持在Redis Cluster架构下使用pipelining
+     
+   - 支持读写分离，支持读负载均衡，在主从复制和Redis Cluster架构下都可以使用
+     
+   - 内建Tomcat Session Manager，为Tomcat 6/7/8提供了会话共享功能
+     
+- 可以与Spring Session集成，实现基于Redis的会话共享
+  
+- 文档较丰富，有中文文档
+        
+3. **Lettuce**
+   
+      - 与Jedis 相比，Lettuce 则完全克服了其线程不安全的缺点。
+      
+   - Lettuce 是一个可伸缩的线程安全的 Redis 客户端，支持同步、异步和响应式模式。多个线程可以共享一个连接实例，而不必担心多线程并发问题。
+     
+   - 它基于优秀 Netty NIO 框架构建。
+     
+   - 支持 Redis 的高级功能，如 Sentinel，集群，流水线，自动重新连接和 Redis 数据模型。
+     
    - Redis回收进程如何工作的？
+   
+     一个客户端运行了新的命令，添加了新的数据。
+   
+     Redi检查内存使用情况，如果大于maxmemory的限制, 则根据设定好的策略进行回收。
+   
+     一个新的命令被执行，等等。
+   
+     所以我们不断地穿越内存限制的边界，通过不断达到边界然后不断地回收回到边界以下。
+   
+     如果一个命令的结果导致大量内存被使用（例如很大的集合的交集保存到一个新的键），不用多久内存限制就会被这个内存使用量超越。
    
    - Redis key的过期策略有哪些？过期时间和永久有效分别怎么设置？
    
+     | 过期类型        | 作用 | 设置方式 |
+     | --------------- | ---- | -------- |
+     | volatile-lru    |      |          |
+     | volatile-ttl    |      |          |
+     | volatile-random |      |          |
+     | volatile-lfu    |      |          |
+     | allkeys-lru     |      |          |
+     | allkeys-random  |      |          |
+     | allkeys-lfu     |      |          |
+     | no-eviction     |      |          |
+   
+     
+   
    - redis线程模型是怎样的？
+   
+     **单线程IO多路复用方式**，基于**Reactor**模式
+   
+     事件处理器有这样几种类型：
+   
+     **连接应答处理器**： 对连接的各个客户端进行应答
+   
+     **命令请求处理器**： 接收客户单出来的命令请求
+   
+     **复制处理器**：主从服务器进行数据复制的之后使用
+   
+     **命令回复处理器**向客户端返回命令的时候执行
+   
+     高性能的主要原因可以结合`netty`讲解（其实redisson中使用的也是netty）,netty中也是使用reactor这种高性能的设计模式，elasticsearch中也使用了netty做为高性能传输工具
    
    - 如何手写一个LRU算法？
    
@@ -458,7 +620,18 @@ java基础
 
    - Cluster集群模式的原理？
 
+   - 搭建集群的方式
+
+     ```
+     ./redis-trib.rb create --replicas 1 47.106.219.251:7001 47.106.219.251:7002 47.106.219.251:7003 47.106.219.251:7004 47.106.219.251:7005 47.106.219.251:7006
+     
+     ```
+
+     上面这个方式是通过redis自己提供的集群搭建方式是通过ruby来实现的，我们也可以搭建哨兵模式，就不需要安装ruby
+
    - Redis集群方案应该怎么做？都有哪些方案？（主从，sentinel这两个点回答）
+
+     主从模型是基于槽点的方式来实现的
 
    - Redis集群方案什么情况下会导致整个集群不可用？
 
@@ -472,6 +645,8 @@ java基础
 
    - Redis中的管道有什么用？
 
+     听说过，没有详细了解，应该和netty中的pipleline功能差不多把
+
    - Redis集群如何选择数据库？
 
    - redis并发竞争问题该如何解决
@@ -480,7 +655,11 @@ java基础
 
    - redis 数据持久化方案（redis挂机后数据恢复方案）
 
-   - redis分布式缓存该如何做
+     有两种方式，一种是生成RDB,一种是AOF
+
+     RDB是将数据保存到持久化数据库中
+
+     而RDB就是生成之前我们添加数据的命令，重启的时候，其实就是执行的那么些命令
 
    
 
@@ -549,6 +728,8 @@ java基础
    
 
 ##### kafka相关面试题
+
+> 这里有一副[脑图](note/etc/mind/kafka.xmind) ,配合学习
 
 ​	 kafka相关面试题[kafka专题](./note/topic/kafka/0.题目总览.md)
 
@@ -629,18 +810,20 @@ java基础
    
    - netty的高性能体现在什么地方？（心跳，串行无锁化设计，可靠性，安全性，流量整型）
      
+   
    https://www.cnblogs.com/wuzhenzhao/p/11202952.html
-     
+   
    https://www.cnblogs.com/itxiaok/p/10358052.html
+   
      
-     
-     
+   
    - webSocket帧结构的理解，如何实现WebSocket长连接
      
+   
    https://www.zhihu.com/question/20215561
+   
      
-     
-     
+   
    - 主要概念包括哪些方面？他们之间的关系是什么样点的
    
    ​		

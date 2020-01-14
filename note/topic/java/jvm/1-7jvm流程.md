@@ -11,7 +11,7 @@
 **类加载的过程**
  1. 加载：虚拟机完成三件事
     1. 通过类名获取类的二进制字节流，将字节流的内容转存到方法区
-    2. 转化为特定的数据结构，初步校验常量池，cafababy文件长度
+    2. 转化为特定的数据结构，初步校验常量池，cafebaby文件长度
     3. 在内存中生成一个Class对象作为该方法区数据的访问入口(创建对应类的java.Class实例)
  2. 验证：
     验证加载的这个类是否合法（final是否合规，类型是否准确，静态变量是否合理等）
@@ -176,10 +176,10 @@ java类加载器在加载类时，有如下这么几个过程
 
     Tomcat最基本的类加载器，加载路径中的class可以被Tomcat容器本身以及各个Webapp访问；
 2. CatalinaClassLoader
-    
+   
     Tomcat容器私有的类加载器，加载路径中的class对于Webapp不可见；
 3. SharedClassLoader
-    
+   
     各个Webapp共享的类加载器，加载路径中的class对于所有Webapp可见，但是对于Tomcat容器不可见；
 
 4. WebappClassLoader：
@@ -237,7 +237,7 @@ tomcat提供了delegate属性用于控制是否启用java委派模式，默认fa
 
 　　还有如果多个应用使用同一jar包文件，当放置了多份，就可能导致 多个应用间 出现类加载不到的错误。
 
- 
+
 >先在本地缓存中查找是否已经加载过该类(对于一些已经加载了的类，会被缓存在resourceEntries这个数据结构中)，如果已经加载即返回，否则 继续下一步。
 让系统类加载器(AppClassLoader)尝试加载该类，主要是为了防止一些基础类会被web中的类覆盖，如果加载到即返回，返回继续。
 前两步均没加载到目标类，那么web应用的类加载器将自行加载，如果加载到则返回，否则继续下一步。
@@ -247,5 +247,5 @@ tomcat提供了delegate属性用于控制是否启用java委派模式，默认fa
 tomcat部分来源于： https://www.cnblogs.com/aspirant/p/8991830.html
 
 
- 
+
  
