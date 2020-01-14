@@ -1,7 +1,6 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://gitee.com/Eric125/boot-mybatis) [![Total lines](https://tokei.rs/b1/gitee.com/Eric125/boot-mybatis?category=lines)](https://gitee.com/Eric125/boot-mybatis) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?label=license)](https://gitee.com/Eric125/boot-mybatis/master/LICENSE) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1237f7a17da0481bad1ad1fe0f93b7ea)](https://app.codacy.com/app/Eric125/boot-mybatis?utm_source=github.com&utm_medium=referral&utm_content=Eric125/boot-mybatis&utm_campaign=Badge_Grade_Dashboard)
 
-根据2020年知识规划图进阶
-![2020知识进阶图](note/etc/2020技术规划图.png)
+
 
 ------
 
