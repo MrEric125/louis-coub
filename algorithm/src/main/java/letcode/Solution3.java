@@ -1,4 +1,4 @@
-package com.algorithm;
+package letcode;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -50,6 +50,7 @@ OSI七层：应用层，表现层，会话层，传输层，网络层，数据�
    4. 拥塞控制
    5. 基于字节流而非报文
 2. **TCP实现细节：**
+   
    1. 8种报文状态
    
       ![报文相互转换](note/etc/tcp/tcp_status.gif)
@@ -180,12 +181,14 @@ java基础
    
    - 讲下 Volatile 吧？他是怎样做到同步的？
    
+     结合jvm内存模型来分析
+   
    - Volatile 为什么不支持原子性？举个例子
    
      这里可以做类比，mysql的事务支持原子性，mysql是怎么实现的呢？是通过加锁，行锁、表锁这种方式来实现事务的。
-   
-     那么问题来了，我们的volatile的实现是通过什么方式来实现的呢？这个时候结合[java内存模型](note/topic/java/jvm/14.java内存模型.md)来说，也就是说volatile是通过将缓存失效这种方式来实现**一致性**和通过**happen-before**来实现顺序性的，它并不是加锁的方式来实现的，所以它不支持原子性
 
+     那么问题来了，我们的volatile的实现是通过什么方式来实现的呢？这个时候结合[java内存模型](note/topic/java/jvm/14.java内存模型.md)来说，也就是说volatile是通过将缓存失效这种方式来实现**一致性**和通过**happen-before**来实现顺序性的，它并不是加锁的方式来实现的，所以它不支持原子性
+   
    - Atomic 怎么设计的？有用过里面的类吗？
    
      [atomic & CAS](note/topic/java/juc/2.atomic&cas.md)
@@ -232,11 +235,7 @@ java基础
 
      
 
-   
-
 6. **工具类的使用**
-
-   - Map、List、Set 分别说下你了解到它们有的线程安全类和线程不安全的类？
 
    - ThreadLocal 了解吗？项目有用过吗？可以说说
 
@@ -253,10 +252,18 @@ java基础
 2. **各种容器类之间的对比**
    - 画下 HashMap 的结构图？HashMap 、 HashTable 和 ConcurrentHashMap 的区别？使用场景分别是？
 
+     ![](note/etc/java/hashmap.png)
+
    - ConcurrentHashMap 和 HashTable 中线程安全的区别？为啥建议用
 
+     `ConcurrentHashMap`和`HashTable`的区别主要体现在这两个方面，实现方式和性能
+   
+     hashtable是全表锁，实现方式很简单暴力，就是在公有方法上面加锁，
+   
+     concurrentHashMap锁的是红黑树节点，或者链表节点，锁的范围更小，并发性能也更高，现在一般推荐使用的是concurrentHashMap
+   
    - ConcurrentHashMap ？能把 ConcurrentHashMap 里面的实现详细的讲下吗？
-
+   
    
 
 ##### spring相关面试题
@@ -333,7 +340,11 @@ java基础
 
    - Spring 事务实现方式
 
+     本题首先将事务的几种方式描述一下，然后说Spring中事务的几种方式（声明式事务，编程式事务），然后在说到事务的实现方式，
+
    - Spring 事务底层原理
+
+     
 
    
 
@@ -346,6 +357,8 @@ java基础
    - Spring Boot 中最核心的注解 SpringBootApplication 有看过源码分析过吗？
 
    - 你的项目中 SpringBoot 用到了哪些和其他技术栈整合的？
+
+     ![](note/etc/spring/springboot知识点.png)
 
    - 使用 Spring 或者 SpringBoot 有遇到过什么印象深刻的问题吗？当时是怎么解决的？
 
@@ -361,6 +374,7 @@ java基础
      [Hystrix执行流程](https://segmentfault.com/a/1190000020270249)
    
    - spring security oauth2中的实现是什么样的？
+   - spring feign 是如何做到RPC调用的
 
 
 ##### mybatis相关面试题
