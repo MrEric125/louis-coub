@@ -172,7 +172,7 @@ java基础
 
 > 并发考察是对实际并发场景的应用，可以和线程`Thread`以及`Thread`行为组织起来，比方说线程的六种状态(New,Runnable,Blocked,Waiting,Timed_Waiting,Terminated)以及其相互转化的过程，线程之间的通信(wait,notify notifyAll)
 >
-> 关于这块的知识点后期可以啃啃《java并发编程之美》，《java并发编程的艺术》，《java高并发编程详解》。《Java并发编程实战（中文版）》这本书比较老，可以放下了 .这里有一副[脑图](note/etc/mind/JUC.xmind) ,配合学习
+> 《Java并发编程实战（中文版）》 .这里有一副[脑图](note/etc/mind/JUC.xmind) ,配合学习
 
 1. **锁类型，以及锁优化策略**
 
@@ -204,19 +204,33 @@ java基础
 
    - Synchronized 和 ReentrantLock 有什么区别？这两个有没有深入了解源码？
 
+     1. ReentrantLock可以指定是公平锁还是非公平锁，而Synchronized只能是非公平锁，
+     2. ReenTrantLock提供了一个Condition（条件）类，用来实现分组唤醒需要唤醒的线程们，而不是像synchronized要么随机唤醒一个线程要么唤醒全部线程。
+     3. ReenTrantLock提供了一种能够中断等待锁的线程的机制，通过lock.lockInterruptibly()来实现这个机制。
+
    - 线程安全类和线程不安全的类，项目使用的时候你会怎么选择？
+
+     这个问题不能想当然的回答，要知道线程安全就意味着效率没有那么高，更看重的是数据一致性，所以其实是需要根据不同使用情况来看
 
    - 怎么判断项目代码哪里会有线程不安全问题？
 
-   - JUC 里面你还知道什么其他的类吗？比如 CountDownLatch、Condition
+     我们需要判断**是否有多线程环境**，**是否有共享数据**，**是否有多条语句操作共享数据**
+
+   - JUC 里面你还知道什么其他的类吗？
+
+     比如 CountDownLatch、Condition，
 
 5. **线程池(ThreadLocal,Fork/join)**
 
    - 线程池的种类，哪四种workqueue分别是什么？
 
-     [线程池](note/topic/java/juc/ThreadPool.md)
+     [线程池](note/topic/java/juc/ThreadPool.md#线程池)
 
    - 从源码详细说下 Java 里面的线程池吧，使用线程池有什么要注意的地方？你们公司有规范吗？
+
+     同上参考线程池一节
+
+     
 
    
 
@@ -253,7 +267,7 @@ java基础
    
    - 说下 Bean 在 Spring 中的生命周期？
    
-     
+     ![Spring_bean_lifesycle](note/etc/spring/Spring_bean_lifesycle.png)
    
    - BeanFactory 和 ApplicationContext 有什么区别
    
@@ -317,10 +331,6 @@ java基础
   
 4. **transaction**
 
-   - Spring 事务知道吗？有了解过吗？
-
-     
-
    - Spring 事务实现方式
 
    - Spring 事务底层原理
@@ -349,6 +359,8 @@ java基础
    
      [Hystrix限流策略](note/topic/distributed/Hystrix.md)
      [Hystrix执行流程](https://segmentfault.com/a/1190000020270249)
+   
+   - spring security oauth2中的实现是什么样的？
 
 
 ##### mybatis相关面试题
@@ -577,16 +589,16 @@ java基础
    
    - Redis key的过期策略有哪些？过期时间和永久有效分别怎么设置？
    
-     | 过期类型        | 作用 | 设置方式 |
-     | --------------- | ---- | -------- |
-     | volatile-lru    |      |          |
-     | volatile-ttl    |      |          |
-     | volatile-random |      |          |
-     | volatile-lfu    |      |          |
-     | allkeys-lru     |      |          |
-     | allkeys-random  |      |          |
-     | allkeys-lfu     |      |          |
-     | no-eviction     |      |          |
+     | 过期类型        | 作用                                                         | 设置方式 |
+     | --------------- | ------------------------------------------------------------ | -------- |
+     | volatile-lru    | 当内存不足以容纳新写入数据时，在**设置了过期时间的键空间**中，移除最近最少使用的 key |          |
+     | volatile-ttl    | 当内存不足以容纳新写入数据时，在**设置了过期时间的键空间**中，有**更早过期时间**的 key 优先移除。 |          |
+     | volatile-random | 当内存不足以容纳新写入数据时，在**设置了过期时间的键空间**中，**随机移除**某个 key。 |          |
+     | volatile-lfu    |                                                              |          |
+     | **allkeys-lru** | 当内存不足以容纳新写入数据时，在**键空间**中，移除最近最少使用的 key（这个是**最常用**的）。 |          |
+     | allkeys-random  | 当内存不足以容纳新写入数据时，在**键空间**中，随机移除某个 key，这个一般没人用吧，为啥要随机，肯定是把最近最少使用的 key 给干掉啊。 |          |
+     | allkeys-lfu     |                                                              |          |
+     | noeviction      | 当内存不足的时候，新插入操作报错                             |          |
    
      
    
