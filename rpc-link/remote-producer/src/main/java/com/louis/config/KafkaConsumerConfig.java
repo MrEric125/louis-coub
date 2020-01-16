@@ -23,7 +23,8 @@ public class KafkaConsumerConfig {
 
         Properties props = new Properties();
         props.put("bootstrap.servers", "localhost:9092");
-        props.put("transactional.id", "my-transactional-id");
+//        todo 一下配置启用事务，事务启用需要注意的事项
+//        props.put("transactional.id", "my-transactional-id");
         return props;
 
     }

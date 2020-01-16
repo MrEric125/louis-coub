@@ -1,20 +1,26 @@
 package com.louis.kafka;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author John·Louis
  * @date create in 2019/9/21
  * description:
+ * 消息包装类，对外提供message,在封装的框架中通过Message和ProducerRecord相互转换
  */
 @Data
-public class Message {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Message<ID extends Serializable, V extends Serializable> {
 
-    private Long id;
+    private ID id;
 
-    private String msg;
+    private V msg;
 
     private String topic;
 

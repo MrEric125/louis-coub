@@ -12,13 +12,13 @@ import java.util.Properties;
  * description:
  */
 @Configuration
-public class ConsumerConfig {
+public class KafKaConsumerConfig {
 
-    @Bean
-    public KafkaConsumer kafkaConsumer() {
-        Properties properties = new Properties();
-
-        return new KafkaConsumer(properties);
-
-    }
+//    @Bean
+//    public KafkaConsumer kafkaConsumer() {
+//        Properties properties = new Properties();
+//
+//        return new KafkaConsumer(properties);
+//
+//    }
 }

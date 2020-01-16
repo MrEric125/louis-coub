@@ -21,7 +21,6 @@ public class KafkaSender {
     private KafkaTemplate<String, String> kafkaTemplate;
 
     public void sendMessage(Message message) {
-
         kafkaTemplate.send(message.getTopic(), gson.toJson(message));
     }
 

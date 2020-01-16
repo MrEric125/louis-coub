@@ -16,8 +16,10 @@ public class KafkaConsumerController {
 
     @Autowired
     MessageConsumer messageConsumer;
+
     @RequestMapping("consumer")
     public String consumer() {
-        return messageConsumer.consumerMessage;
+        return messageConsumer.getQueueMessage();
     }
+
 }
