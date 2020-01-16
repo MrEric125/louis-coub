@@ -16,9 +16,9 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Message<ID extends Serializable, V extends Serializable> {
+public class Message<Key extends Serializable, V extends Serializable> {
 
-    private ID id;
+    private Key id;
 
     private V msg;
 

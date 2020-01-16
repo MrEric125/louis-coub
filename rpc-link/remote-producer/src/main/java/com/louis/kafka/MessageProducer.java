@@ -19,18 +19,18 @@ import java.util.concurrent.ExecutionException;
  * 目前不支持批量传输不同topic的数据，批量传输只能传输相同topic的数据
  */
 @Service
-public class MessageProducer<ID extends Serializable, V extends Serializable> {
+public class MessageProducer<Key extends Serializable, V extends Serializable> {
 
     @Autowired
-    private KafkaProducer<ID ,V> kafkaProducer;
+    private KafkaProducer<Key ,V> kafkaProducer;
 
     /**
      * 發送即忘
      *
      * @param message 消息主题
      */
-    public void send(Message<ID, V> message) {
-        ProducerRecord<ID, V> record = new ProducerRecord<>(message.getTopic(), message.getId(), message.getMsg());
+    public void send(Message<Key, V> message) {
+        ProducerRecord<Key, V> record = new ProducerRecord<>(message.getTopic(), message.getId(), message.getMsg());
         kafkaProducer.send(record);
     }
 
@@ -39,8 +39,8 @@ public class MessageProducer<ID extends Serializable, V extends Serializable> {
      * @param message
      * @param callback
      */
-    public void send(Message<ID,V> message,ProducerCallback callback){
-        ProducerRecord<ID, V> record = new ProducerRecord<>(message.getTopic(), message.getId(), message.getMsg());
+    public void send(Message<Key,V> message,ProducerCallback callback){
+        ProducerRecord<Key, V> record = new ProducerRecord<>(message.getTopic(), message.getId(), message.getMsg());
         kafkaProducer.send(record, callback);
 
     }
@@ -52,8 +52,8 @@ public class MessageProducer<ID extends Serializable, V extends Serializable> {
      * @throws ExecutionException
      * @throws InterruptedException
      */
-    public RecordMetadata sendAndGet(Message<ID,V> message) throws ExecutionException, InterruptedException {
-        ProducerRecord<ID,V> record = new ProducerRecord<>(message.getTopic(),message.getId(), message.getMsg());
+    public RecordMetadata sendAndGet(Message<Key,V> message) throws ExecutionException, InterruptedException {
+        ProducerRecord<Key,V> record = new ProducerRecord<>(message.getTopic(),message.getId(), message.getMsg());
         return   kafkaProducer.send(record).get();
     }
 
