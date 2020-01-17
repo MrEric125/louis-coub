@@ -1,6 +1,7 @@
 package com.louis.config;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.IntegerDeserializer;
 import org.apache.kafka.common.serialization.LongDeserializer;
@@ -42,12 +43,16 @@ public class KafKaConsumerConfig {
     @Value("${kafka.max.poll.records.config}")
     private Integer maxPollRecords;
 
+    @Value("${kafka.groupId}")
+    private String groupId;
+
 
 
 
 //    批量消费配置
     private Map<String, Object> consumerProps() {
         Map<String, Object> props = new HashMap<>();
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapServers);
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, autoCommitConfig==1);
         props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, autoComitInterval);
@@ -65,6 +70,10 @@ public class KafKaConsumerConfig {
          factory.setBatchListener(true);
          factory.setConcurrency(maxPollRecords);
          return factory;
+    }
+    @Bean
+    public KafkaConsumer kafkaConsumer() {
+        return new KafkaConsumer(consumerProps());
     }
 
 }

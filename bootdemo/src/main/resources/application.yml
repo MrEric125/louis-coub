@@ -1,12 +1,4 @@
 spring:
-
-  freemarker:
-    expose-request-attributes: true
-    expose-session-attributes: false
-    expose-spring-macro-helpers: false
-    template-loader-path: classpath:/templates/
-
-  #    suffix: .html
   jpa:
     database: MYSQL
     show-sql: true
@@ -29,8 +21,5 @@ spring:
     host: 129.28.189.234
     port: 6379
     password: redis
-
-mybatis:
-  config-location:
 server:
   port: 8113

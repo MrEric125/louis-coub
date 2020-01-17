@@ -22,14 +22,14 @@ import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 @Configuration
 public class RedisConfig {
 
-//    @Bean("redisTemplate")
-//    public <String,T> RedisTemplate<String,T> redisTemplate(RedisConnectionFactory factory) {
-//        RedisTemplate<String, T> templates = new RedisTemplate<>();
-//        templates.setConnectionFactory(factory);
-//        ObjectMapper om = new ObjectMapper();
-//        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-//        templates.afterPropertiesSet();
-//        return templates;
-//    }
+    @Bean("redisTemplate")
+    public <String,T> RedisTemplate<String,T> redisTemplate(RedisConnectionFactory factory) {
+        RedisTemplate<String, T> templates = new RedisTemplate<>();
+        templates.setConnectionFactory(factory);
+        ObjectMapper om = new ObjectMapper();
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        templates.afterPropertiesSet();
+        return templates;
+    }
 
 }

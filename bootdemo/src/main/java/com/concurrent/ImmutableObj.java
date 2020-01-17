@@ -1,9 +1,9 @@
 package com.concurrent;
 
-import org.bouncycastle.util.Arrays;
 
 import javax.annotation.concurrent.Immutable;
 import java.math.BigInteger;
+import java.util.Arrays;
 
 /**
  * @author louis

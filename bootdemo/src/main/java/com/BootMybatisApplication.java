@@ -5,7 +5,6 @@ import com.louis.common.common.Wrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -14,13 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
-//@EnableElasticsearchRepositories
 @EnableRedisRepositories
 @Slf4j
 @SpringBootApplication
 @Controller
-//@EnableCircuitBreaker
-@EnableHystrix
 @CrossOrigin
 @RequestMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class BootMybatisApplication {

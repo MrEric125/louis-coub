@@ -24,6 +24,7 @@ public class KafkaConsumerController {
 
     @RequestMapping("consumer")
     public Wrapper consumer() {
+        messageConsumer.defaultMessageConsumer();
         KeyValue<Long,String> consumerMessage= Optional.ofNullable(messageConsumer.getQueueMessage()).orElseGet(() -> {
             String message = messageConsumer.getStringQueueMessage();
             return new KeyValue<>(1L, message);

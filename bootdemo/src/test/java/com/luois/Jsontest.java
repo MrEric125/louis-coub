@@ -1,14 +1,11 @@
 package com.luois;
 
 import com.MssUtil;
-import com.google.gson.Gson;
 import com.luois.test.Person;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -37,21 +34,7 @@ public class Jsontest {
     private String age;
     private String job;
 
-    @Test
-    public void test() {
 
-//        String json= "{\"allAlarm\":\"10\",\"waveAlarm\":\"20\",\"pickingAlarm\":\"30\",\"checkedAlarm\":\"40\",\"shippedAlarm\":\"50\"}";
-        String json = "";
-        Gson gson = new Gson();
-        Map<String,String > fromJson = gson.fromJson(json, Map.class);
-        if (fromJson != null && fromJson.size() != 0) {
-            fromJson.forEach((key, value) -> {
-                System.out.println("key is : " + key);
-                Integer integer = Integer.valueOf(value);
-                System.out.println("value is : "+integer);
-            });
-        }
-    }
     @Test
     public void test2() {
         Random random = new Random();
@@ -72,15 +55,6 @@ public class Jsontest {
 
     }
 
-    @Test
-    public void test3() throws IOException {
-        String json = "{\"name\":\"zhangsan\",\"age\":\"20\",\"job\":\"20\"}";
-//        String json = "{\"name\":\"zhangsan\",\"age\":\"20\"}";
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        Person test = objectMapper.readValue(json, new TypeReference<Person>(){});
-        System.out.println(test);
-    }
     @Test
     public void test4() throws IOException {
         String code = "c2l0LUVMT0ctV01PLVNKUzpzaXQtRUxPRy1XTU8tU0pT";
