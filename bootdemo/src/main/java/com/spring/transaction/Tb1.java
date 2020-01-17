@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
@@ -24,6 +25,7 @@ import java.util.Date;
 @Table(name = "tb1")
 public class Tb1 {
 
+    @Id
     private Long id;
 
     private String name;

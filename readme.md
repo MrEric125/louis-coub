@@ -286,7 +286,7 @@ java基础
    
    - spring context的初始化流程
    
-   
+     ![](note/etc/spring/spring_context_初始化流程.png)
    
 2. **aop**
 
@@ -301,7 +301,6 @@ java基础
    
 
 3. **mvc**
-   
 - 讲下你知道的 Spring 注解有哪些？该什么场景使用？
   
 - Spring MVC 运行流程

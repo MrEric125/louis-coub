@@ -19,19 +19,19 @@ import javax.sql.DataSource;
 public class DataSourceConfig {
 
 
-    @Bean(name = "primaryDataSource")
-    @Qualifier("primaryDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.primary")
-    public DataSource primaryDataSource() {
-        return DataSourceBuilder.create().build();
-    }
-
-    @Bean(name = "secondaryDataSource")
-    @Qualifier("secondaryDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.secondary")
-    public DataSource secondaryDataSource() {
-        return DataSourceBuilder.create().build();
-    }
+//    @Bean(name = "primaryDataSource")
+//    @Qualifier("primaryDataSource")
+//    @ConfigurationProperties(prefix = "spring.datasource.primary")
+//    public DataSource primaryDataSource() {
+//        return DataSourceBuilder.create().build();
+//    }
+//
+//    @Bean(name = "secondaryDataSource")
+//    @Qualifier("secondaryDataSource")
+//    @ConfigurationProperties(prefix = "spring.datasource.secondary")
+//    public DataSource secondaryDataSource() {
+//        return DataSourceBuilder.create().build();
+//    }
 
 
 }

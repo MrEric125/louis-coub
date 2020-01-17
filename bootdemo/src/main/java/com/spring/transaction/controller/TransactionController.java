@@ -1,5 +1,7 @@
 package com.spring.transaction.controller;
 
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,14 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class TransactionController {
 
 
-    @RequestMapping
+    @PutMapping
     public String save() {
-
         return "ok";
     }
 
 
-    @RequestMapping
+    @PostMapping
     public String update() {
 
         return "ok";
