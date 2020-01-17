@@ -44,11 +44,15 @@ TCP/IP四层协议：应用层（SMTP,FTP,Telnet），传输层（TCP/UDP）,网
 OSI七层：应用层，表现层，会话层，传输层，网络层，数据链路层，物理层
 
 1. **TCP特点:** 
+   
    1. 基于链接(点对点)
    2. 双工通道
    3. 可靠传输（三次握手四次挥手）
    4. 拥塞控制
    5. 基于字节流而非报文
+   
+   [tcp怎么保证有序传输，tcp快速重传和拥塞机制](note/topic/network/tcp保证传输可靠性.md)
+   
 2. **TCP实现细节：**
    
    1. 8种报文状态
@@ -60,6 +64,7 @@ OSI七层：应用层，表现层，会话层，传输层，网络层，数据�
    3. KeepAlive
    
    4. Nagel算法
+   
 3. **UDP特点:**
    1. 非链接
    2. 非可靠传输
@@ -70,12 +75,16 @@ OSI七层：应用层，表现层，会话层，传输层，网络层，数据�
 
 1. 常用排序算法能够白班写出来 （根据执行效率从前到后）   
 
-   冒泡排序，选择排序，插入排序，希尔排序，归并排序，快速排序
+   **冒泡排序，选择排序，插入排序，希尔排序，归并排序，快速排序**
+   [详情](algorithm/readme.md)
 
 ##### 设计模式
 
 1. 白班编写常用设计模式
+
 2. 能够熟悉`工厂模式`,`抽象工厂模式`,`命令模式`,`适配器模式`,`过滤器模式`
+
+   
 
 #### java
 
@@ -243,6 +252,8 @@ java基础
 
 ##### collection相关面试题
 
+> 以下讲解皆是针对java8而言的
+
 1. **源码**
    
    - HashMap 中怎么解决冲突的？
@@ -250,21 +261,22 @@ java基础
    
    
 2. **各种容器类之间的对比**
-   - 画下 HashMap 的结构图？HashMap 、 HashTable 和 ConcurrentHashMap 的区别？使用场景分别是？
-
-     ![](note/etc/java/hashmap.png)
-
-   - ConcurrentHashMap 和 HashTable 中线程安全的区别？为啥建议用
-
+   
+- 画下 HashMap 的结构图？HashMap 、 HashTable 和 ConcurrentHashMap 的区别？使用场景分别是？
+  
+  ![hashMap](note/etc/java/hashmap.png)
+  
+- ConcurrentHashMap 和 HashTable 中线程安全的区别？为啥建议用
+  
      `ConcurrentHashMap`和`HashTable`的区别主要体现在这两个方面，实现方式和性能
    
      hashtable是全表锁，实现方式很简单暴力，就是在公有方法上面加锁，
    
-     concurrentHashMap锁的是红黑树节点，或者链表节点，锁的范围更小，并发性能也更高，现在一般推荐使用的是concurrentHashMap
+     concurrentHashMap锁的是[`红黑树`](note/topic/algorithm/readme.md)节点，或者链表节点，锁的范围更小，并发性能也更高，现在一般推荐使用的是concurrentHashMap
    
    - ConcurrentHashMap ？能把 ConcurrentHashMap 里面的实现详细的讲下吗？
    
-   
+     [java8中concurrentHashMap](note/topic/java/java8/concurrentHashMap.md)
 
 ##### spring相关面试题
 
@@ -285,10 +297,20 @@ java基础
      `IOC`的定义:(Inversion of Control)，就是控制翻转，什么意思呢？就是以前对象的创建权，在它自己，现在把这个权利交给Spring来做，默认情况下，Spring创建的对象是单例的，其实就是将创建好的对象实例放在`DefaultSingletonBeanRegistry`中的`singletonObjects`中，等到下次需要使用的时候就直接从这个里面取出来使用，
    
    - spring context的初始化流程
+   ApplicationContext初始化的流程如下图：
+     
+     ![spring_context_初始化流程](note/etc/spring/spring_context_初始化流程.png)
+     
+     详细各个点所做的事情如下图
+     
+     <img src="note/etc/spring/spring_ApplicationContext实例化过程.png" alt="applicationContext" style="zoom:200%;" />
    
-     ![](note/etc/spring/spring_context_初始化流程.png)
-   
-2. **aop**
+
+​				
+
+
+
+1. **aop**
 
    - Spring AOP 实现原理
 
@@ -296,11 +318,57 @@ java基础
 
      如果代理的对象有实现接口，那么就是用jdk动态代理
 
+     动态代理的核心代码
+     
+     ```java
+     package com.lnjecit.proxy.dynamic.jdk;
+     
+     import java.lang.reflect.InvocationHandler;
+     import java.lang.reflect.Method;
+     import java.lang.reflect.Proxy;
+     
+     /**
+      * JDKDynamicProxy
+      * jdkd动态代理
+      *
+      * @author
+      * @create 2018-03-29 16:17
+      **/
+     public class JDKDynamicProxy implements InvocationHandler {
+     
+         private Object target;
+     
+         public JDKDynamicProxy(Object target) {
+             this.target = target;
+         }
+     
+         /**
+          * 获取被代理接口实例对象
+          * @param <T>
+          * @return
+          */
+         public <T> T getProxy() {
+             return (T) Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), this);
+         }
+     
+         /**
+        	*主要调用的地方
+        	*/
+         @Override
+         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+             System.out.println("Do something before");
+             Object result = method.invoke(target, args);
+             System.out.println("Do something after");
+             return result;
+         }
+     }
+     ```
+     
      如果代理的对象没有实现接口，那么久使用CGLib
 
    
 
-3. **mvc**
+2. **mvc**
 - 讲下你知道的 Spring 注解有哪些？该什么场景使用？
   
 - Spring MVC 运行流程
@@ -365,7 +433,7 @@ java基础
 
    - 你的项目中 SpringBoot 用到了哪些和其他技术栈整合的？
 
-     ![](note/etc/spring/springboot知识点.png)
+     ![spring boot知识点](note/etc/spring/springboot知识点.png)
 
    - 使用 Spring 或者 SpringBoot 有遇到过什么印象深刻的问题吗？当时是怎么解决的？
 
@@ -400,22 +468,20 @@ java基础
    
      执行流程查看一下几张图片：
    
-     ![](note/etc/mybatis/mybatis-process.jpg)
+     ![mybatis-process](note/etc/mybatis/mybatis-process.jpg)
 
    
-     ![](note/etc/mybatis/mybatis_process2.webp)
+     ![mybatis_process2](note/etc/mybatis/mybatis_process2.webp)
 
 
-
-![](note/etc/mybatis/mybatis_3.webp)
-
-   
+     ![mybatis_3](note/etc/mybatis/mybatis_3.webp)
 
 
-
-![](note/etc/mybatis/mybatis_4.webp)
+     ![/mybatis_4](note/etc/mybatis/mybatis_4.webp)
 
    
+
+
 
 
 ##### dubbo相关面试题
@@ -515,17 +581,29 @@ java基础
 
    - 你对数据库了解多少？说下数据库的索引实现和非主键的二级索引
 
+     在Innodb中，主键索引就是我们常说的聚簇索引，索引键是主键值，索引的值是具体数据行的值（MyISAM不同的是，聚簇索引中具体的值存储的是指向具体数据的地址），
+
+     **二级索引**中索引键就是该字段上的索引值，索引值就是主键值，所以当我们通过二级索引来搜索数据的时候其实会搜索两遍索引，一遍索引到的是主键，二遍是通过主键索引到真实数据的
+
      
 
    - 说下 MySQL 的索引原理
 
-     
+     索引原理有什么好讲的，就是一个B+Tree，然后叶子节点存储数据，飞叶子节点不存储实际数据，通过这种方式来加速查找，提高查找效率
+
+   
 
    - 讲下 InnoDB 和 MyISAM 的区别？使用场景是？
 
-     
+     就是两个不同的存储引擎，
 
-   - InnoDB 数据库模型？B+树具体说说都保存了什么？叶子结点保存了什么？
+     1. **［事务］**MyISAM是非事务安全型的，而InnoDB是事务安全型的，默认开启自动提交，宜合并事务，一同提交，减小数据库多次提交导致的开销，大大提高性能。
+
+     2. **［锁］**MyISAM锁的粒度是表级，而InnoDB支持行级锁定。
+
+     4. **［查询效率］**MyISAM相对简单，所以在效率上要优于InnoDB，小型应用可以考虑使用MyISAM。
+
+     5. **［外健］**MyISAM不支持外健，InnoDB支持。
 
      
 
@@ -537,7 +615,7 @@ java基础
 
    - 如何判断一个查询 sql 语句是否使用了索引？
 
-     
+     可以通过`explain`语句，如果查询结果中`type`字段显示的是ALL 那么就肯定就是全表扫描，没有使用到索引了
 
    - mysql的innodb索引数据结构为什么会是b+树的，用hash来实现可以吗？
 
@@ -562,25 +640,36 @@ java基础
 6. **调优**
    - 项目数据库表是你设计的吗？一般要注意什么？如何考虑扩展性？
 
-   - 项目 MySQL 的数据量和并发量有多大？量大后的影响有哪些，有考虑吗？SQL 调优有哪些技巧？
+     对于数据Schema的创建，我们需要使用到核实的类型；
 
-   - sql 优化有哪些思路？
+     对于一些关键字段，我们需要考虑索引；
 
+     公司里面禁止使用外键，外键关系一般通过逻辑代码来维护
+
+     表的拓展性，一般要看场景，有的场景后期变化不确定，会稍稍预留几个字段（）,但是大部分情况下，有的情况下是不会预留字段
+   
+   
+   
+- 项目 MySQL 的数据量和并发量有多大？量大后的影响有哪些，有考虑吗？SQL 调优有哪些技巧？
+  
+- sql 优化有哪些思路？
+  
      优化的前提条件就是因为查询速度太慢了，所依我们需要考虑为什么我们的查询速度会慢？我们在`explain`中的返回数据中有filtered,我们可以看看我们的sql写的是否良好，
-
+   
      1. 扫描了太多的行
      2. 请求了不需要的数据
      3. 是否扫描了额外的数据
      4. 有没有使用索引，使用索引是否合理
-
-     **重构查询的方式：**
-
+     
+     
+   **重构查询的方式：**
+   
      1. 增加合适的索引
      2. 缓存重复查询的数据
      3. 切分查询，一个复杂的查询可以切分成多个简单的查询
 
 
-   
+
 
    - 索引使用注意事项？
 
@@ -665,7 +754,7 @@ java基础
         8. 内建Tomcat Session Manager，为Tomcat 6/7/8提供了会话共享功能
      
         9. 可以与Spring Session集成，实现基于Redis的会话共享
-  
+   
         10. 文档较丰富，有中文文档
 
      3. **Lettuce**
@@ -773,6 +862,8 @@ java基础
    - Redis集群方案应该怎么做？都有哪些方案？（主从，sentinel这两个点回答）
 
      主从模型是基于槽点的方式来实现的
+
+     sentinel就是哨兵模式
 
      
 
@@ -944,17 +1035,17 @@ java基础
    
      1. 接收端正常收到两个数据包
    
-        ![](/note/etc/netty/tcp_combine_package_0.png)
+        ![tcp_combine_package](/note/etc/netty/tcp_combine_package_0.png)
    
      2. 接收端只收到一个数据包
    
-        ![](/note/etc/netty/tcp_combine_package_1.png)
+        ![tcp_combine_package](/note/etc/netty/tcp_combine_package_1.png)
    
      3. 接收端收到了两个数据包，但是这两个数据包要么是不完整的，要么就是多出来一块
    
-        ![](/note/etc/netty/tcp_combine_package_2.png)
+        ![tcp_combine_package](/note/etc/netty/tcp_combine_package_2.png)
    
-        ![](/note/etc/netty/tcp_combine_package_3.png)
+        ![tcp_combine_package](/note/etc/netty/tcp_combine_package_3.png)
    
      **发生原因：**
    
@@ -1034,10 +1125,10 @@ java基础
      
    
    - 说说 Netty 的零拷贝？
-    https://my.oschina.net/plucury/blog/192577
+    [Netty 的零拷贝](note/topic/netty/zero_copy.md)
+   
      
-     
-     
+   
    - Netty 内部执行流程？
      
      见 Netty 线程模型图
