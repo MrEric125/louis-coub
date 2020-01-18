@@ -172,17 +172,23 @@ java基础
 
    - 假如线上应用频繁发生 Full GC，有哪些措施可以找到问题？
 
+     这个问题其实也是考验Full GC 发生的条件，
+
    - 一般线上环境遇到 JVM 问题，你会使用哪些工具来分析？
 
+     
+   
    - 找到问题后又该如何去解决呢？
-
+   
    
 
  ##### 并发相关面试题(topic里面的内容还不够系统)
 
 > 并发考察是对实际并发场景的应用，可以和线程`Thread`以及`Thread`行为组织起来，比方说线程的六种状态(New,Runnable,Blocked,Waiting,Timed_Waiting,Terminated)以及其相互转化的过程，线程之间的通信(wait,notify notifyAll)
 >
-> 《Java并发编程实战（中文版）》 .这里有一副[脑图](note/etc/mind/JUC.xmind) ,配合学习
+> 《Java并发编程实战（中文版）》.这本书可以好好啃啃，虽然树比较老，但是有很多的理论知识，方便我们学习，不像国内的很多书，一点原理都不讲，一来就是代码
+>
+> 这里有一副[脑图](note/etc/mind/JUC.xmind) ,配合学习
 
 1. **锁类型，以及锁优化策略**
 
@@ -308,7 +314,7 @@ java基础
 
 ​				
 
-
+# 
 
 1. **aop**
 
@@ -449,6 +455,11 @@ java基础
      [Hystrix执行流程](https://segmentfault.com/a/1190000020270249)
    
    - spring security oauth2中的实现是什么样的？
+   
+     ![spring security](note/etc/distributed/cloud/security/oauth2_filterchain1.png)
+   
+   ​	 ![处理流程](note/etc/distributed/cloud/security/oauth2_process.png)
+   
    - spring feign 是如何做到RPC调用的
 
 
@@ -480,6 +491,7 @@ java基础
      ![/mybatis_4](note/etc/mybatis/mybatis_4.webp)
 
    
+
 
 
 
