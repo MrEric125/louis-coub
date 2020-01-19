@@ -377,10 +377,6 @@ java基础
 2. **mvc**
 - 讲下你知道的 Spring 注解有哪些？该什么场景使用？
   
-- Spring MVC 运行流程
-  
-- Spring MVC 启动流程
-  
 - Spring MVC的工作原理
   
   ![Spring mvc 工作原理](note/etc/spring/spring-mvc工作流程.png)
@@ -425,9 +421,9 @@ java基础
 
    - Spring 事务底层原理
 
-     
 
-   
+
+
 
 5. **spring boot** 
 
@@ -485,12 +481,16 @@ java基础
      ![mybatis_process2](note/etc/mybatis/mybatis_process2.webp)
 
 
-     ![mybatis_3](note/etc/mybatis/mybatis_3.webp)
+![mybatis_3](note/etc/mybatis/mybatis_3.webp)
 
 
-     ![/mybatis_4](note/etc/mybatis/mybatis_4.webp)
+![/mybatis_4](note/etc/mybatis/mybatis_4.webp)
 
    
+
+
+
+
 
 
 
@@ -862,53 +862,48 @@ java基础
 
    - 搭建集群的方式
 
-     ```
-     ./redis-trib.rb create --replicas 1 47.106.219.251:7001 47.106.219.251:7002 47.106.219.251:7003 47.106.219.251:7004 47.106.219.251:7005 47.106.219.251:7006
+     见[docker](docker/redis/cluster/README.md)中的相关说明，便可以搭建一套基于docker的redis集群服务
      
-     ```
-
-     上面这个方式是通过redis自己提供的集群搭建方式是通过ruby来实现的，我们也可以搭建哨兵模式，就不需要安装ruby
-
      
-
-   - Redis集群方案应该怎么做？都有哪些方案？（主从，sentinel这两个点回答）
-
-     主从模型是基于槽点的方式来实现的
-
-     sentinel就是哨兵模式
-
      
-
-   - Redis集群方案什么情况下会导致整个集群不可用？
-
-     
-
-   - Redis集群的主从复制模型是怎样的？
-
-     
-
-   - Redis集群之间是如何复制的？
-
-     
-
-   - Redis集群会有写操作丢失吗？为什么？
-
-     
-
-   - 怎么理解Redis事务？
-
-     
-
-   - Redis中的管道有什么用？
-
-     听说过，没有详细了解，应该和netty中的pipleline功能差不多把
-
-   - Redis集群如何选择数据库？
-
-     
-
-   - redis并发竞争问题该如何解决
-
+- Redis集群方案应该怎么做？都有哪些方案？（主从，sentinel这两个点回答）
+  
+  主从模型是基于槽点的方式来实现的
+  
+  sentinel就是哨兵模式
+  
+  
+  
+- Redis集群方案什么情况下会导致整个集群不可用？
+  
+  
+  
+- Redis集群的主从复制模型是怎样的？
+  
+  
+  
+- Redis集群之间是如何复制的？
+  
+  
+  
+- Redis集群会有写操作丢失吗？为什么？
+  
+  
+  
+- 怎么理解Redis事务？
+  
+  
+  
+- Redis中的管道有什么用？
+  
+  听说过，没有详细了解，应该和netty中的pipleline功能差不多把
+  
+- Redis集群如何选择数据库？
+  
+  
+  
+- redis并发竞争问题该如何解决
+  
 3. **缓存**
 
    - redis 数据持久化方案（redis挂机后数据恢复方案）
@@ -945,7 +940,7 @@ java基础
 
 ##### elasticsearch相关面试题
 
-> 针对搜索引擎，以及搜索引擎底层相关知识点的考察，原理性的东西，可以参考可以石杉码农笔记](https://github.com/doocs/advanced-java)，具体api使用参考[官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/index.html)(官方文档写的真的详细)，[中文官方文档](https://www.elastic.co/guide/cn/elasticsearch/guide/current/foreword_id.html)只有2.x
+> 针对搜索引擎，以及搜索引擎底层相关知识点的考察，原理性的东西，可以参考可以[石杉码农笔记](https://github.com/doocs/advanced-java)，具体api使用参考[官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/index.html)(官方文档写的真的详细)，[中文官方文档](https://www.elastic.co/guide/cn/elasticsearch/guide/current/foreword_id.html)只有2.x
 
 1. **分布式原理**
 
@@ -1194,14 +1189,10 @@ java基础
 
    - 分布式事务的实现？
 
-     https://www.zhihu.com/question/64921387
+     见[分布式事务](note/topic/distributed/distribute_transation.md)
 
-     https://www.jianshu.com/p/ee4071d0c951
-
-     
-   
    - 如何解决redis和mysql中数据一致性问题？
-   
+
      
    
    - 先谈谈秒杀的设计思路？
@@ -1221,6 +1212,20 @@ java基础
      
    
    - 谈谈秒杀如何防止超卖？
+   
+     **思考一下超卖出现的场景，原因分别是什么？**
+   
+     一般我们系统中，执行的逻辑就是先判断是否还有货，如果有货那么就销售，如果没有货就通知已经卖断货了，但是如果在并发压力大的情况下，就会导致，我们查询的时候还显示有货，但是当我们执行扣减货物的时候，货物已经被别人抢先下单了，货没了，我们再下单就会出现超卖的情况。
+   
+     **那么出现了这个问题该如何解决呢？**
+   
+     缓存+队列
+   
+     **保证高效的前提**
+   
+     1. 限流（后端和前端都要限流）
+   
+     
 
 
 

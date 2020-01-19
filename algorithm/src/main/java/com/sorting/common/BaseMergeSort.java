@@ -24,13 +24,13 @@ public class BaseMergeSort<T extends Comparable<T>> {
         int i = lo, j = mid + 1;
         for (int k = lo ; k <=hi ; k++) {
 //            前面两个if 相当于判断索引是否合法
-            // 如果左半部分元素已经全部处理完毕
+            // 如果[i,mid]的元素已经全部处理完毕，那么就将[mid+1,h]的元素防止到arr后面的位置
             if (i>mid) {
 //                这个地方的aux[j-lo] 是因为aux 每次都是从索引0开始的，如果aux是传入进来的话，
 //                那么这个地方就不用aux[j-lo]
                 arr[k] = aux[j - lo];
                 j++;
-                // 如果右半部分元素已经全部处理完毕
+                // 如果[mid+1,h]的元素都处理完了，那么我们就将i相应的元素放置到arr后面
             } else if (j > hi) {
                 arr[k] = aux[i - lo];
                 i++;
@@ -66,7 +66,7 @@ public class BaseMergeSort<T extends Comparable<T>> {
         int i = lo, j = mid + 1;
 
         for (int k = lo; k <=hi; k++) {
-            // 如果左半部分元素已经全部处理完毕
+            // 如果[i,mid]的元素已经全部处理完毕，那么就将[mid+1,h]的元素防止到arr后面的位置
             if (i>mid)                      arr[k] = aux[j++];
                 // 如果右半部分元素已经全部处理完毕
             else if(j>hi)                   arr[k] = aux[i++];

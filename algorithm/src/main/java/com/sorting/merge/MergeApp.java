@@ -15,7 +15,7 @@ public class MergeApp {
         Merge<Integer> merge = new Merge<>();
 
 
-        int N = 10;
+        int N = 8;
         Integer[] arr = SortUtils.generateOrderArray(N);
         SortUtils.shuffle(arr);
         System.out.println("before: ");
