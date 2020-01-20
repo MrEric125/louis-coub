@@ -17,7 +17,7 @@ public class LifeCycleController {
 
     @RequestMapping("/use")
     public String lifeCycle() {
-//        lifeCycle.user();
+        lifeCycle.user();
         return "success";
     }
 }
