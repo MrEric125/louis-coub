@@ -25,7 +25,8 @@
 
 ####  Tomcat 如何实现自己独特的类加载机制？
 
-    Tomcat 是怎么实现的呢？牛逼的Tomcat团队已经设计好了。我们看看他们的设计图：
+Tomcat 是怎么实现的呢？牛逼的Tomcat团队已经设计好了。我们看看他们的设计图：
+
 ![tomcat类加载机制](../../../etc/jvm/tomcat_2.png)
 
 
@@ -34,17 +35,17 @@
 
 我们看到，前面3个类加载和默认的一致，`CommonClassLoader`、`CatalinaClassLoader`、`SharedClassLoader`和`WebappClassLoader`则是Tomcat自己定义的类加载器，它们分别加载`/common/*`、`/server/*`、`/shared/*`（在tomcat 6之后已经合并到根目录下的lib目录下）和/WebApp/WEB-INF/*中的Java类库。其中WebApp类加载器和Jsp类加载器通常会存在多个实例，每一个Web应用程序对应一个WebApp类加载器，每一个JSP文件对应一个Jsp类加载器。
 
-1. commonLoader：
+1. **commonLoader：**
 
     Tomcat最基本的类加载器，加载路径中的class可以被Tomcat容器本身以及各个Webapp访问；
-2. catalinaLoader：
+2. **catalinaLoader：**
    
     Tomcat容器私有的类加载器，加载路径中的class对于Webapp不可见；
-3. sharedLoader：
+3. **sharedLoader：**
    
     各个Webapp共享的类加载器，加载路径中的class对于所有Webapp可见，但是对于Tomcat容器不可见；
 
-4. WebappClassLoader：
+4. **WebappClassLoader：**
     各个Webapp私有的类加载器，加载路径中的class只对当前Webapp可见；
 
 从图中的委派关系中可以看出：
@@ -63,7 +64,7 @@
 我们扩展出一个问题：
 **如果tomcat 的 Common ClassLoader 想加载 WebApp ClassLoader 中的类，该怎么办？**
 
-    看了前面的关于破坏双亲委派模型的内容，我们心里有数了，我们可以使用线程上下文类加载器实现，使用线程上下文加载器，可以让父类加载器请求子类加载器去完成类加载的动作。牛逼吧。
+看了前面的关于破坏双亲委派模型的内容，我们心里有数了，我们可以使用线程上下文类加载器实现，使用线程上下文加载器，可以让父类加载器请求子类加载器去完成类加载的动作。牛逼吧。
 
 
 
