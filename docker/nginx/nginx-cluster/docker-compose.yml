@@ -1,0 +1,15 @@
+version: "3"
+services:
+  redis-cluster-80-1:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - type: bind
+        source: ./conf/nginx-80-1.conf
+        target: /usr/local/etc/nginx/nginx.conf
+      - type: volume
+    environment:
+
+    networks:
+      - nginx
