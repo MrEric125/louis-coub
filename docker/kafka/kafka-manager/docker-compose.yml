@@ -1,0 +1,16 @@
+version: "3"
+services:
+  kafka-manager:
+    image:
+    container_name:
+    working_dir:
+    environment:
+    ports:
+      - "9000:9000"
+    stdin_open: true
+    networks:
+      kafka-cluster
+    tty: true
+    privileged: true
+    entrypoint:
+      - /bin/bash

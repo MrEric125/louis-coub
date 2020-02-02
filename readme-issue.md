@@ -2,6 +2,8 @@
 
 ### issue
 1. mysql 的数据交互方式是以什么方式进行的，
+2. 2020-02-01 11:07:56.386  WARN 7380 --- [eCheck-thread-1] o.a.d.r.e.s.header.ReconnectTimerTask    :  [DUBBO] Reconnect to channel HeaderExchangeClient [channel=org.apache.dubbo.remoting.transport.netty4.NettyClient [/10.0.75.1:6873 -> /10.0.75.1:20880]], because heartbeat read idle time out: 180000ms, dubbo version: 2.7.3, current host: 10.0.75.1
+
 
 #### 原理问题
 dubbo原理，kafka高可用原理，Elasticsearch分佈式架構原理，redis单线程原理，Dubbo工作原理
@@ -32,5 +34,5 @@ dubbo
 源码查看计划
 1. spring(作为IOC和AOP的基础)
 2. spring boot(作为服务框架的典型)
-3. netty(作为服务器的典型)
+3. netty(作为高并发服务器的典型)
 4. dubbo(作为RPC的典型，)

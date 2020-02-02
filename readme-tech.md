@@ -1,16 +1,3 @@
-现在的情况，会用
-docker
-redis
-elasticsearch(ELK)
-kafka
-mysql
-java8
-linux
-netty
-net
-spring(spring boot ,spring cloud)
-算法，数据结构，设计模式，这种基础知识还是需要很清楚的
-vue
 
 ### 需要深入学习的知识
 
@@ -46,9 +33,6 @@ es集群使用方法
 可以开始看源码了，从这几个方面开始看
 aop、ioc、事务
 Spring boot 实现自动配置的方式，源码可以和 Spring源码配合一起看了
-
-**算法**
-重温几种常见的排序算法，最好能够白班编程将这几种算法写出来
 
 
 
@@ -198,20 +182,7 @@ RPC的几种方式：
 
 #### spring (源码)
 
-1. ioc
 
-   两个concurrentHashMap,一个用于存储全类名，一个用于存储实例，Spring中的单例模式就是通过这种方式来实现的，
-
-2. aop 
-
-3. transaction
-
-4. web
 
 #### java8 java11相关新特性
 
-
-二叉树形式：
-平衡二叉树
-红黑树
-hash表
