@@ -3,6 +3,7 @@ package com.java8;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -35,7 +36,14 @@ public class App extends PubApp {
 
         Map<String, Person> stringMap = list.stream().collect(Collectors.toMap(Person::getName, y -> y));
         System.out.println(stringMap);
-        App app = new App();
+
+        System.out.println("======");
+        ArrayList<Person> arrayList = Lists.newArrayList();
+        arrayList.add(person);
+        person.setContrary("china");
+        person.setName("wangwu");
+        arrayList.add(person);
+        arrayList.forEach(System.out::println);
 
     }
 

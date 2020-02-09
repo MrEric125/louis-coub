@@ -36,3 +36,6 @@ dubbo
 2. spring boot(作为服务框架的典型)
 3. netty(作为高并发服务器的典型)
 4. dubbo(作为RPC的典型，)
+
+
+如何使用jenkins保证持续集成，持续部署

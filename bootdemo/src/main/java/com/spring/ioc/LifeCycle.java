@@ -59,15 +59,15 @@ public class LifeCycle
 
     }
 
-    @Override
-    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("post process before");
-        return bean;
-    }
+//    @Override
+//    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+//        System.out.println("post process before");
+//        return bean;
+//    }
 
-    @Override
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("post process after");
-        return bean;
-    }
+//    @Override
+//    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+//        System.out.println("post process after");
+//        return bean;
+//    }
 }

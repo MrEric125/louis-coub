@@ -294,7 +294,7 @@ java基础
    
      ![Spring_bean_lifesycle](note/etc/spring/Spring_bean_lifesycle.png)
    
-     spring 中有一个很神奇的接口`Aware`,真的超多的忌口实现了这个接口，这个接口的作用就是感知，说直白点就是让自己有能力感知到某些事情，比方说上面的生命周期中有`BeanNameAware`,`BeanFactoryAware`,`ApplicationContextAware`,那么这三者分别的作用就是，让我们的实现类能够感知到注册的自己注册的BeanName,感知到自己注册的BeanFactory,感知到自己注册的ApplicationContext,那么感知到之后有什么作用呢？假如我们有某些特殊的需求，或者特殊的属性需要设置，就可以通过这种感知到的值来设置，就非常方便了
+     spring 中有一个很神奇的接口`Aware`,真的超多的接口实现了这个接口，这个接口的作用就是感知，说直白点就是让自己有能力感知到某些事情，比方说上面的生命周期中有`BeanNameAware`,`BeanFactoryAware`,`ApplicationContextAware`,那么这三者分别的作用就是，让我们的实现类能够感知到注册的自己注册的BeanName,感知到自己注册的BeanFactory,感知到自己注册的ApplicationContext,那么感知到之后有什么作用呢？假如我们有某些特殊的需求，或者特殊的属性需要设置，就可以通过这种感知到的值来设置，就非常方便了
 
    - BeanFactory 和 ApplicationContext 有什么区别
    
@@ -1236,7 +1236,16 @@ java基础
 
 
 
+#### docker+jenkins持续集成，持续部署
+
+1. docker 下载好jenkins镜像
+2. 配置好jenkins中相关插件
+3. 准备jenkins启动脚本
+4. 
+
 可以想把和几个git上的项目pull 下来，学习
+
+
 
 https://github.com/frank-lam/fullstack-tutorial/blob/master/notes/MySQL.md
 
