@@ -11,8 +11,11 @@ public class AtomicIntTest {
     private static AtomicInteger integer = new AtomicInteger(0);
     @Test
    public void test() {
-         integer.getAndAdd(10);
+        integer.getAndAdd(10);
         System.out.println(integer.get());
-            Assert.assertEquals(10,integer.get());
+        Assert.assertEquals(10,integer.get());
+
+        integer.getAndSet(5);
+
    }
 }

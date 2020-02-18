@@ -1,5 +1,39 @@
-# HashMap
 
+<!-- TOC -->
+
+- [HashMap](#hashmap)
+    - [Java7 HashMap](#java7-hashmap)
+        - [put 过程分析](#put-过程分析)
+            - [数组初始化](#数组初始化)
+            - [计算具体数组位置](#计算具体数组位置)
+            - [添加节点到链表中](#添加节点到链表中)
+            - [数组扩容](#数组扩容)
+        - [get 过程分析](#get-过程分析)
+    - [Java7 ConcurrentHashMap](#java7-concurrenthashmap)
+        - [初始化](#初始化)
+        - [put 过程分析](#put-过程分析-1)
+            - [初始化槽: ensureSegment](#初始化槽-ensuresegment)
+            - [获取写入锁: scanAndLockForPut](#获取写入锁-scanandlockforput)
+            - [扩容: rehash](#扩容-rehash)
+        - [get 过程分析](#get-过程分析-1)
+        - [并发问题分析](#并发问题分析)
+    - [Java8 HashMap](#java8-hashmap)
+        - [put 过程分析](#put-过程分析-2)
+            - [数组扩容](#数组扩容-1)
+        - [get 过程分析](#get-过程分析-2)
+    - [Java8 ConcurrentHashMap](#java8-concurrenthashmap)
+        - [初始化](#初始化-1)
+        - [put 过程分析](#put-过程分析-3)
+            - [初始化数组：initTable](#初始化数组inittable)
+            - [链表转红黑树: treeifyBin](#链表转红黑树-treeifybin)
+        - [扩容：tryPresize](#扩容trypresize)
+            - [数据迁移：transfer](#数据迁移transfer)
+        - [get 过程分析](#get-过程分析-3)
+    - [总结](#总结)
+
+<!-- /TOC -->
+
+# HashMap
 
 网上关于 HashMap 和 ConcurrentHashMap 的文章确实不少，不过缺斤少两的文章比较多，所以才想自己也写一篇，把细节说清楚说透，尤其像 Java8 中的 ConcurrentHashMap，大部分文章都说不清楚。终归是希望能降低大家学习的成本，不希望大家到处找各种不是很靠谱的文章，看完一篇又一篇，可是还是模模糊糊。
 

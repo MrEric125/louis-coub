@@ -84,7 +84,7 @@ OSI七层：应用层，表现层，会话层，传输层，网络层，数据�
 
 2. 能够熟悉`工厂模式`,`抽象工厂模式`,`命令模式`,`适配器模式`,`过滤器模式`
 
-   
+   https://design-patterns.readthedocs.io/zh_CN/latest/
 
 #### java
 
@@ -240,21 +240,14 @@ java基础
 
 5. **线程池(ThreadLocal,Fork/join)**
 
-   - 线程池的种类，哪四种workqueue分别是什么？
+   
 
-     [线程池](note/topic/java/juc/ThreadPool.md#线程池)
-
-   - 从源码详细说下 Java 里面的线程池吧，使用线程池有什么要注意的地方？你们公司有规范吗？
-
-     同上参考线程池一节
-
-     
-
-6. **工具类的使用**
-
-   - ThreadLocal 了解吗？项目有用过吗？可以说说
+   [线程池](note/topic/java/juc/ThreadPool.md#线程池)
 
    
+
+   
+
 
 ##### collection相关面试题
 
@@ -445,7 +438,7 @@ java基础
 
    - 使用 Spring 或者 SpringBoot 有遇到过什么印象深刻的问题吗？当时是怎么解决的？
 
-   
+   其它相关主题见：[spring-boot]()
 
 6. **spring cloud**
 

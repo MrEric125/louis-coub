@@ -2,10 +2,12 @@ package com.java8;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -45,6 +47,12 @@ public class App extends PubApp {
         arrayList.add(person);
         arrayList.forEach(System.out::println);
 
+        String property = System.getProperty("snn.boot.class.path");
+        System.out.println(property);
+        String ext = System.getProperty("java.ext.dirs");
+        System.out.println(ext);
+        System.out.println("================|");
+        System.out.println(System.getProperties());
     }
 
 
