@@ -20,6 +20,8 @@
         <module>security</module>
         <module>netty</module>
         <module>algorithm</module>
+        <module>minashop</module>
+        <module>tinyMvc</module>
     </modules>
     <groupId>com.louis</groupId>
     <artifactId>boot-mybatis</artifactId>

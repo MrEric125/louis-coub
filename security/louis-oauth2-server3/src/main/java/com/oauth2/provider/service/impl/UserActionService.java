@@ -36,6 +36,8 @@ public class UserActionService {
 
     @PostConstruct
     public void init() {
+
+
 //        UserAction userAction1 = UserAction.builder().url("/api/**").build();
 //        UserAction userAction2 = UserAction.builder().url("/**").build();
 //        UserAction userAction3 = UserAction.builder().url("/user/**").build();

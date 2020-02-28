@@ -17,9 +17,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   resources:
     static-locations: classpath:/templates/,classpath:/static/
-  redis:
-    host: 129.28.189.234
-    port: 6379
-    password: redis
+#  redis:
+#    host: 129.28.189.234
+#    port: 6379
+#    password: redis
 server:
   port: 8113

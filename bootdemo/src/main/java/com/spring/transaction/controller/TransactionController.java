@@ -1,9 +1,9 @@
 package com.spring.transaction.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.spring.transaction.Tb1;
+import com.spring.transaction.Tb1Repository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author louis
@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TransactionController {
 
+    @Autowired
+    private Tb1Repository tb1Repository;
+
 
     @PutMapping
     public String save() {
@@ -22,8 +25,11 @@ public class TransactionController {
     }
 
 
-    @PostMapping
-    public String update() {
+    @PostMapping("/update")
+    public String update(@RequestBody Tb1 tb1) {
+
+
+        tb1Repository.save(tb1);
 
         return "ok";
     }

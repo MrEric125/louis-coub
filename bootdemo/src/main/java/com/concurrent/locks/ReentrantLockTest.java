@@ -14,6 +14,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * <p>
  * Date: 2019/9/5
  * Description:
+ * 分析
  */
 @Slf4j
 public class ReentrantLockTest {
@@ -27,8 +28,6 @@ public class ReentrantLockTest {
         Runnable runnable = () -> {
 
             try {
-
-
                 log.info("thread-name:{}", Thread.currentThread().getName());
                 reentrantLock.lock();
                 sum();
@@ -47,8 +46,6 @@ public class ReentrantLockTest {
             Thread.sleep(400);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }finally {
-
         }
 
 //        log.info("sum值为：{}", sum.longValue());

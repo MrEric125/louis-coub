@@ -17,6 +17,7 @@ import org.springframework.context.annotation.ImportResource;
 @Configuration
 public class BootConfig {
 
+
     @Bean
     public BootLouisProperties bootLouisProperties() {
         return new BootLouisProperties();

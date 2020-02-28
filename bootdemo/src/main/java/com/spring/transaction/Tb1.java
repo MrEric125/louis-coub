@@ -1,9 +1,11 @@
 package com.spring.transaction;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,6 +25,8 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "tb1")
+//@DynamicUpdate(true)
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class Tb1 {
 
     @Id
@@ -34,4 +38,6 @@ public class Tb1 {
 
     @Column(name = "OP_TIME")
     private Date opTime;
+
+
 }

@@ -12,14 +12,14 @@ import java.util.concurrent.Executors;
  */
 public class ExecutorServicePoolTest {
 
+    static ExecutorService executorService = Executors.newCachedThreadPool();
+
+
     public static void main(String[] args) {
-        ExecutorService executorService = Executors.newCachedThreadPool();
-        executorService.submit(new Runnable() {
-            @Override
-            public void run() {
 
-
-            }
-        });
+        for (int i = 0; i < 10; i++) {
+            executorService.submit(() -> System.out.println("ttt"));
+        }
+        executorService.shutdown();
     }
 }
