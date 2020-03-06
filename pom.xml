@@ -11,17 +11,15 @@
         <relativePath>dependencies/pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
     <modules>
-        <module>mybatis-source</module>
-        <module>bootdemo</module>
-        <module>rpc-link</module>
         <module>dependencies</module>
         <module>webFlux</module>
         <module>common</module>
+        <module>demo</module>
         <module>security</module>
-        <module>netty</module>
         <module>algorithm</module>
-        <module>minashop</module>
-        <module>tinyMvc</module>
+        <module>distribute</module>
+        <module>demoProject</module>
+        <module>source</module>
     </modules>
     <groupId>com.louis</groupId>
     <artifactId>boot-mybatis</artifactId>
