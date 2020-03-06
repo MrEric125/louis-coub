@@ -5,14 +5,12 @@
     <parent>
         <artifactId>rpc-link</artifactId>
         <groupId>com.louis</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>remote-server2</artifactId>
-    <dependencies>
 
-    </dependencies>
 
 
 </project>

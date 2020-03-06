@@ -5,10 +5,11 @@
     <parent>
         <artifactId>boot-mybatis</artifactId>
         <groupId>com.louis</groupId>
-        <version>${louis.version}</version>
+        <version>${revision}</version>
     </parent>
+    <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
-    <version>${louis.version}</version>
+    <version>${revision}</version>
 
     <artifactId>demoProject</artifactId>
     <modules>
