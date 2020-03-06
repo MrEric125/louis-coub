@@ -17,9 +17,13 @@
         <module>demo</module>
         <module>security</module>
         <module>algorithm</module>
+
         <module>distribute</module>
         <module>demoProject</module>
         <module>source</module>
+
+
+
     </modules>
     <groupId>com.louis</groupId>
     <artifactId>boot-mybatis</artifactId>

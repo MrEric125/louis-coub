@@ -13,6 +13,7 @@
     <modules>
         <module>minashop</module>
         <module>tinyMvc</module>
+        <module>redis-api</module>
     </modules>
 
 
