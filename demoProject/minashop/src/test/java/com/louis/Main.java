@@ -1,5 +1,7 @@
 package com.louis;
 
+import com.google.common.collect.Maps;
+
 import java.util.*;
 
 /**
@@ -23,6 +25,8 @@ public class Main {
 
 
         HashMap<String, String> map = new HashMap<>();
+
+        Map<String, String> maps = Maps.newHashMap();
 
 
         LinkedList<String> linkList = new LinkedList<>();
