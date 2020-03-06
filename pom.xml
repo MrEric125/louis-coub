@@ -27,7 +27,7 @@
     </modules>
     <groupId>com.louis</groupId>
     <artifactId>boot-mybatis</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${louis.version}</version>
     <name>boot-mybatis</name>
     <description>Demo project for Spring Boot</description>
 
@@ -48,6 +48,7 @@
     </developers>
 
     <properties>
+        <louis.version>0.0.1</louis.version>
         <java.version>1.8</java.version>
         <dubbo.version>2.7.0</dubbo.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
