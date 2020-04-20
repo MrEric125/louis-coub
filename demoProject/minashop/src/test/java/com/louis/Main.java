@@ -12,24 +12,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        List<String> lists = null;
-        System.out.println(Optional.ofNullable(lists).orElse(new ArrayList<>()));
-
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("ttttt");
-            }
-        });
-        thread.start();
-
-
-        HashMap<String, String> map = new HashMap<>();
-
-        Map<String, String> maps = Maps.newHashMap();
-
-
-        LinkedList<String> linkList = new LinkedList<>();
-        linkList.add(1,"ss");
+        String a="           main";
+        System.out.println(a.length());
     }
 }

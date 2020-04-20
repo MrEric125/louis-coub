@@ -5,7 +5,7 @@ package com.pattern.mediator;
  * @date created on 2020/2/15
  * description:
  */
-public abstract class Mediator {
+public interface Mediator {
 
 
     public abstract void register(Colleague colleague);

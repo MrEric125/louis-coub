@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date created on 2020/2/23
  * description:
  */
-//@MapperScan(basePackages= {"com.louis"},sqlSessionFactoryRef="sqlSessionFactory")
+@MapperScan(basePackages= {"com.louis"},sqlSessionFactoryRef="sqlSessionFactory")
 @SpringBootApplication
 public class MinaShop {
     public static void main(String[] args) {

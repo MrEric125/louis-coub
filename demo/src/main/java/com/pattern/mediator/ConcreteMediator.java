@@ -9,12 +9,12 @@ import java.util.List;
  * @date created on 2020/2/15
  * description:
  */
-public class ConcreteMediator extends Mediator {
+public class ConcreteMediator implements Mediator {
 
     private List<Colleague> colleagues = Lists.newArrayList();
 
     @Override
-    public void register(Colleague colleague) {
+    public void register(final Colleague colleague) {
         colleagues.add(colleague);
         colleague.setMedium(this);
     }
@@ -27,5 +27,12 @@ public class ConcreteMediator extends Mediator {
                 colleague1.receive();
             }
         }
+
+        for (int i = 0; i < colleagues.size(); i++) {
+            Colleague colleague1 = colleagues.get(i);
+            colleague1.receive();
+
+        }
+        colleagues.stream().forEach(System.out::println);
     }
 }

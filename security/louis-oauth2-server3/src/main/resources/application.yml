@@ -1,7 +1,0 @@
-spring:
-  profiles:
-    active: dev
-  redis:
-    host: 129.28.189.234
-    port: 6379
-    password: redis
