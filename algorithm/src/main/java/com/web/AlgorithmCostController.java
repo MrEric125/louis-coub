@@ -49,6 +49,9 @@ public class AlgorithmCostController {
             SortUtils.shuffle(arr);
             completableFutureList.add(CompletableFuture.supplyAsync(() -> algorithmService.calculateCost(sortService, arr), taskExecutor));
         }
+        
+
+
         long start = System.currentTimeMillis();
         List<Long> costList = completableFutureList.stream().map(CompletableFuture<Long>::join).collect(Collectors.toList());
         long end = System.currentTimeMillis();
