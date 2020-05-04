@@ -2,7 +2,9 @@ package com.future;
 
 import lombok.NoArgsConstructor;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
@@ -25,6 +27,36 @@ public class Shop {
         this.shopName = shopName;
     }
 
+
+    public static List<Shop> creatShop(List<String> shopNames) {
+        return Optional.ofNullable(shopNames)
+                .map(names -> names.stream().map(Shop::new).collect(toList())).orElseGet(()->{
+            List<Shop> shops = Arrays.asList(new Shop("BestPrice"),
+                    new Shop("LetsSaveBig"),
+                    new Shop("MyFavoriteShop"),
+                    new Shop("LLEages"),
+                    new Shop("Myabatss"),
+                    new Shop("BuyItAlssa"),
+                    new Shop("BuyItDDal"),
+                    new Shop("BuyItDDal"),
+                    new Shop("LLEages"),
+                    new Shop("Myabatss"),
+                    new Shop("BuyItAlssa"),
+                    new Shop("BuyItDDal"),
+                    new Shop("BuyItDDal")
+
+            );
+            return shops;
+        });
+    }
+
+
+    /**
+     * 批量获取不同产品在不同商店的价格
+     * @param shops
+     * @param product
+     * @return
+     */
     public List<String> findPrice(List<Shop> shops,String product) {
         return shops.stream()
                 .map(shop -> String.format("%s price is %.2f",
@@ -33,6 +65,11 @@ public class Shop {
 
     }
 
+    /**
+     * 通过异步的方式获取商品价格
+     * @param product
+     * @return
+     */
     public Future<Double> getPriceAsync(String product){
         CompletableFuture<Double> futurePrice = new CompletableFuture<>();
         new Thread(() -> {
@@ -46,6 +83,12 @@ public class Shop {
         }).start();
         return futurePrice;
     }
+
+    /**
+     * 通过产品名称计算产品价格
+     * @param product
+     * @return
+     */
     public Future<Double> getPriceAsync2(String product){
         return CompletableFuture.supplyAsync(() -> calculatePrice(product));
     }
@@ -60,6 +103,12 @@ public class Shop {
                 random.nextInt(Discount.Code.values().length)];
         return String.format("%s:%.2f:%s", shopName, price, code);
     }
+
+    /**
+     * 获取计算到的价格
+     * @param produce
+     * @return
+     */
     public double getPrice(String produce) {
         return calculatePrice(produce);
 
@@ -70,7 +119,11 @@ public class Shop {
         return random.nextDouble() * product.charAt(0) + product.charAt(1);
 
     }
-    public static void delay() {
+
+    /**
+     * 延时操作
+     */
+    static void delay() {
         try {
             Thread.sleep(1000L);
         } catch (InterruptedException e) {
@@ -86,6 +139,7 @@ public class Shop {
                 ", random=" + random +
                 '}';
     }
+
 
     public String getShopName() {
         return shopName;

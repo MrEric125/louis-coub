@@ -13,26 +13,12 @@ import java.util.stream.Collectors;
  * Date: 2019/12/11
  * Description:
  */
-public class App3 {
+public class StreamTest {
 
     public static void main(String[] args) {
-        List<Shop> shops = Arrays.asList(new Shop("BestPrice"),
-                new Shop("BestPrice"),
-                new Shop("BestPrice"),
-                new Shop("BestPrice"),
-                new Shop("BestPrice"),
-                new Shop("BuyItAlssa"),
-                new Shop("BuyItAlssa"),
-                new Shop("BuyItAlssa"),
-                new Shop("BuyItAlssa"),
-                new Shop("BuyItAlssa"),
-                new Shop("BuyItAlssa"),
-                new Shop("BuyItDDal"),
-                new Shop("BuyItDDal"));
+        List<Shop> shops = Shop.creatShop(null);
         Map<String, Map<Double, List<Shop>>> collect = shops.stream().collect(Collectors.groupingBy(Shop::getShopName, Collectors.groupingBy(x -> x.getPrice(x.getShopName()))));
         String string = JSONObject.toJSONString(collect, true);
         System.out.println(string);
-
-
     }
 }

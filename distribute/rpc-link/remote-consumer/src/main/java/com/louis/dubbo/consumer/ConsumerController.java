@@ -1,4 +1,4 @@
-package com.louis.remote.consumer;
+package com.louis.dubbo.consumer;
 
 import com.louis.remote.api.DefautDemoService;
 import lombok.extern.slf4j.Slf4j;
