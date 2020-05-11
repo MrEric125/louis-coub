@@ -1,5 +1,6 @@
 package com.future.future2;
 
+import com.future.Shop;
 import com.google.common.collect.ImmutableMap;
 import com.louis.common.common.WrapMapper;
 import com.louis.common.common.Wrapper;
@@ -87,7 +88,7 @@ public class FutureController {
                 .stream()
                 .map(shop -> CompletableFuture.supplyAsync(() ->
                         String.format("%s price is %.2f",
-                                shop.getShopName(), shop.getPrice(product)))
+                                shop.getShopName(), shop.getProductPrice(product)))
                 )
 //                .map(future->future.thenApply())
 //                .map(future->future.thenCompose())

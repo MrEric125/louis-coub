@@ -1,15 +1,14 @@
 package com.future;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static com.future.Shop.delay;
 
 /**
  * @author louis
  * <p>
  * Date: 2019/8/23
  * Description:
+ * 根据不同会员大不同折扣
  */
 public class Discount {
 
@@ -23,11 +22,12 @@ public class Discount {
     }
 
     public List<String> findPrices(List<Shop> shops,String product) {
-        return shops.stream()
-                .map(shop -> shop.getPrice(product, null))
-                .map(Quote::parse)
-                .map(Discount::applyDiscount)
-                .collect(Collectors.toList());
+//        return shops.stream()
+//                .map(shop -> shop.getProductPrice(product))
+//                .map(Quote::parse)
+//                .map(Discount::applyDiscount)
+//                .collect(Collectors.toList());
+        return null;
 
     }
 
@@ -35,11 +35,11 @@ public class Discount {
 
     public static String applyDiscount(Quote quote) {
         return quote.getShopName() + " price is " +
-                Discount.apply(quote.getPrice(),
+                Discount.apply(quote.getPrice().doubleValue(),
                         quote.getDiscountCode());
     }
     private static double apply(double price, Code code) {
-        delay();
+//        delay();
         return format(price * (100 - code.percentage) / 100);
     }
 
