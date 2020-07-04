@@ -18,6 +18,7 @@ public class DefaultDemoServiceImpl implements DefautDemoService {
     private String serviceName;
 
     public String sayHello(String name) {
-        return String.format("[%s] : Hello, %s", serviceName, name);
+        String format = String.format("[%s] : Hello, %s", serviceName, name);
+        return format;
     }
 }
