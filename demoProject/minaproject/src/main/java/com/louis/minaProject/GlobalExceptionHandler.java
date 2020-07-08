@@ -30,6 +30,7 @@ public class GlobalExceptionHandler {
 
         Map<String, Object> map = ImmutableMap
                 .of("requestURI", requestURI, "method", method, "requestParam", parameterMap, "errorMessage", ex.getMessage()!=null?ex.getMessage():"null");
+        ex.printStackTrace();
 
         log.info("============>>>>>  {}", map);
 

@@ -13,7 +13,7 @@
 
     <artifactId>demoProject</artifactId>
     <modules>
-        <module>minashop</module>
+        <module>minaproject</module>
         <module>tinyMvc</module>
         <module>redis-api</module>
     </modules>

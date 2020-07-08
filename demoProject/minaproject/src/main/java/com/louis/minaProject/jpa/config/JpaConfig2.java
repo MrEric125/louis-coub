@@ -35,7 +35,7 @@ public class JpaConfig2 {
     LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBeanTwo(EntityManagerFactoryBuilder builder){
         return builder.dataSource(dsTwo)
                 .properties(jr.getProperties())
-                .packages("com.louis.minashop.jpa.entity2")
+                .packages("com.louis.minaProject.jpa.entity2")
                 .persistenceUnit("pu2")
                 .build();
 

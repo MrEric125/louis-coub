@@ -28,6 +28,9 @@ spring:
        driver-class-name: com.mysql.cj.jdbc.Driver
 
 
+
+  main:
+    allow-bean-definition-overriding: true
 LOG_DATEFORMAT_PATTERN: yyyy/MM/dd HH:mm:ss:sss
 server:
   port: 9999
@@ -35,7 +38,7 @@ server:
     context-path: /mina
 logging:
   level:
-    org:  debug
+    org:  info
   pattern:
     console: "%clr(%d{${LOG_DATEFORMAT_PATTERN}}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(${PID:-}){magenta} %clr{faint} %clr([%t]){faint} %clr([%-40.40logger{39} %L]){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
 

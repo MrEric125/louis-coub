@@ -14,5 +14,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MinaProject {
     public static void main(String[] args) {
         SpringApplication.run(MinaProject.class, args);
+        System.out.println(MinaProject.class.getName());
     }
 }

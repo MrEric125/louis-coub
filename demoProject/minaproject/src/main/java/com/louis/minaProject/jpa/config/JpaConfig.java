@@ -37,7 +37,7 @@ public class JpaConfig {
     LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBeanOne(EntityManagerFactoryBuilder builder){
         return builder.dataSource(dsOne)
                 .properties(jr.getProperties())
-                .packages("com.louis.minashop.jpa.entity")
+                .packages("com.louis.minaProject.jpa.entity")
                 .persistenceUnit("pu1")
                 .build();
 
