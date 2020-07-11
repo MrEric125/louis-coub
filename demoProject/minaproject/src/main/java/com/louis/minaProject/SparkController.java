@@ -62,8 +62,7 @@ public class SparkController {
 
     @RequestMapping("scala")
     public Wrapper scala(@RequestParam String filePath) {
-//        val input=sparkContext.textFile(filePath);
-//        return WrapMapper.ok(countMap);
+
 
         return null;
     }

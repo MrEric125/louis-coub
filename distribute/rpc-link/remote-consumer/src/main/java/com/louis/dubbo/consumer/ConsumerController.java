@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("consumer")
+//@RequestMapping("consumer")
 public class ConsumerController {
 
-    @Reference
+    @Reference(retries = 0,timeout = 6000)
     private DefautDemoService defautDemoService;
 
-    @GetMapping("/")
+    @GetMapping("/consumer")
     public String consumer() {
         return defautDemoService.sayHello("louis");
     }
