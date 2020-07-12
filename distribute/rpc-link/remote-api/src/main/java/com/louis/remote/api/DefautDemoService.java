@@ -1,8 +1,10 @@
 package com.louis.remote.api;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.Map;
 
 /**
  * @author louis
@@ -16,8 +18,8 @@ import javax.ws.rs.core.MediaType;
 public interface DefautDemoService {
 
 
-//    @GET
+    //    @GET
 //    @Path("selectByOpenId/{name}")
 //    String sayHello(@PathParam("name") String name);
-    String sayHello( String name);
+    Map<String, Object> sayHello(String name);
 }

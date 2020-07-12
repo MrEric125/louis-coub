@@ -1,11 +1,15 @@
 package com.louis.dubbo.consumer;
 
+import com.louis.remote.UserContext;
 import com.louis.remote.api.DefautDemoService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * @author louis
@@ -18,12 +22,15 @@ import org.springframework.web.bind.annotation.RestController;
 //@RequestMapping("consumer")
 public class ConsumerController {
 
-    @Reference(retries = 0,timeout = 6000)
+    @Reference(retries = 0,timeout = 1000)
     private DefautDemoService defautDemoService;
 
     @GetMapping("/consumer")
-    public String consumer() {
-        return defautDemoService.sayHello("louis");
+    public Map<String, Object> consumer(HttpServletRequest request) {
+        UserContext.putUsername(request.getLocalName());
+        Map<String, Object> louis = defautDemoService.sayHello("louis");
+        return louis;
+
     }
 
 
