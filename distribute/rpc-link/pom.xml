@@ -33,12 +33,10 @@
         <module>remote-consumer</module>
         <module>remote-server1</module>
         <module>remote-server2</module>
+        <module>RPCStudy</module>
     </modules>
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>com.louis</groupId>
             <artifactId>common</artifactId>

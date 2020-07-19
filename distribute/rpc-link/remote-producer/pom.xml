@@ -34,7 +34,7 @@
         <resteasy_version>3.0.19.Final</resteasy_version>
         <swagger.webjar.version>3.20.3</swagger.webjar.version>
         <jetty.version>9.4.19.v20190610</jetty.version>
-<!--        <tomcat_embed_version>8.5.31</tomcat_embed_version>-->
+        <!--        <tomcat_embed_version>8.5.31</tomcat_embed_version>-->
         <tomcat_embed_version>9.0.22</tomcat_embed_version>
 
         <mortbay_jetty_version>6.1.26</mortbay_jetty_version>
@@ -42,7 +42,7 @@
     </properties>
     <dependencies>
 
-<!--        kafka dependencies-->
+        <!--        kafka dependencies-->
 
         <dependency>
             <groupId>org.apache.kafka</groupId>
@@ -57,8 +57,6 @@
         </dependency>
 
 
-
-
         <!-- Spring Boot dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -71,7 +69,7 @@
         </dependency>
 
 
-<!--        dubbo dependencies-->
+        <!--        dubbo dependencies-->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
@@ -99,7 +97,6 @@
         </dependency>
 
 
-
         <!-- Zookeeper dependencies -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
@@ -109,8 +106,8 @@
 
         </dependency>
 
-<!--        rest start-->
-<!--        使用netty服务器-->
+        <!--        rest start-->
+        <!--        使用netty服务器-->
 
         <!--        java.lang.NoClassDefFoundError: org/jboss/resteasy/plugins/server/netty/NettyJaxrsServer-->
         <dependency>
@@ -118,11 +115,11 @@
             <artifactId>resteasy-netty4</artifactId>
             <version>${resteasy_version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>io.netty</groupId>-->
-<!--            <artifactId>netty-all</artifactId>-->
-<!--            <version>4.0.7.Final</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.netty</groupId>-->
+        <!--            <artifactId>netty-all</artifactId>-->
+        <!--            <version>4.0.7.Final</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.apache.thrift</groupId>
             <artifactId>libthrift</artifactId>
@@ -130,9 +127,9 @@
         </dependency>
 
 
-<!--        使用jetty服务器-->
+        <!--        使用jetty服务器-->
 
-<!--        java.lang.NoClassDefFoundError: org/eclipse/jetty/util/log/StdErrLog-->
+        <!--        java.lang.NoClassDefFoundError: org/eclipse/jetty/util/log/StdErrLog-->
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
@@ -140,7 +137,7 @@
         </dependency>
 
 
-<!--Caused by: java.lang.NoClassDefFoundError: javax/ws/rs/WebApplicationException-->
+        <!--Caused by: java.lang.NoClassDefFoundError: javax/ws/rs/WebApplicationException-->
         <!--rest 接口-->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
@@ -154,7 +151,6 @@
         </dependency>
 
 
-
         <dependency>
             <groupId>com.louis</groupId>
             <artifactId>remote-api</artifactId>
@@ -164,6 +160,17 @@
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
 
