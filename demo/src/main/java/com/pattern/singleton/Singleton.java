@@ -5,13 +5,13 @@ package com.pattern.singleton;
  * @date created on 2020/3/12
  * description:
  */
-public class SingletonTest {
-    private static SingletonTest ourInstance = null;
+public class Singleton {
+    private static Singleton ourInstance = null;
 
-    public static SingletonTest getInstance() {
+    public static Singleton getInstance() {
         System.out.println("静态方法 getInstance");
         if (ourInstance == null) {
-            ourInstance = new SingletonTest();
+            ourInstance = new Singleton();
         }
         return ourInstance;
     }
@@ -22,7 +22,7 @@ public class SingletonTest {
 
     }
 
-    private SingletonTest() {
+    private Singleton() {
         System.out.println("实例化");
 
     }

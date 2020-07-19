@@ -8,9 +8,9 @@ package com.pattern.singleton;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(SingletonTest.initMethod());
+        System.out.println(Singleton.initMethod());
         System.out.println("调用实例化方法。。。。");
-        SingletonTest.getInstance();
+        Singleton.getInstance();
 
     }
 }

@@ -1,4 +1,4 @@
-package com.pattern.abstractfactory;
+package com.pattern.abstractfactory.example1;
 
 /**
  * @author John·Louis
