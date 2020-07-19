@@ -1,7 +1,6 @@
 package com.pattern.abstractfactory;
 
 import com.pattern.abstractfactory.example2.*;
-import lombok.Data;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentSkipListSet;
@@ -11,12 +10,9 @@ import java.util.concurrent.ConcurrentSkipListSet;
  * @date created on 2020/3/9
  * description:
  */
-@Data
+
 public class Client {
 
-    private King king;
-    private Castle castle;
-    private Army army;
 
     public static void main(String[] args) {
         example2();
@@ -32,29 +28,25 @@ public class Client {
 
     public static void example2() {
 
-        Client client = new Client();
+
 
         System.out.println("louis");
-        client.createKingdom(FactoryCreator.createFactory(FactoryCreator.KingdomType.LOUIS));
-        System.out.println(client.getArmy().getDescription());
-        System.out.println(client.getCastle().getDescription());
-        System.out.println(client.getKing().getDescription());
+        KingdomFactory factory = FactoryCreator.createFactory(FactoryCreator.KingdomType.LOUIS);
+
+        System.out.println(factory.createArmy().getDescription());
+        System.out.println(factory.createCastle().getDescription());
+        System.out.println(factory.createKing().getDescription());
 
 
         System.out.println("eric");
-        client.createKingdom(FactoryCreator.createFactory(FactoryCreator.KingdomType.ERIC));
-        System.out.println(client.getArmy().getDescription());
-        System.out.println(client.getCastle().getDescription());
-        System.out.println(client.getKing().getDescription());
+        KingdomFactory louisFactory = FactoryCreator.createFactory(FactoryCreator.KingdomType.ERIC);
+        System.out.println(louisFactory.createArmy().getDescription());
+        System.out.println(louisFactory.createCastle().getDescription());
+        System.out.println(louisFactory.createKing().getDescription());
 
     }
 
-    public void createKingdom(KingdomFactory factory) {
-        setArmy(factory.createArmy());
-        setCastle(factory.createCastle());
-        setKing(factory.createKing());
 
-    }
     public static class FactoryCreator{
         public enum KingdomType{
             LOUIS, ERIC,
