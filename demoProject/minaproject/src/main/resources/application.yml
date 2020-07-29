@@ -26,11 +26,11 @@ spring:
        username: root
        password: Root
        driver-class-name: com.mysql.cj.jdbc.Driver
-
-
-
   main:
     allow-bean-definition-overriding: true
+  redis:
+    port: 32102
+    host: localhost
 LOG_DATEFORMAT_PATTERN: yyyy/MM/dd HH:mm:ss:sss
 server:
   port: 9999

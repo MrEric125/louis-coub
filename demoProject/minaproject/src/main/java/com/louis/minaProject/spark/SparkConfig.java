@@ -1,6 +1,7 @@
-package com.louis.minaProject;
+package com.louis.minaProject.spark;
 
 import org.apache.spark.SparkConf;
+import org.apache.spark.SparkContext;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +25,10 @@ public class SparkConfig {
     }
 //    @Bean
 //    public SparkContext sparkContext() {
+//        return new SparkContext(conf());
+//    }
+//    @Bean
+//    public SparkContext context() {
 //        return new SparkContext(conf());
 //    }
 

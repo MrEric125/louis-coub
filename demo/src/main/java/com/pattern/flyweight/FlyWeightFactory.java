@@ -1,6 +1,7 @@
 package com.pattern.flyweight;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author John·Louis
@@ -9,7 +10,7 @@ import java.util.HashMap;
  */
 public class FlyWeightFactory {
 
-    private HashMap<String, FlyWeight> flyWeights = new HashMap<>();
+    private Map<String, FlyWeight> flyWeights = new HashMap<>();
 
     public FlyWeight getFlyWeight(String key) {
         FlyWeight flyWeight = flyWeights.get(key);
