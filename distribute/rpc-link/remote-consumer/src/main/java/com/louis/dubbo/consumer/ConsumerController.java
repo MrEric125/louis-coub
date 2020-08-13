@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
+import java.util.ServiceLoader;
 
 /**
  * @author louis
@@ -29,6 +30,10 @@ public class ConsumerController {
     public Map<String, Object> consumer(HttpServletRequest request) {
         UserContext.putUsername(request.getLocalName());
         Map<String, Object> louis = defautDemoService.sayHello("louis");
+        ServiceLoader<Robots> load = ServiceLoader.load(Robots.class);
+        System.out.println("JAVA SPI");
+        load.forEach(Robots::sayHello);
+
         return louis;
 
     }

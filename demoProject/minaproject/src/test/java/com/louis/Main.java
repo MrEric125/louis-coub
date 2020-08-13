@@ -12,6 +12,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 /**
  * @author John·Louis
@@ -22,15 +23,17 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 //        thenApply();
-        SparkConf conf = new SparkConf().setMaster("local")
-                .setAppName("HelloSpark");
-        try (JavaSparkContext jsc = new JavaSparkContext(conf)) {
-            List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
-            JavaRDD<Integer> rdd = jsc.parallelize(list);
-            Integer result = rdd.map(t -> t + 1).reduce(Integer::sum);
-            System.out.println("执行结果：" + result);
+//        SparkConf conf = new SparkConf().setMaster("local")
+//                .setAppName("HelloSpark");
+//        try (JavaSparkContext jsc = new JavaSparkContext(conf)) {
+//            List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
+//            JavaRDD<Integer> rdd = jsc.parallelize(list);
+//            Integer result = rdd.map(t -> t + 1).reduce(Integer::sum);
+//            System.out.println("执行结果：" + result);
+//
+//        }
 
-        }
+        elegant();
 
     }
 
@@ -55,5 +58,28 @@ public class Main {
             System.out.println("result1=" + result);
             return result;
         }, executor);
+    }
+
+    private static void elegant() {
+        String[] strings = new String[]{"zhangsan", "sili", "wangwu", "zhaoliu"};
+
+
+        List<String> lists = new ArrayList<>();
+        for (String string : strings) {
+            String[] split = string.split("");
+            List<String> list = Arrays.asList(split);
+            lists.addAll(list);
+        }
+        for (String li :lists){
+            System.out.print(li+" ");
+        }
+
+        System.out.println("=================");
+
+         Arrays.stream(strings)
+                 .flatMap(item -> Arrays.stream(item.split("")))
+//                 .flatMap(Arrays::stream)
+                 .forEach(item->System.out.print(item+" "));
+
     }
 }
