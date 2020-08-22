@@ -1,4 +1,4 @@
-package com.louis.dubbo.consumer;
+package com.louis.remote.api;
 
 /**
  * @author jun.liu

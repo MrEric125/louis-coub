@@ -1,5 +1,7 @@
 package com.louis.dubbo.consumer;
 
+import com.louis.remote.api.Robots;
+
 /**
  * @author jun.liu
  * @date created on 2020/8/12
