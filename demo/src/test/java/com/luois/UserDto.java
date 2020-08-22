@@ -1,6 +1,9 @@
 package com.luois;
 
 import lombok.Data;
+import lombok.ToString;
+
+import java.io.Serializable;
 
 /**
  * @author jun.liu
@@ -8,7 +11,8 @@ import lombok.Data;
  * description:
  */
 @Data
-public class UserDto {
+@ToString
+public class UserDto implements Serializable {
 
     private String name;
 
