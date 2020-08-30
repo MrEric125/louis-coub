@@ -34,6 +34,9 @@
         <module>remote-server1</module>
         <module>remote-server2</module>
         <module>RPCStudy</module>
+        <module>dubbo-source-producer</module>
+        <module>dubbo-source-api</module>
+        <module>dubbo-source-consumer</module>
     </modules>
     <dependencies>
 
