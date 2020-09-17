@@ -11,11 +11,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Description:
  */
 //@MapperScan("com.louis.mybatis.tkmybatis.mapper")
-@MapperScan("com.louis.mybatis.dynamic.mapper")
+//@MapperScan("com.louis.mybatis.dynamic.mapper")
 @SpringBootApplication
 public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+        System.out.println("aa");
     }
 }

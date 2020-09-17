@@ -21,6 +21,7 @@
         <module>demoProject</module>
         <module>source</module>
         <module>tomcatDemo</module>
+        <module>workflow</module>
     </modules>
 
     <groupId>com.louis</groupId>
