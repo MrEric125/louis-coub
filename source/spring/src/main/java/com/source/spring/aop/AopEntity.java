@@ -8,7 +8,7 @@ import lombok.Data;
  * description:
  */
 @Data
-public class AopEntity {
+public class AopEntity implements Cloneable{
 
     private String name;
 
@@ -21,4 +21,8 @@ public class AopEntity {
         System.out.println("test");
     }
 
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return this;
+    }
 }

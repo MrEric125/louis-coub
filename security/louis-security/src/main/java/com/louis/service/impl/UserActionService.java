@@ -1,7 +1,7 @@
 package com.louis.service.impl;
 
+import com.google.common.collect.Lists;
 import com.louis.entity.UserAction;
-import org.assertj.core.util.Lists;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
