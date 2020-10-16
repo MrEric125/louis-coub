@@ -21,7 +21,7 @@ public class OrderService {
                 Collectors.toMap(orderHandler ->
                         {
                             OrderHandlerType annotation = AnnotationUtils.findAnnotation(orderHandler.getClass(), OrderHandlerType.class);
-                            return Optional.ofNullable(annotation).orElse(null).source();
+                            return Optional.ofNullable(annotation).map(OrderHandlerType::source).orElse(null);
                         },
                         v -> v, (v1, v2) -> v1));
     }
