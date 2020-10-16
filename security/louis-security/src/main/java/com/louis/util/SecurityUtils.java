@@ -1,14 +1,8 @@
 package com.louis.util;
 
-import com.google.common.collect.Sets;
-import com.louis.entity.RolePermissionEntity;
+import com.google.common.collect.Lists;
 import com.louis.entity.UserAction;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
-import org.assertj.core.util.Lists;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
