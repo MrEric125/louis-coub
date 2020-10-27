@@ -7,10 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
@@ -27,8 +24,16 @@ public class GroupingToOptional {
         ReportForm reportForm21 = new ReportForm("8",13,null);
         ReportForm reportForm12 = new ReportForm("9",null,12);
         ReportForm reportForm22 = new ReportForm("9", 14, null);
+        ReportForm reportForm31 = new ReportForm("9", 14, null);
+        ReportForm reportForm32 = new ReportForm("9", 14, null);
 
-        ArrayList<ReportForm> list = Lists.newArrayList(reportForm11, reportForm12, reportForm21, reportForm22);
+
+        ArrayList<ReportForm> list = Lists.newArrayList(reportForm11, reportForm12, reportForm21, reportForm22, reportForm31, reportForm32);
+
+        for (int i = 0; i < 1000000; i++) {
+            list.add(new ReportForm("9", 14, 2));
+            list.add(new ReportForm("10", 14, 3));
+        }
 
         Integer collect = list.stream().mapToInt(item -> {
             if (Objects.isNull(item.getHotLine())) {
@@ -37,7 +42,7 @@ public class GroupingToOptional {
                 return item.getHotLine();
             }
         }).sum();
-        System.out.println(collect);
+//        System.out.println(collect);
 
         Map<String, Integer> collect1 = list.stream().collect(Collectors.groupingBy(ReportForm::getTime, Collectors.reducing(0, item -> {
             if (Objects.isNull(item.getHotLine())) {
@@ -46,10 +51,12 @@ public class GroupingToOptional {
                 return item.getHotLine();
             }
         }, Integer::sum)));
-        System.out.println(collect1);
+//        System.out.println(collect1);
 
         //todo 这个地方会不会有性能问题呢？
         //todo 每次规约操作的时候都会新建一个对象
+
+        long start1 = System.currentTimeMillis();
         BinaryOperator<ReportForm> accumulator = (t1, t2) -> {
             ReportForm reportForm = new ReportForm();
 
@@ -61,14 +68,47 @@ public class GroupingToOptional {
             reportForm.setOnLine(i3 + i4);
             reportForm.setTime(t1.getTime());
 
+//            System.out.println("tt  " + t1);
             return reportForm;
-
         };
 
         Map<String, Optional<ReportForm>> collect2 = list.stream().collect(Collectors.groupingBy(ReportForm::getTime, Collectors.reducing(accumulator)));
+        long end1 = System.currentTimeMillis();
+        System.out.println("==========第一次============"+(end1 - start1));
 
-        System.out.println(JSON.toJSONString(collect2, true));
+//        System.out.println(JSON.toJSONString(collect2, true));
 
+        long start2 = System.currentTimeMillis();
+        Map<String, List<ReportForm>> collect3 = list.stream().collect(Collectors.groupingBy(ReportForm::getTime));
+
+        List<ReportForm> formList = Lists.newArrayList();
+        for (String s : collect3.keySet()) {
+            List<ReportForm> reportForms = collect3.get(s);
+            int getHotLine = reportForms.stream().mapToInt(item->{
+                if (Objects.isNull(item.getHotLine())) {
+                    return 0;
+                } else {
+                    return item.getHotLine();
+                }
+            }).sum();
+            int getOnLine = reportForms.stream().mapToInt(item->{
+                if (Objects.isNull(item.getOnLine())) {
+                    return 0;
+                } else {
+                    return item.getOnLine();
+                }
+            }).sum();
+            ReportForm reportForm = new ReportForm();
+            reportForm.setHotLine(getHotLine);
+            reportForm.setOnLine(getOnLine);
+            reportForm.setTime(s);
+            formList.add(reportForm);
+        }
+        long end2 = System.currentTimeMillis();
+
+        System.out.println("==========第二次============"+(end2 - start2));
+
+//        System.out.println(JSON.toJSONString(formList, true));
 
     }
 
