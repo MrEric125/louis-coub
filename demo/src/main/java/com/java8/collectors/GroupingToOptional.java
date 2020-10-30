@@ -1,10 +1,6 @@
 package com.java8.collectors;
 
-import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.junit.Test;
 
 import java.util.*;
@@ -30,7 +26,7 @@ public class GroupingToOptional {
 
         ArrayList<ReportForm> list = Lists.newArrayList(reportForm11, reportForm12, reportForm21, reportForm22, reportForm31, reportForm32);
 
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 10000; i++) {
             list.add(new ReportForm("9", 14, 2));
             list.add(new ReportForm("10", 14, 3));
         }
@@ -51,13 +47,19 @@ public class GroupingToOptional {
                 return item.getHotLine();
             }
         }, Integer::sum)));
-//        System.out.println(collect1);
 
-        //todo 这个地方会不会有性能问题呢？
-        //todo 每次规约操作的时候都会新建一个对象
+        groupToObjMethod1(list);
 
+        groupToObjMethod2(list);
+
+    }
+
+
+    public void groupToObjMethod1(List<ReportForm> list) {
         long start1 = System.currentTimeMillis();
         BinaryOperator<ReportForm> accumulator = (t1, t2) -> {
+            //todo 这个地方会不会有性能问题呢？
+            //todo 每次规约操作的时候都会新建一个对象
             ReportForm reportForm = new ReportForm();
 
             int i1 = t1.getHotLine() == null ? 0 : t1.getHotLine();
@@ -67,21 +69,22 @@ public class GroupingToOptional {
             int i4 = t2.getOnLine() == null ? 0 : t2.getOnLine();
             reportForm.setOnLine(i3 + i4);
             reportForm.setTime(t1.getTime());
-
-//            System.out.println("tt  " + t1);
+            System.out.println("tt  " + t1);
             return reportForm;
         };
 
         Map<String, Optional<ReportForm>> collect2 = list.stream().collect(Collectors.groupingBy(ReportForm::getTime, Collectors.reducing(accumulator)));
         long end1 = System.currentTimeMillis();
-        System.out.println("==========第一次============"+(end1 - start1));
+        System.out.println("==========第一次============" + (end1 - start1));
+    }
 
-//        System.out.println(JSON.toJSONString(collect2, true));
-
+    public void groupToObjMethod2(List<ReportForm> list) {
         long start2 = System.currentTimeMillis();
         Map<String, List<ReportForm>> collect3 = list.stream().collect(Collectors.groupingBy(ReportForm::getTime));
 
         List<ReportForm> formList = Lists.newArrayList();
+
+
         for (String s : collect3.keySet()) {
             List<ReportForm> reportForms = collect3.get(s);
             int getHotLine = reportForms.stream().mapToInt(item->{
@@ -109,19 +112,9 @@ public class GroupingToOptional {
         System.out.println("==========第二次============"+(end2 - start2));
 
 //        System.out.println(JSON.toJSONString(formList, true));
-
     }
 
-    @AllArgsConstructor
-    @Data
-    @NoArgsConstructor
-    private class ReportForm{
 
-        private String time;
 
-        private Integer hotLine;
 
-        private Integer onLine;
-
-    }
 }
