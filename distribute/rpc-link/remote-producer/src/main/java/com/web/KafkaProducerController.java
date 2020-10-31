@@ -1,7 +1,7 @@
 package com.web;
 
-import com.louis.common.common.WrapMapper;
-import com.louis.common.common.Wrapper;
+import com.louis.common.common.HttpResult;
+import com.louis.common.common.HttpResult;
 import com.louis.kafka.Message;
 import com.louis.kafka.MessageProducer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class KafkaProducerController {
     private MessageProducer<Long, String> kafkaProducer;
 
     @RequestMapping("send/{topic}")
-    public Wrapper sentKafka(@PathVariable(required = false) String topic, @RequestParam String param) {
+    public HttpResult sentKafka(@PathVariable(required = false) String topic, @RequestParam String param) {
 
         Random random = new Random();
         String[] splitTopic = topic.split(",");
@@ -42,7 +42,7 @@ public class KafkaProducerController {
             message.setSendTime(new Date());
             kafkaProducer.send(message);
         });
-        return WrapMapper.wrap("success");
+        return HttpResult.wrap("success");
     }
 
 }

@@ -1,8 +1,8 @@
 package com.louis.controller;
 
 import com.google.common.collect.Maps;
-import com.louis.common.common.WrapMapper;
-import com.louis.common.common.Wrapper;
+import com.louis.common.common.HttpResult;
+import com.louis.common.common.HttpResult;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,22 +23,22 @@ import java.util.Map;
 @RequestMapping("/api")
 public class ApiController {
     @RequestMapping("/authMessage")
-    public Wrapper userMessage(Authentication user) {
+    public HttpResult userMessage(Authentication user) {
         Map<String, Object> userInfo = Maps.newHashMap();
         userInfo.put("user", user.getPrincipal());
         userInfo.put("authorities", AuthorityUtils.authorityListToSet(user.getAuthorities()));
-        return WrapMapper.wrap( userInfo);
+        return HttpResult.wrap( userInfo);
 
     }
 
     @RequestMapping("/userMessage/{roleName}")
-    public Wrapper request(@PathVariable String roleName, HttpServletRequest request, HttpServletResponse response) {
+    public HttpResult request(@PathVariable String roleName, HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> userInfo = Maps.newHashMap();
         userInfo.put("remoteUser", request.getRemoteUser());
         userInfo.put("principal", request.getUserPrincipal());
         userInfo.put("userInRole", request.isUserInRole(roleName));
 
-        return WrapMapper.ok(userInfo);
+        return HttpResult.ok(userInfo);
     }
 
 }

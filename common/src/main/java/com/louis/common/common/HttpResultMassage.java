@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author Eric
  * @date create in 2019/5/22
  */
-public class WrapperMassage implements Serializable {
+public class HttpResultMassage implements Serializable {
 
     /**
      * 成功码.

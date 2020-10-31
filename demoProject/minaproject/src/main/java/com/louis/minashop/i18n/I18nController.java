@@ -1,7 +1,7 @@
 package com.louis.minashop.i18n;
 
-import com.louis.common.common.WrapMapper;
-import com.louis.common.common.Wrapper;
+import com.louis.common.common.HttpResult;
+import com.louis.common.common.HttpResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,11 +22,11 @@ public class I18nController {
 
 
     @GetMapping("/i18n")
-    public Wrapper i18n(HttpServletRequest request) {
+    public HttpResult i18n(HttpServletRequest request) {
         String code = request.getParameter("key");
         String name = messageSource.getMessageCodeAsDefault(code, new Object[]{code});
 
-        return WrapMapper.ok(name);
+        return HttpResult.ok(name);
     }
 
 }

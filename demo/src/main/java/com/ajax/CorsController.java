@@ -1,8 +1,8 @@
 package com.ajax;
 
 import com.google.common.collect.ImmutableMap;
-import com.louis.common.common.WrapMapper;
-import com.louis.common.common.Wrapper;
+import com.louis.common.common.HttpResult;
+import com.louis.common.common.HttpResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -18,29 +18,29 @@ public class CorsController {
 
 
     @GetMapping("/noParam")
-    public Wrapper noParam() {
+    public HttpResult noParam() {
         Map handler = ImmutableMap.of("resultData", "noParam");
 
-        return WrapMapper.ok(handler);
+        return HttpResult.ok(handler);
     }
 
     @GetMapping("/path/{path}")
-    public Wrapper paramPath(@PathVariable String path) {
+    public HttpResult paramPath(@PathVariable String path) {
         Map handler = ImmutableMap.of("resultData", path);
 
-        return WrapMapper.ok(handler);
+        return HttpResult.ok(handler);
     }
     @GetMapping("/param")
-    public Wrapper param(@RequestParam String param) {
+    public HttpResult param(@RequestParam String param) {
         Map handler = ImmutableMap.of("resultData", param);
 
-        return WrapMapper.ok(handler);
+        return HttpResult.ok(handler);
     }
 
 
     @PostMapping("paramBody")
-    public Wrapper paramBody(@RequestBody CorsRequest corsRequest) {
+    public HttpResult paramBody(@RequestBody CorsRequest corsRequest) {
         Map handler = ImmutableMap.of("resultData", corsRequest);
-        return WrapMapper.ok(handler);
+        return HttpResult.ok(handler);
     }
 }

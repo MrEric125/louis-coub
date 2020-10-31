@@ -1,7 +1,7 @@
 package com.louis.controller;
 
-import com.louis.common.common.WrapMapper;
-import com.louis.common.common.Wrapper;
+import com.louis.common.common.HttpResult;
+import com.louis.common.common.HttpResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @RequestMapping("/insert")
-    public Wrapper insert() {
-        return WrapMapper.ok("this is insert");
+    public HttpResult insert() {
+        return HttpResult.ok("this is insert");
     }
     @RequestMapping("/select")
-    public Wrapper select() {
-        return WrapMapper.ok("this is select");
+    public HttpResult select() {
+        return HttpResult.ok("this is select");
     }
 
 

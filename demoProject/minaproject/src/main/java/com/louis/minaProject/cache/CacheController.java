@@ -1,8 +1,8 @@
 package com.louis.minaProject.cache;
 
 import com.google.common.collect.ImmutableMap;
-import com.louis.common.common.WrapMapper;
-import com.louis.common.common.Wrapper;
+import com.louis.common.common.HttpResult;
+import com.louis.common.common.HttpResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +26,7 @@ public class CacheController {
     private RedisTemplate<String, List<Person>> redisTemplate;
 
     @RequestMapping("/cache")
-    public Wrapper cache(String key) {
+    public HttpResult cache(String key) {
 
         List<String> list = cacheService.cache1(key);
 
@@ -34,7 +34,7 @@ public class CacheController {
 
         ImmutableMap<String, List<? extends Serializable>> immutableMap = ImmutableMap.of("cache1", list, "cache2", cache2);
 
-        return WrapMapper.ok(immutableMap);
+        return HttpResult.ok(immutableMap);
 
     }
 

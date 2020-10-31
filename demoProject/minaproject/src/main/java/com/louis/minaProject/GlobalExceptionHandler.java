@@ -1,8 +1,8 @@
 package com.louis.minaProject;
 
 import com.google.common.collect.ImmutableMap;
-import com.louis.common.common.WrapMapper;
-import com.louis.common.common.Wrapper;
+import com.louis.common.common.HttpResult;
+import com.louis.common.common.HttpResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(Exception.class)
-    public Wrapper handlerMethod(Exception ex, HttpServletRequest request, HttpServletResponse response) {
+    public HttpResult handlerMethod(Exception ex, HttpServletRequest request, HttpServletResponse response) {
 
         String requestURI = request.getRequestURI();
         String method = request.getMethod();
@@ -35,7 +35,7 @@ public class GlobalExceptionHandler {
         log.info("============>>>>>  {}", map);
 
 
-        return WrapMapper.ok(map);
+        return HttpResult.ok(map);
 
 
 

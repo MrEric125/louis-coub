@@ -1,7 +1,7 @@
 package com.louis.minaProject.jpa.controller;
 
-import com.louis.common.common.WrapMapper;
-import com.louis.common.common.Wrapper;
+import com.louis.common.common.HttpResult;
+import com.louis.common.common.HttpResult;
 import com.louis.minaProject.jpa.entity2.UserInfo;
 import com.louis.minaProject.jpa.repository2.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +26,15 @@ public class UserInfoController {
 
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)
-    public Wrapper add(@RequestBody UserInfo login) {
+    public HttpResult add(@RequestBody UserInfo login) {
 
         UserInfo save = userInfoRepository.save(login);
-        return WrapMapper.ok(save);
+        return HttpResult.ok(save);
     }
     @RequestMapping(path = "/search", method = RequestMethod.GET)
-    public Wrapper search() {
+    public HttpResult search() {
 
         List<UserInfo> all = userInfoRepository.findAll();
-        return WrapMapper.ok(all);
+        return HttpResult.ok(all);
     }
 }

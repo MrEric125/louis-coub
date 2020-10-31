@@ -1,7 +1,7 @@
 package com.louis.minaProject.jpa.controller;
 
-import com.louis.common.common.WrapMapper;
-import com.louis.common.common.Wrapper;
+import com.louis.common.common.HttpResult;
+import com.louis.common.common.HttpResult;
 import com.louis.minaProject.jpa.entity.Login;
 import com.louis.minaProject.jpa.repository.LoginRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -26,25 +26,25 @@ public class MinaLoginController {
 
 
     @PostMapping("/login")
-    public Wrapper login(@RequestParam(required = false) Login loginUser, @RequestParam Long sprite) {
+    public HttpResult login(@RequestParam(required = false) Login loginUser, @RequestParam Long sprite) {
 
         double x=loginUser.getId() / sprite;
         log.info("{},{},{}", loginUser.getId(), loginUser.getCode(), sprite);
 
-        return WrapMapper.ok(x);
+        return HttpResult.ok(x);
     }
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)
-    public Wrapper add(@RequestBody Login login) {
+    public HttpResult add(@RequestBody Login login) {
 
         Login save = repository.save(login);
-        return WrapMapper.ok(save);
+        return HttpResult.ok(save);
     }
     @RequestMapping(path = "search", method = RequestMethod.GET)
-    public Wrapper search(Login login) {
+    public HttpResult search(Login login) {
 
         List<Login> all = repository.findAll();
-        return WrapMapper.ok(all);
+        return HttpResult.ok(all);
     }
 
 

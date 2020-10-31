@@ -3,8 +3,9 @@ package com.louis.minaProject.spark;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.louis.common.common.WrapMapper;
-import com.louis.common.common.Wrapper;
+import com.louis.common.common.HttpResult;
+import com.louis.common.common.HttpResult;
+import com.louis.common.common.HttpResult;
 import com.louis.minaProject.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.spark.HashPartitioner;
@@ -42,7 +43,7 @@ public class SparkController {
 //    private SparkContext sparkContext;
 
     @RequestMapping("filePath")
-    public Wrapper wrapper(@RequestParam String filePath) {
+    public HttpResult HttpResult(@RequestParam String filePath) {
         JavaRDD<String> javaRDD = context.textFile(filePath);
         JavaRDD<String> words = javaRDD.flatMap(s -> {
             List<String> list = Arrays.asList(s.split(" "));
@@ -65,11 +66,11 @@ public class SparkController {
 
         returnMap.put("keys", collect);
         returnMap.put("count", countMap);
-        return WrapMapper.ok(returnMap);
+        return HttpResult.ok(returnMap);
     }
 
     @RequestMapping("scala")
-    public Wrapper scala(@RequestParam(required = false) String filePath) {
+    public HttpResult scala(@RequestParam(required = false) String filePath) {
 
         long start = System.currentTimeMillis();
         JavaRDD<Integer> rdd = context.parallelize(Lists.newArrayList(1, 2, 3, 4, 5));
@@ -92,6 +93,6 @@ public class SparkController {
 
         ImmutableMap<String, Object> immutableMap = ImmutableMap.of("join", map.collect(), "words", words.collect(), "cost", end);
 
-        return WrapMapper.ok(immutableMap);
+        return HttpResult.ok(immutableMap);
     }
 }

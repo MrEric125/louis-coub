@@ -34,7 +34,7 @@ import java.nio.channels.DatagramChannel;
 import java.nio.channels.SelectionKey;
 
 /**
- * A wrapper over {@link DatagramChannel} which can read and write data on a DatagramChannel.
+ * A HttpResult over {@link DatagramChannel} which can read and write data on a DatagramChannel.
  */
 public class NioDatagramChannel extends AbstractNioChannel {
 

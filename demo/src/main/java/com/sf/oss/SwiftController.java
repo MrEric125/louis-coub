@@ -2,8 +2,8 @@
 //
 //import com.google.common.collect.Lists;
 //import com.google.common.collect.Maps;
-//import com.louis.common.common.WrapMapper;
-//import com.louis.common.common.Wrapper;
+//import com.louis.common.common.HttpResult;
+//import com.louis.common.common.HttpResult;
 //import lombok.extern.slf4j.Slf4j;
 //import org.apache.commons.lang3.StringUtils;
 //import org.apache.tomcat.util.http.fileupload.FileItem;
@@ -60,23 +60,23 @@
 //
 //    @RequestMapping("/deleteContainer")
 //    @ResponseBody
-//    public Wrapper deleteContainers(@RequestParam String container) {
+//    public HttpResult deleteContainers(@RequestParam String container) {
 //        boolean b = swiftExtender.deleteContainersWithFile(container);
-//        return WrapMapper.ok(b);
+//        return HttpResult.ok(b);
 //    }
 //
 //    @RequestMapping("/clearContainer")
 //    @ResponseBody
-//    public Wrapper clearContainer(@RequestParam String container) throws SfOssException {
+//    public HttpResult clearContainer(@RequestParam String container) throws SfOssException {
 //        boolean b = sfOssClient.clearContainer(container);
-//        return WrapMapper.ok(b);
+//        return HttpResult.ok(b);
 //    }
 //
 //
 //
 //    @RequestMapping("/upload")
 //    @ResponseBody
-//    public Wrapper uploadFile(@RequestParam("objName")String objName,@RequestParam("path")String path) {
+//    public HttpResult uploadFile(@RequestParam("objName")String objName,@RequestParam("path")String path) {
 //        Boolean b ;
 //        try {
 //            b= sfOssClient.uploadFile("nfsc", objName, path );
@@ -84,14 +84,14 @@
 //
 //        } catch (SfOssException e) {
 //            e.printStackTrace();
-//            return WrapMapper.error(e.getMessage());
+//            return HttpResult.error(e.getMessage());
 //        }
-//        return WrapMapper.ok(b);
+//        return HttpResult.ok(b);
 //    }
 //
 //    @RequestMapping("/deleteObjByPrefix")
 //    @ResponseBody
-//    public Wrapper deleteObj(@RequestParam("container") String container) {
+//    public HttpResult deleteObj(@RequestParam("container") String container) {
 //        String basePath = "ELOG_FLUX_WMO/";
 ////        Date beforeDate = DateUtils.addWeeks(new Date(), -1);
 ////        Date beforeDate = new Date();
@@ -99,15 +99,15 @@
 //
 //        String prefixBasePath = FileUtil.splitContainer(basePath, container);
 //        Boolean flag = swiftExtender.deleteObj(container, prefixBasePath);
-//        return WrapMapper.ok(flag);
+//        return HttpResult.ok(flag);
 //
 //    }
 //
 //    @RequestMapping("/getObjList")
-//    public Wrapper getObjList(@RequestParam String container) {
+//    public HttpResult getObjList(@RequestParam String container) {
 //        try {
 //            List<String> objectList = sfOssClient.getObjectList(container, null, null);
-//            return WrapMapper.ok(objectList);
+//            return HttpResult.ok(objectList);
 //        } catch (SfOssException e) {
 //            e.printStackTrace();
 //        }
@@ -120,7 +120,7 @@
 //
 //    @RequestMapping("/uploadTar")
 //    @ResponseBody
-//    public Wrapper uploadTar( @RequestParam(required = false) String container,@RequestParam String path) {
+//    public HttpResult uploadTar( @RequestParam(required = false) String container,@RequestParam String path) {
 //        boolean nfsc;
 //        String unzipPath = "";
 //
@@ -161,14 +161,14 @@
 //
 //        } catch (SfOssException e) {
 //            e.printStackTrace();
-//            return WrapMapper.error(e.getMessage());
+//            return HttpResult.error(e.getMessage());
 //        }
-//        return WrapMapper.ok(nfsc);
+//        return HttpResult.ok(nfsc);
 //    }
 //
 //    @RequestMapping("/uploadTarByFile")
 //    @ResponseBody
-//    public Wrapper uploadTarByFile(@RequestParam("file") MultipartFile multipartFile) throws IOException, SfOssException {
+//    public HttpResult uploadTarByFile(@RequestParam("file") MultipartFile multipartFile) throws IOException, SfOssException {
 //
 //        String filename = multipartFile.getOriginalFilename();
 //        String prefix = filename.substring(filename.lastIndexOf("."));
@@ -178,12 +178,12 @@
 //        boolean tmp = sfOssClient.uploadTar("tmp", file.getPath());
 //
 ////        boolean tmp = swiftExtender.uploadTar("tmp", file, multipartFile.getOriginalFilename());
-//        return WrapMapper.ok(tmp);
+//        return HttpResult.ok(tmp);
 //    }
 //
 //    @RequestMapping("/getContainer")
 //    @ResponseBody
-//    public Wrapper getContainer(
+//    public HttpResult getContainer(
 //                          @RequestParam(required = false) String beganName,
 //                          @RequestParam(required = false) Integer limit,
 //                          @RequestParam(required = false) String prefix,
@@ -191,15 +191,15 @@
 //                         ) throws SfOssException {
 //        List<String> objectList = sfOssClient.getContainerList(
 //                beganName, limit == null ? 1000 : limit, prefix, endMarker);
-//        return WrapMapper.ok(objectList);
+//        return HttpResult.ok(objectList);
 //
 //    }
 //
 //    @RequestMapping("/createContainer")
 //    @ResponseBody
-//    public Wrapper createContainer(@RequestParam String container) throws SfOssException {
+//    public HttpResult createContainer(@RequestParam String container) throws SfOssException {
 //        boolean container1 = sfOssClient.createContainer(container);
-//        return WrapMapper.ok(container1);
+//        return HttpResult.ok(container1);
 //    }
 //
 //    /**
@@ -209,7 +209,7 @@
 //     */
 //    @RequestMapping("/uploadZip")
 //    @ResponseBody
-//    public Wrapper uploadZip(HttpServletRequest request,HttpServletResponse response) throws IOException, SfOssException, FileUploadException {
+//    public HttpResult uploadZip(HttpServletRequest request,HttpServletResponse response) throws IOException, SfOssException, FileUploadException {
 //
 ////        InputStream inputStream = file.getInputStream();
 ////        sfOssClient.uploadObject("tmp", file.getOriginalFilename(), inputStream);
@@ -241,14 +241,14 @@
 //        }
 //
 //
-//        return WrapMapper.ok(tmp);
+//        return HttpResult.ok(tmp);
 //
 //    }
 //
 //
 //    @RequestMapping("/deleteFileAndContainer")
 //    @ResponseBody
-//    public Wrapper delete(@RequestParam(required = false)String container ,@RequestParam(name = "objName",required = false)String objName) {
+//    public HttpResult delete(@RequestParam(required = false)String container ,@RequestParam(name = "objName",required = false)String objName) {
 //        boolean b = false;
 //        Map<String, String> map = Maps.newHashMap();
 //        InputStream inputStream = null;
@@ -264,7 +264,7 @@
 //        map.put("isExist", String.valueOf(inputStream != null));
 //        map.put("delete status", String.valueOf(b));
 ////        map.put("delete", String.valueOf(b));
-//        return WrapMapper.ok(map);
+//        return HttpResult.ok(map);
 //
 //
 //    }
@@ -272,14 +272,14 @@
 //    @RequestMapping("/copyFile")
 //    @ResponseBody
 //
-//    public Wrapper copyFile(@RequestParam String fromObjName, @RequestParam String destObjName) {
+//    public HttpResult copyFile(@RequestParam String fromObjName, @RequestParam String destObjName) {
 //        boolean b = swiftExtender.copyObj("nfsc", "nfsc", fromObjName, destObjName);
-//        return WrapMapper.ok(b);
+//        return HttpResult.ok(b);
 //    }
 //
 //    @RequestMapping("/getObj")
 //    @ResponseBody
-//    public Wrapper getObj(@RequestParam(required = false) String container,
+//    public HttpResult getObj(@RequestParam(required = false) String container,
 //                          @RequestParam(required = false) String beganName,
 //                          @RequestParam(required = false) Integer limit,
 //                          @RequestParam(required = false) String prefix,
@@ -287,16 +287,16 @@
 //                          @RequestParam(required = false) String delimiter) throws SfOssException {
 //        List<String> objectList = sfOssClient.getObjectList(container == null ? "tmp" : container,
 //                beganName, limit == null ? 1000 : limit, prefix, endMarker, delimiter);
-//        return WrapMapper.ok(objectList);
+//        return HttpResult.ok(objectList);
 //
 //    }
 //    @RequestMapping("/rename")
 //    @ResponseBody
-//    public Wrapper rename(@RequestParam(required = false) String container,
+//    public HttpResult rename(@RequestParam(required = false) String container,
 //                          @RequestParam(required = false) String fromObj,
 //                          @RequestParam(required = false) String destObj) {
 //        boolean b = swiftExtender.renameObj(container, fromObj, destObj);
-//        return WrapMapper.ok(b);
+//        return HttpResult.ok(b);
 //
 //    }
 //

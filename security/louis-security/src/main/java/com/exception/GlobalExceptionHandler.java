@@ -1,7 +1,7 @@
 package com.exception;
 
-import com.louis.common.common.WrapMapper;
-import com.louis.common.common.Wrapper;
+import com.louis.common.common.HttpResult;
+import com.louis.common.common.HttpResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,11 +36,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(AccessDeniedException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
     @ResponseBody
-    public Wrapper accessDeniedException(AccessDeniedException e) {
+    public HttpResult accessDeniedException(AccessDeniedException e) {
         taskExecutor.execute(()->{
             log.error("accessDeniedException {}", e.getMessage(), e);
         });
-        return WrapMapper.error("当前用户无权限");
+        return HttpResult.error("当前用户无权限");
 
     }
     @ExceptionHandler(Throwable.class)

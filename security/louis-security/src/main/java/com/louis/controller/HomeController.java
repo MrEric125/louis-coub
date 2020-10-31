@@ -1,7 +1,7 @@
 package com.louis.controller;
 
-import com.louis.common.common.WrapMapper;
-import com.louis.common.common.Wrapper;
+import com.louis.common.common.HttpResult;
+import com.louis.common.common.HttpResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,14 +19,14 @@ public class HomeController {
 
     @RequestMapping("/")
     @ResponseBody
-    public Wrapper homePage() {
-        return WrapMapper.ok("this is home page");
+    public HttpResult homePage() {
+        return HttpResult.ok("this is home page");
     }
 
     @RequestMapping("/home")
     @ResponseBody
-    public Wrapper home() {
-        return WrapMapper.ok("this is home ");
+    public HttpResult home() {
+        return HttpResult.ok("this is home ");
     }
 
 

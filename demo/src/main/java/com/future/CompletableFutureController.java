@@ -2,8 +2,8 @@ package com.future;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.ImmutableMap;
-import com.louis.common.common.WrapMapper;
-import com.louis.common.common.Wrapper;
+import com.louis.common.common.HttpResult;
+import com.louis.common.common.HttpResult;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,21 +29,21 @@ public class CompletableFutureController  {
 
 
     @GetMapping("/shopList")
-    public Wrapper getShopList() {
+    public HttpResult getShopList() {
         List<Shop> shopList = shopService.getShopList();
-        return WrapMapper.ok(shopList);
+        return HttpResult.ok(shopList);
     }
 
     @PostMapping("/createShop")
-    public Wrapper createShop(String shopName) {
+    public HttpResult createShop(String shopName) {
         List<Shop> shops = shopService.creatShop(shopName==null?null:Lists.newArrayList(shopName));
         int size = shops.size();
         Map map = ImmutableMap.of("item", shops, "size", size);
-        return WrapMapper.ok(map);
+        return HttpResult.ok(map);
     }
 
     @PostMapping("/createProduct")
-    public Wrapper createProduct(String productNam, BigDecimal productPrice) {
+    public HttpResult createProduct(String productNam, BigDecimal productPrice) {
         List<Shop> shopList = shopService.getShopList();
         shopList.forEach(item->{
             Product product = new Product();
@@ -52,22 +52,22 @@ public class CompletableFutureController  {
             item.addProduct(Lists.newArrayList(product));
 
         });
-        return WrapMapper.ok(shopList);
+        return HttpResult.ok(shopList);
     }
 
 
 
     @GetMapping("/streamGroup")
-    public Wrapper streamGroup() {
+    public HttpResult streamGroup() {
         List<Shop> shops = shopService.getShopList();
         Map<String, List<Shop>> collect = shops
                 .stream().collect(Collectors.groupingBy(Shop::getShopName));
-        return WrapMapper.ok(collect);
+        return HttpResult.ok(collect);
     }
 
     @GetMapping("/findPrice")
-    public Wrapper findPrice(String product,int stratageCode,Integer threadNum) {
+    public HttpResult findPrice(String product,int stratageCode,Integer threadNum) {
         List<String> list = shopService.runStratage(product, stratageCode, threadNum);
-       return WrapMapper.ok(list);
+       return HttpResult.ok(list);
     }
 }

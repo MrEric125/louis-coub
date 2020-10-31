@@ -1,7 +1,7 @@
 package com.redis.pubsub;
 
-import com.louis.common.common.WrapMapper;
-import com.louis.common.common.Wrapper;
+import com.louis.common.common.HttpResult;
+import com.louis.common.common.HttpResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,8 +23,8 @@ public class LouisRedisPubController {
     private RedisTemplate redisTemplate;
 
     @RequestMapping("/publish/{channel}")
-    public Wrapper publish(@PathVariable String channel, @RequestParam String message) {
+    public HttpResult publish(@PathVariable String channel, @RequestParam String message) {
         redisTemplate.convertAndSend(channel, message);
-        return WrapMapper.ok();
+        return HttpResult.ok();
     }
 }

@@ -35,7 +35,7 @@
     - 核心接口
         - ApplicationContext
         - BeanFactory
-        - BeanWrapper
+        - BeanHttpResult
         - FactoryBean
     - 拓展接口
         - BeanFactoryPostProcessor 处理所有bean前，对BeanFactory进行预处理

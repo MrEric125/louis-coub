@@ -2,8 +2,8 @@ package com.future.future2;
 
 import com.future.Shop;
 import com.google.common.collect.ImmutableMap;
-import com.louis.common.common.WrapMapper;
-import com.louis.common.common.Wrapper;
+import com.louis.common.common.HttpResult;
+import com.louis.common.common.HttpResult;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -34,7 +34,7 @@ public class FutureController {
     ThreadPoolTaskExecutor executor;
 
     @RequestMapping("toList/{num}")
-    public Wrapper addToList(@PathVariable int num) {
+    public HttpResult addToList(@PathVariable int num) {
         if (!CollectionUtils.isEmpty(list)) {
             list.clear();
         }
@@ -46,27 +46,27 @@ public class FutureController {
         }
         long endTime = System.currentTimeMillis();
         Map<String, Object> map = ImmutableMap.of("list", list, "time", endTime - startTime);
-        return WrapMapper.ok(map);
+        return HttpResult.ok(map);
     }
     @RequestMapping("getList")
-    public Wrapper getList() {
-        return WrapMapper.ok(list);
+    public HttpResult getList() {
+        return HttpResult.ok(list);
     }
 
     @RequestMapping("price/{product}/{threadNum}")
-    public Wrapper getPrice(@PathVariable String product ,@PathVariable int threadNum) {
+    public HttpResult getPrice(@PathVariable String product ,@PathVariable int threadNum) {
         long start = System.currentTimeMillis();
         List<String> prices = findPrices(list, product,threadNum);
         long end = System.currentTimeMillis();
         Map<String,Object> map = ImmutableMap.of( "time", end - start);
-        return WrapMapper.ok(map);
+        return HttpResult.ok(map);
 
     }
 
 
 
     @RequestMapping("/threadNum")
-    public Wrapper getThread() {
+    public HttpResult getThread() {
         ThreadGroup threadGroup = Thread.currentThread().getThreadGroup();
         int groupCount = threadGroup.activeGroupCount();
         int count = threadGroup.activeCount();
@@ -76,7 +76,7 @@ public class FutureController {
         Map<String, Object> map = ImmutableMap
                 .of("groupCount", groupCount, "threadCount", count,"parentGroupCount",parentCount);
 
-        return WrapMapper.ok(map);
+        return HttpResult.ok(map);
     }
 
     private  List<String> findPrices(List<Shop> shops,String product,Integer threadNum) {

@@ -2,8 +2,8 @@ package com.redis;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
-import com.louis.common.common.WrapMapper;
-import com.louis.common.common.Wrapper;
+import com.louis.common.common.HttpResult;
+import com.louis.common.common.HttpResult;
 import io.lettuce.core.pubsub.RedisPubSubAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.DataType;
@@ -35,7 +35,7 @@ public class RedisController {
 
 
     @RequestMapping("/get")
-    public Wrapper getRedis(@RequestParam String redisParam) {
+    public HttpResult getRedis(@RequestParam String redisParam) {
         Set<Object> keys = redisTemplate.boundHashOps(redisParam).keys();
         ValueOperations<String, String> stringStringValueOperations = redisTemplate.opsForValue();
 
@@ -44,30 +44,30 @@ public class RedisController {
         Map<String, String> returnMap = Maps.newHashMap();
         returnMap.put("dataType", type != null ? type.code() : null);
         returnMap.put("key", JSONObject.toJSONString(keys));
-        return WrapMapper.ok(returnMap);
+        return HttpResult.ok(returnMap);
 
     }
 
     @RequestMapping("/set")
-    public Wrapper setRedis(@RequestParam String key, @RequestParam String value) {
+    public HttpResult setRedis(@RequestParam String key, @RequestParam String value) {
         redisTemplate.opsForValue().set(key, value);
-        return WrapMapper.ok();
+        return HttpResult.ok();
     }
 
     @RequestMapping("/getClient")
-    public Wrapper getClient() {
+    public HttpResult getClient() {
 
         List<RedisClientInfo> clientList = redisTemplate.getClientList();
 
-        return WrapMapper.ok(clientList);
+        return HttpResult.ok(clientList);
 
     }
     @RequestMapping("/zSetOperate")
-    public Wrapper zSetOperate() {
+    public HttpResult zSetOperate() {
 //        redisTemplate.opsForZSet().range()
         redisTemplate.opsForZSet().range("mySet", 0, -1);
 
-        return WrapMapper.ok();
+        return HttpResult.ok();
 
     }
 }

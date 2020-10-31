@@ -2,8 +2,8 @@
 //
 //import com.google.common.collect.ImmutableMap;
 //import com.google.gson.Gson;
-//import com.louis.common.common.WrapMapper;
-//import com.louis.common.common.Wrapper;
+//import com.louis.common.common.HttpResult;
+//import com.louis.common.common.HttpResult;
 //import com.sf.framework.cacheproxy.redis.RedisCache;
 //import lombok.extern.slf4j.Slf4j;
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -40,22 +40,22 @@
 //
 //
 //    @RequestMapping("/setString")
-//    public Wrapper setString(@RequestParam("key") String key,
+//    public HttpResult setString(@RequestParam("key") String key,
 //                             @RequestParam("value") String value) {
 //
 //        redisCache.setString(key, value);
 //        String string = redisCache.getString(key);
-//        return WrapMapper.ok(string);
+//        return HttpResult.ok(string);
 //    }
 //
 //    @RequestMapping("/getString")
-//    public Wrapper getString(@RequestParam("key") String key){
+//    public HttpResult getString(@RequestParam("key") String key){
 //        String value = redisCache.getString(key);
-//        return WrapMapper.ok(value);
+//        return HttpResult.ok(value);
 //    }
 //
 //    @RequestMapping("/keys")
-//    public Wrapper keys(@RequestParam("key") String patten) {
+//    public HttpResult keys(@RequestParam("key") String patten) {
 //        Set<String> keys = wmoRedisCache.keys(patten);
 //
 //        List<Object> keyValues = keys.stream().map(key -> {
@@ -73,11 +73,11 @@
 //        }).filter(keyValue -> keyValue.getValue() != null).collect(Collectors.toList());
 //        Map map = ImmutableMap.of("keyValue", keyValues, "totalSize", keys.size(), "realSize", keyValues.size());
 //
-//        return WrapMapper.ok(map);
+//        return HttpResult.ok(map);
 //    }
 //
 //    @RequestMapping("/type")
-//    public Wrapper setObj(@RequestParam("key") String pattern){
+//    public HttpResult setObj(@RequestParam("key") String pattern){
 //        Set<String> keys = wmoRedisCache.keys(pattern);
 //        Set<String> types = keys.stream().map(k ->{
 //            String type = redisCache.type(k);
@@ -106,86 +106,86 @@
 //            }).collect(Collectors.toSet());
 //
 //
-//        return WrapMapper.ok(types);
+//        return HttpResult.ok(types);
 //
 //    }
 //
 //
 //    @RequestMapping("/set")
-//    public Wrapper setObj(@RequestParam("key") String key, @RequestBody Request request) {
+//    public HttpResult setObj(@RequestParam("key") String key, @RequestBody Request request) {
 //        redisCache.set(key, request);
 //        Request o = redisCache.get(key);
-//        return WrapMapper.ok(o);
+//        return HttpResult.ok(o);
 //    }
 //
 //
 //    @RequestMapping("/get")
-//    public Wrapper getObj(@RequestParam("key") String key) {
+//    public HttpResult getObj(@RequestParam("key") String key) {
 //        Request o = redisCache.get(key);
 //
-//        return WrapMapper.ok(o);
+//        return HttpResult.ok(o);
 //    }
 //
 //    @RequestMapping("/remove")
-//    public Wrapper remove(@RequestParam("key") String key) {
+//    public HttpResult remove(@RequestParam("key") String key) {
 //        redisCache.remove(key);
 //
-//        return WrapMapper.ok("success");
+//        return HttpResult.ok("success");
 //    }
 //
 //
 //    @RequestMapping("/setMap")
-//    public Wrapper setMap (@RequestParam("key") String key, @RequestBody Request request) {
+//    public HttpResult setMap (@RequestParam("key") String key, @RequestBody Request request) {
 //        redisCache.hset(key, request.getId(), request.getName());
-//        return WrapMapper.ok("success");
+//        return HttpResult.ok("success");
 //    }
 //
 //    @RequestMapping("/hGetAll")
-//    public Wrapper hGetAll (@RequestParam("key") String key) {
+//    public HttpResult hGetAll (@RequestParam("key") String key) {
 //        Map<String, String> map = redisCache.hgetAll(key);
-//        return WrapMapper.ok(map);
+//        return HttpResult.ok(map);
 //    }
 //
 //    @RequestMapping("/hdel")
-//    public Wrapper hdel (@RequestParam("key") String key,@RequestParam("field") String field) {
+//    public HttpResult hdel (@RequestParam("key") String key,@RequestParam("field") String field) {
 //        redisCache.hdel(key, field);
-//        return WrapMapper.ok("success");
+//        return HttpResult.ok("success");
 //    }
 //
 //
 //    @RequestMapping("/setnx")
-//    public Wrapper setnx (@RequestParam("key") String key, @RequestBody Request request) {
+//    public HttpResult setnx (@RequestParam("key") String key, @RequestBody Request request) {
 //        redisCache.setnx(key, request);
-//        return WrapMapper.ok("success");
+//        return HttpResult.ok("success");
 //    }
 //    @RequestMapping("/pop")
-//    public Wrapper pop(@RequestParam("key") String key) {
+//    public HttpResult pop(@RequestParam("key") String key) {
 //        String popKey=redisCache.pop(key);
-//        return WrapMapper.ok(popKey);
+//        return HttpResult.ok(popKey);
 //    }
 //    @RequestMapping("/push")
-//    public Wrapper push(@RequestParam("key") String key) {
+//    public HttpResult push(@RequestParam("key") String key) {
 //        redisCache.push(key, key);
-//        return WrapMapper.ok("success");
+//        return HttpResult.ok("success");
 //    }
 //
 //    @RequestMapping("/getCounter")
-//    public Wrapper getCounter(@RequestParam("key") String key) {
+//    public HttpResult getCounter(@RequestParam("key") String key) {
 //        long counter = redisCache.getCounter(key);
-//        return WrapMapper.ok("counter:" + counter);
+//        return HttpResult.ok("counter:" + counter);
 //    }
 //
 //
 //    @RequestMapping("/incCounter")
-//    public Wrapper incCounter(@RequestParam("key") String key) {
+//    public HttpResult incCounter(@RequestParam("key") String key) {
 //        long counter = redisCache.incCounter(key);
-//        return WrapMapper.ok("counter:" + counter);
+//        return HttpResult.ok("counter:" + counter);
 //    }
 //
 //    @RequestMapping("/decCounter")
-//    public Wrapper decCounter(@RequestParam("key") String key) {
+//    public HttpResult decCounter(@RequestParam("key") String key) {
 //        long counter = redisCache.decCounter(key);
-//        return WrapMapper.ok("counter:" + counter);
+//        return HttpResult.ok("counter:" + counter);
 //    }
 //
 //
