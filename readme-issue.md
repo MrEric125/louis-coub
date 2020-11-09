@@ -39,3 +39,12 @@ dubbo
 
 
 如何使用jenkins保证持续集成，持续部署
+
+### spring-boot 中的autoConfig的核心思想其实也是IOC,但是转换了一下，就是在引入一些必要包的时候，程序会创建一些默认对象，先将这些默认对象注入到spring 上下文的容器中，那如果
+我们需要创建一些特殊的配置，那么我们再自己手动设置就可以。
+那么问题来了，spring-boot 如何实现这个将依赖包中的对象注入到springContext的容器中
+
+跟踪代码执行流程，发现 `AutoConfigurationImportSelector` 实现 DeferredImportSelector# selectImports 根本没有执行
+ 
+## 问题，这个 ImportSelector 的实现方法一般什么时候执行呢？
+其实问题就是 spring boot中的 auto Config 实现方式是什么？
