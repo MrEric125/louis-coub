@@ -1,6 +1,5 @@
 package com;
 
-import org.junit.Test;
 
 /**
  * @author jun.liu

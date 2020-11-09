@@ -1,15 +1,26 @@
 version: "3"
 services:
-  redis-cluster-80-1:
+  nginx:
     image: nginx:latest
     ports:
-      - "80:80"
-    volumes:
-      - type: bind
-        source: ./conf/nginx-80-1.conf
-        target: /usr/local/etc/nginx/nginx.conf
-      - type: volume
-    environment:
+      - 80:80
+      - 443:443
+#    volumes:
+#      - type: volumn
+#        source: ./conf/nginx-80-2.conf
+#        target: /usr/local/etc/nginx/nginx.conf
 
-    networks:
-      - nginx
+    volumes:
+      - ./conf/nginx-80-2.conf:/etc/nginx/nginx.conf
+      - ./conf/conf.d:/etc/nginx/conf.d
+      - ./conf/domain:/etc/nginx/domain
+      - ./conf/hk:/etc/nginx/hk
+      - ./log:/var/log/nginx
+      - ./html:/etc/nginx/html
+#  使用宿主机的网络，可能会造成不安全的问题
+#    networks:
+#      - default
+# 使用宿主机网络，这样宿主机与挂载机网络互通
+networks:
+  host:
+    external: true
