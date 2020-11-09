@@ -17,6 +17,8 @@ services:
       - ./conf/hk:/etc/nginx/hk
       - ./log:/var/log/nginx
       - ./html:/etc/nginx/html
+    network_mode: "host"
+
 #  使用宿主机的网络，可能会造成不安全的问题
 #    networks:
 #      - default
