@@ -67,13 +67,14 @@
             </dependency>
 
 
+            <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-releasetrain -->
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-releasetrain</artifactId>
-                <version>Kay-M1</version>
-                <scope>import</scope>
+                <version>Lovelace-RELEASE</version>
                 <type>pom</type>
             </dependency>
+
 
             <!-- Ali Cloud -->
 <!--            <dependency>-->
