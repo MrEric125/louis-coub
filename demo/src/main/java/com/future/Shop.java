@@ -1,14 +1,12 @@
 package com.future;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.collections4.list.PredicatedList;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
@@ -24,10 +22,14 @@ import static java.util.stream.Collectors.toList;
  */
 @Entity
 @Table(name = "tb_shop")
-
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Shop {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "shop_name")
     private String shopName;
@@ -36,6 +38,7 @@ public class Shop {
     private List<Product> productList = new ArrayList<>();
 
 
+    @Transient
     public List<Product> addProduct(List<Product> products) {
         productList.addAll(products);
         return productList;
@@ -46,6 +49,7 @@ public class Shop {
         this.shopName = shopName;
     }
 
+    @Transient
     public BigDecimal getProductPrice(String productName) {
         return productList
                 .stream()
