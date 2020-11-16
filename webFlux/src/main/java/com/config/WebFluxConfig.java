@@ -25,17 +25,17 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 public class WebFluxConfig  {
 
 
-//    @Bean
-//    public WebHandler webHandler(ApplicationContext applicationContext) {
-//        return new DispatcherHandler(applicationContext);
-//    }
+    @Bean
+    public WebHandler webHandler(ApplicationContext applicationContext) {
+        return new DispatcherHandler(applicationContext);
+    }
 
-//    @Bean
-//    public RouterFunction<ServerResponse> monoRouterFunction(PersonHandler userHandler){
-//        return route(GET("/api/user").and(accept(MediaType.APPLICATION_JSON)),userHandler::getAllUser)
-//                .andRoute(GET("/api/user/{id}").and(accept(MediaType.APPLICATION_JSON)),userHandler::getUserById)
-//                .andRoute(POST("/api/save").and(accept(MediaType.APPLICATION_JSON)),userHandler::saveUser);
-//    }
+    @Bean
+    public RouterFunction<ServerResponse> monoRouterFunction(PersonHandler userHandler){
+        return route(GET("/api/user").and(accept(MediaType.APPLICATION_JSON)), i -> userHandler.getAllUser())
+                .andRoute(GET("/api/user/{id}").and(accept(MediaType.APPLICATION_JSON)), i->userHandler.getUserById(1))
+                .andRoute(POST("/api/save").and(accept(MediaType.APPLICATION_JSON)), userHandler::saveUser);
+    }
 
 
 

@@ -22,18 +22,19 @@ import java.util.Map;
  * @author jun.liu
  * @since 2020/9/17 10:41
  */
+
 @SpringBootApplication
 @RestController
-public class Application implements CommandLineRunner {
+public class WorkFlowApplication implements CommandLineRunner {
 
     private ProcessRuntime processRuntime;
 
-    public Application(ProcessRuntime processRuntime) {
+    public WorkFlowApplication(ProcessRuntime processRuntime) {
         this.processRuntime = processRuntime;
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(WorkFlowApplication.class, args);
     }
 
 

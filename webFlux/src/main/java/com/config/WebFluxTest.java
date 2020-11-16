@@ -20,19 +20,19 @@ public class WebFluxTest {
 
     ReactorHttpHandlerAdapter adapter = new ReactorHttpHandlerAdapter(handler);
 
-    public static void main(String[] args) {
-        RedisURI uri = RedisURI.builder().withHost("localhost").withPort(32102).build();
-
-        RedisClient redisClient = RedisClient.create(uri);
-
-        StatefulRedisConnection<String, String> connect = redisClient.connect();
-
-        RedisCommands<String, String> redisCommands = connect.sync();
-        SetArgs ex = SetArgs.Builder.nx().ex(5);
-        String set = redisCommands.set("name", "throwable");
-        System.out.println(set);
-
-    }
+//    public static void main(String[] args) {
+//        RedisURI uri = RedisURI.builder().withHost("localhost").withPort(32102).build();
+//
+//        RedisClient redisClient = RedisClient.create(uri);
+//
+//        StatefulRedisConnection<String, String> connect = redisClient.connect();
+//
+//        RedisCommands<String, String> redisCommands = connect.sync();
+//        SetArgs ex = SetArgs.Builder.nx().ex(5);
+//        String set = redisCommands.set("name", "throwable");
+//        System.out.println(set);
+//
+//    }
 
 
 

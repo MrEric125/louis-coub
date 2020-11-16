@@ -10,6 +10,7 @@ import org.springframework.web.reactive.config.EnableWebFlux;
  * <p>
  * Date: 2019/9/19
  * Description:
+ * todo 如何将当前程序标示为 WebFlux的， 貌似{@link EnableWebFlux} 不起作用
  */
 @EnableWebFlux
 @SpringBootApplication

@@ -2,6 +2,7 @@ package com.source.spring.mvc;
 
 import com.louis.common.common.HttpResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -30,8 +31,8 @@ public class FunctionOfRequestMapping {
      * @return
      */
     @RequestMapping("/testRequestMapping")
-    public HttpResult testRequestMapping() {
-        return HttpResult.ok();
+    public HttpResult testRequestMapping(@RequestParam()String test) {
+        return HttpResult.ok(test);
     }
 
 
