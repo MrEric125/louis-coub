@@ -1,9 +1,5 @@
 package com.louis.workfow;
 
-import org.activiti.engine.ProcessEngineConfiguration;
-import org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration;
-import org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
