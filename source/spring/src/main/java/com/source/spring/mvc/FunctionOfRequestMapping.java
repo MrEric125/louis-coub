@@ -36,7 +36,11 @@ public class FunctionOfRequestMapping {
     }
 
 
-
+    /**
+     * how to resolve {@link org.springframework.web.bind.annotation.RequestBody}
+     * @see org.springframework.http.converter.HttpMessageConverter
+     * <a> https://docs.spring.io/spring-framework/docs/5.1.3.RELEASE/spring-framework-reference/integration.html#rest-message-conversion</a>
+     */
     public void requestBody() {
 
     }
