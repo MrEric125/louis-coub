@@ -18,5 +18,7 @@ public class ColumnPo {
 
     private String columnLength;
 
+    private String columnType;
+
 
 }

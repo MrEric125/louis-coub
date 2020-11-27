@@ -1,17 +1,19 @@
 package com.louis.mybatis.tkmybatis.controller;
 
-//import com.louis.mybatis.tkmybatis.entity.LocalUser;
-//import com.louis.mybatis.tkmybatis.mapper.LocalUserMapper;
+
 import com.google.common.collect.Lists;
+import com.louis.mybatis.tkmybatis.entity.ColumnPo;
 import com.louis.mybatis.tkmybatis.entity.TablePo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.sql.DataSource;
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -20,6 +22,7 @@ import java.util.List;
  * Date: 2019/9/11
  * Description:
  */
+@Slf4j
 @RestController
 public class LouisController {
 
@@ -47,18 +50,42 @@ public class LouisController {
 
         List<TablePo> tablePos = Lists.newArrayList();
         while (rs.next()) {
+            String tableName = rs.getString("TABLE_NAME");
             TablePo tablePo = TablePo.builder()
-                    .tableName(rs.getString("TABLE_NAME"))
+                    .tableName(tableName)
                     .tableType(rs.getString("TABLE_TYPE"))
                     .tableMark(rs.getString("REMARKS"))
                     .build();
             tablePos.add(tablePo);
 
-            ResultSetMetaData metaData = rs.getMetaData();
+            List<ColumnPo> columnPoList = this.queryAllColumn(databaseMetaData,tableName);
+            tablePo.setColumnPos(columnPoList);
 
 
         }
         return tablePos;
+
+    }
+
+    public List<ColumnPo> queryAllColumn(DatabaseMetaData databaseMetaData, String tableName) throws SQLException {
+        ResultSet columns = databaseMetaData.getColumns(connection().getCatalog(), databaseMetaData.getUserName(), tableName, null);
+        List<ColumnPo> columnPoList = Lists.newArrayList();
+        while (columns.next()) {
+            String column_name = columns.getString("COLUMN_NAME");
+            String type_name = columns.getString("TYPE_NAME");
+            String data_type = columns.getString("DATA_TYPE");
+            String column_size = columns.getString("COLUMN_SIZE");
+            String decimal_digits = columns.getString("DECIMAL_DIGITS");
+            ColumnPo columnPo = ColumnPo.builder()
+                    .columnName(column_name)
+                    .columnType(type_name)
+                    .columnLength(column_size)
+                    .build();
+            columnPoList.add(columnPo);
+
+        }
+
+        return columnPoList;
 
     }
 
