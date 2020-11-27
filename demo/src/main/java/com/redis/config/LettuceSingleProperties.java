@@ -1,4 +1,4 @@
-package com.config;
+package com.redis.config;
 
 import lombok.Data;
 

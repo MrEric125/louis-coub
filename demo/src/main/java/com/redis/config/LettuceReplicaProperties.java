@@ -1,4 +1,4 @@
-package com.config;
+package com.redis.config;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,7 +9,5 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class LettuceSentinelProperties  extends LettuceSingleProperties{
-    private String masterId;
-
+public class LettuceReplicaProperties extends LettuceSingleProperties {
 }

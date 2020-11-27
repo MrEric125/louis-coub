@@ -1,4 +1,4 @@
-CREATE TABLE `clientdetails` (
+CREATE TABLE if not exists `clientdetails` (
   `appId` varchar(128) NOT NULL,
   `resourceIds` varchar(256) DEFAULT NULL,
   `appSecret` varchar(256) DEFAULT NULL,
