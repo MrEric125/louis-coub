@@ -76,8 +76,16 @@ public class FunctionOfRequestMapping {
 
     @RequestMapping("/requestBody")
     @ResponseBody
-    public HttpResult requestBody(@RequestBody DemoParam demoParam) {
+    public HttpResult requestBody(@RequestParam DemoParam demoParam) {
         return HttpResult.ok(JSON.toJSONString(demoParam));
+    }
+
+    public static void main(String[] args) {
+        DemoParam demoParam = new DemoParam();
+        demoParam.setId("12");
+
+        String s = JSON.toJSONString(demoParam);
+        System.out.println(s);
     }
 
     /**

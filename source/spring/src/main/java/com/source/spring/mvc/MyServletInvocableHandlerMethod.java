@@ -1,5 +1,6 @@
 package com.source.spring.mvc;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.method.support.ModelAndViewContainer;
@@ -18,13 +19,16 @@ import java.lang.reflect.Method;
  *
  * @see org.springframework.stereotype.Controller
  */
+@Slf4j
 public class MyServletInvocableHandlerMethod extends ServletInvocableHandlerMethod {
     public MyServletInvocableHandlerMethod(Object handler, Method method) {
         super(handler, method);
+        log.info("1");
     }
 
     public MyServletInvocableHandlerMethod(HandlerMethod handlerMethod) {
         super(handlerMethod);
+        log.info("2");
     }
 
 
@@ -38,6 +42,7 @@ public class MyServletInvocableHandlerMethod extends ServletInvocableHandlerMeth
      */
     @Override
     protected Object[] getMethodArgumentValues(NativeWebRequest request, ModelAndViewContainer mavContainer, Object... providedArgs) throws Exception {
+        log.info("1");
         return super.getMethodArgumentValues(request, mavContainer, providedArgs);
     }
 }
