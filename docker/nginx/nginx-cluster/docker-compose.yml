@@ -5,10 +5,6 @@ services:
     ports:
       - 80:80
       - 443:443
-#    volumes:
-#      - type: volumn
-#        source: ./conf/nginx-80-2.conf
-#        target: /usr/local/etc/nginx/nginx.conf
 
     volumes:
       - ./conf/nginx-80-2.conf:/etc/nginx/nginx.conf
@@ -17,7 +13,7 @@ services:
       - ./conf/hk:/etc/nginx/hk
       - ./log:/var/log/nginx
       - ./html:/etc/nginx/html
-    network_mode: "host"
+#    network_mode: "host"
 
 #  使用宿主机的网络，可能会造成不安全的问题
 #    networks:
