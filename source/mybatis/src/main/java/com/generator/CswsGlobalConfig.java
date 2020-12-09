@@ -2,10 +2,12 @@ package com.generator;
 
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Louis
@@ -14,9 +16,11 @@ import java.util.List;
  */
 @Setter
 @Getter
-public class EnumGlobalConfig extends GlobalConfig {
+public class CswsGlobalConfig extends GlobalConfig {
 
     private List<FieldEnumInfo> fieldEnumList = Lists.newArrayList();
+
+    private Map<String, String> subdivisionOutDir = Maps.newConcurrentMap();
 
 
 
