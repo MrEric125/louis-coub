@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import org.apache.commons.lang3.StringUtils;
 
@@ -57,6 +58,8 @@ public class GeneratorStrategy {
     protected void globalConfig(AutoGenerator autoGenerator, Properties properties, List<FieldEnumInfo> fieldEnumInfos) {
 
         EnumGlobalConfig gc = new EnumGlobalConfig();
+
+
         gc.setFieldEnumList(fieldEnumInfos);
 
         if (Objects.isNull(properties) || StringUtils.isBlank(properties.getProperty("project.path"))) {
@@ -66,6 +69,7 @@ public class GeneratorStrategy {
 
         gc.setAuthor(System.getenv("COMPUTERNAME"));
         gc.setOpen(false);
+        gc.setDateType(DateType.ONLY_DATE);
         //实体属性 Swagger2 注解
         autoGenerator.setGlobalConfig(gc);
     }

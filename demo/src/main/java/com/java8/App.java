@@ -2,13 +2,14 @@ package com.java8;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import io.netty.util.concurrent.CompleteFuture;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author louis
