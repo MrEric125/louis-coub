@@ -18,8 +18,8 @@ public class MySqlEnumTypeConvert extends MySqlTypeConvert {
 
     @Override
     public IColumnType processTypeConvert(GlobalConfig globalConfig, TableField tableField) {
-        if (globalConfig instanceof EnumGlobalConfig) {
-            List<FieldEnumInfo> fieldEnumList = ((EnumGlobalConfig) globalConfig).getFieldEnumList();
+        if (globalConfig instanceof CswsGlobalConfig) {
+            List<FieldEnumInfo> fieldEnumList = ((CswsGlobalConfig) globalConfig).getFieldEnumList();
             String columnName = tableField.getColumnName();
             Optional<FieldEnumInfo> fieldEnumInfo = fieldEnumList.stream().filter(item -> item.getColumnName().equals(columnName)).findFirst();
             IColumnType columnType = fieldEnumInfo.map(field -> {

@@ -4,12 +4,13 @@ import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
-import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 
@@ -57,19 +58,23 @@ public class GeneratorStrategy {
 
     protected void globalConfig(AutoGenerator autoGenerator, Properties properties, List<FieldEnumInfo> fieldEnumInfos) {
 
-        EnumGlobalConfig gc = new EnumGlobalConfig();
-
-
+        CswsGlobalConfig gc = new CswsGlobalConfig();
         gc.setFieldEnumList(fieldEnumInfos);
 
         if (Objects.isNull(properties) || StringUtils.isBlank(properties.getProperty("project.path"))) {
             throw new IllegalArgumentException("文件输出基础目录为空");
         }
         gc.setOutputDir(properties.getProperty("project.path"));
+        Map<String, String> outDir = Maps.newConcurrentMap();
+        outDir.put("project.entity.path", properties.getProperty("project.entity.path"));
+        outDir.put("project.mapper.path", properties.getProperty("project.mapper.path"));
+        outDir.put("project.service.path", properties.getProperty("project.service.path"));
+        outDir.put("project.controller.path", properties.getProperty("project.controller.path"));
+        gc.setSubdivisionOutDir(outDir);
+
 
         gc.setAuthor(System.getenv("COMPUTERNAME"));
         gc.setOpen(false);
-        gc.setDateType(DateType.ONLY_DATE);
         //实体属性 Swagger2 注解
         autoGenerator.setGlobalConfig(gc);
     }

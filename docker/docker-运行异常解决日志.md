@@ -11,6 +11,10 @@ https://github.com/docker/for-win/issues/5202
    wsl -d docker-desktop
    sysctl -w vm.max_map_count=262144
 ```
+当然这样做并不能永久改变sysctl 值，重启就会失效
+如果需要永久改变 需要修改`/etc/sysctl.conf` 文件
+vi /etc/sysctl.conf
+vm.max_map_count=262144
+立即生效 sysctl -p /etc/sysctl.conf 
 
-时间，、
  看来自己需要好好提高一下关于linux  网络相关方面知识
