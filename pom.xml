@@ -19,6 +19,7 @@
         <module>distribute</module>
         <module>demoProject</module>
         <module>source</module>
+        <module>hanlpmodule</module>
     </modules>
 
     <groupId>com.louis</groupId>

@@ -35,6 +35,12 @@ public class ShopServiceImpl {
         return shopList;
     }
 
+    public void future() {
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        Future<String> submit = executorService.submit(() -> "ss");
+
+    }
+
     /**
      * 通过商店名字找寻商店
      * @param name
