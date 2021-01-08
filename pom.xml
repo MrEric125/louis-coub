@@ -7,12 +7,11 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.7.RELEASE</version>
+        <version>2.3.1.RELEASE</version>
     </parent>
 
     <modules>
         <module>dependencies</module>
-        <module>webFlux</module>
         <module>common</module>
         <module>demo</module>
         <module>security</module>

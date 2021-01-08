@@ -16,26 +16,31 @@ spring:
         dialect:
           storage_engine: innodb
   datasource:
-    one:
-      platform: MYSQL
-      url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      username: root
-      password: Root
-      driver-class-name: com.mysql.cj.jdbc.Driver
-    two:
-       platform: MYSQL
-       url: jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
-       username: root
-       password: Root
-       driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: Root
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    platform: MYSQL
+  #    one:
+#      platform: MYSQL
+#      url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+#      username: root
+#      password: Root
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#    two:
+#       platform: MYSQL
+#       url: jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+#       username: root
+#       password: Root
+#       driver-class-name: com.mysql.cj.jdbc.Driver
   main:
     allow-bean-definition-overriding: true
   redis:
     port: 32102
     host: localhost
-  data:
-    mongodb:
-      uri: mongodb://10.12.231.27:27017/test
+#  data:
+#    mongodb:
+#      uri: mongodb://10.12.231.27:27017/test
 LOG_DATEFORMAT_PATTERN: yyyy/MM/dd HH:mm:ss:sss
 server:
   port: 9999

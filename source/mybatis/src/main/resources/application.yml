@@ -20,13 +20,12 @@ spring:
 mybatis:
   mapper-locations: classpath*:mybatis/tkmapper/*.xml
   type-aliases-package: com.louis.mybatis.tkmybatis.entity
-mybatis-plus:
-  type-enums-package: com.dmall.csws.partner.enums
+
 
 
 logging:
   level:
     com:
       baomidou: debug
-      dmall: debug
+
 

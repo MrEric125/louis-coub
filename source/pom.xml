@@ -13,7 +13,6 @@
     <artifactId>source</artifactId>
     <modules>
         <module>netty</module>
-        <module>mybatis-source</module>
         <module>spring</module>
     </modules>
 

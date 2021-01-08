@@ -15,15 +15,16 @@ import java.util.List;
 public class CacheService {
 
 
-    @Cacheable(key = "#key",value = "test_cache")
+    @Cacheable(key = "#key",value = "test_cache_1_by_Cacheable")
     public List<String> cache1(String key) {
         return Lists.newArrayList("this is test".split(" "));
     }
 
-    @Cacheable(key = "#key",value = "test_cache")
+    @Cacheable(key = "#key",value = "test_cache_2_by_Cacheable")
     public List<Person> cache2(String key) {
         Person person = new Person();
         person.setId(1L);
+//        person.setAge(22);
         person.setName("张三");
         return Lists.newArrayList(person);
 

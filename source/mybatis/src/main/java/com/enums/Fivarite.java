@@ -9,11 +9,8 @@ import com.baomidou.mybatisplus.annotation.EnumValue;
  */
 public enum Fivarite {
 
-        DMALL(1, "多点"),
-        BRAND(3, "品牌"),
-        CARRIER(4, "承运商"),
-        PARTNER(5, "来客"),
-        POP(6, "POP");
+    BALL(1, "BALL");
+
         @EnumValue
         private int value;
         private String name;

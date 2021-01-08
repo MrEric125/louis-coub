@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Description:
  */
 //@MapperScan("com.louis.mybatis.tkmybatis.mapper")
-@MapperScan({"com.louis.mybatis.dynamic.mapper","com.dmall.csws.domain.mapper"})
+@MapperScan({"com.louis.mybatis.dynamic.mapper"})
 @SpringBootApplication
 public class Application {
 

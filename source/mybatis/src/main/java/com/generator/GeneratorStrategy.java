@@ -33,10 +33,10 @@ public class GeneratorStrategy {
         strategy.setRestControllerStyle(true);
 
         // 公共父类
-        strategy.setSuperEntityClass("com.dmall.csws.partner.common.BaseEntity");
-        strategy.setSuperServiceClass("com.dmall.csws.partner.common.IBaseService");
-        strategy.setSuperServiceImplClass("com.dmall.csws.partner.common.BaseServiceImpl");
-        strategy.setSuperControllerClass("com.dmall.csws.partner.common.BaseController");
+        strategy.setSuperEntityClass("");
+        strategy.setSuperServiceClass("");
+        strategy.setSuperServiceImplClass("");
+        strategy.setSuperControllerClass("");
 
         if (CollectionUtils.isNotEmpty(tableNames)) {
             strategy.setInclude(tableNames.toArray(new String[tableNames.size()]));
@@ -123,7 +123,7 @@ public class GeneratorStrategy {
         // 包配置
         PackageConfig pc = new PackageConfig();
 //        pc.setParent("b");
-        pc.setParent("com.dmall.csws.domain");
+        pc.setParent("");
 //        pc.setModuleName("a");
         pc.setMapper("mapper");
         pc.setEntity("model");
