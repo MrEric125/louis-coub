@@ -61,7 +61,7 @@ public class HttpClientTest {
     }
     @Test
     public void testGet() {
-        HttpGet get = new HttpGet("http://localhost:8113/login");
+        HttpGet get = new HttpGet("http://localhost:8080/env");
         get.setHeader("Connection","keep-alive");
 
         CloseableHttpResponse response;

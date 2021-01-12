@@ -1,0 +1,32 @@
+package com.louis;
+
+import com.louis.common.common.HttpResult;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author jun.liu
+ * @since 2021/1/11 9:29
+ */
+@Slf4j
+@RestController
+public class TestHttpClient {
+
+    @RequestMapping("/httpClient")
+    public HttpResult httpClient(@RequestParam String url, @RequestParam String method) throws Exception {
+        String result = null;
+        if (StringUtils.isNotBlank(method) && StringUtils.equals(method, "POST")) {
+            result= HttpClientUtils.doGet(url, null);
+//            result=HttpClient2.getHttpClient(url);
+        } else {
+            result= HttpClientUtils.doGet(url, null);
+            log.info(result);
+
+        }
+        return HttpResult.ok(result);
+
+    }
+}
