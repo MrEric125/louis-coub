@@ -6,6 +6,7 @@ import com.source.spring.mvc.MyListener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +25,7 @@ public class SpringSourceApplication {
     }
 
     @RequestMapping("/env")
-    public HttpResult env() {
-        return HttpResult.ok("Hello World");
+    public HttpResult env(@RequestBody(required = false) String data) {
+        return HttpResult.ok(data);
     }
 }
