@@ -1,6 +1,7 @@
 package com.source.spring;
 
 import com.louis.common.common.HttpResult;
+import com.source.spring.mvc.DemoParam;
 import com.source.spring.mvc.MyEvent;
 import com.source.spring.mvc.MyListener;
 import org.springframework.boot.SpringApplication;
@@ -25,7 +26,7 @@ public class SpringSourceApplication {
     }
 
     @RequestMapping("/env")
-    public HttpResult env(@RequestBody(required = false) String data) {
+    public HttpResult env(@RequestBody() Long data)  {
         return HttpResult.ok(data);
     }
 }
