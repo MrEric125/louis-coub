@@ -8,6 +8,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.3.1.RELEASE</version>
+
     </parent>
 
     <modules>
@@ -25,22 +26,9 @@
     <groupId>com.louis</groupId>
     <artifactId>boot-mybatis</artifactId>
     <version>${revision}</version>
+<!--    <version>1.0.0-SNAPSHOT</version>-->
     <name>boot-mybatis</name>
-    <description>Demo project for Spring Boot</description>
 
-    <licenses>
-        <license>
-            <name>Apache 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-    </licenses>
-    <developers>
-        <developer>
-            <id>liujun</id>
-            <name>louis</name>
-            <email>lj125999@163.com</email>
-        </developer>
-    </developers>
 
     <properties>
         <revision>1.0.0-SNAPSHOT</revision>
@@ -72,10 +60,10 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.62</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-test</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
     </dependencies>
 
 <!--    <dependencyManagement>-->

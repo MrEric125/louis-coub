@@ -21,7 +21,7 @@ public class SpringSourceApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(SpringSourceApplication.class, args);
-        run.publishEvent(new MyEvent(new Object()));
+//        run.publishEvent(new MyEvent(new Object()));
 
     }
 
@@ -29,4 +29,9 @@ public class SpringSourceApplication {
     public HttpResult env(@RequestBody() Long data)  {
         return HttpResult.ok(data);
     }
+    @RequestMapping("/add")
+    public HttpResult add(@RequestBody(required = false) String data) {
+        return HttpResult.ok(data);
+    }
+
 }

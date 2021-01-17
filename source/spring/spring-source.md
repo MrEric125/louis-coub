@@ -36,10 +36,9 @@
 2. 访问url的时候，通过DispartcherServlet 找到url对应的方法，通过反射的方式执行这个方法
 
 
+## spring boot 解析@RequestParam @RequestMapping @RequestBody过程 @ResponseBody
 
-#### @RequestParam
+### 初始化
 
-#### @RequestBody
 
-#### @ResponseBody
 
