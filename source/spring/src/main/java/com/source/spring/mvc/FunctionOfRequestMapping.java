@@ -2,6 +2,7 @@ package com.source.spring.mvc;
 
 import com.alibaba.fastjson.JSON;
 import com.louis.common.common.HttpResult;
+import com.source.spring.argumentResolver.Searchable;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
@@ -77,7 +78,7 @@ public class FunctionOfRequestMapping {
     @RequestMapping("/requestBody")
     @ResponseBody
     public HttpResult requestBody(@RequestBody DemoParam demoParam) {
-        return HttpResult.ok(JSON.toJSONString(demoParam));
+        return HttpResult.ok(demoParam);
     }
     @RequestMapping("/requestParam")
     @ResponseBody
@@ -122,6 +123,12 @@ public class FunctionOfRequestMapping {
     @RequestMapping("responseBody")
     public HttpResult responseBody(@RequestParam String request) {
         return HttpResult.ok(request);
+    }
+
+    @ResponseBody
+    @RequestMapping("/customizeArgumentResolver")
+    public HttpResult customizeArgumentResolver(@Searchable ParamInParam paramInParam) {
+        return HttpResult.ok(JSON.toJSONString(paramInParam));
     }
 
 }
