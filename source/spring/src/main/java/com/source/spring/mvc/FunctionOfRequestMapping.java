@@ -2,6 +2,7 @@ package com.source.spring.mvc;
 
 import com.alibaba.fastjson.JSON;
 import com.louis.common.common.HttpResult;
+import com.source.spring.argumentResolver.Searchable;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
@@ -76,17 +77,23 @@ public class FunctionOfRequestMapping {
 
     @RequestMapping("/requestBody")
     @ResponseBody
-    public HttpResult requestBody(@RequestParam DemoParam demoParam) {
-        return HttpResult.ok(JSON.toJSONString(demoParam));
+    public HttpResult requestBody(@RequestBody DemoParam demoParam) {
+        return HttpResult.ok(demoParam);
+    }
+    @RequestMapping("/requestParam")
+    @ResponseBody
+    public HttpResult requestParam1(@RequestParam String id,@RequestParam String name) {
+        return HttpResult.ok(JSON.toJSONString(id));
     }
 
     public static void main(String[] args) {
-        DemoParam demoParam = new DemoParam();
-        demoParam.setId("12");
+        DemoParam param = new DemoParam();
+        param.setId("11");
+        System.out.println(JSON.toJSONString(param));
+        String ss = "{\"id\":\"11\"}";
 
-        String s = JSON.toJSONString(demoParam);
-        System.out.println(s);
     }
+
 
     /**
      * how to resolve {@link org.springframework.web.bind.annotation.ResponseBody}
@@ -116,6 +123,12 @@ public class FunctionOfRequestMapping {
     @RequestMapping("responseBody")
     public HttpResult responseBody(@RequestParam String request) {
         return HttpResult.ok(request);
+    }
+
+    @ResponseBody
+    @RequestMapping("/customizeArgumentResolver")
+    public HttpResult customizeArgumentResolver(@Searchable ParamInParam paramInParam) {
+        return HttpResult.ok(JSON.toJSONString(paramInParam));
     }
 
 }
