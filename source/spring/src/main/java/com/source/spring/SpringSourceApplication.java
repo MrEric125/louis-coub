@@ -1,5 +1,7 @@
 package com.source.spring;
 
+import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
 import com.louis.common.common.HttpResult;
 import com.source.spring.mvc.DemoParam;
 import com.source.spring.mvc.MyEvent;
@@ -10,6 +12,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @author jun.liu
@@ -26,11 +30,11 @@ public class SpringSourceApplication {
     }
 
     @RequestMapping("/env")
-    public HttpResult env(@RequestBody() Long data)  {
+    public HttpResult env(@RequestBody() String data)  {
         return HttpResult.ok(data);
     }
     @RequestMapping("/add")
-    public HttpResult add(@RequestBody(required = false) String data) {
+    public HttpResult add(String data,String data2) {
         return HttpResult.ok(data);
     }
 

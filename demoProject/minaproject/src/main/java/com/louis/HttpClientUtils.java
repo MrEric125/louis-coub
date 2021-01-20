@@ -3,8 +3,7 @@ package com.louis;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.http.HttpEntity;
-import org.apache.http.NameValuePair;
+import org.apache.http.*;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -19,30 +18,25 @@ import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.ssl.SSLContexts;
 import org.apache.http.ssl.TrustStrategy;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
+import javax.net.ssl.*;
+import java.io.*;
 import java.nio.charset.Charset;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
+import java.security.*;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 
 /**
  * 基于 httpclient 的 http工具类
@@ -56,9 +50,9 @@ public class HttpClientUtils {
 	static final int maxTotal = 500;// 总最大连接数
 	static final int defaultMaxPerRoute = 100;// 每条线路最大连接数 ,本系统核心线程数,这样永远不会超过最大连接
 
-	static final Logger logger = Logger.getLogger(HttpClientUtils.class.getName());
+	static final Logger logger = LoggerFactory.getLogger(HttpClientUtils.class.getName());
 
-	static HttpClientBuilder clientBuilder;
+	static CloseableHttpClient httpClient;
 
 	private HttpClientUtils() {}
 
@@ -101,12 +95,13 @@ public class HttpClientUtils {
 		RequestConfig config = RequestConfig.custom().setConnectTimeout(60000).setSocketTimeout(15000)
 				// .setProxy(new HttpHost("127.0.0.1", 8888))
 				.build();
-		clientBuilder = HttpClientBuilder.create().setConnectionManager(connManager).setDefaultRequestConfig(config)
+		httpClient = HttpClientBuilder.create().setConnectionManager(connManager).setDefaultRequestConfig(config)
+				.setConnectionManagerShared(true)
 				.evictExpiredConnections()
-//				.setConnectionManagerShared(true)
+				.setMaxConnTotal(30)
 				//MaxIdleTime 必须小于服务端的关闭时间否则有可能出现NoHttpResponse
 				//用来关闭闲置连接，它会启动一个守护线程进行清理工作。用户可以通过builder#evictIdleConnections开启该组件，并通过builder#setmaxIdleTime设置最大空闲时间。;
-				.evictIdleConnections(30, TimeUnit.SECONDS);
+				.evictIdleConnections(30, TimeUnit.SECONDS).build();
 
 	}
 
@@ -121,10 +116,6 @@ public class HttpClientUtils {
 //				.build();
 //		return HttpClientBuilder.create().setSSLSocketFactory(factory).setDefaultRequestConfig(config).build();
 //	}
-
-	private static CloseableHttpClient getHttpsClient() {
-		return clientBuilder.build();
-	}
 
 //	private static CloseableHttpClient getPoolHttpClient() {
 //		// 设置连接池
@@ -223,46 +214,38 @@ public class HttpClientUtils {
 		if (StringUtils.isBlank(url)) {
 			return null;
 		}
-		CloseableHttpClient httpClient = null;
-		try {
-			httpClient = getHttpsClient();
 
-			if (params != null && !params.isEmpty()) {
-				List<NameValuePair> pairs = new ArrayList<NameValuePair>(params.size());
-				for (Map.Entry<String, Object> entry : params.entrySet()) {
-					String value = String.valueOf(entry.getValue());
-					if (value != null) {
-						pairs.add(new BasicNameValuePair(entry.getKey(), value));
-					}
-				}
-				if (StringUtils.contains(url, '?')) {
-					url = StringUtils.join(
-							new String[] { url, "&", EntityUtils.toString(new UrlEncodedFormEntity(pairs, charset)) });
-				} else {
-					url = StringUtils.join(
-							new String[] { url, "?", EntityUtils.toString(new UrlEncodedFormEntity(pairs, charset)) });
+		if (params != null && !params.isEmpty()) {
+			List<NameValuePair> pairs = new ArrayList<NameValuePair>(params.size());
+			for (Map.Entry<String, Object> entry : params.entrySet()) {
+				String value = String.valueOf(entry.getValue());
+				if (value != null) {
+					pairs.add(new BasicNameValuePair(entry.getKey(), value));
 				}
 			}
-			HttpGet httpGet = new HttpGet(url);
-			//设置请求头
-			if(null != headers && !headers.isEmpty()){
-				for(Map.Entry<String, String> head : headers.entrySet()){
-					httpGet.setHeader(head.getKey(), head.getValue());
-				}
-			}
-			CloseableHttpResponse response = httpClient.execute(httpGet);
-			HttpEntity entity = response.getEntity();
-			String result = null;
-			if (entity != null) {
-				result = EntityUtils.toString(entity, charset);
-			}
-			EntityUtils.consume(entity);
-			return result;
-		} finally {
-			if (httpClient != null) {
-				httpClient.close();
+			if (StringUtils.contains(url, '?')) {
+				url = StringUtils.join(
+						new String[] { url, "&", EntityUtils.toString(new UrlEncodedFormEntity(pairs, charset)) });
+			} else {
+				url = StringUtils.join(
+						new String[] { url, "?", EntityUtils.toString(new UrlEncodedFormEntity(pairs, charset)) });
 			}
 		}
+		HttpGet httpGet = new HttpGet(url);
+		//设置请求头
+		if(null != headers && !headers.isEmpty()){
+			for(Map.Entry<String, String> head : headers.entrySet()){
+				httpGet.setHeader(head.getKey(), head.getValue());
+			}
+		}
+		CloseableHttpResponse response = httpClient.execute(httpGet);
+		HttpEntity entity = response.getEntity();
+		String result = null;
+		if (entity != null) {
+			result = EntityUtils.toString(entity, charset);
+		}
+		EntityUtils.consume(entity);
+		return result;
 	}
 
 	/**
@@ -280,60 +263,72 @@ public class HttpClientUtils {
 		if (StringUtils.isBlank(url)) {
 			return null;
 		}
-		CloseableHttpClient httpClient = null;
-		try {
-			httpClient = getHttpsClient();
-			HttpPost httpPost = new HttpPost(url);
-			//设置请求头
-			if(null != headers && !headers.isEmpty()){
-				for(Map.Entry<String, String> head : headers.entrySet()){
-					httpPost.setHeader(head.getKey(), head.getValue());
-				}
-			}
-			//设置请求参数
-			if(StringUtils.equals(type, "json")){
-				if(params != null){
-					String paramStr = null;
-					if(params instanceof Map){
-						paramStr = JSON.toJSONString(params);
-					}else {
-						paramStr = params.toString();
-					}
-					StringEntity stringEntity = new StringEntity(paramStr, Charset.forName(charset));
-					stringEntity.setContentType("application/json");
-					stringEntity.setContentEncoding(charset);
-					httpPost.setEntity(stringEntity);
-				}
-			}else{
-				List<NameValuePair> pairs = null;
-				if (params != null && params instanceof Map) {
-					Map<String, Object> paramMap = (Map) params;
-					pairs = new ArrayList<>(paramMap.size());
-					for (Map.Entry<String, Object> entry : paramMap.entrySet()) {
-						Object value = entry.getValue();
-						if (value != null) {
-							pairs.add(new BasicNameValuePair(entry.getKey(), String.valueOf(value)));
-						}
-					}
-				}
-				if (pairs != null && pairs.size() > 0) {
-					httpPost.setEntity(new UrlEncodedFormEntity(pairs, CHARSET));
-				}
-			}
-			CloseableHttpResponse response = httpClient.execute(httpPost);
-			HttpEntity entity = response.getEntity();
-			String result = null;
-			if (entity != null) {
-				result = EntityUtils.toString(entity, charset);
-			}
-			EntityUtils.consume(entity);
-			response.close();
-			return result;
-		} finally {
-			if (httpClient != null) {
-				httpClient.close();
+		HttpPost httpPost = new HttpPost(url);
+		//设置请求头
+		if(null != headers && !headers.isEmpty()){
+			for(Map.Entry<String, String> head : headers.entrySet()){
+				httpPost.setHeader(head.getKey(), head.getValue());
 			}
 		}
+		//设置请求参数
+		if(StringUtils.equals(type, "json")){
+			if(params != null){
+				String paramStr = null;
+				if(params instanceof Map){
+					paramStr = JSON.toJSONString(params);
+				}else {
+					paramStr = params.toString();
+				}
+				StringEntity stringEntity = new StringEntity(paramStr, Charset.forName(charset));
+				stringEntity.setContentType("application/json");
+				stringEntity.setContentEncoding(charset);
+				httpPost.setEntity(stringEntity);
+			}
+		}else{
+			List<NameValuePair> pairs = null;
+			if (params != null && params instanceof Map) {
+				Map<String, Object> paramMap = (Map) params;
+				pairs = new ArrayList<>(paramMap.size());
+				for (Map.Entry<String, Object> entry : paramMap.entrySet()) {
+					Object value = entry.getValue();
+					if (value != null) {
+						pairs.add(new BasicNameValuePair(entry.getKey(), String.valueOf(value)));
+					}
+				}
+			}
+			if (pairs != null && pairs.size() > 0) {
+				httpPost.setEntity(new UrlEncodedFormEntity(pairs, CHARSET));
+			}
+		}
+		CloseableHttpResponse response = httpClient.execute(httpPost);
+		HttpEntity entity = response.getEntity();
+		String result = null;
+		if (entity != null) {
+			result = EntityUtils.toString(entity, charset);
+		}
+		EntityUtils.consume(entity);
+		response.close();
+		return result;
+	}
+
+	public static byte[] downRemoteFile(String url){
+		CloseableHttpClient client = HttpClients.createDefault();
+		//没有代理
+		RequestConfig config =  RequestConfig.custom().build();
+		HttpGet httpGet = new HttpGet(url);
+		httpGet.setConfig(config);
+
+		try{
+			HttpResponse respone = client.execute(httpGet);
+			if(respone.getStatusLine().getStatusCode() != HttpStatus.SC_OK){
+				return null;
+			}
+			return EntityUtils.toByteArray(respone.getEntity());
+		}
+		catch (Exception ex){
+			logger.error(String.format("下载远程路径文件失败%s", url), ex);
+		}
+		return null;
 	}
 
 	static final String[] imgPrefix = new String[] { "jpg", "png", "jpeg", "bmp" };
@@ -352,15 +347,15 @@ public class HttpClientUtils {
 	public static Map<String,String> downloadImage(String url, String savePath, String fileName) throws Exception {
 		Map<String, String> map = Maps.newHashMap();
 		if (StringUtils.isEmpty(url)) {
-			logger.warning("图片下载不能为空");
+			logger.warn("图片下载不能为空");
 			return map;
 		}
 		if (StringUtils.isEmpty(savePath)) {
-			logger.warning("图片保存地址不能为空");
+			logger.warn("图片保存地址不能为空");
 			return map;
 		}
 		if (StringUtils.isEmpty(fileName)) {
-			logger.warning("图片 保存名称不能为空");
+			logger.warn("图片 保存名称不能为空");
 			return map;
 		}
 		boolean flag = false;
@@ -388,24 +383,22 @@ public class HttpClientUtils {
 		}
 
 		String targetFile = savePath + File.separator + fileName;
-		CloseableHttpClient httpClient = null;
 		FileOutputStream fos = null;
 		try {
-			httpClient = getHttpsClient();
 			HttpGet httpGet = new HttpGet(url);
 			CloseableHttpResponse response = httpClient.execute(httpGet);
 			InputStream input = response.getEntity().getContent();
 			File file = new File(savePath);
 			if (!file.exists()) {
 				file.mkdirs();
-				logger.warning("图片保存路径已经创建成功 savePath: " + savePath);
+				logger.warn("图片保存路径已经创建成功 savePath: " + savePath);
 			} else {
-				logger.warning("图片保存路径已经存在 savePath: " + savePath);
+				logger.warn("图片保存路径已经存在 savePath: " + savePath);
 			}
 			file = new File(targetFile);
 			file.delete();
 			file.createNewFile();
-			logger.warning("图片已经创建成功 targetFile: " + targetFile);
+			logger.warn("图片已经创建成功 targetFile: " + targetFile);
 			String path = file.getAbsolutePath();
 			logger.info("图片的完整路径： " + path);
 			fos = new FileOutputStream(targetFile);
@@ -419,12 +412,9 @@ public class HttpClientUtils {
 			map.put("fileName", file.getName());
 			return map;
 		}catch(Exception e){
-			logger.warning("下载背景图片失败");
+			logger.warn("下载背景图片失败");
 			throw e;
 		}finally {
-			if (httpClient != null) {
-				httpClient.close();
-			}
 			if(fos != null){
 				fos.close();
 			}
