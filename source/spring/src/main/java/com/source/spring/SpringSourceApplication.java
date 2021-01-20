@@ -30,7 +30,7 @@ public class SpringSourceApplication {
     }
 
     @RequestMapping("/env")
-    public HttpResult env(@RequestBody() Long data)  {
+    public HttpResult env(@RequestBody() String data)  {
         return HttpResult.ok(data);
     }
     @RequestMapping("/add")

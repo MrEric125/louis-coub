@@ -37,10 +37,11 @@ public class TestHttpClient {
         String result = null;
         if (StringUtils.isNotBlank(method) && StringUtils.equals(method, "POST")) {
             if (StringUtils.isNotBlank(data)) {
-                result = HttpUtils.httpsPost(url, data);
+//                result = HttpUtils.httpsPost(url, data);
+                result = HttpClientUtils.doPostJson(url, data, null);
             }
         } else {
-            result = HttpUtils.httpGet(url);
+            result = HttpClientUtils.doGet(url, null);
         }
         log.info(result);
         return HttpResult.ok(result);
