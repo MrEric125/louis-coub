@@ -15,7 +15,7 @@ public class Client {
 
     public static void main(String[] args) {
         try {
-            Socket socket = new Socket("localhost", 8080);
+            Socket socket = new Socket("127.0.0.1", 1234);
             //连完之后可以不发送数据的
             socket.getOutputStream().write("121212".getBytes());
 

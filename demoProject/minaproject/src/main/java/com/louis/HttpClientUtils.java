@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.*;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -54,6 +55,8 @@ public class HttpClientUtils {
 
 	static CloseableHttpClient httpClient;
 
+	static HttpClientBuilder clientBuilder;
+
 	private HttpClientUtils() {}
 
 	static {
@@ -95,17 +98,22 @@ public class HttpClientUtils {
 		RequestConfig config = RequestConfig.custom().setConnectTimeout(60000).setSocketTimeout(15000)
 				// .setProxy(new HttpHost("127.0.0.1", 8888))
 				.build();
-		httpClient = HttpClientBuilder.create().setConnectionManager(connManager).setDefaultRequestConfig(config)
+		clientBuilder = HttpClientBuilder.create().setConnectionManager(connManager).setDefaultRequestConfig(config)
 				.setConnectionManagerShared(true)
 				.evictExpiredConnections()
 				.setMaxConnTotal(30)
 				//MaxIdleTime 必须小于服务端的关闭时间否则有可能出现NoHttpResponse
 				//用来关闭闲置连接，它会启动一个守护线程进行清理工作。用户可以通过builder#evictIdleConnections开启该组件，并通过builder#setmaxIdleTime设置最大空闲时间。;
-				.evictIdleConnections(30, TimeUnit.SECONDS).build();
+				.evictIdleConnections(30, TimeUnit.SECONDS);
+		httpClient = clientBuilder.build();
 
 	}
 
-//	public static CloseableHttpClient getHttpClient() throws KeyManagementException, NoSuchAlgorithmException {
+	public static CloseableHttpClient getHttpClient() {
+		return clientBuilder.build();
+	}
+
+	//	public static CloseableHttpClient getHttpClient() throws KeyManagementException, NoSuchAlgorithmException {
 //
 //		SSLContext sslcontext = SSLContexts.custom().build();
 //		sslcontext.init(null, new X509TrustManager[]{new HttpsTrustManager()}, new SecureRandom());
@@ -247,6 +255,83 @@ public class HttpClientUtils {
 		EntityUtils.consume(entity);
 		return result;
 	}
+	public static String doPost2(String url, Object params) throws Exception {
+		return doPost2(url, params, null, CHARSET, "json");
+	}
+
+	/**
+	 * HTTP Post 获取内容
+	 *
+	 * @param url
+	 *            请求的url地址 ?之前的地址
+	 * @param params
+	 *            请求的参数
+	 * @param charset
+	 *            编码格式
+	 * @return 页面内容
+	 */
+	public static String doPost2(String url, Object params,Map<String, String> headers, String charset, String type) throws Exception {
+		if (StringUtils.isBlank(url)) {
+			return null;
+		}
+		HttpPost httpPost = new HttpPost(url);
+		//设置请求头
+		if(null != headers && !headers.isEmpty()){
+			for(Map.Entry<String, String> head : headers.entrySet()){
+				httpPost.setHeader(head.getKey(), head.getValue());
+			}
+		}
+		CloseableHttpClient client = getHttpClient();
+		//设置请求参数
+		if(StringUtils.equals(type, "json")){
+			if(params != null){
+				String paramStr = null;
+				if(params instanceof Map){
+					paramStr = JSON.toJSONString(params);
+				}else {
+					paramStr = params.toString();
+				}
+				StringEntity stringEntity = new StringEntity(paramStr, Charset.forName(charset));
+				stringEntity.setContentType("application/json");
+				stringEntity.setContentEncoding(charset);
+				httpPost.setEntity(stringEntity);
+			}
+		}else{
+			List<NameValuePair> pairs = null;
+			if (params != null && params instanceof Map) {
+				Map<String, Object> paramMap = (Map) params;
+				pairs = new ArrayList<>(paramMap.size());
+				for (Map.Entry<String, Object> entry : paramMap.entrySet()) {
+					Object value = entry.getValue();
+					if (value != null) {
+						pairs.add(new BasicNameValuePair(entry.getKey(), String.valueOf(value)));
+					}
+				}
+			}
+			if (pairs != null && pairs.size() > 0) {
+				httpPost.setEntity(new UrlEncodedFormEntity(pairs, CHARSET));
+			}
+		}
+		String result = null;
+		CloseableHttpResponse response = null;
+		try {
+			response= client.execute(httpPost);
+			HttpEntity entity = response.getEntity();
+
+			if (entity != null) {
+				result = EntityUtils.toString(entity, charset);
+			}
+			EntityUtils.consume(entity);
+			httpPost.releaseConnection();
+
+		} catch (Exception e) {
+
+		}finally {
+			httpPost.releaseConnection();
+			response.close();
+		}
+		return result;
+	}
 
 	/**
 	 * HTTP Post 获取内容
@@ -301,12 +386,14 @@ public class HttpClientUtils {
 			}
 		}
 		CloseableHttpResponse response = httpClient.execute(httpPost);
+
 		HttpEntity entity = response.getEntity();
 		String result = null;
 		if (entity != null) {
 			result = EntityUtils.toString(entity, charset);
 		}
 		EntityUtils.consume(entity);
+		httpPost.releaseConnection();
 		response.close();
 		return result;
 	}
@@ -327,6 +414,8 @@ public class HttpClientUtils {
 		}
 		catch (Exception ex){
 			logger.error(String.format("下载远程路径文件失败%s", url), ex);
+		}finally {
+
 		}
 		return null;
 	}
