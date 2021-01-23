@@ -8,6 +8,20 @@ import java.nio.CharBuffer;
 /**
  * @author jun.liu
  * @since 2021/1/19 10:47
+ * 主要的方法：
+ * {@link CharBuffer#flip()}
+ * clear()
+ * hasRemaining()
+ * get() 获取数据
+ * put() 存储数据
+ * compact()
+ * flip()
+ * rewind()
+ * slice()
+ * position()
+ * 等等方法吧
+ *
+ *
  */
 @Setter
 @Getter
@@ -32,15 +46,13 @@ public class DemoBuffer implements Cloneable {
 
     private static boolean fillBuffer(CharBuffer buffer) {
         if (index >= strings.length) {
-            return (false);
+            return false;
         }
         String string = strings[index++];
         for (int i = 0; i < string.length(); i++) {
             buffer.put(string.charAt(i));
         }
-
-
-        return (true);
+        return true;
     }
 
     private static int index = 0;
