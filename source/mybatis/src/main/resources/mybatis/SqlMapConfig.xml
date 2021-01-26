@@ -28,10 +28,9 @@
 <!--    <databaseIdProvider type="">-->
 
 <!--    </databaseIdProvider>-->
-    <
 
     <mappers>
-        <mapper resource="mybatis/mapper/UserMapper.xml" />
+        <mapper resource="mybatis/mapper/OrdersCustomMapper.xml" />
     </mappers>
 </configuration>
 

@@ -10,13 +10,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Date: 2019/9/11
  * Description:
  */
-//@MapperScan("com.louis.mybatis.tkmybatis.mapper")
-@MapperScan({"com.louis.mybatis.dynamic.mapper"})
+@MapperScan({"com.*"})
 @SpringBootApplication
 public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-        System.out.println("aa");
     }
 }

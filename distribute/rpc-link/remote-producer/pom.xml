@@ -28,13 +28,11 @@
 
 
     <properties>
-        <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
         <dubbo.version>2.7.3</dubbo.version>
         <netty4_version>4.1.25.Final</netty4_version>
         <resteasy_version>3.0.19.Final</resteasy_version>
         <swagger.webjar.version>3.20.3</swagger.webjar.version>
         <jetty.version>9.4.19.v20190610</jetty.version>
-        <!--        <tomcat_embed_version>8.5.31</tomcat_embed_version>-->
         <tomcat_embed_version>9.0.22</tomcat_embed_version>
 
         <mortbay_jetty_version>6.1.26</mortbay_jetty_version>
@@ -54,6 +52,11 @@
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-streams</artifactId>
             <version>2.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
         </dependency>
 
 
@@ -163,10 +166,7 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

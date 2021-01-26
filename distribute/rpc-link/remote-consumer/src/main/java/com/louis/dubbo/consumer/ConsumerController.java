@@ -32,7 +32,7 @@ public class ConsumerController {
         UserContext.putUsername(request.getLocalName());
         Map<String, Object> louis = defautDemoService.sayHello("louis");
         ServiceLoader<Robots> load = ServiceLoader.load(Robots.class);
-        System.out.println("JAVA SPI");
+        log.info("JAVA SPI");
         load.forEach(Robots::sayHello);
 
         return louis;
