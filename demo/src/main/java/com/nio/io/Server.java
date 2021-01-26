@@ -20,10 +20,13 @@ public class Server {
             ServerSocket serverSocket = new ServerSocket();
             serverSocket.bind(new InetSocketAddress(8080));
 
+
+            System.out.println("wait conn");
+            Socket socket = serverSocket.accept();
+
             while (true){
-                System.out.println("wait conn");
+
                 //阻塞,当时可能会放弃cpu资源
-                Socket socket = serverSocket.accept();
 
                 System.out.println("wait read");
 

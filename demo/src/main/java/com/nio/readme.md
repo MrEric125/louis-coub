@@ -25,4 +25,9 @@ NIO: 同步非阻塞
         Selector
     非阻塞： read 方法，accept方法  可以设置阻塞还是非阻塞
     AsynchronousSocketChannel
+
+
+    
+1. 直接缓冲区， 将缓冲区建立在系统的物理内存中，在某种情况下是可以提高效率的
+    非直接缓冲区： 建立在jvm的内存中    
                        

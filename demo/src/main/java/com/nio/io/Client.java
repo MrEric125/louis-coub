@@ -3,6 +3,7 @@ package com.nio.io;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.Scanner;
 
 /**
  * @author Louis
@@ -17,7 +18,16 @@ public class Client {
         try {
             Socket socket = new Socket("127.0.0.1", 1234);
             //连完之后可以不发送数据的
-            socket.getOutputStream().write("121212".getBytes());
+//            socket.getOutputStream().write("121212".getBytes());
+
+
+            while (true) {
+                Scanner scanner = new Scanner(System.in);
+
+                String sss = scanner.nextLine();
+
+                socket.getOutputStream().write(sss.getBytes());
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
