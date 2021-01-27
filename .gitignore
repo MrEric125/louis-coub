@@ -27,7 +27,7 @@ target/
 /nbdist/
 /.nb-gradle/
 build/
-
+venv/
 ### VS Code ###
 .vscode/
 /.metadata/
