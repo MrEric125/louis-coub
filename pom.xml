@@ -14,7 +14,6 @@
     <modules>
         <module>dependencies</module>
         <module>common</module>
-        <module>demo</module>
         <module>security</module>
         <module>algorithm</module>
         <module>distribute</module>
@@ -24,10 +23,10 @@
     </modules>
 
     <groupId>com.louis</groupId>
-    <artifactId>boot-mybatis</artifactId>
+    <artifactId>louis-coub</artifactId>
     <version>${revision}</version>
 <!--    <version>1.0.0-SNAPSHOT</version>-->
-    <name>boot-mybatis</name>
+    <name>louis-coub</name>
 
 
     <properties>
