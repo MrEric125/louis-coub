@@ -1,7 +1,7 @@
 import pygame
-from Settings import Settings
-from Ship import Ship
-import game_function as gf
+from alliengame.Settings import Settings
+from alliengame.Ship import Ship
+import alliengame.game_function as gf
 from pygame.sprite import Group
 
 

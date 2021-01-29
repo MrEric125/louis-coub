@@ -2,7 +2,7 @@ import sys
 
 import pygame
 
-from bullet import Bullet
+from alliengame.bullet import Bullet
 
 
 def check_events(ai_settings,screen,ship,bullets):

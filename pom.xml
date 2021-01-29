@@ -20,6 +20,7 @@
         <module>demoProject</module>
         <module>source</module>
         <module>hanlpmodule</module>
+        <module>scala-p</module>
     </modules>
 
     <groupId>com.louis</groupId>
