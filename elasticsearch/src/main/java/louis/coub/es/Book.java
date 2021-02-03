@@ -3,7 +3,7 @@ package louis.coub.es;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 
-@Document(indexName = "book")
+@Document(indexName = "book",type = "ggsmida")
 public class Book {
 
     @Field
