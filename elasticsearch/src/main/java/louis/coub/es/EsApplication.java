@@ -2,6 +2,7 @@ package louis.coub.es;
 
 
 import com.louis.common.common.HttpResult;
+import louis.coub.es.registry.EnableEsModel;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.common.settings.Settings;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @SpringBootApplication
 @EnableElasticsearchRepositories
+@EnableEsModel(entityPath = "louis.coub.es.model")
 public class EsApplication {
 
     @Autowired
