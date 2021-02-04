@@ -11,32 +11,35 @@ services:
       memlock:
         soft: -1
         hard: -1
-    volumes:
+#    volumes:
 #      - ./es1/data:/usr/share/elasticsearch/data
 #      - ./es1/log:/usr/share/elasticsearch/logs
-      - ./es1/config:/usr/share/elasticsearch/config
+#      - ./es1/config/:/usr/share/elasticsearch/config/elasticsearch.yml
     ports:
       - 9200:9200
       - 9300:9300
     networks:
       - esnet
-#  elasticsearch2:
-#    image: elasticsearch:6.4.3
-#    container_name: es2
-#    environment:
-#      - cluster.name=docker-cluster
-#      - bootstrap.memory_lock=true
-#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-#      - "discovery.zen.ping.unicast.hosts=elasticsearch"
-#    ulimits:
-#      memlock:
-#        soft: -1
-#        hard: -1
+  elasticsearch2:
+    image: elasticsearch:6.4.3
+    container_name: es2
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.zen.ping.unicast.hosts=elasticsearch"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
 #    volumes:
-#      - ./es2/data:/usr/share/elasticsearch/data
-#      - ./es2/log:/usr/share/elasticsearch/logs
-#    networks:
-#      - esnet
+      #      - ./es2/data:/usr/share/elasticsearch/data
+      #      - ./es2/log:/usr/share/elasticsearch/logs
+#      - ./es2/config/:/usr/share/elasticsearch/config/elasticsearch.yml
+    networks:
+      - esnet
+    depends_on:
+      - elasticsearch
   kibana:
     image: kibana:6.4.3
     container_name: kibana
