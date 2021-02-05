@@ -21,6 +21,7 @@
         <module>source</module>
         <module>hanlpmodule</module>
         <module>elasticsearch</module>
+        <module>coub-netty</module>
     </modules>
 
     <groupId>com.louis</groupId>
