@@ -41,13 +41,9 @@ public class IndexServiceImpl {
         }
     }
 
-    public boolean existIndex(String index) {
-        try {
+    public boolean existIndex(String index) throws IOException {
             return indicesClient.exists(new GetIndexRequest().indices(index), RequestOptions.DEFAULT);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
+
     }
 
 
