@@ -50,11 +50,7 @@ public class IndexServiceImpl {
         return false;
     }
 
-//    public void createAlias(String index, String alias) {
-//        GuarderOfAck guarderOfAck = GuarderOfAck.of(CommonError.ES_ERROR);
-//        guarderOfAck.guard(() -> indicesClient.updateAliases(indexAliasesRequest()
-//                .addAliasAction(add().alias(alias).index(index)), RequestOptions.DEFAULT));
-//    }
+
 
     public void deleteIndex(String index) {
         DeleteIndexRequest indexRequest = deleteIndexRequest(index);

@@ -37,5 +37,9 @@ public class EsController {
     }
 
 
+    @RequestMapping("all")
+    public HttpResult all(String index,String type) throws IOException {
+        return HttpResult.ok(documentService.queryAll(index, type));
+    }
 
 }
