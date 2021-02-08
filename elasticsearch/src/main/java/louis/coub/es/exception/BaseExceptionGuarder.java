@@ -5,6 +5,13 @@ import java.io.IOException;
 
 public interface BaseExceptionGuarder<S> {
 
+    /**
+     * 必须使用{@link Method},无法使用{@link java.util.function.Supplier},
+     * 虽然都是同样的行为参数化,但是有点不同的是在{@link Method#call()}是会抛出异常的，
+     * 我们需要一个抛出异常的方法调用
+     * @param method
+     * @return
+     */
     default S guard(Method<S> method) {
         try {
             return check(method.call());
