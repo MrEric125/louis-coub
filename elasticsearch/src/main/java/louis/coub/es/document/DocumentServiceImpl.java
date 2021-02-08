@@ -1,5 +1,6 @@
 package louis.coub.es.document;
 
+import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
@@ -14,21 +15,28 @@ import org.elasticsearch.index.query.MatchAllQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.IOException;
+import java.util.Objects;
+import java.util.function.Supplier;
 
 /**
  * @author jun.liu
  * @since 2021/2/4 13:37
  */
+@Validated
 @Service
 public class DocumentServiceImpl {
 
-    @Autowired
-    private RestHighLevelClient highLevelClient;
+    private final RestHighLevelClient highLevelClient;
+
+    public DocumentServiceImpl(RestHighLevelClient highLevelClient) {
+        this.highLevelClient = highLevelClient;
+    }
 
 
     /**
@@ -58,27 +66,42 @@ public class DocumentServiceImpl {
 
         MatchAllQueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
 
-        SearchSourceBuilder searchSourceBuilder = SearchSourceBuilder.searchSource().query(queryBuilder);
-
-        SearchRequest searchRequest = new SearchRequest();
-        searchRequest.indices(index).types(type);
-        searchRequest.source(searchSourceBuilder);
-        return highLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+        return query(index, type, () -> queryBuilder);
 
 
     }
 
     public SearchResponse boolQuery(String index,String type) throws IOException {
         BoolQueryBuilder bool = (BoolQueryBuilder) this.queryBuilder("bool");
+        QueryBuilder queryBuilder = QueryBuilders.matchQuery("createTime", "123");
+        bool.must(queryBuilder);
 
+        return query(index, type, () -> bool);
 
-        SearchSourceBuilder searchSourceBuilder = SearchSourceBuilder.searchSource().query(bool);
+    }
 
+    /**
+     *
+     * @param index 索引
+     * @param type type
+     * @param builderSupplier 查询接口行为参数化
+     * @return SearchResponse
+     * @throws IOException
+     */
+    public SearchResponse query(@NotEmpty String index, @NotNull String type, Supplier<QueryBuilder> builderSupplier)throws IOException  {
+
+        QueryBuilder queryBuilder = builderSupplier.get();
+        if (Objects.isNull(queryBuilder)) {
+            return null;
+        }
+        SearchSourceBuilder searchSourceBuilder = SearchSourceBuilder.searchSource().query(queryBuilder);
         SearchRequest searchRequest = new SearchRequest();
-        searchRequest.indices(index).types(type);
+        searchRequest.indices(index);
+        if (StringUtils.isNotBlank(type)) {
+            searchRequest.types(type);
+        }
         searchRequest.source(searchSourceBuilder);
         return highLevelClient.search(searchRequest, RequestOptions.DEFAULT);
-
     }
 
     public QueryBuilder queryBuilder(String queryType) {
