@@ -2,6 +2,7 @@ package louis.coub.es.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.louis.common.common.HttpResult;
+import louis.coub.es.document.BuckServiceImpl;
 import louis.coub.es.document.DocumentServiceImpl;
 import louis.coub.es.model.BookEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class EsController {
     @Autowired
     private DocumentServiceImpl documentService;
 
+    @Autowired
+    private BuckServiceImpl buckService;
+
 
     @RequestMapping("save")
     public HttpResult httpResult(String indexName,String type ,@RequestBody BookEntity jsonStr) throws IOException {
@@ -38,8 +42,14 @@ public class EsController {
 
 
     @RequestMapping("all")
-    public HttpResult all(String index,String type) throws IOException {
+    public HttpResult all(String index,String type) {
         return HttpResult.ok(documentService.queryAll(index, type));
+    }
+
+    @RequestMapping("buck")
+    public HttpResult buck(String index, String type) {
+        buckService.buckUpdate(index, type);
+        return HttpResult.ok();
     }
 
 }

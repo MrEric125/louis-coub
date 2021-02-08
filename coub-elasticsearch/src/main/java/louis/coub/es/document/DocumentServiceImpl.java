@@ -19,6 +19,7 @@ import org.elasticsearch.index.query.MatchAllQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -69,7 +70,7 @@ public class DocumentServiceImpl {
          return highLevelClient.get(getRequest, RequestOptions.DEFAULT);
     }
 
-    public SearchResponse queryAll(String index,String type) throws IOException {
+    public SearchResponse queryAll(String index,String type)  {
 
         MatchAllQueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
 
@@ -114,6 +115,41 @@ public class DocumentServiceImpl {
         Guarder<SearchResponse> guarder = Guarder.of(CommonError.INTERNAL_ERROR);
         return guarder.guard(() -> highLevelClient.search(searchRequest, RequestOptions.DEFAULT)
         );
+    }
+
+    public SearchResponse query(@NotEmpty String index, @NotNull String type,
+                                Supplier<QueryBuilder> builderSupplier, Integer pageSize, Integer pageNum, String sortItem)  {
+
+        QueryBuilder queryBuilder = builderSupplier.get();
+        if (Objects.isNull(queryBuilder)) {
+            return null;
+        }
+        SearchSourceBuilder searchSourceBuilder = SearchSourceBuilder.searchSource().query(queryBuilder);
+        if (pageNum != null) {
+            searchSourceBuilder.from(pageNum);
+        }
+        if (pageSize != null) {
+            searchSourceBuilder.size(pageSize);
+        }
+        if (StringUtils.isNotBlank(sortItem)) {
+            searchSourceBuilder.sort(sortItem, SortOrder.DESC);
+        }
+        SearchRequest searchRequest = new SearchRequest();
+        searchRequest.indices(index);
+        if (StringUtils.isNotBlank(type)) {
+            searchRequest.types(type);
+        }
+        searchRequest.source(searchSourceBuilder);
+
+        Guarder<SearchResponse> guarder = Guarder.of(CommonError.INTERNAL_ERROR);
+        return guarder.guard(() -> highLevelClient.search(searchRequest, RequestOptions.DEFAULT)
+        );
+    }
+
+
+    public SearchResponse queryPage(@NotEmpty String index, @NotNull String type,
+                                    Supplier<QueryBuilder> builderSupplier, Integer pageSize, Integer pageNum, String sortItem) {
+        return query(index, type, builderSupplier, pageSize, pageNum, sortItem);
     }
 
     public QueryBuilder queryBuilder(SearchTypeEnums queryType,Supplier<QueryBuilder> queryBuilders) {
