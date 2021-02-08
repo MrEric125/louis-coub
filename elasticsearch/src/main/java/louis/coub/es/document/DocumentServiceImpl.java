@@ -1,5 +1,8 @@
 package louis.coub.es.document;
 
+import louis.coub.es.exception.CommonError;
+import louis.coub.es.exception.Guarder;
+import louis.coub.es.model.SearchTypeEnums;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
@@ -7,6 +10,7 @@ import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.client.Client;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
@@ -15,6 +19,7 @@ import org.elasticsearch.index.query.MatchAllQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -34,10 +39,12 @@ public class DocumentServiceImpl {
 
     private final RestHighLevelClient highLevelClient;
 
-    public DocumentServiceImpl(RestHighLevelClient highLevelClient) {
-        this.highLevelClient = highLevelClient;
-    }
+    private final Client client;
 
+    public DocumentServiceImpl(RestHighLevelClient highLevelClient, Client client) {
+        this.highLevelClient = highLevelClient;
+        this.client = client;
+    }
 
     /**
      *
@@ -71,24 +78,26 @@ public class DocumentServiceImpl {
 
     }
 
-    public SearchResponse boolQuery(String index,String type) throws IOException {
-        BoolQueryBuilder bool = (BoolQueryBuilder) this.queryBuilder("bool");
+    public SearchResponse boolQuery(String index,String type)  {
+        BoolQueryBuilder bool = (BoolQueryBuilder) this.queryBuilder(SearchTypeEnums.BOOL, null);
         QueryBuilder queryBuilder = QueryBuilders.matchQuery("createTime", "123");
         bool.must(queryBuilder);
+        Guarder<SearchResponse> guarder = Guarder.of(CommonError.INTERNAL_ERROR);
 
-        return query(index, type, () -> bool);
+        return guarder.guard(() -> query(index, type, () -> bool));
 
     }
 
+
     /**
-     *
-     * @param index 索引
-     * @param type type
+     * @param index           索引
+     * @param type            type
      * @param builderSupplier 查询接口行为参数化
      * @return SearchResponse
      * @throws IOException
      */
-    public SearchResponse query(@NotEmpty String index, @NotNull String type, Supplier<QueryBuilder> builderSupplier)throws IOException  {
+    public SearchResponse query(@NotEmpty String index, @NotNull String type,
+                                Supplier<QueryBuilder> builderSupplier)  {
 
         QueryBuilder queryBuilder = builderSupplier.get();
         if (Objects.isNull(queryBuilder)) {
@@ -101,17 +110,34 @@ public class DocumentServiceImpl {
             searchRequest.types(type);
         }
         searchRequest.source(searchSourceBuilder);
-        return highLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+
+        Guarder<SearchResponse> guarder = Guarder.of(CommonError.INTERNAL_ERROR);
+        return guarder.guard(() -> highLevelClient.search(searchRequest, RequestOptions.DEFAULT)
+        );
     }
 
-    public QueryBuilder queryBuilder(String queryType) {
+    public QueryBuilder queryBuilder(SearchTypeEnums queryType,Supplier<QueryBuilder> queryBuilders) {
 
-        if (queryType.equals("queryAll")) {
+        if (SearchTypeEnums.QUERY_ALL.equals(queryType)) {
             return QueryBuilders.matchAllQuery();
-        } else if (queryType.equals("bool")) {
+        } else if (SearchTypeEnums.BOOL.equals(queryType)) {
             return QueryBuilders.boolQuery();
+        } else if (SearchTypeEnums.QUERY_STRING.equals(queryType)) {
+
+            QueryBuilder queryBuilder = queryBuilders.get();
+            if (queryBuilder != null) {
+                return queryBuilder;
+            }
+            throw new NullPointerException("没有查询构造器");
+        } else if (SearchTypeEnums.TERMS_QUERY.equals(queryType)) {
+            QueryBuilder queryBuilder = queryBuilders.get();
+            if (queryBuilder != null) {
+
+                return queryBuilder;
+            }
+            throw new NullPointerException("没有查询构造器");
         }
-        return QueryBuilders.matchAllQuery();
+        throw new NullPointerException("没有查询构造器");
     }
 
 }

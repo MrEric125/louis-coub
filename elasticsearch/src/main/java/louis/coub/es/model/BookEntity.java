@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
+ * es 实体，与 libraryTemplate.json中的mapping对应的一个Java实体
  * @author jun.liu
  * @since 2021/2/4 10:03
  */
@@ -33,7 +34,5 @@ public class BookEntity implements IBaseEsEntity {
     private Boolean available;
 
     private Review review;
-
-
 
 }
