@@ -22,40 +22,32 @@ public class LifeCycle
 
     @PostConstruct
     public void init() {
-        System.out.println("init");
     }
     public void user() {
-        System.out.println("use method");
     }
 
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        System.out.println(" set bean factory");
 
     }
 
     @Override
     public void setBeanName(String name) {
-        System.out.println("set bean name"+name);
 
     }
 
     @Override
     public void destroy() throws Exception {
 
-        System.out.println("destroy");
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.println("after properties set");
 
     }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        System.out.println("application context");
-
 
     }
 

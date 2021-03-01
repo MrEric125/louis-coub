@@ -4,6 +4,5 @@ package com.louis.lessifelse;
 public class PCOrderHandler implements OrderHandler {
     @Override
     public void handle(Order order) {
-        System.out.println("处理PC端订单");
     }
 }

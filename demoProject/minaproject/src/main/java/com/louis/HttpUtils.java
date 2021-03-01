@@ -569,7 +569,6 @@ public class HttpUtils {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("start");
 //		String url = "https://www.baidu.com";
 		String url = "https://open.sobot.com/open/platform/api.json";
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -582,6 +581,5 @@ public class HttpUtils {
 		params.add(new BasicNameValuePair("data",data.toString()));
 		System.out.println(httpsPost(url,params));
 
-		System.out.println("end");
 	}
 }
