@@ -51,12 +51,12 @@ services:
       - SERVER_NAME=kibana
       - XPACK_MONITORING_ENABLED=true
       - ELASTICSEARCH_HOSTS-http://elasticsearch:9200
-  logstash:
-    image: logstash:6.4.3
-    container_name: logstash
-    ports:
-      - 5044:5044
-      - 9600:9600
+#  logstash:
+#    image: logstash:6.4.3
+#    container_name: logstash
+#    ports:
+#      - 5044:5044
+#      - 9600:9600
 
 volumes:
   esdata1:

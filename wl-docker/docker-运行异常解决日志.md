@@ -12,8 +12,10 @@ https://github.com/docker/for-win/issues/5202
    sysctl -w vm.max_map_count=262144
 ```
 当然这样做并不能永久改变sysctl 值，重启就会失效
+注意： 以上方式是可以永久生效的，首先需要将docker 容器暂停，然后再操作，否则是在当前容器实例中操作的，重启就时效了
 如果需要永久改变 需要修改`/etc/sysctl.conf` 文件
 vi /etc/sysctl.conf
+fs.file-max=655360
 vm.max_map_count=262144
 立即生效 sysctl -p /etc/sysctl.conf 
 

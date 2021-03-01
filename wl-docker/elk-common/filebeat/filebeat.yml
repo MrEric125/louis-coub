@@ -1,0 +1,8 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/messagess
+      - /var/log/secure
+    fields:
+      log_topic: osmessage

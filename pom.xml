@@ -20,7 +20,7 @@
         <module>demoProject</module>
         <module>source</module>
         <module>hanlpmodule</module>
-        <module>elasticsearch</module>
+        <module>coub-elasticsearch</module>
         <module>coub-netty</module>
     </modules>
 
@@ -91,6 +91,8 @@
             </properties>
             <build>
                 <plugins>
+
+
                     <plugin>
                         <groupId>io.spring.javaformat</groupId>
                         <artifactId>spring-javaformat-maven-plugin</artifactId>

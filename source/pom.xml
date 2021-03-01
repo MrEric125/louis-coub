@@ -12,8 +12,8 @@
 
     <artifactId>source</artifactId>
     <modules>
-        <module>netty</module>
         <module>spring</module>
+        <module>mybatis</module>
     </modules>
 
     <dependencies>
