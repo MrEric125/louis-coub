@@ -4,7 +4,6 @@ package com.louis.common.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -15,7 +14,6 @@ import java.io.Serializable;
  * 返回到首页的包装类
  * @param <T> the type parameter @author John·Louis
  */
-@Data
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class HttpResult<T> implements Serializable {
 
@@ -112,10 +110,13 @@ public class HttpResult<T> implements Serializable {
 	 *
 	 * @return the HttpResult
 	 */
-	private 	HttpResult<T> code(int code) {
+	private HttpResult<T> code(int code) {
 		this.setCode(code);
 		return this;
 	}
+
+
+
 
 	/**
 	 * Sets the 信息 , 返回自身的引用.
@@ -129,6 +130,8 @@ public class HttpResult<T> implements Serializable {
 		return this;
 	}
 
+
+
 	/**
 	 * Sets the 结果数据 , 返回自身的引用.
 	 *
@@ -140,6 +143,8 @@ public class HttpResult<T> implements Serializable {
 		this.setResult(result);
 		return this;
 	}
+
+
 
 	/**
 	 * 判断是否成功： 依据 HttpResult.SUCCESS_CODE == this.code
@@ -231,6 +236,8 @@ public class HttpResult<T> implements Serializable {
 		return HttpResult.getResult();
 	}
 
+
+
 	/**
 	 * Wrap ERROR. code=100
 	 *
@@ -287,6 +294,19 @@ public class HttpResult<T> implements Serializable {
 	 */
 	public static <E> HttpResult<E> ok(E o) {
 		return new HttpResult<>(HttpResultMassage.SUCCESS_CODE, HttpResultMassage.SUCCESS_MESSAGE, o);
+	}
+
+	private void setResult(T result) {
+		this.result = result;
+	}
+	private void setMessage(String message) {
+		this.message = message;
+	}
+	private void setCode(int code) {
+		this.code = code;
+	}
+	private T getResult() {
+		return result;
 	}
 
 }

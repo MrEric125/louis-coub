@@ -9,28 +9,20 @@
     <version>${revision}</version>
     <artifactId>dependencies</artifactId>
 
-
-    <licenses>
-        <license>
-            <name>Apache 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-    </licenses>
-
-    <developers>
-        <developer>
-            <id>liujun</id>
-            <name>louis</name>
-            <email>lj125999@163.com</email>
-        </developer>
-    </developers>
-
     <properties>
         <!-- Commons -->
+        <revision>1.0.0-SNAPSHOT</revision>
+
+        <java.version>1.8</java.version>
+        <dubbo.version>2.7.0</dubbo.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
         <okhttp3.version>4.1.0</okhttp3.version>
         <feign-okhttp.version>10.3.0</feign-okhttp.version>
-        <spring-boot.version>2.1.7.RELEASE</spring-boot.version>
-        <!-- Native Cloud -->
+        <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
         <dubbo.version>2.7.3</dubbo.version>
         <dubbo-nacos.version>1.1.3</dubbo-nacos.version>
         <spring-boot-mapper.version>2.1.5</spring-boot-mapper.version>
@@ -41,22 +33,23 @@
         <aliyun-sdk-oss.version>3.6.0</aliyun-sdk-oss.version>
         <swagger.webjar.version>3.20.3</swagger.webjar.version>
 
-        <revision>1.0.0-SNAPSHOT</revision>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <!-- Spring Cloud -->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.cloud</groupId>-->
+<!--                <artifactId>spring-cloud-dependencies</artifactId>-->
+<!--                <version>${spring-cloud.version}</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--            </dependency>-->
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${spring-boot.version}</version>
             </dependency>
-
-            <!-- Spring Cloud Alibaba -->
-
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -65,60 +58,24 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
-
-            <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-releasetrain -->
             <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-releasetrain</artifactId>
-                <version>Lovelace-RELEASE</version>
-                <type>pom</type>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.9.9</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.46</version>
             </dependency>
 
-
-            <!-- Ali Cloud -->
 <!--            <dependency>-->
-<!--                <groupId>com.aliyun.oss</groupId>-->
-<!--                <artifactId>aliyun-sdk-oss</artifactId>-->
-<!--                <version>${aliyun-sdk-oss.version}</version>-->
-<!--                <exclusions>-->
-<!--                    <exclusion>-->
-<!--                        <groupId>commons-logging</groupId>-->
-<!--                        <artifactId>commons-logging</artifactId>-->
-<!--                    </exclusion>-->
-<!--                </exclusions>-->
-<!--            </dependency>-->
-
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba.cloud</groupId>-->
-<!--                <artifactId>spring-cloud-alibaba-dependencies</artifactId>-->
-<!--                <version>${spring-cloud-alibaba.verion}</version>-->
+<!--                <groupId>org.apache.dubbo</groupId>-->
+<!--                <artifactId>dubbo-dependencies-bom</artifactId>-->
+<!--                <version>${dubbo.version}</version>-->
 <!--                <type>pom</type>-->
 <!--                <scope>import</scope>-->
 <!--            </dependency>-->
-
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba.spring</groupId>-->
-<!--                <artifactId>spring-context-support</artifactId>-->
-<!--                <version>${alibaba-spring-context-support.version}</version>-->
-<!--            </dependency>-->
-
-
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba.nacos</groupId>-->
-<!--                <artifactId>nacos-client</artifactId>-->
-<!--                <version>${dubbo-nacos.version}</version>-->
-<!--            </dependency>-->
-
-            <!-- Apache Dubbo -->
-
-            <dependency>
-                <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo-dependencies-bom</artifactId>
-                <version>${dubbo.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
 
 
 <!--            <dependency>-->
@@ -126,30 +83,27 @@
 <!--                <artifactId>dubbo-registry-nacos</artifactId>-->
 <!--                <version>${dubbo.version}</version>-->
 <!--            </dependency>-->
-            <dependency>
-                <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo-spring-boot-actuator</artifactId>
-                <version>${dubbo.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo</artifactId>
-                <version>${dubbo.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring</artifactId>
-                    </exclusion>
+<!--            <dependency>-->
+<!--                <groupId>org.apache.dubbo</groupId>-->
+<!--                <artifactId>dubbo-spring-boot-actuator</artifactId>-->
+<!--                <version>${dubbo.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.dubbo</groupId>-->
+<!--                <artifactId>dubbo</artifactId>-->
+<!--                <version>${dubbo.version}</version>-->
+<!--                <exclusions>-->
 <!--                    <exclusion>-->
-<!--                        <groupId>javax.servlet</groupId>-->
-<!--                        <artifactId>servlet-api</artifactId>-->
+<!--                        <groupId>org.springframework</groupId>-->
+<!--                        <artifactId>spring</artifactId>-->
 <!--                    </exclusion>-->
-                    <exclusion>
-                        <groupId>log4j</groupId>
-                        <artifactId>log4j</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
+
+<!--                    <exclusion>-->
+<!--                        <groupId>log4j</groupId>-->
+<!--                        <artifactId>log4j</artifactId>-->
+<!--                    </exclusion>-->
+<!--                </exclusions>-->
+<!--            </dependency>-->
 <!--            <dependency>-->
 <!--                <groupId>org.apache.dubbo</groupId>-->
 <!--                <artifactId>dubbo-serialization-kryo</artifactId>-->
@@ -168,16 +122,7 @@
 
 
             <!-- DataSource -->
-            <dependency>
-                <groupId>com.zaxxer</groupId>
-                <artifactId>HikariCP</artifactId>
-                <version>${hikaricp.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-jdbc</artifactId>
 
-            </dependency>
             <dependency>
                 <groupId>tk.mybatis</groupId>
                 <artifactId>mapper-spring-boot-starter</artifactId>
@@ -185,63 +130,10 @@
             </dependency>
 
             <!-- Commons -->
-            <dependency>
-                <groupId>com.squareup.okhttp3</groupId>
-                <artifactId>okhttp</artifactId>
-                <version>${okhttp3.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.github.openfeign</groupId>
-                <artifactId>feign-okhttp</artifactId>
-                <version>${feign-okhttp.version}</version>
-            </dependency>
 
-
-            <dependency>
-                    <groupId>org.webjars</groupId>
-                    <artifactId>swagger-ui</artifactId>
-                    <version>${swagger.webjar.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
-    <repositories>
-        <repository>
-            <id>spring-milestone</id>
-            <name>Spring Milestone</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spring-snapshot</id>
-            <name>Spring Snapshot</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-milestone</id>
-            <name>Spring Milestone</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-        <pluginRepository>
-            <id>spring-snapshot</id>
-            <name>Spring Snapshot</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
 
 
 </project>
