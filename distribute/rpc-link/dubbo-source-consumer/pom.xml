@@ -99,19 +99,6 @@
         </dependency>
 
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.2.4.RELEASE</version>
-                <configuration>
-                    <mainClass>com.louis.dubbosourceconsumer.DubboSourceConsumerApplication</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
 
 
 </project>
