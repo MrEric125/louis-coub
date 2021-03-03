@@ -23,5 +23,8 @@
     <artifactId>louis-coub</artifactId>
     <version>${revision}</version>
     <name>louis-coub</name>
+    <properties>
+        <revision>1.0.0-SNAPSHOT</revision>
+    </properties>
 
 </project>
