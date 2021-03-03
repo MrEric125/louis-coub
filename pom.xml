@@ -8,21 +8,20 @@
     <modules>
         <module>dependencies</module>
         <module>common</module>
-<!--        <module>security</module>-->
+        <module>security</module>
         <module>algorithm</module>
-<!--        <module>distribute</module>-->
-<!--        <module>demoProject</module>-->
-<!--        <module>source</module>-->
-<!--        <module>hanlpmodule</module>-->
+        <module>distribute</module>
+        <module>demoProject</module>
+        <module>source</module>
+        <module>hanlpmodule</module>
         <module>coub-elasticsearch</module>
-<!--        <module>coub-netty</module>-->
+        <module>coub-netty</module>
         <module>louis-coub-parent</module>
     </modules>
 
     <groupId>com.louis</groupId>
     <artifactId>louis-coub</artifactId>
     <version>${revision}</version>
-<!--    <version>1.0.0-SNAPSHOT</version>-->
     <name>louis-coub</name>
 
 
