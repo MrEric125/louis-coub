@@ -14,7 +14,7 @@
 <!--        <module>demoProject</module>-->
 <!--        <module>source</module>-->
 <!--        <module>hanlpmodule</module>-->
-<!--        <module>coub-elasticsearch</module>-->
+        <module>coub-elasticsearch</module>
 <!--        <module>coub-netty</module>-->
         <module>louis-coub-parent</module>
     </modules>

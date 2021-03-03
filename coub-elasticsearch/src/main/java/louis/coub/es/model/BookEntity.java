@@ -3,7 +3,6 @@ package louis.coub.es.model;
 import lombok.Data;
 import louis.coub.es.registry.EsModel;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
