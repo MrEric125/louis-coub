@@ -9,10 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>remote-api</artifactId>
-    <properties>
-        <netty4_version>4.1.25.Final</netty4_version>
-        <resteasy_version>3.0.19.Final</resteasy_version>
-    </properties>
+
 
     <dependencies>
 
@@ -20,12 +17,10 @@
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxrs</artifactId>
-            <version>${resteasy_version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-common</artifactId>
-            <version>2.7.3</version>
         </dependency>
 
 

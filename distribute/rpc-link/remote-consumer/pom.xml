@@ -19,62 +19,30 @@
         </license>
     </licenses>
 
-    <developers>
-        <developer>
-            <id>liujun</id>
-            <name>louis</name>
-            <email>lj125999@163.com</email>
-        </developer>
-    </developers>
     <properties>
-<!--        <spring-boot.version>2.1.1.RELEASE</spring-boot.version>-->
-        <dubbo.version>2.7.3</dubbo.version>
-        <zookeeper-version>3.4.6</zookeeper-version>
-        <netty4_version>4.1.25.Final</netty4_version>
-        <resteasy_version>3.0.19.Final</resteasy_version>
+
     </properties>
     <dependencies>
 
 
-<!--        kafka dependencies-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.kafka</groupId>-->
-<!--            <artifactId>kafka_2.12</artifactId>-->
-<!--        </dependency>-->
 
 
 <!--    dubbo dependencies-->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>${dubbo.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
-            <version>${dubbo.version}</version>
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.springframework</groupId>-->
-<!--                    <artifactId>spring</artifactId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <groupId>javax.servlet</groupId>-->
-<!--                    <artifactId>servlet-api</artifactId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <groupId>log4j</groupId>-->
-<!--                    <artifactId>log4j</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
+
         </dependency>
 
         <!-- Zookeeper dependencies -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-dependencies-zookeeper</artifactId>
-            <version>${dubbo.version}</version>
             <type>pom</type>
             <exclusions>
                 <exclusion>
@@ -90,13 +58,11 @@
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxrs</artifactId>
-            <version>${resteasy_version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-client</artifactId>
-            <version>${resteasy_version}</version>
         </dependency>
 
         <!-- Spring Boot dependencies -->
@@ -113,7 +79,6 @@
         <dependency>
             <groupId>com.louis</groupId>
             <artifactId>remote-api</artifactId>
-            <version>${revision}</version>
         </dependency>
 
         <dependency>
@@ -127,6 +92,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.2.4.RELEASE</version>
                 <configuration>
                     <mainClass>com.louis.dubbo.consumer.ConsumerController</mainClass>
                 </configuration>

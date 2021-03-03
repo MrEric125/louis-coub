@@ -12,12 +12,7 @@
     <artifactId>rpc-link</artifactId>
     <packaging>pom</packaging>
 
-    <licenses>
-        <license>
-            <name>Apache 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-    </licenses>
+
 
     <developers>
         <developer>
@@ -43,7 +38,6 @@
         <dependency>
             <groupId>com.louis</groupId>
             <artifactId>common</artifactId>
-            <version>${revision}</version>
         </dependency>
     </dependencies>
 

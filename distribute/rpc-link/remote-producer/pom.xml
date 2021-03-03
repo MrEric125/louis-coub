@@ -11,33 +11,6 @@
 
     <artifactId>remote-producer</artifactId>
 
-    <licenses>
-        <license>
-            <name>Apache 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-    </licenses>
-
-    <developers>
-        <developer>
-            <id>liujun</id>
-            <name>louis</name>
-            <email>lj125999@163.com</email>
-        </developer>
-    </developers>
-
-
-    <properties>
-        <dubbo.version>2.7.3</dubbo.version>
-        <netty4_version>4.1.25.Final</netty4_version>
-        <resteasy_version>3.0.19.Final</resteasy_version>
-        <swagger.webjar.version>3.20.3</swagger.webjar.version>
-        <jetty.version>9.4.19.v20190610</jetty.version>
-        <tomcat_embed_version>9.0.22</tomcat_embed_version>
-
-        <mortbay_jetty_version>6.1.26</mortbay_jetty_version>
-        <jetty_version>9.4.11.v20180605</jetty_version>
-    </properties>
     <dependencies>
 
         <!--        kafka dependencies-->
@@ -45,13 +18,11 @@
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka_2.12</artifactId>
-            <version>2.3.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams -->
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-streams</artifactId>
-            <version>2.3.0</version>
         </dependency>
 
         <dependency>
@@ -76,7 +47,6 @@
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
-            <version>${dubbo.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework</groupId>
@@ -96,7 +66,6 @@
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>${dubbo.version}</version>
         </dependency>
 
 
@@ -104,7 +73,6 @@
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-dependencies-zookeeper</artifactId>
-            <version>${dubbo.version}</version>
             <type>pom</type>
 
         </dependency>
@@ -116,13 +84,8 @@
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-netty4</artifactId>
-            <version>${resteasy_version}</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>io.netty</groupId>-->
-        <!--            <artifactId>netty-all</artifactId>-->
-        <!--            <version>4.0.7.Final</version>-->
-        <!--        </dependency>-->
+
         <dependency>
             <groupId>org.apache.thrift</groupId>
             <artifactId>libthrift</artifactId>
@@ -136,7 +99,6 @@
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
-            <version>${jetty_version}</version>
         </dependency>
 
 
@@ -145,28 +107,22 @@
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxrs</artifactId>
-            <version>${resteasy_version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxb-provider</artifactId>
-            <version>${resteasy_version}</version>
         </dependency>
 
 
         <dependency>
             <groupId>com.louis</groupId>
             <artifactId>remote-api</artifactId>
-            <version>${revision}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
         </dependency>
-
-
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -180,6 +136,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.2.4.RELEASE</version>
                 <configuration>
                     <mainClass>com.ProducerApp</mainClass>
                 </configuration>
