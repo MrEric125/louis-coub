@@ -25,18 +25,18 @@ public class ClientDetailsToScopes extends BaseEntity<Long> {
 
 
     private static final long serialVersionUID = -4115343148840083465L;
-    @NonNull
     @NotNull
     @Column(name = "auto_approve", nullable = false)
     private Boolean autoApprove;
 
-    @NonNull
     @NotNull
-    @Column(name = "client_details_id")
+//    @Column(name = "client_details_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     private ClientDetailsEntity clientDetails;
 
-    @NonNull
+
     @NotNull
     @Column(name = "scope_id")
+//    @ManyToOne(cascade = CascadeType.ALL)
     private ScopeEntity scope;
 }

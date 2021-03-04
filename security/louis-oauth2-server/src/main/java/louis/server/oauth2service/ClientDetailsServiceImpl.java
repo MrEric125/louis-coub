@@ -35,14 +35,6 @@ public class ClientDetailsServiceImpl implements ClientDetailsService {
     @Autowired
     ClientDetailEntityService clientDetailEntityService;
 
-    @Autowired
-    private GrantTypeService grantTypeService;
-
-    @Autowired
-    private ScopeService scopeService;
-
-    @Autowired
-    ResourceIdService resourceIdService;
 
 
     @Override

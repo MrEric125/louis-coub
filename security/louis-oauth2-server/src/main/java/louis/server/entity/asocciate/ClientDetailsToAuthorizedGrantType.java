@@ -24,13 +24,13 @@ import javax.validation.constraints.NotNull;
 public class ClientDetailsToAuthorizedGrantType extends BaseEntity<Long> {
 
     private static final long serialVersionUID = -1319851443795306944L;
-    @NonNull
     @NotNull
-    @Column(name = "client_details_id")
+//    @Column(name = "client_details_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     private ClientDetailsEntity clientDetails;
 
-    @NonNull
     @NotNull
-    @Column(name = "grant_type_id")
+//    @Column(name = "grant_type_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     private GrantTypeEntity grantType;
 }

@@ -21,12 +21,10 @@ import java.util.Set;
 public class ClientDetailsEntity extends AbstractAuditable<Long> {
 
     private static final long serialVersionUID = 7100834559771058030L;
-    @NonNull
     @NotNull
     @Column(name = "client_id", unique = true, nullable = false, length = 200)
     private String clientId;
 
-    @NonNull
     @NotNull
     @Column(name = "client_secret", nullable = false)
     private String clientSecret;

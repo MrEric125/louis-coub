@@ -1,7 +1,6 @@
 package com.concurrent;
 
 
-import javax.annotation.concurrent.Immutable;
 import java.math.BigInteger;
 import java.util.Arrays;
 
@@ -13,7 +12,6 @@ import java.util.Arrays;
  *
  * 如果这个类中没有使用Arrays.copyOf那么这个类就不是不可变对象
  */
-@Immutable
 public class ImmutableObj {
     private final BigInteger lastNum;
     private final BigInteger[] lastFactorys;

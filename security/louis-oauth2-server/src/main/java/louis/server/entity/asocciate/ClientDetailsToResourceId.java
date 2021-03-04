@@ -25,8 +25,10 @@ public class ClientDetailsToResourceId extends BaseEntity<Long> {
     private static final long serialVersionUID = 1919757015565899835L;
     @NonNull
     @NotNull
-    @Column(name = "client_details_id")
+//    @Column(name = "client_details_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     private ClientDetailsEntity clientDetails;
+
 
     @NonNull
     @NotNull
