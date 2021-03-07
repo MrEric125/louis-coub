@@ -1,5 +1,6 @@
 package com.louis.minaProject.jpa.controller;
 
+import com.google.common.collect.Lists;
 import com.louis.common.common.HttpResult;
 import com.louis.common.common.HttpResult;
 import com.louis.minaProject.jpa.entity.Login;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author John·Louis
@@ -35,10 +37,26 @@ public class MinaLoginController {
     }
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)
-    public HttpResult add(@RequestBody Login login) {
+    public HttpResult add(Long iterator) {
+        List<Login> loginList = Lists.newArrayList();
+        for (int i = 0; i < iterator; i++) {
+            Login login =Login.builder()
+                    .code(this.uuidBuilder())
+                    .encryptedData(this.uuidBuilder())
+                    .userInfo(this.uuidBuilder())
+                    .WxAppId(this.uuidBuilder())
+                    .token(this.uuidBuilder())
+                    .signature(this.uuidBuilder())
 
-        Login save = repository.save(login);
-        return HttpResult.ok(save);
+                    .build();
+            loginList.add(login);
+        }
+        try {
+            repository.saveAll(loginList);
+        } catch (Exception e) {
+            log.error("批量插入数据异常", e);
+        }
+        return HttpResult.ok();
     }
     @RequestMapping(path = "search", method = RequestMethod.GET)
     public HttpResult search(Login login) {
@@ -47,5 +65,10 @@ public class MinaLoginController {
         return HttpResult.ok(all);
     }
 
+    private String uuidBuilder() {
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString();
+    }
+    
 
 }
