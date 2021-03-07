@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.louis</groupId>
         <artifactId>louis-coub</artifactId>
-        <version>${revision}</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -50,7 +50,7 @@
             <dependency>
                 <groupId>com.louis</groupId>
                 <artifactId>common</artifactId>
-                <version>${revision}</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -209,7 +209,7 @@
             <dependency>
                 <groupId>com.louis</groupId>
                 <artifactId>remote-api</artifactId>
-                <version>${revision}</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
