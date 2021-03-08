@@ -35,3 +35,4 @@ venv/
 ### common ###
 data\
 log\
+.gradle\

@@ -4,6 +4,8 @@ package com.louis.common.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -15,6 +17,8 @@ import java.io.Serializable;
  * @param <T> the type parameter @author John·Louis
  */
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+@Setter
+@Getter
 public class HttpResult<T> implements Serializable {
 
 	/**
@@ -97,8 +101,7 @@ public class HttpResult<T> implements Serializable {
 	 * @param message the message
 	 * @param result  the result
 	 */
-	HttpResult
-	(int code, String message, T result) {
+	HttpResult(int code, String message, T result) {
 		super();
 		this.code(code).message(message).result(result);
 	}

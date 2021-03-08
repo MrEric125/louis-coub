@@ -48,3 +48,7 @@ dubbo
  
 ## 问题，这个 ImportSelector 的实现方法一般什么时候执行呢？
 其实问题就是 spring boot中的 auto Config 实现方式是什么？
+
+## MYSQL
+
+查询数据的时候如果正在执行插入数据的时候的执行计划.
