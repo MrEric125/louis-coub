@@ -1,0 +1,37 @@
+cluster.name: "docker-cluster"
+network.host: 0.0.0.0
+
+# minimum_master_nodes need to be explicitly set when bound on a public IP
+# set to 1 to allow single node clusters
+# Details: https://github.com/elastic/elasticsearch/pull/17288
+
+# 比较重要的一些配置
+#discovery.zen.ping.unicast.hosts:
+#  - elasticsearch:9301
+##是否主节点
+node.master: true
+##是否数据节点
+node.data: true
+##单机最大节点数
+node.max_local_storage_nodes: 3
+##索引数据的存储路径
+#path.data: /usr/local/es/server1/data
+##日志文件的存储路径
+#path.logs: /usr/local/es/server1/logs
+##启动时锁定内存，设置为true来锁住内存。因为内存交换到磁盘对服务器性能来说是致命的，当jvm开始swapping时es的效率会降低，所以要保证它不swap
+bootstrap.memory_lock: true
+bootstrap.system_call_filter: false
+##绑定的ip地址
+##设置对外服务的http端口，默认为9200
+http.port: 9200
+## 设置节点间交互的tcp端口,默认是9300
+transport.tcp.port: 9300
+transport.tcp.compress: true
+## 设置集群中节点的初始列表，可以通过这些节点来自动发现新加入集群的节点
+##防止脑裂现象，如果没有这种设置,遭受网络故障的集群就有可能将集群分成两个独立的集群 - 这将导致数据丢失
+discovery.zen.minimum_master_nodes: 1
+#action.destructive_requires_name: true
+##防止同一个shard的主副本存在同一个物理机上
+cluster.routing.allocation.same_shard.host: true
+
+
