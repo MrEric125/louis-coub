@@ -17,6 +17,7 @@
         <module>minaproject</module>
         <module>tinyMvc</module>
         <module>demo</module>
+        <module>coub-auto-deploy</module>
     </modules>
 
 
