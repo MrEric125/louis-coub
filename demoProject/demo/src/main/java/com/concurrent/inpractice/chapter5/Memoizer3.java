@@ -3,7 +3,6 @@ package com.concurrent.inpractice.chapter5;
 import com.google.common.collect.Maps;
 
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 
