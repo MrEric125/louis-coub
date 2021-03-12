@@ -1,0 +1,8 @@
+version: '3.0'
+services:
+  louis_jenkins:
+    image:  jenkinsci/blueocean:1.24.3
+    container_name: louis_jenkins
+    ports:
+      - 8080:8080
+      - 5000:5000

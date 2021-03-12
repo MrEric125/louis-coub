@@ -18,8 +18,8 @@ netstat -antp | grep sshd
 
 
 
-docker run --name jenkinsci-jenkins -d -p 10001:8080 -p 50000:5000 jenkinsci/jenkins
+docker run --name jenkinsci-jenkins -d -p 10001:8080 -p 50000:5000  jenkinsci/blueocean:1.24.3
 
-docker pull jenkinsci/blueocean
+docker pull jenkinsci/blueocean:1.24.3
 
-docker run --name jenkinsci-blueocean -d -p 10001:8080 -p 50000:5000 jenkinsci/blueocean
+docker run --name jenkinsci-blueocean -d -p 10001:8080 -p 50000:5000 jenkinsci/blueocean:1.24.3
