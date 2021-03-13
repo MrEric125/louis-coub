@@ -5,7 +5,7 @@
     <parent>
         <artifactId>rpc-link</artifactId>
         <groupId>com.louis</groupId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
     <artifactId>dubbo-source-consumer</artifactId>
     <name>dubbo-source-consumer</name>
@@ -70,7 +70,7 @@
         <dependency>
             <groupId>com.louis</groupId>
             <artifactId>remote-api</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

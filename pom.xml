@@ -21,7 +21,7 @@
 
     <groupId>com.louis</groupId>
     <artifactId>louis-coub</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${revision}</version>
     <name>louis-coub</name>
     <properties>
         <revision>1.0.0-SNAPSHOT</revision>

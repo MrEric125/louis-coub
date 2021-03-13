@@ -5,12 +5,12 @@
     <parent>
         <artifactId>louis-coub-parent</artifactId>
         <groupId>com.louis</groupId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${revision}</version>
         <relativePath>../louis-coub-parent</relativePath>
     </parent>
     <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${revision}</version>
 
     <artifactId>demoProject</artifactId>
     <modules>
