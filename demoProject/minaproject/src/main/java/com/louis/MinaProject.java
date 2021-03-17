@@ -31,14 +31,3 @@ public class MinaProject implements ExitCodeGenerator {
         return 01111;
     }
 }
-
-@Component
-@Order(value = 1212)
-class MyBean implements CommandLineRunner {
-
-    @Override
-    public void run(String... args) throws Exception {
-        System.out.println(args);
-
-    }
-}
