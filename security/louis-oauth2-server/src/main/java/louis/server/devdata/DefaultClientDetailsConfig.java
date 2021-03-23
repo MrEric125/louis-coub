@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * @author louis
@@ -40,16 +41,27 @@ public class DefaultClientDetailsConfig implements InitializingBean {
 
 //        save grantType
         Arrays.stream(DevDataAutoCreate.DEFAULT_GRANT_TYPES).forEach(
+                grantType->{
+                    Optional<GrantTypeEntity> typeEntity = grantTypeRepository.findOneByValue(grantType);
 
-                Optional<GrantTypeEntity>=grantType-> grantTypeRepository.findOneByValue(grantType)
+                    Supplier<GrantTypeEntity> supplier = () -> {
+                        GrantTypeEntity grantTypeEntity = GrantTypeEntity.builder().value(grantType).build();
+
+                        return grantTypeRepository.save(grantTypeEntity);
+                    };
+
+                    typeEntity.orElseGet(supplier);
+                }
         );
 //        保存scope
         Arrays.stream(DevDataAutoCreate.DEFAULT_SCOPES).forEach(
-                scope -> scopeRepository.findOneByValue(scope).orElseGet(
-                        () -> scopeRepository.save(
-                                ScopeEntity.builder().value(scope).build()
-                        )
-                )
+                scope -> {
+                    Supplier<ScopeEntity> supplier = () -> {
+                        ScopeEntity scopeEntity = ScopeEntity.builder().value(scope).build();
+                        return scopeRepository.save(scopeEntity);
+                    };
+                    scopeRepository.findOneByValue(scope).orElseGet(supplier);
+                }
         );
 
 
