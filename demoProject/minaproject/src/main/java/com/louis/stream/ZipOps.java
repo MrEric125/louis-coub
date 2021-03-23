@@ -2,6 +2,8 @@ package com.louis.stream;
 
 
 import com.alibaba.excel.util.DateUtils;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.louis.common.common.HttpResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -24,8 +26,39 @@ public class ZipOps {
 
 
     @RequestMapping("/zipOps")
-    public HttpResult zipOps() {
-        entranceStream();
+    public HttpResult zipOps(Long iter) {
+//        entranceStream();
+        if (iter == null || iter <= 0) {
+            return HttpResult.ok("参数异常");
+        }
+        try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
+            try (ZipOutputStream zipOutputStream = new ZipOutputStream(os)) {
+                // 流的回调 执行逻辑
+                for (int i = 0; i < iter; i++) {
+
+                    Workbook workbook = new SXSSFWorkbook();
+                    String itemFileName = DateUtils.format(new Date());
+
+                    try (ByteArrayOutputStream bos = new ByteArrayOutputStream()){
+                        ZipEntry zipEntry = new ZipEntry(UUID.randomUUID().toString() + ".xlsx");
+                        zipOutputStream.putNextEntry(zipEntry);
+                        workbook.write(bos);
+                        bos.writeTo(zipOutputStream);
+
+                    } catch (Exception e) {
+                        log.error("数据下载时，传输异常:{}", itemFileName, e);
+                    }
+                }
+                zipOutputStream.flush();
+            }
+            System.out.println(os.size());
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
+//        entranceStream();
+
         return HttpResult.ok();
     }
 
