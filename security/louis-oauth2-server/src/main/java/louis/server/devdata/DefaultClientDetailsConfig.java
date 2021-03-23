@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 /**
  * @author louis
@@ -39,11 +40,8 @@ public class DefaultClientDetailsConfig implements InitializingBean {
 
 //        save grantType
         Arrays.stream(DevDataAutoCreate.DEFAULT_GRANT_TYPES).forEach(
-                grantType-> grantTypeRepository.findOneByValue(grantType).orElseGet(
-                        () -> grantTypeRepository.save(
-                                GrantTypeEntity.builder().value(grantType).build()
-                        )
-                )
+
+                Optional<GrantTypeEntity>=grantType-> grantTypeRepository.findOneByValue(grantType)
         );
 //        保存scope
         Arrays.stream(DevDataAutoCreate.DEFAULT_SCOPES).forEach(
