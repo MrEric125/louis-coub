@@ -1,6 +1,5 @@
 package louis.server.devdata;
 
-import louis.server.entity.ClientDetailsEntity;
 import louis.server.entity.GrantTypeEntity;
 import louis.server.entity.ScopeEntity;
 import louis.server.repository.ClientDetailsRepository;
@@ -11,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
+import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * @author louis
@@ -39,19 +40,27 @@ public class DefaultClientDetailsConfig implements InitializingBean {
 
 //        save grantType
         Arrays.stream(DevDataAutoCreate.DEFAULT_GRANT_TYPES).forEach(
-                grantType-> grantTypeRepository.findOneByValue(grantType).orElseGet(
-                        () -> grantTypeRepository.save(
-                                GrantTypeEntity.builder().value(grantType).build()
-                        )
-                )
+                grantType->{
+                    Optional<GrantTypeEntity> typeEntity = grantTypeRepository.findOneByValue(grantType);
+
+                    Supplier<GrantTypeEntity> supplier = () -> {
+                        GrantTypeEntity grantTypeEntity = GrantTypeEntity.builder().value(grantType).build();
+
+                        return grantTypeRepository.save(grantTypeEntity);
+                    };
+
+                    typeEntity.orElseGet(supplier);
+                }
         );
 //        保存scope
         Arrays.stream(DevDataAutoCreate.DEFAULT_SCOPES).forEach(
-                scope -> scopeRepository.findOneByValue(scope).orElseGet(
-                        () -> scopeRepository.save(
-                                ScopeEntity.builder().value(scope).build()
-                        )
-                )
+                scope -> {
+                    Supplier<ScopeEntity> supplier = () -> {
+                        ScopeEntity scopeEntity = ScopeEntity.builder().value(scope).build();
+                        return scopeRepository.save(scopeEntity);
+                    };
+                    scopeRepository.findOneByValue(scope).orElseGet(supplier);
+                }
         );
 
 
