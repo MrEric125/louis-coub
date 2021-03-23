@@ -1,6 +1,5 @@
 package louis.server.devdata;
 
-import louis.server.entity.ClientDetailsEntity;
 import louis.server.entity.GrantTypeEntity;
 import louis.server.entity.ScopeEntity;
 import louis.server.repository.ClientDetailsRepository;
