@@ -9,7 +9,7 @@ spring:
     url: jdbc:mysql://localhost:3306/louis_oauth2_server?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     name:
     username: root
-    password: Root
+    password: !qaz@wsx
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database: MYSQL
