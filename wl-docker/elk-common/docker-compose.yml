@@ -20,48 +20,48 @@ services:
       - 9200:9200
     networks:
       - esnet
-  es2:
-    image: elasticsearch:6.4.3
-    container_name: es2
-    environment:
-      - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - "discovery.zen.ping.unicast.hosts=es,es2,es3"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-#      - ./es2/data:/usr/share/elasticsearch/data
-#      - ./es2/log:/usr/share/elasticsearch/logs
-      - ./es2/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:rw
-    networks:
-      - esnet
-    ports:
-      - 9201:9200
-  es3:
-    image: elasticsearch:6.4.3
-    container_name: es3
-    environment:
-      - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - "discovery.zen.ping.unicast.hosts=es,es2,es3"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-#      - ./es3/data:/usr/share/elasticsearch/data
-#      - ./es3/log:/usr/share/elasticsearch/logs
-      - ./es3/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:rw
-    networks:
-      - esnet
-#    depends_on:
-#      - es
-    ports:
-      - 9202:9200
+#  es2:
+#    image: elasticsearch:6.4.3
+#    container_name: es2
+#    environment:
+#      - cluster.name=docker-cluster
+#      - bootstrap.memory_lock=true
+#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#      - "discovery.zen.ping.unicast.hosts=es,es2,es3"
+#    ulimits:
+#      memlock:
+#        soft: -1
+#        hard: -1
+#    volumes:
+##      - ./es2/data:/usr/share/elasticsearch/data
+##      - ./es2/log:/usr/share/elasticsearch/logs
+#      - ./es2/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:rw
+#    networks:
+#      - esnet
+#    ports:
+#      - 9201:9200
+#  es3:
+#    image: elasticsearch:6.4.3
+#    container_name: es3
+#    environment:
+#      - cluster.name=docker-cluster
+#      - bootstrap.memory_lock=true
+#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#      - "discovery.zen.ping.unicast.hosts=es,es2,es3"
+#    ulimits:
+#      memlock:
+#        soft: -1
+#        hard: -1
+#    volumes:
+##      - ./es3/data:/usr/share/elasticsearch/data
+##      - ./es3/log:/usr/share/elasticsearch/logs
+#      - ./es3/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:rw
+#    networks:
+#      - esnet
+##    depends_on:
+##      - es
+#    ports:
+#      - 9202:9200
   kibana:
     image: kibana:6.4.3
     container_name: kibana
