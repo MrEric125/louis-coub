@@ -30,7 +30,7 @@ public class I18nResourceBundleMessageSourceService extends ResourceBundleMessag
     protected String resolveCodeWithoutArguments(String code, Locale locale) {
         String withoutArguments = super.resolveCodeWithoutArguments(code, locale);
 //        if (withoutArguments == null) {
-            //todo 这里可以依赖国家化服务
+
 //            return "no result";
 //        }
         return withoutArguments;
@@ -48,8 +48,7 @@ public class I18nResourceBundleMessageSourceService extends ResourceBundleMessag
     protected MessageFormat resolveCode(String code, Locale locale) {
         MessageFormat messageFormat = super.resolveCode(code, locale);
 //        if (messageFormat == null) {
-        // todo 这个地方可以从国际化服务取值，或者首先从国际化取值，如果没有再执行resolveCode
-//            return new MessageFormat(code+"formatttt");
+
 //        }
         return messageFormat;
     }

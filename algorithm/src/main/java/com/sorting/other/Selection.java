@@ -32,7 +32,7 @@ public class Selection<T extends Comparable<T>> implements ISorting<T> {
     }
 
     /**
-     * todo
+     *
      * @param a
      * @param comparator
      */

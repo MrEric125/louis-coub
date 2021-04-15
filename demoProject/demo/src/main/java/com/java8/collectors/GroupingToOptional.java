@@ -59,7 +59,7 @@ public class GroupingToOptional {
         long start1 = System.currentTimeMillis();
         BinaryOperator<ReportForm> accumulator = (t1, t2) -> {
             //todo 这个地方会不会有性能问题呢？
-            //todo 每次规约操作的时候都会新建一个对象
+            //每次规约操作的时候都会新建一个对象
             ReportForm reportForm = new ReportForm();
 
             int i1 = t1.getHotLine() == null ? 0 : t1.getHotLine();

@@ -6,13 +6,13 @@ public class HttpsTrustManager implements X509TrustManager {
 
 	@Override
 	public void checkClientTrusted(X509Certificate[] arg0, String arg1) {
-		// TODO Auto-generated method stub
+
 
 	}
 
 	@Override
 	public void checkServerTrusted(X509Certificate[] arg0, String arg1) {
-		// TODO Auto-generated method stub
+
 
 	}
 

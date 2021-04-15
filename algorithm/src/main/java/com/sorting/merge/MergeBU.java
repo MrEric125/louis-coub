@@ -45,7 +45,7 @@ public class MergeBU<T extends Comparable<T>> implements ISorting<T> {
 
         int n = arr.length;
 //        Comparable[] aux = new Comparable[n];
-//        todo 小数组的时候可以使用插入排序，
+//         小数组的时候可以使用插入排序，
 //        虽然这个地方时双重循环，但是这个地方的时间复杂度依然是nlogn
         for (int size = 1; size < n; size *= 2) {
             for (int j = 0; j < n-size ; j += size + size) {

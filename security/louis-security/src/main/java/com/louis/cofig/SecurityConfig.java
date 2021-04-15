@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * // TODO: 2019/11/19 目前的策略是只要有一个角色不对，就拒绝访问
+     *
      * @param http
      * @throws Exception
      */
