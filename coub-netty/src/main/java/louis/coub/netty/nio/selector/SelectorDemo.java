@@ -27,6 +27,13 @@ import java.util.Iterator;
  * {@link java.nio.channels.SelectionKey} 选择键封装了特定的同道与特定的选择器的注册关系，选择键对象被SelectableChannel.register()
  *
  * 返回并提供一个表示这种注册关系的标记。选择键包含了两个byte集，指示了该注册关系所关心的同道操作，以及通道已经准备好的操作
+ *
+ * SelectionKey;
+ * Selector;
+ * ServerSocketChannel;
+ * SocketChannel;
+ * todo 以上四个类的关系，如何协同处理
+ *
  */
 public class SelectorDemo {
 
