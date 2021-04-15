@@ -16,6 +16,7 @@ import java.util.Map;
  * @author jun.liu
  * @date created on 2020/10/16
  * description:
+ * 阻塞IO
  */
 public class NetSocketIO {
 
