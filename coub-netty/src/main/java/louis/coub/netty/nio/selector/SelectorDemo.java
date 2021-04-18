@@ -20,11 +20,11 @@ import java.util.Iterator;
  *
  * 就绪检查（todo 什么是就绪检查 ）的通道类的父类
  *
- * SelectableChannel可以被注册到Selector对象上，同时可以制定对哪个选择器而言，那种操作是感兴趣的，一个通道可以被
+ * SelectableChannel可以被注册到Selector对象上，同时可以制定对哪个选择器而言，哪种操作是感兴趣的，一个通道可以被
  *
  * 注册到多个选择器上，但是在每个选择器上只能注册一次
  *
- * {@link java.nio.channels.SelectionKey} 选择键封装了特定的同道与特定的选择器的注册关系，选择键对象被SelectableChannel.register()
+ * {@link java.nio.channels.SelectionKey} 选择键封装了特定的通道与特定的选择器的注册关系，选择键对象被SelectableChannel.register()
  *
  * 返回并提供一个表示这种注册关系的标记。选择键包含了两个byte集，指示了该注册关系所关心的同道操作，以及通道已经准备好的操作
  *

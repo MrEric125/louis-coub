@@ -41,7 +41,6 @@ public class NIOSelectorServer {
 
             Iterator<SelectionKey> keyIterator = selectionKeys.iterator();
 
-
             while (keyIterator.hasNext()) {
                 //                表示是一个连接的事件
                 SelectionKey selectionKey = keyIterator.next();
@@ -59,8 +58,6 @@ public class NIOSelectorServer {
 
                     SocketChannel socketChannel = (SocketChannel) selectionKey.channel();
 //                        获取到该channel中关联的buffer
-
-
                         ByteBuffer attachment = (ByteBuffer) selectionKey.attachment();
 //                      todo 2019年12月22日15:49:48  这里当客户端断开连接的时候，服务端也会停止服务，需要优化
                         int read = socketChannel.read(attachment);
