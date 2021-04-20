@@ -128,6 +128,7 @@ public class App {
   public void start() throws IOException {
     /*
      * The application can customize its event dispatching mechanism.
+     * 创建一个reactor
      */
     reactor = new NioReactor(dispatcher);
 

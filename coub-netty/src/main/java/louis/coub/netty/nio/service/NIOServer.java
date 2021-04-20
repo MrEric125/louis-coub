@@ -13,6 +13,7 @@ import java.nio.charset.CharsetDecoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -69,10 +70,14 @@ public class NIOServer {
             try {
                 selector.select();//返回值为本次触发的事件数
                 Set<SelectionKey> selectionKeys = selector.selectedKeys();
-                for(SelectionKey key : selectionKeys){
+                Iterator<SelectionKey> iterator = selectionKeys.iterator();
+
+                if (iterator.hasNext()) {
+                    SelectionKey key = iterator.next();
                     handle(key);
+                    iterator.remove();
+
                 }
-                selectionKeys.clear();//清除处理过的事件
             } catch (Exception e) {
                 e.printStackTrace();
                 break;
@@ -100,6 +105,7 @@ public class NIOServer {
             client = server.accept();
             client.configureBlocking(false);
             client.register(selector, SelectionKey.OP_READ);
+            //todo 嫁入当前客户端是断开链接的，那么这里还是会一直进入到这里
         } else if (selectionKey.isReadable()) {
             /*
              * READ事件，收到客户端发送数据，读取数据后继续注册监听客户端

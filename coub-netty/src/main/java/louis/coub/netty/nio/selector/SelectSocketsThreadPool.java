@@ -14,7 +14,7 @@ public class SelectSocketsThreadPool extends SelectSockets {
     private static final int MAX_THREADS = 5;
     private ThreadPool pool = new ThreadPool(MAX_THREADS);
 
-    private class ThreadPool{
+    private class ThreadPool {
         List idle = new LinkedList();
 
         ThreadPool(int poolSize) {
@@ -27,6 +27,7 @@ public class SelectSocketsThreadPool extends SelectSockets {
                 idle.add(thread);
             }
         }
+
         /**
          * Find an idle worker thread, if any. Could return null.
          */
@@ -39,6 +40,7 @@ public class SelectSocketsThreadPool extends SelectSockets {
             }
             return (worker);
         }
+
         void returnWorker(WorkerThread worker) {
             synchronized (idle) {
                 idle.add(worker);
@@ -47,7 +49,7 @@ public class SelectSocketsThreadPool extends SelectSockets {
 
     }
 
-    private class WorkerThread extends Thread{
+    private class WorkerThread extends Thread {
         private ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
         private ThreadPool pool;
 
@@ -56,6 +58,7 @@ public class SelectSocketsThreadPool extends SelectSockets {
         WorkerThread(ThreadPool pool) {
             this.pool = pool;
         }
+
         public synchronized void run() {
             System.out.println(this.getName() + " is ready");
             while (true) {
@@ -89,6 +92,7 @@ public class SelectSocketsThreadPool extends SelectSockets {
                 this.pool.returnWorker(this);
             }
         }
+
         /**
          * Called to initiate a unit of work by this worker thread on the
          * provided SelectionKey object. This method is synchronized, as is the
@@ -103,8 +107,9 @@ public class SelectSocketsThreadPool extends SelectSockets {
             key.interestOps(key.interestOps() & (~SelectionKey.OP_READ));
             this.notify(); // Awaken the thread
         }
+
         /**
-         148
+         * 148
          * The actual code which drains the channel associated with the given
          * key. This method assumes the key has been modified prior to
          * invocation to turn off selection interest in OP_READ. When this

@@ -12,6 +12,13 @@ public class MySelectorDemo {
 
     private static final Integer port = 10001;
 
+
+    /**
+     * 创建 nio 三部曲
+     *
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         Selector selector = Selector.open();
 
