@@ -53,13 +53,13 @@
 //            try {
 //                flag=sfOssClient.deleteObject(container, fromObjName);
 //
-//                // TODO: 2019/8/15 输出日志
+//
 //                return flag;
 //            } catch (SfOssException e) {
 //                e.printStackTrace();
 //            }
 //        }
-//        // TODO: 2019/8/15  输出日志
+//
 //        return flag;
 //
 //    }

@@ -34,7 +34,7 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
                 e.printStackTrace();
             }
     }
-//    todo 无法在今天常量中定义，在静态代码块中实例化
+//   无法在静态常量中定义，在静态代码块中实例化
     private static final File INDEX = new File(path);
 
     public HttpRequestHandler(String wsUrl) {

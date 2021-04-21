@@ -18,20 +18,20 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: Root
-    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    password: '!qaz@wsx'
+    url: jdbc:mysql://localhost:3306/louis-coub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     platform: MYSQL
   #    one:
 #      platform: MYSQL
-#      url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+#      url: jdbc:mysql://localhost:3306/louis-coub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
 #      username: root
-#      password: Root
+#      password: !qaz@wsx
 #      driver-class-name: com.mysql.cj.jdbc.Driver
 #    two:
 #       platform: MYSQL
-#       url: jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+#       url: jdbc:mysql://localhost:3306/louis-coub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
 #       username: root
-#       password: Root
+#       password: !qaz@wsx
 #       driver-class-name: com.mysql.cj.jdbc.Driver
   main:
     allow-bean-definition-overriding: true

@@ -42,7 +42,7 @@ public class Merge<T extends Comparable<T>> extends BaseMergeSort<T> implements 
     }
 
     /**
-     * todo 这种方式的排序还有问题，后期优化
+     * 这种方式的排序还有问题，后期优化
      * @param a
      * @param aux
      */

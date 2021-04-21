@@ -61,7 +61,7 @@ public class Solution1305_1 {
     }
 
     /**
-     *todo 目前还有问题，后期在优化
+     *目前还有问题，后期在优化
      * @param root1
      * @param root2
      * @return

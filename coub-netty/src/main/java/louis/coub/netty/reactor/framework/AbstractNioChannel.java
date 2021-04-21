@@ -139,7 +139,9 @@ public abstract class AbstractNioChannel {
   /**
    * Queues the data for writing. The data is not guaranteed to be written on underlying channel
    * when this method returns. It will be written when the channel is flushed.
-   * 
+   *
+   * 一个为数据写入的队列，当方法返回的时候，数据不一定会被写入，但是它会被写入队列当channel被刷新的时候。
+   *
    * <p>
    * This method is used by the {@link ChannelHandler} to send reply back to the client. <br>
    * Example:

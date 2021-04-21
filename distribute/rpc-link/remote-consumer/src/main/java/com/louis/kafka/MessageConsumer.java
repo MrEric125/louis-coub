@@ -51,7 +51,7 @@
 //        System.out.println("i have consumer message ");
 //    }
 //
-////    todo 之后看能不能将其改为事件监控型的
+//    之后看能不能将其改为事件监控型的
 //    public void defaultMessageConsumer() {
 //
 //        ConsumerRecords<Long,String> records = kafkaConsumer.poll(Duration.ofMillis(1000));
