@@ -26,7 +26,7 @@
         </dependency>
 
 ```
-如果我们想让Hystrix生效，需要将@EnableCircuitBreaker或者@EnableHystrix 加入到引导类上，是Hystrix能够生效
+如果我们想让Hystrix生效，需要将@EnableCircuitBreaker或者@EnableHystrix 加入到引导类上，使Hystrix能够生效
 
 ##### 断路器模式
   其实断路器模式超级简单，原理就是 当我们调用服务超过指定时间，那么就将该服务断开，避免异常会在其他服务之间蔓延，导致其他服务不可用  
