@@ -2,3 +2,5 @@
 gradle init --type pom
 
 .
+root 密码：
+!qaz@wsx

@@ -15,7 +15,7 @@ public class QuickSortNearOrder<T extends Comparable<T>> extends AbstractQuickSo
 
     /**
      *快排优化点，
-     * // TODO: 2020/1/6  有一个问题，在排序的最后两个元素不是有序的，需要优化
+     *  2020/1/6  有一个问题，在排序的最后两个元素不是有序的，需要优化
      * @param arr
      * @param lo
      * @param hi

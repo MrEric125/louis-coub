@@ -53,7 +53,7 @@ public class ChannelTest1 {
     }
     /**
      * 和copy1的功能点相同，可以具体比较不同点 {@link ChannelTest1#channelCopy1(ReadableByteChannel, WritableByteChannel)}
-     * 不需要舒服复制，但是可能会造成更多的系统调用
+     * 不需要重复复制，但是可能会造成更多的系统调用
      * @param src
      * @param desc
      * @throws IOException
