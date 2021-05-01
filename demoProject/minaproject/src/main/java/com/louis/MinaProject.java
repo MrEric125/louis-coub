@@ -1,11 +1,14 @@
 package com.louis;
 
+import com.louis.lessifelse.OrderService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -19,7 +22,7 @@ import org.springframework.stereotype.Component;
  */
 @MapperScan(basePackages= {"com.louis"},sqlSessionFactoryRef="sqlSessionFactory")
 @SpringBootApplication
-public class MinaProject implements ExitCodeGenerator {
+public class MinaProject implements ExitCodeGenerator, ApplicationListener<ContextRefreshedEvent> {
     public static void main(String[] args) {
         SpringApplication.run(MinaProject.class, args);
 
@@ -29,5 +32,12 @@ public class MinaProject implements ExitCodeGenerator {
     @Override
     public int getExitCode() {
         return 01111;
+    }
+
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        ApplicationContext applicationContext = contextRefreshedEvent.getApplicationContext();
+        
+
     }
 }
