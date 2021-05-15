@@ -1,6 +1,8 @@
 package com.louis;
 
 import com.louis.lessifelse.OrderService;
+import com.louis.minashop.i18n.LocaleMessageSourceService;
+import lombok.SneakyThrows;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
@@ -34,10 +36,17 @@ public class MinaProject implements ExitCodeGenerator, ApplicationListener<Conte
         return 01111;
     }
 
+    @SneakyThrows
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         ApplicationContext applicationContext = contextRefreshedEvent.getApplicationContext();
-        
+
+        MyBean sourceService = applicationContext.getBean(MyBean.class);
+
+        sourceService.run("China");
+
+        System.out.println("=======China");
+
 
     }
 }
