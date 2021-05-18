@@ -8,12 +8,15 @@ import com.louis.common.common.HttpResult;
 import com.source.spring.mvc.DemoParam;
 import com.source.spring.mvc.MyEvent;
 import com.source.spring.mvc.MyListener;
+import org.springframework.beans.BeansException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigurationExcludeFilter;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.TypeExcludeFilter;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
@@ -37,9 +40,11 @@ import java.util.concurrent.TimeUnit;
 @EnableAutoConfiguration
 //@ComponentScan(excludeFilters = { @ComponentScan.Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
 //        @ComponentScan.Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })
-public class SpringSourceApplication {
+public class SpringSourceApplication implements ApplicationContextAware {
 
     Cache<String, String> myCache = CacheBuilder.newBuilder().concurrencyLevel(4).expireAfterWrite(10, TimeUnit.DAYS).maximumSize(10000).build();
+
+    private ApplicationContext applicationContext;
 
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(SpringSourceApplication.class, args);
@@ -56,4 +61,8 @@ public class SpringSourceApplication {
         return HttpResult.ok(data);
     }
 
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
 }
