@@ -40,6 +40,7 @@ public class SpringSourceApplication implements CommandLineRunner, ApplicationCo
     public static void main(String[] args) {
         SpringApplication sa = new SpringApplication(SpringSourceApplication.class);
         sa.setBannerMode(Banner.Mode.OFF);
+
         sa.run();
 //        run.publishEvent(new MyEvent(new Object()));
 
