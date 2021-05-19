@@ -48,9 +48,4 @@ public class TestHttpClient {
         return HttpResult.ok(result);
 
     }
-
-    public static void main(String[] args) {
-        String var="{\"code\":200,\"message\":\"操作成功\",\"result\":\"Hello World\"}";
-        System.out.println(JSON.toJSONString(var, true));
-    }
 }

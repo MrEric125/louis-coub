@@ -568,18 +568,4 @@ public class HttpUtils {
 		return null;
 	}
 
-	public static void main(String[] args) {
-//		String url = "https://www.baidu.com";
-		String url = "https://open.sobot.com/open/platform/api.json";
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("action","user_get_chatdetail_bycid"));
-		params.add(new BasicNameValuePair("version","v1"));
-		params.add(new BasicNameValuePair("access_token","access_token"));
-		JSONObject data = new JSONObject();
-		data.put("uid","d444d0b93be84aca8420e3aafea1b0ab13910315785");
-		data.put("cid","6014913c5c1749dcaafa4912ac76fa71");
-		params.add(new BasicNameValuePair("data",data.toString()));
-		System.out.println(httpsPost(url,params));
-
-	}
 }

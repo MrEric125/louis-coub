@@ -45,9 +45,6 @@ public class IndexServiceImpl {
             return indicesClient.exists(new GetIndexRequest().indices(index), RequestOptions.DEFAULT);
 
     }
-
-
-
     public void deleteIndex(String index) {
         DeleteIndexRequest indexRequest = deleteIndexRequest(index);
         try {

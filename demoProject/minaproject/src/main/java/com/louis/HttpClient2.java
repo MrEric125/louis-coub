@@ -50,17 +50,6 @@ public class HttpClient2 {
 
     private static final int MAX_ROUTE = 30;
 
-    public static void main(String[] args) {
-
-    }
-
-
-
-
-
-
-
-
     /**
      * 根据host和port构建httpclient实例
      *
