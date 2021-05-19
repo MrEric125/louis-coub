@@ -1,10 +1,11 @@
 
 logging:
   level:
-    org.springframework: debug
+    org.springframework: info
 server:
   port:
 spring:
   main:
-   log-startup-info: false
+   log-startup-info: true
    lazy-initialization: true
+   banner-mode: console
