@@ -80,7 +80,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 ////        我们可以看到不论我们配置的是antMatches("/**").hasAnyRole("/admin"),
 ////        其实就是配置了一个ExpressionInterceptUrlRegistry，所依我们用一下的方式自动配置一个查询url的方式
         super.configure(http);
-        authorizeConfigManager.config(http.authorizeRequests());
+//        authorizeConfigManager.config(http.authorizeRequests());
 //
 //        http.authorizeRequests().anyRequest().authenticated();
 

@@ -30,6 +30,9 @@ import java.util.stream.Collectors;
 @Service
 public class UserService implements UserDetailsService {
 
+    @Autowired
+    private RoleService roleService;
+
     private Map<String, User> userMap = new ConcurrentHashMap<>();
 
     private Map<String, SysUser> sysUserMap = new ConcurrentHashMap<>();
@@ -55,8 +58,7 @@ public class UserService implements UserDetailsService {
         sysUserMap.put("admin", new SysUser(3L, "admin", "admin", passwordEncoder.encode("123456"), 1L, "group1", "1"));
     }
 
-    @Autowired
-    private RoleService roleService;
+
 
     public SysUser findByLoginName(String userName) {
         return sysUserMap.get(userName);
