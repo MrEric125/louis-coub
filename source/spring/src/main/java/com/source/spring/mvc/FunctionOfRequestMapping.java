@@ -77,8 +77,8 @@ public class FunctionOfRequestMapping {
 
     @RequestMapping("/requestBody")
     @ResponseBody
-    public HttpResult requestBody(@RequestBody DemoParam demoParam) {
-        return HttpResult.ok(demoParam);
+    public HttpResult requestBody() {
+        return HttpResult.ok();
     }
     @RequestMapping("/requestParam")
     @ResponseBody
