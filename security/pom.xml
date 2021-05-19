@@ -17,6 +17,7 @@
         <module>louis-oauth2-server</module>
         <module>louis-oauth2-resources</module>
         <module>louis-oauth2-core</module>
+        <module>louis-security-new</module>
     </modules>
 
     <dependencies>
