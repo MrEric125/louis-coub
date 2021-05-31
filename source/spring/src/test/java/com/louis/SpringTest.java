@@ -1,0 +1,27 @@
+package com.louis;
+
+import com.louis.annotation.AnnotationClass;
+import org.junit.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import static org.springframework.util.StringUtils.uncapitalize;
+
+public class SpringTest {
+
+
+    /**
+     * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory}
+     *
+     */
+    @Test
+    public void test() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+
+        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext();
+
+        context.scan("com.louis.annotation");
+        context.refresh();
+        context.getBean(uncapitalize(AnnotationClass.class.getSimpleName()));
+    }
+}

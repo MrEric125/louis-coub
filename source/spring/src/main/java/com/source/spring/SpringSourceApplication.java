@@ -10,6 +10,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.core.io.Resource;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,6 +50,16 @@ public class SpringSourceApplication implements CommandLineRunner, ApplicationCo
     public HttpResult add(String data,String data2) {
         return HttpResult.ok(data);
     }
+
+    @RequestMapping("/getBean")
+    public HttpResult getBean(String beanName) {
+        Assert.notNull(beanName,"beanName can not be null");
+        Object bean = applicationContext.getBean(beanName);
+        Resource resource = applicationContext.getResource("application.yml");
+        return HttpResult.ok(bean);
+    }
+
+
 
     //todo 在SpringApplication.run 运行完成之前执行，特殊逻辑,实现原理是什么样子的？？？
     @Override
