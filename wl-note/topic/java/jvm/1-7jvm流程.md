@@ -1,6 +1,8 @@
 ### 类加载过程
-类的生命周期：
+
 ![类加载器](../../../etc/jvm/jvm_class_loading.png)
+
+类的生命周期：
 
 装载--->  连接（验证，准备，解析） -----> 初始化---->(对象的生命周期(对象实例化，使用，垃圾回收，对象终结)) -----> 卸载
 
@@ -25,7 +27,7 @@
       - 虚拟机会保证子类的`<clinit>()`执行之前，一定会执行父类的`<clinit>()`
       - 虚拟机会保证一个类的`<clinit>()`在多线程环境中被正确的加锁、同步。          
 
-   >记住我们这里谈到的都是类的初始化方法，这个和`<init>()`还是有区别的， `<init>()`方法是对象的初始化方法，一般是在对象创建的时候调用，包括new()关键字，调用Class或者java.lang.reflect.Constructor方法的或者当前对象的clone()方法的时候
+   >记住我们这里谈到的都是类的初始化方法，这个和`<init>()`还是有区别的， `<init>()`方法是对象的初始化方法，一般是在对象创建的时候调用，包括new()关键字，调用Class或者java.lang.reflect.Constructor方法的或者当前对象的clone()方法的时候，当然执行<init>()之前是需要惊醒类初始化的，那么类初始化还没有进行，那么会马上进行类初始化
 
  6. 使用
  7. 卸载    
@@ -37,10 +39,13 @@
 4. 虚拟机启动的时候首先初始化主类(包含main())
 5. 使用动态语言(java.lang.invoke.MethodHandle)支持的时候,最后解析结果为`REF_getStatic`、`REF_putStatic`、`REF_invokeStatic`的时候，如果一个类还没有初始化的时候那么就会执行类的初始化
 
+
 ### 类加载器
+
+> 对于任意一个类，都需要由加载它的类加载器和这个类本身一同确立其在java虚拟机中的唯一性，
 #### 双亲委派模式
 **类加载器**   
-![类加载器](../../../etc/jvm/jvm-classLoader.png)
+![类加载器](../../../etc/jvm/jvm-classLoader.png)  
 如上图，类加载器有这样几种 BootStrapClassLoader, ExtensionClassLoader,ApplicationClassLoader, 用户自定义ClassLoader。
 
 `Bootstrap ClassLoader`： 引导类加载器，从%JAVA_RUNTIME_JRE%/lib目录加载，但并不是将该目录所有的类库都加载，它会加载一些符合文件名称的，例如：rt.jar,resources.jar等。在sun.misc.Launcher源码中也可以看得它的加载路径：
@@ -58,7 +63,7 @@ String s = System.getProperty("java.ext.dirs");
 ```
 D:\Program Files\Java\jdk1.7.0_67\jre\lib\ext
 ```
-`Appication ClassLoader`：应用程序类加载器，或者叫系统类加载器，实现类为sun.misc.Launcher$AppClassLoader。从sun.misc.Launcher的构造函数中可以看到，当AppClassLoader被初始化以后，它会被设置为当前线程的上下文类加载器以及保存到Launcher类的loader属性中，而通过ClassLoader.getSystemClassLoader()获取的也正是该类加载器(Launcher.loader)。应用类加载器从用户类路径中加载类库，可以在源码中看到：
+`Appication ClassLoader`(由AppClassLoader实现)：应用程序类加载器，或者叫系统类加载器，实现类为sun.misc.Launcher$AppClassLoader。从sun.misc.Launcher的构造函数中可以看到，当AppClassLoader被初始化以后，它会被设置为当前线程的上下文类加载器以及保存到Launcher类的loader属性中，而通过ClassLoader.getSystemClassLoader()获取的也正是该类加载器(Launcher.loader)。应用类加载器从用户类路径中加载类库，可以在源码中看到：
 ```java
 final String s = System.getProperty("java.class.path");
 ```
@@ -123,7 +128,7 @@ java类加载器在加载类时，有如下这么几个过程
 2. 修改类加载方式
 
     类的加载模型并非强制， 除Bootstrap 外， 其他的加载并
-    非定要引入， 或者根据实际情况在某个时间点进行按需进行动态加载。
+    非一定要引入， 或者根据实际情况在某个时间点按需进行动态加载。
 3. 拓展加载源
 
     比如从数据库、网络，甚至是电视机机顶盒进行加载。
@@ -156,10 +161,10 @@ java类加载器在加载类时，有如下这么几个过程
 3、**Tomcat 如果使用默认的类加载机制行不行？**
 
 答案是不行的。为什么？我们看，
-1. 上面第一个问题如果使用默认的类加载器机制，那么是无法加载两个相同类库的不同版本的，默认的累加器是不管你是什么  版本的，只在乎你的全限定类名，并且只有一份。
+1. 上面第一个问题如果使用默认的类加载器机制，那么是无法加载两个相同类库的不同版本的，默认的累加器是不管你是什么版本的，只在乎你的全限定类名，并且只有一份。
 2. 第二个问题，默认的类加载器是能够实现的，因为他的职责就是保证唯一性。
 3. 第三个问题和第一个问题一样。
-4. 我们再看第四个问题，我们想我们要怎么实现jsp文件的热修改，jsp文件其实也就是class文件，那么如果修改了，但类名还是一样，类加载器会直接取方法区中已经存在的，修改后的jsp是不会重新加载的。那么怎么办呢？我们可以直接卸载掉这jsp文件的类加载器，所以你应该想到了，每个jsp文件对应一个唯 一的类加载器，当一个jsp文件修改了，就直接卸载这个jsp类加载器。重新创建类加载器，重新加载jsp文件。
+4. 我们再看第四个问题，我们想我们要怎么实现jsp文件的热修改，jsp文件其实也就是class文件，那么如果修改了，但类名还是一样，类加载器会直接取`方法区`中已经存在的，修改后的jsp是不会重新加载的。那么怎么办呢？我们可以直接卸载掉这jsp文件的类加载器，所以你应该想到了，每个jsp文件对应一个唯 一的类加载器，当一个jsp文件修改了，就直接卸载这个jsp类加载器。重新创建类加载器，重新加载jsp文件。
 
 4、 Tomcat 如何实现自己独特的类加载机制？
 
@@ -229,7 +234,6 @@ tomcat提供了delegate属性用于控制是否启用java委派模式，默认fa
 　　因此肯定是 java文件或者JSP文件编译出的class优先加载。
 
 　　通过这样，我们就可以简单的把java文件放置在src文件夹中，通过对该java文件的修改以及调试，便于学习拥有源码java文件、却没有打包成xxx-source的jar包。
-
 
 　　另外呢，开发者也会因为粗心而犯下面的错误。
 
