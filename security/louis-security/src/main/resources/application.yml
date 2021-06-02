@@ -20,6 +20,10 @@ spring:
     template-loader-path: classpath:/templates/
   resources:
     static-locations: classpath:/templates/,classpath:/static/
+  security:
+    oauth2:
+      client:
+        provider:
 #  mvc:
 #    view:
 #      prefix: /WEB-INF/views/
