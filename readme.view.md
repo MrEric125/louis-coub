@@ -290,7 +290,7 @@ java基础
 
    - BeanFactory 和 ApplicationContext 有什么区别
    
-     一个事低配版的，一个是高配版的, ApplicationContext可以支持一些国际化，基于事件发布等特性
+     一个是低配版的，一个是高配版的, ApplicationContext可以支持一些国际化，基于事件发布等特性
    
    - Spring IOC 如何实现
    
@@ -302,11 +302,13 @@ java基础
      ![spring_context_初始化流程](wl-note/etc/spring/spring_context_初始化流程.png)
      
      详细各个点所做的事情如下图
-     
-     <img src="note/etc/spring/spring_ApplicationContext实例化过程.png" alt="applicationContext" style="zoom:200%;" />
+
+     ![spring_context_初始化流程](wl-note/etc/spring/spring_ApplicationContext实例化过程.png)
+
+[comment]: <> (     <img src="wl-note/etc/spring/spring_ApplicationContext实例化过程.png" alt="applicationContext" style="zoom:200%;" />)
    
 
-​				
+				
 
 # 
 
@@ -545,6 +547,11 @@ java基础
         持久性是指事务的操作，一旦提交，对于数据库中数据的改变是永久性的，即使数据库发生故障也不能丢失已提交事务所完成的改变。
    
      **隔离级别**
+    
+    1. 未提交读（READ UNCOMMITTED） 我觉得应该翻译为读
+    2. 提交读
+    3. 可重复读
+    4. 串行化
    
      1. **脏读：**数据库的一个事务A正在使用一个数据但还没有提交，另外一个事务B也访问到了这个数据，还使用了这个数据，这就会导致事务B使用了事务A没有提交之前的数据。
    
