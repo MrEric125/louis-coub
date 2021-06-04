@@ -131,4 +131,9 @@ public class Jsontest {
         System.out.println((int) english);
 
     }
+
+    @Test
+    public void test9(){
+        System.out.println(Jsontest.class.getClassLoader().toString());
+    }
 }
