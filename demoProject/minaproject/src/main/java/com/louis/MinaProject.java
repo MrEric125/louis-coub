@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.concurrent.Future;
 import java.util.concurrent.locks.LockSupport;
+
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.adapter.DefaultServerWebExchange;
 
@@ -52,9 +54,13 @@ public class MinaProject implements ExitCodeGenerator, ApplicationListener<Conte
     @LocalServerPort
     private String port;
 
+    @Autowired
+    RestTemplate restTemplate;
+
 
     @Override
     public int getExitCode() {
+
         return 01111;
     }
 
