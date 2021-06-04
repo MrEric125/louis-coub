@@ -1065,7 +1065,7 @@ java基础
 
 > 这里有一副[脑图](wl-note/etc/mind/kafka.xmind) ,配合学习
 
-​	 kafka相关面试题[kafka专题](./note/topic/kafka/0.题目总览.md)
+​	 kafka相关面试题[kafka专题](./wl-note/topic/kafka/0.题目总览.md)
 
 ##### netty相关面试题
 
@@ -1083,17 +1083,17 @@ java基础
    
      1. 接收端正常收到两个数据包
    
-        ![tcp_combine_package](/note/etc/netty/tcp_combine_package_0.png)
+        ![tcp_combine_package](./wl-note/etc/netty/tcp_combine_package_0.png)
    
      2. 接收端只收到一个数据包
    
-        ![tcp_combine_package](/note/etc/netty/tcp_combine_package_1.png)
+        ![tcp_combine_package](./wl-note/etc/netty/tcp_combine_package_1.png)
    
      3. 接收端收到了两个数据包，但是这两个数据包要么是不完整的，要么就是多出来一块
    
-        ![tcp_combine_package](/note/etc/netty/tcp_combine_package_2.png)
+        ![tcp_combine_package](./wl-note/etc/netty/tcp_combine_package_2.png)
    
-        ![tcp_combine_package](/note/etc/netty/tcp_combine_package_3.png)
+        ![tcp_combine_package](./wl-note/etc/netty/tcp_combine_package_3.png)
    
      **发生原因：**
    
