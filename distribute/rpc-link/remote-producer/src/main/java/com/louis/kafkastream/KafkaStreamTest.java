@@ -20,6 +20,7 @@ import java.util.Properties;
  * Date: 2019/11/15
  * Description:
  */
+@Deprecated
 public class KafkaStreamTest {
     public static void main(String[] args) {
         Properties props = new Properties();

@@ -1,5 +1,6 @@
 package com.louis.kafka;
 
+import com.louis.kafka.common.Message;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
@@ -7,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -30,7 +29,7 @@ public class MessageProducer<Key extends Serializable, V extends Serializable> {
      *
      * @param message 消息主题
      */
-    public void send(Message<Key, V> message) {
+    public void send(com.louis.kafka.common.Message<Key, V> message) {
         ProducerRecord<Key, V> record = new ProducerRecord<>(message.getTopic(), message.getKey(), message.getValue());
         kafkaProducer.send(record);
     }
@@ -40,7 +39,7 @@ public class MessageProducer<Key extends Serializable, V extends Serializable> {
      * @param message
      * @param callback
      */
-    public void send(Message<Key,V> message,ProducerCallback callback){
+    public void send(com.louis.kafka.common.Message<Key,V> message, ProducerCallback callback){
         ProducerRecord<Key, V> record = new ProducerRecord<>(message.getTopic(), message.getKey(), message.getValue());
         kafkaProducer.send(record, callback);
 

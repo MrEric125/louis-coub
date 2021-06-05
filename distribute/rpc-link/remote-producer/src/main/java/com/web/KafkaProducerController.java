@@ -1,8 +1,7 @@
 package com.web;
 
 import com.louis.common.common.HttpResult;
-import com.louis.common.common.HttpResult;
-import com.louis.kafka.Message;
+import com.louis.kafka.common.Message;
 import com.louis.kafka.MessageProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

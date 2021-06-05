@@ -1,5 +1,6 @@
-package com.louis.kafka;
+package com.louis.kafka.producer;
 
+import com.louis.kafka.common.Message;
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.springframework.stereotype.Component;

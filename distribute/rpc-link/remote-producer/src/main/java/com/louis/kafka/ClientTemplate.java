@@ -1,6 +1,9 @@
 package com.louis.kafka;
 
 
+import com.louis.kafka.common.AuthInfo;
+import com.louis.kafka.common.ClusterInfo;
+
 import javax.annotation.PostConstruct;
 import java.util.Properties;
 

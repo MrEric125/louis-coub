@@ -1,7 +1,7 @@
 package com.web;
 
-import com.louis.kafka.LouisKafkaProducerImpl;
-import com.louis.kafka.Message;
+import com.louis.kafka.producer.LouisKafkaProducerImpl;
+import com.louis.kafka.common.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;

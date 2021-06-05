@@ -1,4 +1,6 @@
-package com.louis.kafka;
+package com.louis.kafka.common;
+
+import com.louis.kafka.MonitorUtils;
 
 import java.util.HashSet;
 import java.util.Set;

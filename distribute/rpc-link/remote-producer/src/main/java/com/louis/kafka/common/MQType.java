@@ -1,4 +1,4 @@
-package com.louis.kafka;
+package com.louis.kafka.common;
 
 public enum MQType {
     ROCKETMQ, KAFKA;

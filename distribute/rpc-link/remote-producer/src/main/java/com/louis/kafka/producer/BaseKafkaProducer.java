@@ -1,6 +1,11 @@
-package com.louis.kafka;
+package com.louis.kafka.producer;
 
 import com.google.common.base.Preconditions;
+import com.louis.kafka.*;
+import com.louis.kafka.common.AuthInfo;
+import com.louis.kafka.common.ClusterInfo;
+import com.louis.kafka.common.Constants;
+import com.louis.kafka.common.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.kafka.clients.producer.Callback;
@@ -134,13 +139,13 @@ public class BaseKafkaProducer<Key extends Serializable, Value extends Serializa
 
     }
 
-    public String send(Message<Key, Value> message) {
+    public String send(com.louis.kafka.common.Message<Key, Value> message) {
         ProducerRecord<Key, Value> producerRecord = parseMessage(message);
         this.kafkaProducer.send(producerRecord);
         return "";
     }
 
-    private String sendSync(Message<Key, Value> message, KafkaProducer<Key, Value> producer, Callback callback) {
+    private String sendSync(com.louis.kafka.common.Message<Key, Value> message, KafkaProducer<Key, Value> producer, Callback callback) {
 
         ProducerRecord<Key, Value> producerRecord = parseMessage(message);
 
