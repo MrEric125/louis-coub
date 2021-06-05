@@ -27,7 +27,7 @@ public class KafkaController {
 
     @RequestMapping("send")
     public String sentKafka(@RequestParam String parm) {
-        Message message = new Message();
+        Message<String,String> message = new Message<>();
         message.setTopic(topic);
         message.setValue(parm);
         message.setSendTime(new Date());

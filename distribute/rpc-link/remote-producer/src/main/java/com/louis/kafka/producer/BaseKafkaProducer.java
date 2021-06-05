@@ -49,6 +49,7 @@ public class BaseKafkaProducer<Key extends Serializable, Value extends Serializa
         Preconditions.checkNotNull(topics, "topic");
         initContext();
         initClusterInfo();
+        setUpProperties();
         initProducer();
     }
 
@@ -115,12 +116,12 @@ public class BaseKafkaProducer<Key extends Serializable, Value extends Serializa
     private void checkSerializer() {
         Object serializer = properties.get(Constants.KafkaProducerConstant.KEY_SERIALIZER_NAME);
         if (serializer == null || !((String) serializer).startsWith("com.louis.kafka")) {
-            properties.put(Constants.KafkaProducerConstant.KEY_SERIALIZER_NAME, Constants.KafkaProducerConstant.DEF_KEY_NEW_SERIALIZER_VAL);
+            properties.put(Constants.KafkaProducerConstant.KEY_SERIALIZER_NAME, Constants.KafkaProducerConstant.DEF_KEY_SERIALIZER_VAL);
         }
 
         serializer = properties.get(Constants.KafkaProducerConstant.VALUE_SERIALIZER_NAME);
         if (serializer == null || !((String) serializer).startsWith("com.louis.kafka")) {
-            properties.put(Constants.KafkaProducerConstant.VALUE_SERIALIZER_NAME, Constants.KafkaProducerConstant.DEF_VALUE_NEW_SERIALIZER_VAL);
+            properties.put(Constants.KafkaProducerConstant.VALUE_SERIALIZER_NAME, Constants.KafkaProducerConstant.DEF_VALUE_SERIALIZER_VAL);
         }
     }
     protected void printStartInfo() {

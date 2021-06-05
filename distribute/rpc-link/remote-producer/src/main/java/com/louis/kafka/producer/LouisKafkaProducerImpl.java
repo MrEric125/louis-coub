@@ -14,10 +14,12 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date create in 2019/9/21
  * description:
  */
-@Component
+
 public class LouisKafkaProducerImpl<Key extends Serializable,Value extends Serializable> extends BaseKafkaProducer<Key,Value> implements IKafkaProducer<Key,Value> {
 
     private volatile ConcurrentHashMap<String, KafkaProducer> topicProducerMap = new ConcurrentHashMap<>();
+
+
 
     @Override
     public String send(String topic, Value message) {

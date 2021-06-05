@@ -1,3 +1,4 @@
+/*
 package com.web;
 
 import com.louis.common.common.HttpResult;
@@ -13,11 +14,13 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 
+*/
 /**
  * @author louis
  * @Date 2020/1/16
  * description:
- */
+ *//*
+
 @RestController
 @RequestMapping("/kafka")
 public class KafkaProducerController {
@@ -45,3 +48,4 @@ public class KafkaProducerController {
     }
 
 }
+*/
