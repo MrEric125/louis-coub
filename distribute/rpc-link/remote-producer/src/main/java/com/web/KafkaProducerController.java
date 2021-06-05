@@ -26,7 +26,7 @@ public class KafkaProducerController {
 
 
     @Autowired
-    private MessageProducer<Long, String> kafkaProducer;
+    private MessageProducer<String, String> kafkaProducer;
 
     @RequestMapping("send/{topic}")
     public HttpResult sentKafka(@PathVariable(required = false) String topic, @RequestParam String param) {
@@ -34,11 +34,11 @@ public class KafkaProducerController {
         Random random = new Random();
         String[] splitTopic = topic.split(",");
         Arrays.stream(splitTopic).forEach(t->{
-            Message<Long, String> message = new Message<>();
-            Long id = random.nextLong();
-            message.setId(id);
+            Message<String, String> message = new Message<>();
+            String id = "121212";
+            message.setKey(id);
             message.setTopic(topic);
-            message.setMsg(param);
+            message.setValue(param);
             message.setSendTime(new Date());
             kafkaProducer.send(message);
         });

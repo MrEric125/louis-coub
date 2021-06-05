@@ -8,6 +8,7 @@ import org.apache.kafka.streams.processor.ProcessorContext;
  * @date created on 2020/1/30
  * description:
  */
+@Deprecated
 public class LogProcessor implements Processor<byte[], byte[]> {
     private static ProcessorContext context;
 

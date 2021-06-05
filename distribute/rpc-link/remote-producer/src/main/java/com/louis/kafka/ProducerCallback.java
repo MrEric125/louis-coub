@@ -8,6 +8,7 @@ import org.apache.kafka.clients.producer.RecordMetadata;
  * @date create in 2019/11/14
  * description:
  */
+@Deprecated
 public class ProducerCallback implements Callback {
     @Override
     public void onCompletion(RecordMetadata metadata, Exception exception) {

@@ -22,6 +22,7 @@ import java.util.Properties;
  * 数据清洗案例：对我们找到的数据进行二次处理
  *
  */
+@Deprecated
 public class StreamFromKafka {
 
     public static void main(String[] args) {
@@ -39,13 +40,7 @@ public class StreamFromKafka {
 //        输入源的主题
         topology.addSource("source", "first")
 //                处理数据的阶段名称， source表示的是输入源是谁
-                .addProcessor("processor", new ProcessorSupplier<byte[], byte[]>() {
-                    @Override
-                    public Processor<byte[], byte[]> get() {
-
-                        return new LogProcessor();
-                    }
-                }, "source")
+                .addProcessor("processor", (ProcessorSupplier<byte[], byte[]>) LogProcessor::new, "source")
 //                输出到下一级是哪个topic
                 .addSink("sink", "second", "processor");
 

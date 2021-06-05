@@ -18,9 +18,9 @@ import java.util.Date;
 @NoArgsConstructor
 public class Message<Key extends Serializable, V extends Serializable> {
 
-    private Key id;
+    private Key key;
 
-    private V msg;
+    private V value;
 
     private String topic;
 
