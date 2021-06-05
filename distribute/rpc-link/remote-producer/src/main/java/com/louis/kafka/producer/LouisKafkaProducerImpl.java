@@ -28,8 +28,7 @@ public class LouisKafkaProducerImpl<Key extends Serializable,Value extends Seria
         msg.setKey(null);
         msg.setValue(message);
 
-        super.send(msg);
-        return null;
+        return super.send(msg);
     }
 
     @Override
@@ -39,14 +38,12 @@ public class LouisKafkaProducerImpl<Key extends Serializable,Value extends Seria
         msg.setKey(null);
         msg.setValue(message);
 
-        super.send(msg);
-        return null;
+        return super.send(msg);
     }
 
     @Override
     public String send(Message<Key, Value> message) {
-        super.send(message);
-        return null;
+        return super.send(message);
     }
 
     @Override
@@ -59,7 +56,6 @@ public class LouisKafkaProducerImpl<Key extends Serializable,Value extends Seria
 
     @Override
     public String send(Message<Key, Value> message, Callback callback) {
-        super.send(message);
-        return null;
+        return super.send(message);
     }
 }

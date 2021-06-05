@@ -1,5 +1,6 @@
 package com.web;
 
+import com.louis.common.common.HttpResult;
 import com.louis.kafka.producer.LouisKafkaProducerImpl;
 import com.louis.kafka.common.Message;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +27,12 @@ public class KafkaController {
     private LouisKafkaProducerImpl kafkaSender;
 
     @RequestMapping("send")
-    public String sentKafka(@RequestParam String parm) {
+    public HttpResult sentKafka(@RequestParam String parm) {
         Message<String,String> message = new Message<>();
         message.setTopic(topic);
         message.setValue(parm);
         message.setSendTime(new Date());
-//        kafkaSender.sendMessage(message);
-        return "success";
+        String send = kafkaSender.send(message);
+        return HttpResult.ok(send);
     }
 }

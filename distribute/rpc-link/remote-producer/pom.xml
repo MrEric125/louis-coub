@@ -26,6 +26,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.louis</groupId>
+            <artifactId>mq-common</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
         </dependency>

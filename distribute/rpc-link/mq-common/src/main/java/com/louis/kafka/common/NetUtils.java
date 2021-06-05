@@ -1,4 +1,4 @@
-package com.louis.kafka;
+package com.louis.kafka.common;
 
 import java.io.IOException;
 import java.net.InetAddress;

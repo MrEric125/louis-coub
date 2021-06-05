@@ -1,11 +1,7 @@
 package com.louis.kafka.producer;
 
 import com.google.common.base.Preconditions;
-import com.louis.kafka.*;
-import com.louis.kafka.common.AuthInfo;
-import com.louis.kafka.common.ClusterInfo;
-import com.louis.kafka.common.Constants;
-import com.louis.kafka.common.Message;
+import com.louis.kafka.common.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.kafka.clients.producer.Callback;

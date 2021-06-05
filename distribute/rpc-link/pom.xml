@@ -32,6 +32,7 @@
         <module>dubbo-source-producer</module>
         <module>dubbo-source-api</module>
         <module>dubbo-source-consumer</module>
+        <module>mq-common</module>
     </modules>
     <dependencies>
 

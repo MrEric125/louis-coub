@@ -1,4 +1,4 @@
-package com.louis.kafka;
+package com.louis.kafka.common;
 
 import com.sun.jmx.mbeanserver.JmxMBeanServer;
 import lombok.extern.slf4j.Slf4j;
