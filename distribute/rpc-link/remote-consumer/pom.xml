@@ -38,6 +38,11 @@
             <artifactId>dubbo</artifactId>
 
         </dependency>
+            <dependency>
+                <groupId>com.louis</groupId>
+                <artifactId>mq-common</artifactId>
+                <version>${revision}</version>
+            </dependency>
 
         <!-- Zookeeper dependencies -->
         <dependency>

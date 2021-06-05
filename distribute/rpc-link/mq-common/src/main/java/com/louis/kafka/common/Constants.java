@@ -41,6 +41,18 @@ public class Constants {
     public static final String HEADER_ZONE_NAME = "zone";
     public static final String HEADER_GROUP_NAME = "group";
 
+    public static final String KAFKA_08_PRODUCER_CONF_CLASS = "org.apache.kafka.clients.producer.ProducerConfig";
+    public static final String KAFKA_08_CONSUMER_CONF_CLASS = "org.apache.kafka.clients.consumer.ConsumerConfig";
+
+    public static final String KAFKA_20_PRODUCER_CONF_CLASS = "com.louis.kafka.clients.producer.ProducerConfig";
+    public static final String KAFKA_20_CONSUMER_CONF_CLASS = "com.louis.kafka.clients.consumer.ConsumerConfig";
+
+    public static final String KAFKA_08_TAIL = "largest";
+    public static final String KAFKA_08_HEAD = "smallest";
+    public static final String KAFKA_20_TAIL = "latest";
+    public static final String KAFKA_20_HEAD = "earliest";
+    public static final String KAFKA_20_NONE = "none";
+
     // mark consume client id
     public static final String DEF_CLIENT_ID_VAL = String.format("%s_%s", MonitorUtils.getLocalIP(), MonitorUtils.getPid());
     public static final String DEF_INST_ID_VAL = MonitorUtils.getJvmInstanceCode();

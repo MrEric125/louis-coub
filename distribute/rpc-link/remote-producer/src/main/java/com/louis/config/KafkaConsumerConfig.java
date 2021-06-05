@@ -17,7 +17,7 @@ import java.util.Properties;
  * Date: 2019/9/23
  * Description:
  */
-
+@Deprecated
 @Configuration
 public class KafkaConsumerConfig {
 
