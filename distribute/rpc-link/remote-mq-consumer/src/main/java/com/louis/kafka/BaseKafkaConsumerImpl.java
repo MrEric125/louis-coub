@@ -4,9 +4,11 @@ import com.louis.kafka.common.ClientTemplate;
 import com.louis.kafka.common.Constants;
 import com.louis.kafka.common.MessageExt;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -24,12 +26,6 @@ public class BaseKafkaConsumerImpl extends ClientTemplate {
 
     private String topic;
 
-    /**
-     * consumer restart always set:
-     *  auto.offset.reset=smallest (kafka 0.8)
-     *  auto.offset.reset=earliest (kafka 2.0)
-     *  setConsumeFromWhere(CONSUME_FROM_FIRST_OFFSET) (RocketMQ)
-     */
     protected static volatile boolean restarting = false;
 
     protected volatile boolean shutdownWithCommitOffset = false;
@@ -70,6 +66,10 @@ public class BaseKafkaConsumerImpl extends ClientTemplate {
         this.topic = topic;
     }
 
+    public void setMessageHandler(KafkaMessageHandler kafkaMessageHandler) {
+        this.messageHandler = kafkaMessageHandler;
+    }
+
 
     @Override
     public void doInit() throws Exception {
@@ -88,23 +88,11 @@ public class BaseKafkaConsumerImpl extends ClientTemplate {
             properties.put(Constants.KafkaConsumerConstant.CLIENT_ID_NAME, clientId);
             final KafkaConsumer<byte[], byte[]> consumer = new KafkaConsumer<>(properties);
             consumer.subscribe(Arrays.asList(getTopic()));
-//            consumerMap.put(flag, consumer);
-
-            final FlyingStat stat = new FlyingStat(clientId);
-//            final AckService ackService = new AckService(getTopic(), dmgConfigs, flag) {
-//                @Override
-//                public void ack() {
-//                    acquire();
-//                    realCommitOffset(stat, consumer);
-//                }
-//            };
-//            flyStatsMap.put(flag, stat);
 
             consumePool.execute(() -> {
                 try {
                     while (consuming) {
                         try {
-                            // poll(Duration) need java 8
                             ConsumerRecords<byte[], byte[]> records = consumer.poll(Duration.ofSeconds(6));
 
                             boolean noMessage = records.isEmpty();
@@ -112,27 +100,19 @@ public class BaseKafkaConsumerImpl extends ClientTemplate {
                                 MessageExt<String,String> msgVo = null;
                                 try {
                                     msgVo = kafkaMsgParse.receiveParse(record, ConsumerRecord.class);
-//                                    messageFlying(flag, msgVo);
                                     messageHandler.onMessage(msgVo);
                                 } catch (Throwable t) {
                                     log.error(String.format("consume error! msgVo: %s"
                                             , msgVo == null ? "" : msgVo.toString()), t);
                                 }
-//                                finally {
-//                                    messageLanded(flag);
-//                                }
-
                                 if (dmgAutoCommitEnabled) {
                                     checkCommitOffsets(flag);
                                 }
                             }
 
-                            // commit check when no new message
                             if (dmgAutoCommitEnabled && noMessage) {
                                 checkCommitOffsets(flag);
                             }
-
-//                            blockConsumeIfNeed(consumer);
                         } catch (Throwable t) {
                             log.error("new version kafka consumer trifles process failed, please concern!", t);
                         }
@@ -145,22 +125,10 @@ public class BaseKafkaConsumerImpl extends ClientTemplate {
             });
         }
 
-//        flyStatCheck();
     }
 
     private void checkCommitOffsets(int flag) {
-//        FlyingStat stat = flyStatsMap.get(flag);
-//        long counter = stat.getAndAddCommitCounter();
-//        long lastCommit = stat.getLastCommitTime();
-//
-//        if (stat.inflight()) {
-//            return;
-//        }
-//
-//        if (counter > Constants.KafkaConsumerConstant.AUTO_COMMIT_OFFSET_SIZE_NEW
-//                || System.currentTimeMillis() - lastCommit > Constants.KafkaConsumerConstant.AUTO_COMMIT_OFFSET_TIME_MS * 1000) {
-//            this.realCommitOffset(stat, consumerMap.get(flag));
-//        }
+
     }
 
     private void createConsumer() {
@@ -168,16 +136,12 @@ public class BaseKafkaConsumerImpl extends ClientTemplate {
             properties = new Properties();
         }
         printStartInfo();
-//        PropsUtil.printProps(properties);
 
         properties.setProperty(Constants.KafkaConsumerConstant.GROUP_ID_NAME, getGroup());
         properties.setProperty(Constants.KafkaConsumerConstant.BOOTSTRAP_SERVERS_NAME, clusterInfo.getBrokers());
-        // force config
         properties.setProperty(Constants.KafkaConsumerConstant.ENABLE_AUTO_COMMIT_NAME, Constants.KafkaConsumerConstant.ENABLE_AUTO_COMMIT_VAL);
         properties.setProperty(Constants.KafkaConsumerConstant.ALLOW_AUTO_CREATE_TOPICS_NAME, Constants.KafkaConsumerConstant.ALLOW_AUTO_CREATE_TOPICS_VAL);
 
-        fillEmptyPropWithDefVal(properties, Constants.KafkaConsumerConstant.NEW_KEY_DESERIALIZER_NAME, Constants.KafkaConsumerConstant.DEF_KEY_NEW_DESERIALIZER_VAL);
-        fillEmptyPropWithDefVal(properties, Constants.KafkaConsumerConstant.NEW_VALUE_DESERIALIZER_NAME, Constants.KafkaConsumerConstant.DEF_VALUE_NEW_DESERIALIZER_VAL);
         fillEmptyPropWithDefVal(properties, Constants.KafkaConsumerConstant.MAX_PARTITION_FETCH_BYTES_NAME, Constants.KafkaConsumerConstant.MAX_PARTITION_FETCH_BYTES_VAL);
         fillEmptyPropWithDefVal(properties, Constants.KafkaConsumerConstant.REBALANCE_BACKOFF_MS_NAME, Constants.KafkaConsumerConstant.DEF_REBALANCE_BACKOFF_MS_VAL);
         fillEmptyPropWithDefVal(properties, Constants.KafkaConsumerConstant.ISOLATION_LEVEL_NAME, Constants.KafkaConsumerConstant.ISOLATION_LEVEL_VAL);
@@ -200,7 +164,9 @@ public class BaseKafkaConsumerImpl extends ClientTemplate {
             consumeStuckThreshold = Long.parseLong(properties.getProperty(Constants.KafkaConsumerConstant.CONSUME_STUCK_THRESHOLD_MS_NAME));
         }
 
-        // 2. other stuff
+        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+
         int consumerNums = getConsumerNums();
         consumePool = Executors.newFixedThreadPool(consumerNums, new ThreadFactory() {
             private AtomicInteger idx = new AtomicInteger(0);
@@ -251,9 +217,6 @@ public class BaseKafkaConsumerImpl extends ClientTemplate {
             this.clientId = clientId;
         }
 
-        /**
-         * BUG FIX: reset() and cost() invoke has concurrency problem.
-         */
         public void reset() {
             lock.lock();
             try {

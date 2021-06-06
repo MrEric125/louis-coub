@@ -2,8 +2,10 @@ package com.louis.kafka;
 
 import com.louis.kafka.common.MessageExt;
 
-public interface KafkaMessageHandler {
+import java.io.Serializable;
 
-    public void onMessage(MessageExt messageExt);
+public interface KafkaMessageHandler<Key extends Serializable,Value extends Serializable> {
+
+     void onMessage(MessageExt<Key,Value> messageExt) throws Exception;
 
 }
