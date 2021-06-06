@@ -1,6 +1,7 @@
 package com.louis.kafka;
 
 import com.louis.kafka.common.ClientTemplate;
+import com.louis.kafka.common.ClusterInfo;
 import com.louis.kafka.common.Constants;
 import com.louis.kafka.common.MessageExt;
 import lombok.extern.slf4j.Slf4j;
@@ -73,9 +74,16 @@ public class BaseKafkaConsumerImpl extends ClientTemplate {
 
     @Override
     public void doInit() throws Exception {
+        initCluster();
         createConsumer();
-
     }
+
+    private void initCluster() {
+        ClusterInfo clusterInfo = new ClusterInfo();
+        clusterInfo.setBrokers(authInfo.getServerAddr());
+        this.clusterInfo = clusterInfo;
+    }
+
     public void start() {
         int consumerNums = getConsumerNums();
         destroyLatch = new CountDownLatch(consumerNums);

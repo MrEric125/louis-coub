@@ -2,6 +2,7 @@ package com.louis;
 
 
 import com.louis.kafka.BaseKafkaConsumerImpl;
+import com.louis.kafka.LouisKafkaConsumerImpl;
 import com.louis.kafka.client.LouisMessageHandler;
 import com.louis.kafka.common.AuthInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,23 +19,27 @@ public class KafkaConfig {
     @Value("${kafka.topic}")
     public String topic;
 
-    @Value("${kafka.broker}")
-    public String broker;
+    @Value("${kafka.bootstrap.servers}")
+    public String bootstrapServer;
+
+
 
     @Autowired
-    private LouisMessageHandler louisMessageHander;
+    private LouisMessageHandler louisMessageHandler;
 
 
     @Bean
-    public BaseKafkaConsumerImpl kafkaConsumer() {
-        BaseKafkaConsumerImpl kafkaConsumer = new BaseKafkaConsumerImpl();
+    public LouisKafkaConsumerImpl kafkaConsumer() throws Exception {
+        LouisKafkaConsumerImpl kafkaConsumer = new LouisKafkaConsumerImpl();
         kafkaConsumer.setGroup(groupId);
         kafkaConsumer.setTopic(topic);
         AuthInfo authInfo = new AuthInfo();
-        authInfo.setServerAddr(broker);
+        authInfo.setServerAddr(bootstrapServer);
 
         kafkaConsumer.setAuthInfo(authInfo);
-        kafkaConsumer.setMessageHandler(louisMessageHander);
+        kafkaConsumer.setMessageHandler(louisMessageHandler);
+        kafkaConsumer.doInit();
+
         kafkaConsumer.start();
 
         return kafkaConsumer;
