@@ -1,6 +1,7 @@
 package com.web;
 
 import com.louis.common.common.HttpResult;
+import com.louis.kafka.MessageProducer;
 import com.louis.kafka.producer.LouisKafkaProducerImpl;
 import com.louis.kafka.common.Message;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,8 @@ public class KafkaController {
 
 
     @Autowired
-    private LouisKafkaProducerImpl kafkaSender;
+    private LouisKafkaProducerImpl<String,String> kafkaSender;
+
 
     @RequestMapping("send")
     public HttpResult sentKafka(@RequestParam String param) {

@@ -4,14 +4,16 @@ import com.google.common.base.Preconditions;
 import com.louis.kafka.common.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.kafka.clients.producer.Callback;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.*;
+import org.apache.kafka.common.serialization.LongSerializer;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.assertj.core.util.Sets;
 
 import java.io.Serializable;
 import java.util.Properties;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
 /**
@@ -110,15 +112,11 @@ public class BaseKafkaProducer<Key extends Serializable, Value extends Serializa
     }
 
     private void checkSerializer() {
-        Object serializer = properties.get(Constants.KafkaProducerConstant.KEY_SERIALIZER_NAME);
-        if (serializer == null || !((String) serializer).startsWith("com.louis.kafka")) {
-            properties.put(Constants.KafkaProducerConstant.KEY_SERIALIZER_NAME, Constants.KafkaProducerConstant.DEF_KEY_SERIALIZER_VAL);
-        }
+//            properties.put(Constants.KafkaProducerConstant.KEY_SERIALIZER_NAME, Constants.KafkaProducerConstant.DEF_KEY_SERIALIZER_VAL);
+//            properties.put(Constants.KafkaProducerConstant.VALUE_SERIALIZER_NAME, Constants.KafkaProducerConstant.DEF_VALUE_SERIALIZER_VAL);
 
-        serializer = properties.get(Constants.KafkaProducerConstant.VALUE_SERIALIZER_NAME);
-        if (serializer == null || !((String) serializer).startsWith("com.louis.kafka")) {
-            properties.put(Constants.KafkaProducerConstant.VALUE_SERIALIZER_NAME, Constants.KafkaProducerConstant.DEF_VALUE_SERIALIZER_VAL);
-        }
+        properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
     }
     protected void printStartInfo() {
 //        LOGGER.info("[{} - {}], {}, {}, {}, {} init...",
@@ -136,10 +134,13 @@ public class BaseKafkaProducer<Key extends Serializable, Value extends Serializa
 
     }
 
-    public String send(com.louis.kafka.common.Message<Key, Value> message) {
+    public String send(com.louis.kafka.common.Message<Key, Value> message) throws Exception {
         ProducerRecord<Key, Value> producerRecord = parseMessage(message);
-        this.kafkaProducer.send(producerRecord);
-        return "";
+        Future<RecordMetadata> send = this.kafkaProducer.send(producerRecord);
+        RecordMetadata recordMetadata = send.get();
+        long offset = recordMetadata.offset();
+        return String.valueOf(offset);
+
     }
 
     private String sendSync(com.louis.kafka.common.Message<Key, Value> message, KafkaProducer<Key, Value> producer, Callback callback) {

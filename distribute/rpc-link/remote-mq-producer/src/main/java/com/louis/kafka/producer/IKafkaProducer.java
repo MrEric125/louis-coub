@@ -8,13 +8,13 @@ import java.util.List;
 
 public interface IKafkaProducer<K extends Serializable, V extends Serializable> {
 
-    String send(String topic, V message);
+    String send(String topic, V message) throws Exception;
 
-    String send(String topic, V message, String partitionKey);
+    String send(String topic, V message, String partitionKey) throws Exception;;
 
-    String send(Message<K, V> message);
+    String send(Message<K, V> message) throws Exception;;
 
-    String send(List<Message<K, V>> kafkaMessages);
+    String send(List<Message<K, V>> kafkaMessages) throws Exception;;
 
-    String send(Message<K, V> message, Callback callback);
+    String send(Message<K, V> message, Callback callback) throws Exception;;
 }

@@ -1,5 +1,6 @@
 package com.louis.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.LongSerializer;
@@ -18,6 +19,7 @@ import java.util.Properties;
  */
 @Deprecated
 @Configuration
+@Slf4j
 public class KafkaConsumerConfig {
 
     @Value("${kafka.bootstrap.servers}")
@@ -36,13 +38,13 @@ public class KafkaConsumerConfig {
 
     }
 
-//    @Bean
-//    public KafkaProducer kafkaProducer() {
-//        String schemaString = "";
-//        Schema schema = Schema.builder(schemaString).build();
-//
-//        return new KafkaProducer<String, String>(init());
-//    }
+    @Bean
+    public KafkaProducer kafkaProducer() {
+        String schemaString = "";
+        log.info("初始化kafkaProducer");
+
+        return new KafkaProducer<String, String>(init());
+    }
 
 
 

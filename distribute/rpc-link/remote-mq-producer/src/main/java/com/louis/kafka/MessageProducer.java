@@ -17,11 +17,11 @@ import java.util.concurrent.ExecutionException;
  * Description:
  * 目前不支持批量传输不同topic的数据，批量传输只能传输相同topic的数据
  */
-@Deprecated
-//@Service
+//@Deprecated
+@Service
 public class MessageProducer<Key extends Serializable, V extends Serializable> {
 
-//    @Autowired
+    @Autowired
     private KafkaProducer<Key ,V> kafkaProducer;
 
     /**

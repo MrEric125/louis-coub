@@ -17,12 +17,12 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class LouisKafkaProducerImpl<Key extends Serializable,Value extends Serializable> extends BaseKafkaProducer<Key,Value> implements IKafkaProducer<Key,Value> {
 
-    private volatile ConcurrentHashMap<String, KafkaProducer> topicProducerMap = new ConcurrentHashMap<>();
+    private volatile ConcurrentHashMap<String, KafkaProducer<Key,Value>> topicProducerMap = new ConcurrentHashMap<>();
 
 
 
     @Override
-    public String send(String topic, Value message) {
+    public String send(String topic, Value message) throws Exception{
         Message<Key, Value> msg = new Message<>();
         msg.setTopic(topic);
         msg.setKey(null);
@@ -32,7 +32,8 @@ public class LouisKafkaProducerImpl<Key extends Serializable,Value extends Seria
     }
 
     @Override
-    public String send(String topic, Value message, String partitionKey) {
+    public String send(String topic, Value message, String partitionKey) throws Exception{
+
         Message<Key, Value> msg = new Message<>();
         msg.setTopic(topic);
         msg.setKey(null);
@@ -42,12 +43,18 @@ public class LouisKafkaProducerImpl<Key extends Serializable,Value extends Seria
     }
 
     @Override
-    public String send(Message<Key, Value> message) {
-        return super.send(message);
+    public String send(Message<Key, Value> message)  {
+        try {
+            return super.send(message);
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+        return null;
     }
 
     @Override
-    public String send(List<Message<Key, Value>> kafkaMessages) {
+    public String send(List<Message<Key, Value>> kafkaMessages) throws Exception{
         for (Message<Key, Value> kafkaMessage : kafkaMessages) {
             super.send(kafkaMessage);
         }
@@ -55,7 +62,7 @@ public class LouisKafkaProducerImpl<Key extends Serializable,Value extends Seria
     }
 
     @Override
-    public String send(Message<Key, Value> message, Callback callback) {
+    public String send(Message<Key, Value> message, Callback callback) throws Exception {
         return super.send(message);
     }
 }
