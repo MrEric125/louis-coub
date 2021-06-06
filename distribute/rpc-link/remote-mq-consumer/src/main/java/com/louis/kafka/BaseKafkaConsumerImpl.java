@@ -42,7 +42,7 @@ public class BaseKafkaConsumerImpl extends ClientTemplate {
 
     private KafkaMessageHandler messageHandler;
     private ExecutorService consumePool;
-    private KafkaMsgParse kafkaMsgParse;
+    private KafkaMsgParse kafkaMsgParse=new KafkaMsgParse();
 
     private CountDownLatch destroyLatch;
     private volatile boolean dmgAutoCommitEnabled = true;

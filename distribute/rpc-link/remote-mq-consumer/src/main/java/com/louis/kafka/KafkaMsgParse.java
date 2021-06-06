@@ -11,12 +11,12 @@ public class KafkaMsgParse {
         MessageExt<String,String> msgExt;
         String topic = null, key = null, body = null;
         if (clazz == ConsumerRecord.class) {
-            ConsumerRecord<byte[], byte[]> record = (ConsumerRecord<byte[], byte[]>) msgMate;
+            ConsumerRecord<String, String> record = (ConsumerRecord<String, String>) msgMate;
             try {
                 topic = record.topic();
                 key = record.key() == null
-                        ? null : new String(record.key(), Constants.CHARSET_FORMAT);
-                body = new String(record.value(), Constants.CHARSET_FORMAT);
+                        ? null : record.key();
+                body = record.value();
 
                 long offset = record.offset();
                 int partition = record.partition();
