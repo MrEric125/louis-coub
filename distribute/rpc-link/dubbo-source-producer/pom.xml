@@ -55,6 +55,11 @@
             <type>pom</type>
         </dependency>
 
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+
         <!--        rest start-->
         <!--        使用netty服务器-->
 
@@ -87,6 +92,12 @@
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxrs</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.louis</groupId>
+            <artifactId>dubbo-source-api</artifactId>
+            <version>${revision}</version>
         </dependency>
 
 

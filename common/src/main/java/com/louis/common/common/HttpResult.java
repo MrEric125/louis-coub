@@ -299,17 +299,4 @@ public class HttpResult<T> implements Serializable {
 		return new HttpResult<>(HttpResultMassage.SUCCESS_CODE, HttpResultMassage.SUCCESS_MESSAGE, o);
 	}
 
-	private void setResult(T result) {
-		this.result = result;
-	}
-	private void setMessage(String message) {
-		this.message = message;
-	}
-	private void setCode(int code) {
-		this.code = code;
-	}
-	private T getResult() {
-		return result;
-	}
-
 }

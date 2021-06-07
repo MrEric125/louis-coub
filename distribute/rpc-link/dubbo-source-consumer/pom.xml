@@ -15,10 +15,10 @@
     <dependencies>
 
 
-        <!--        kafka dependencies-->
         <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka_2.12</artifactId>
+            <groupId>com.louis</groupId>
+            <artifactId>dubbo-source-api</artifactId>
+            <version>${revision}</version>
         </dependency>
 
 

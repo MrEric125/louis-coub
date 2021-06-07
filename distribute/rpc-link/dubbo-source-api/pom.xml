@@ -8,4 +8,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>dubbo-source-api</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-common</artifactId>
+        </dependency>
+    </dependencies>
 </project>
