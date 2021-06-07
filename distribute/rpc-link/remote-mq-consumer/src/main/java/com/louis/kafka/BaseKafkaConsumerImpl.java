@@ -5,23 +5,23 @@ import com.louis.kafka.common.ClusterInfo;
 import com.louis.kafka.common.Constants;
 import com.louis.kafka.common.MessageExt;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
+import java.io.Serializable;
 import java.time.Duration;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.concurrent.locks.ReentrantLock;
 
 @Slf4j
-public class BaseKafkaConsumerImpl extends ClientTemplate {
+public class BaseKafkaConsumerImpl<Key extends Serializable,Value extends Serializable> extends ClientTemplate {
 
     private String group;
 
@@ -29,20 +29,20 @@ public class BaseKafkaConsumerImpl extends ClientTemplate {
 
     protected static volatile boolean restarting = false;
 
-    protected volatile boolean shutdownWithCommitOffset = false;
+//    protected volatile boolean shutdownWithCommitOffset = false;
     protected volatile boolean consuming = true;
-    protected volatile long lastCommitTime = System.currentTimeMillis();
-    protected AtomicLong commitCounter = new AtomicLong(0);
-    protected ReentrantLock commitLock = new ReentrantLock();
-    protected volatile int messageFlying = 0;
-    protected ReentrantLock flyingLock = new ReentrantLock();
-    protected ConcurrentHashMap<Integer, FlyingStat> flyStatsMap = new ConcurrentHashMap<>();
+//    protected volatile long lastCommitTime = System.currentTimeMillis();
+//    protected AtomicLong commitCounter = new AtomicLong(0);
+//    protected ReentrantLock commitLock = new ReentrantLock();
+//    protected volatile int messageFlying = 0;
+//    protected ReentrantLock flyingLock = new ReentrantLock();
+//    protected ConcurrentHashMap<Integer, FlyingStat> flyStatsMap = new ConcurrentHashMap<>();
     protected volatile long consumeStuckThreshold = 60000; // ms
-    private ScheduledExecutorService statTimer;
+//    private ScheduledExecutorService statTimer;
 
-    private KafkaMessageHandler messageHandler;
+    private KafkaMessageHandler<Key,Value> messageHandler;
     private ExecutorService consumePool;
-    private KafkaMsgParse kafkaMsgParse=new KafkaMsgParse();
+    private KafkaMsgParse<Key,Value> kafkaMsgParse=new KafkaMsgParse<>();
 
     private CountDownLatch destroyLatch;
     private volatile boolean dmgAutoCommitEnabled = true;
@@ -67,13 +67,13 @@ public class BaseKafkaConsumerImpl extends ClientTemplate {
         this.topic = topic;
     }
 
-    public void setMessageHandler(KafkaMessageHandler kafkaMessageHandler) {
+    public void setMessageHandler(KafkaMessageHandler<Key,Value> kafkaMessageHandler) {
         this.messageHandler = kafkaMessageHandler;
     }
 
 
     @Override
-    public void doInit() throws Exception {
+    public void doInit() {
         initCluster();
         createConsumer();
     }
@@ -95,7 +95,7 @@ public class BaseKafkaConsumerImpl extends ClientTemplate {
                     Constants.DEF_CLIENT_ID_VAL, getTopic(), random.nextInt(1000), flag);
             properties.put(Constants.KafkaConsumerConstant.CLIENT_ID_NAME, clientId);
             final KafkaConsumer<byte[], byte[]> consumer = new KafkaConsumer<>(properties);
-            consumer.subscribe(Arrays.asList(getTopic()));
+            consumer.subscribe(Collections.singletonList(getTopic()));
 
             consumePool.execute(() -> {
                 try {
@@ -105,7 +105,7 @@ public class BaseKafkaConsumerImpl extends ClientTemplate {
 
                             boolean noMessage = records.isEmpty();
                             for (ConsumerRecord<byte[], byte[]> record: records) {
-                                MessageExt<String,String> msgVo = null;
+                                MessageExt<Key,Value> msgVo = null;
                                 try {
                                     msgVo = kafkaMsgParse.receiveParse(record, ConsumerRecord.class);
                                     messageHandler.onMessage(msgVo);
@@ -136,6 +136,7 @@ public class BaseKafkaConsumerImpl extends ClientTemplate {
     }
 
     private void checkCommitOffsets(int flag) {
+        log.info("flag:{}", flag);
 
     }
 
@@ -144,6 +145,10 @@ public class BaseKafkaConsumerImpl extends ClientTemplate {
             properties = new Properties();
         }
         printStartInfo();
+
+        if (clusterInfo == null || StringUtils.isBlank(clusterInfo.getBrokers())) {
+            throw new IllegalArgumentException(" kafka brokers 信息不能为空");
+        }
 
         properties.setProperty(Constants.KafkaConsumerConstant.GROUP_ID_NAME, getGroup());
         properties.setProperty(Constants.KafkaConsumerConstant.BOOTSTRAP_SERVERS_NAME, clusterInfo.getBrokers());
@@ -178,7 +183,6 @@ public class BaseKafkaConsumerImpl extends ClientTemplate {
         int consumerNums = getConsumerNums();
         consumePool = Executors.newFixedThreadPool(consumerNums, new ThreadFactory() {
             private AtomicInteger idx = new AtomicInteger(0);
-            @Override
             public Thread newThread(Runnable r) {
                 return new Thread(r, String.format("Kafka-20-Consume-Thread-%s-%s-%d", getTopic(), getGroup(), idx.getAndIncrement()));
             }
@@ -205,108 +209,5 @@ public class BaseKafkaConsumerImpl extends ClientTemplate {
     }
 
 
-    public static class FlyingStat {
-        private volatile long offset;
-        private volatile int partition;
-        private volatile long lastWarnTime;
-        private AtomicLong startTime = new AtomicLong(0);
 
-        /**
-         * properties for kafka version > 2.0
-         */
-        private String clientId;
-        private AtomicLong lastCommitTime = new AtomicLong(System.currentTimeMillis());
-        private AtomicLong commitCounter = new AtomicLong(0);
-
-        private ReentrantLock lock = new ReentrantLock();
-
-        FlyingStat() { }
-        FlyingStat(String clientId) {
-            this.clientId = clientId;
-        }
-
-        public void reset() {
-            lock.lock();
-            try {
-                offset = 0;
-                partition = -1;
-                startTime.set(0);
-            } finally {
-                lock.unlock();
-            }
-
-        }
-
-        public void start() {
-            startTime.set(System.currentTimeMillis());
-        }
-
-        public long cost() {
-            lock.lock();
-            try {
-                if (startTime.get() == 0) {
-                    return 0;
-                }
-                return System.currentTimeMillis() - startTime.get();
-            } finally {
-                lock.unlock();
-            }
-        }
-
-        public boolean inflight() {
-            return startTime.get() > 0;
-        }
-
-        public long getOffset() {
-            return offset;
-        }
-
-        public void setOffset(long offset) {
-            this.offset = offset;
-        }
-
-        public int getPartition() {
-            return partition;
-        }
-
-        public void setPartition(int partition) {
-            this.partition = partition;
-        }
-
-        public long getLastWarnTime() {
-            return lastWarnTime;
-        }
-
-        public void setLastWarnTime(long lastWarnTime) {
-            this.lastWarnTime = lastWarnTime;
-        }
-
-        public String getClientId() {
-            return clientId;
-        }
-
-        public void setClientId(String clientId) {
-            this.clientId = clientId;
-        }
-
-        public long getLastCommitTime() {
-            return lastCommitTime.get();
-        }
-
-        public void setLastCommitTime(long lastCommitTime) {
-            this.lastCommitTime.set(lastCommitTime);
-        }
-
-        public long getCommitCounter() {
-            return commitCounter.get();
-        }
-
-        public void setCommitCounter(long commitCounter) {
-            this.commitCounter.set(commitCounter);
-        }
-
-        public long getAndAddCommitCounter() {
-            return this.commitCounter.getAndIncrement();
-        }
-    }
 }

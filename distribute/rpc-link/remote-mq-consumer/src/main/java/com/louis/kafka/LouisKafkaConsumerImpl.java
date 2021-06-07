@@ -1,4 +1,6 @@
 package com.louis.kafka;
 
-public class LouisKafkaConsumerImpl extends BaseKafkaConsumerImpl{
+import java.io.Serializable;
+
+public class LouisKafkaConsumerImpl<Key extends Serializable,Value extends Serializable> extends BaseKafkaConsumerImpl<Key,Value>{
 }
