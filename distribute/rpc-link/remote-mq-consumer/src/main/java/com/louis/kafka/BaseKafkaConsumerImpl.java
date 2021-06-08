@@ -5,6 +5,7 @@ import com.louis.kafka.common.ClusterInfo;
 import com.louis.kafka.common.Constants;
 import com.louis.kafka.common.MessageExt;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -26,6 +27,8 @@ public class BaseKafkaConsumerImpl<Key extends Serializable,Value extends Serial
     private String group;
 
     private String topic;
+
+
 
     protected static volatile boolean restarting = false;
 
@@ -80,7 +83,14 @@ public class BaseKafkaConsumerImpl<Key extends Serializable,Value extends Serial
 
     private void initCluster() {
         ClusterInfo clusterInfo = new ClusterInfo();
+        if (StringUtils.isBlank(authInfo.getServerAddr())) {
+            throw new  IllegalArgumentException("kafka 服务器信息不能为空");
+        }
         clusterInfo.setBrokers(authInfo.getServerAddr());
+        if (StringUtils.isBlank(authInfo.getSysCode())) {
+            throw new  IllegalArgumentException("sysCode 不能为空");
+        }
+        clusterInfo.setSysCode(authInfo.getSysCode());
         this.clusterInfo = clusterInfo;
     }
 
@@ -108,7 +118,12 @@ public class BaseKafkaConsumerImpl<Key extends Serializable,Value extends Serial
                                 MessageExt<Key,Value> msgVo = null;
                                 try {
                                     msgVo = kafkaMsgParse.receiveParse(record, ConsumerRecord.class);
-                                    messageHandler.onMessage(msgVo);
+                                    if (CollectionUtils.isEmpty(msgVo.getSysCodes())) {
+                                        return;
+                                    }
+                                    if (msgVo.getSysCodes().contains(clusterInfo.getSysCode())) {
+                                        messageHandler.onMessage(msgVo);
+                                    }
                                 } catch (Throwable t) {
                                     log.error(String.format("consume error! msgVo: %s"
                                             , msgVo == null ? "" : msgVo.toString()), t);

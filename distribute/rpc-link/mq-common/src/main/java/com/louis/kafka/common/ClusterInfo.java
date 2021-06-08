@@ -18,4 +18,5 @@ public class ClusterInfo {
     private String clusterCode;
     private String brokers;
     private String zkConns;
+    private String sysCode;
 }
