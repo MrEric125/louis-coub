@@ -6,6 +6,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class AuthInfo {
+    private String sysCode;
     private String secretKey;
     private String serverAddr;
     private int authTimeout;

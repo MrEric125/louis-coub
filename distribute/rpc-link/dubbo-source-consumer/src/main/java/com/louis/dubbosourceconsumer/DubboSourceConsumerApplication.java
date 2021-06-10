@@ -8,22 +8,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-@RestController
 @SpringBootApplication
+@RestController
+
 public class DubboSourceConsumerApplication {
+
+    @Reference
+    DefaultDubboService dubboService;
 
     public static void main(String[] args) {
         SpringApplication.run(DubboSourceConsumerApplication.class, args);
     }
 
-    @Reference
-    public DefaultDubboService defaultDubboService;
+    @RequestMapping("sayHello")
+    public HttpResult httpResult(String name) {
 
-
-    @RequestMapping("/dubbo")
-    public HttpResult dubbo(String name) {
-        return HttpResult.ok(defaultDubboService.sayHello(name));
+        return HttpResult.ok(dubboService.sayHello(name));
     }
 
 }

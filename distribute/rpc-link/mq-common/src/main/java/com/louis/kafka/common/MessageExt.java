@@ -3,9 +3,11 @@ package com.louis.kafka.common;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.assertj.core.util.Lists;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Setter
@@ -17,6 +19,9 @@ public class MessageExt <Key extends Serializable, Value extends Serializable> e
     private int partition;
 
     private String messageId;
+
+    //哪些消费者能够消费这条消息
+    private List<String> sysCodes = Lists.newArrayList();
 
     private Map<String, String> headers;
 

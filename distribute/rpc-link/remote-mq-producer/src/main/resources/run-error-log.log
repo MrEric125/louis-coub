@@ -1,3 +1,0 @@
-
-错误日志：
-2020-01-23 15:45:24.383  WARN 3096 --- [ main] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-2, groupId=louis] Connection to node -1 could not be established. Broker may not be available.
