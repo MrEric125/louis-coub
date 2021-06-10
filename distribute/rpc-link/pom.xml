@@ -23,7 +23,6 @@
     </developers>
 
     <modules>
-        <module>remote-api</module>
         <module>remote-mq-producer</module>
         <module>remote-mq-consumer</module>
         <module>remote-server1</module>
