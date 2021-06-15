@@ -7,6 +7,7 @@ package com.dynamic;
 public class MethodAuthPrivate {
 
 
+
     private String privateMethod() {
         return "this is private";
     }
