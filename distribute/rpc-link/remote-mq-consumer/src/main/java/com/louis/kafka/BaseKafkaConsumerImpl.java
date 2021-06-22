@@ -123,6 +123,8 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
                                             , msgVo == null ? "" : msgVo.toString()), t);
                                 }
                                 if (dmgAutoCommitEnabled) {
+                                    consumer.commitAsync();
+
                                     checkCommitOffsets(flag);
                                 }
                             }
@@ -146,6 +148,7 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
 
     private void checkCommitOffsets(int flag) {
         log.info("flag:{}", flag);
+
 
     }
 
