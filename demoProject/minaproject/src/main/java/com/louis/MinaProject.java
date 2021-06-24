@@ -7,10 +7,7 @@ import com.louis.minashop.i18n.LocaleMessageSourceService;
 import lombok.SneakyThrows;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.ExitCodeGenerator;
-import org.springframework.boot.SpringApplication;
+import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.context.ApplicationContext;
@@ -67,11 +64,7 @@ public class MinaProject implements ExitCodeGenerator, ApplicationListener<Conte
     @SneakyThrows
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        ApplicationContext applicationContext = contextRefreshedEvent.getApplicationContext();
 
-        MyBean sourceService = applicationContext.getBean(MyBean.class);
-
-        sourceService.run("China");
 
         System.out.println("=======China");
 
