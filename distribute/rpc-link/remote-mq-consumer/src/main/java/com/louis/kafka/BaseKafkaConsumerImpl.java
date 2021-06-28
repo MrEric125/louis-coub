@@ -7,45 +7,37 @@ import com.louis.kafka.common.MessageExt;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.io.Serializable;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
 import java.util.Random;
-import java.util.concurrent.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Slf4j
-public class BaseKafkaConsumerImpl<Key extends Serializable,Value extends Serializable> extends ClientTemplate {
+public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Serializable> extends ClientTemplate {
 
     private String group;
 
     private String topic;
 
-
-
     protected static volatile boolean restarting = false;
 
-//    protected volatile boolean shutdownWithCommitOffset = false;
     protected volatile boolean consuming = true;
-//    protected volatile long lastCommitTime = System.currentTimeMillis();
-//    protected AtomicLong commitCounter = new AtomicLong(0);
-//    protected ReentrantLock commitLock = new ReentrantLock();
-//    protected volatile int messageFlying = 0;
-//    protected ReentrantLock flyingLock = new ReentrantLock();
-//    protected ConcurrentHashMap<Integer, FlyingStat> flyStatsMap = new ConcurrentHashMap<>();
     protected volatile long consumeStuckThreshold = 60000; // ms
-//    private ScheduledExecutorService statTimer;
 
-    private KafkaMessageHandler<Key,Value> messageHandler;
+    private KafkaMessageHandler<Key, Value> messageHandler;
+    private ConsumerPropertiesHandler propertiesHandler = new ConsumerPropertiesHandler();
     private ExecutorService consumePool;
-    private KafkaMsgParse<Key,Value> kafkaMsgParse=new KafkaMsgParse<>();
+    private KafkaMsgParse<Key, Value> kafkaMsgParse = new KafkaMsgParse<>();
 
     private CountDownLatch destroyLatch;
     private volatile boolean dmgAutoCommitEnabled = true;
@@ -53,12 +45,14 @@ public class BaseKafkaConsumerImpl<Key extends Serializable,Value extends Serial
     public String getGroup() {
         return group;
     }
+
     public void setGroup(String group) {
         if (group != null) {
             group = group.trim();
         }
         this.group = group;
     }
+
     public String getTopic() {
         return topic;
     }
@@ -70,7 +64,7 @@ public class BaseKafkaConsumerImpl<Key extends Serializable,Value extends Serial
         this.topic = topic;
     }
 
-    public void setMessageHandler(KafkaMessageHandler<Key,Value> kafkaMessageHandler) {
+    public void setMessageHandler(KafkaMessageHandler<Key, Value> kafkaMessageHandler) {
         this.messageHandler = kafkaMessageHandler;
     }
 
@@ -84,11 +78,11 @@ public class BaseKafkaConsumerImpl<Key extends Serializable,Value extends Serial
     private void initCluster() {
         ClusterInfo clusterInfo = new ClusterInfo();
         if (StringUtils.isBlank(authInfo.getServerAddr())) {
-            throw new  IllegalArgumentException("kafka 服务器信息不能为空");
+            throw new IllegalArgumentException("kafka 服务器信息不能为空");
         }
         clusterInfo.setBrokers(authInfo.getServerAddr());
         if (StringUtils.isBlank(authInfo.getSysCode())) {
-            throw new  IllegalArgumentException("sysCode 不能为空");
+            throw new IllegalArgumentException("sysCode 不能为空");
         }
         clusterInfo.setSysCode(authInfo.getSysCode());
         this.clusterInfo = clusterInfo;
@@ -99,7 +93,7 @@ public class BaseKafkaConsumerImpl<Key extends Serializable,Value extends Serial
         destroyLatch = new CountDownLatch(consumerNums);
         log.info("start [{}] consume, consume size: {} ..", getTopic(), consumerNums);
         Random random = new Random();
-        for (int i=0; i<consumerNums; i++) {
+        for (int i = 0; i < consumerNums; i++) {
             final int flag = i + 1;
             String clientId = String.format("%s-%s-%s-%s",
                     Constants.DEF_CLIENT_ID_VAL, getTopic(), random.nextInt(1000), flag);
@@ -114,8 +108,8 @@ public class BaseKafkaConsumerImpl<Key extends Serializable,Value extends Serial
                             ConsumerRecords<byte[], byte[]> records = consumer.poll(Duration.ofSeconds(6));
 
                             boolean noMessage = records.isEmpty();
-                            for (ConsumerRecord<byte[], byte[]> record: records) {
-                                MessageExt<Key,Value> msgVo = null;
+                            for (ConsumerRecord<byte[], byte[]> record : records) {
+                                MessageExt<Key, Value> msgVo = null;
                                 try {
                                     msgVo = kafkaMsgParse.receiveParse(record, ConsumerRecord.class);
                                     if (CollectionUtils.isEmpty(msgVo.getSysCodes())) {
@@ -129,6 +123,8 @@ public class BaseKafkaConsumerImpl<Key extends Serializable,Value extends Serial
                                             , msgVo == null ? "" : msgVo.toString()), t);
                                 }
                                 if (dmgAutoCommitEnabled) {
+                                    consumer.commitAsync();
+
                                     checkCommitOffsets(flag);
                                 }
                             }
@@ -153,6 +149,7 @@ public class BaseKafkaConsumerImpl<Key extends Serializable,Value extends Serial
     private void checkCommitOffsets(int flag) {
         log.info("flag:{}", flag);
 
+
     }
 
     private void createConsumer() {
@@ -164,16 +161,8 @@ public class BaseKafkaConsumerImpl<Key extends Serializable,Value extends Serial
         if (clusterInfo == null || StringUtils.isBlank(clusterInfo.getBrokers())) {
             throw new IllegalArgumentException(" kafka brokers 信息不能为空");
         }
-
-        properties.setProperty(Constants.KafkaConsumerConstant.GROUP_ID_NAME, getGroup());
-        properties.setProperty(Constants.KafkaConsumerConstant.BOOTSTRAP_SERVERS_NAME, clusterInfo.getBrokers());
-        properties.setProperty(Constants.KafkaConsumerConstant.ENABLE_AUTO_COMMIT_NAME, Constants.KafkaConsumerConstant.ENABLE_AUTO_COMMIT_VAL);
-        properties.setProperty(Constants.KafkaConsumerConstant.ALLOW_AUTO_CREATE_TOPICS_NAME, Constants.KafkaConsumerConstant.ALLOW_AUTO_CREATE_TOPICS_VAL);
-
-        fillEmptyPropWithDefVal(properties, Constants.KafkaConsumerConstant.MAX_PARTITION_FETCH_BYTES_NAME, Constants.KafkaConsumerConstant.MAX_PARTITION_FETCH_BYTES_VAL);
-        fillEmptyPropWithDefVal(properties, Constants.KafkaConsumerConstant.REBALANCE_BACKOFF_MS_NAME, Constants.KafkaConsumerConstant.DEF_REBALANCE_BACKOFF_MS_VAL);
-        fillEmptyPropWithDefVal(properties, Constants.KafkaConsumerConstant.ISOLATION_LEVEL_NAME, Constants.KafkaConsumerConstant.ISOLATION_LEVEL_VAL);
-        fillEmptyPropWithDefVal(properties, Constants.KafkaConsumerConstant.NUM_CONSUMERS_NAME, Constants.KafkaConsumerConstant.DEF_NUM_CONSUMERS_VAL);
+        propertiesHandler.init(getGroup(), clusterInfo.getBrokers());
+        properties = propertiesHandler.getProperties();
 
         if (restarting) {
             properties.setProperty(Constants.KafkaConsumerConstant.AUTO_OFFSET_RESET_NAME, Constants.KAFKA_20_HEAD);
@@ -192,18 +181,17 @@ public class BaseKafkaConsumerImpl<Key extends Serializable,Value extends Serial
             consumeStuckThreshold = Long.parseLong(properties.getProperty(Constants.KafkaConsumerConstant.CONSUME_STUCK_THRESHOLD_MS_NAME));
         }
 
-        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-
         int consumerNums = getConsumerNums();
         consumePool = Executors.newFixedThreadPool(consumerNums, new ThreadFactory() {
             private AtomicInteger idx = new AtomicInteger(0);
+
             public Thread newThread(Runnable r) {
                 return new Thread(r, String.format("Kafka-20-Consume-Thread-%s-%s-%d", getTopic(), getGroup(), idx.getAndIncrement()));
             }
         });
 
     }
+
     private int getConsumerNums() {
         String consumerNumsStr = properties.getProperty(Constants.KafkaConsumerConstant.NUM_CONSUMERS_NAME);
         try {
@@ -216,13 +204,6 @@ public class BaseKafkaConsumerImpl<Key extends Serializable,Value extends Serial
 
     private void printStartInfo() {
     }
-
-    private void fillEmptyPropWithDefVal(Properties props, String pname, String defVal) {
-        Object originVal = props.get(pname);
-        String realVal = originVal == null ? defVal : ((String) originVal).trim();
-        props.put(pname, realVal);
-    }
-
 
 
 }
