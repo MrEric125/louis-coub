@@ -9,3 +9,4 @@ spring:
    log-startup-info: true
    lazy-initialization: true
    banner-mode: console
+
