@@ -35,6 +35,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * 这里还有几个问题，
  * 1. 我们创建的代理对象就是什么样的，代理对象的代理方法一般会在什么时候调用呢？等等吧
  *
+ * 调用的话当时是在我们调用代理类的代理方法的时候，其实我们在最后getBean()获取到的那个bean并不是我们我们真正创建的bean,而是被spring代理的bean
+ *
  * 需要注意的是，我们在使用AOP的时候往往会切入到某个方法上，，并且切入的方式有前置的，后置的，环绕的，这些都是怎么实现的呢？
  *
  *
