@@ -10,11 +10,11 @@ import lombok.Data;
 @Data
 public class AopEntity implements Cloneable{
 
-    private String name;
+    private String name="default";
 
-    private Long id;
+    private Long id=0L;
 
-    private String title;
+    private String title="default";
 
 
     public  void  test() {

@@ -39,7 +39,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  *
  * 需要注意的是，我们在使用AOP的时候往往会切入到某个方法上，，并且切入的方式有前置的，后置的，环绕的，这些都是怎么实现的呢？
  *
- *
+ *1. 如果 发现有advice 则会创建代理对象，讲代理对象放在{@link AbstractAutoProxyCreator#proxyTypes} 中，后期我们从Context中取的对象就是这里存进去的对象
  *
  *
  *
