@@ -4,3 +4,5 @@ gradle init --type pom
 .
 root 密码：
 !qaz@wsx
+
+mac  授权

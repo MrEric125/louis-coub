@@ -38,3 +38,4 @@ log\
 .gradle\
 .DS_Store
 /source/gradle/.gradle/
+/out/

@@ -36,18 +36,18 @@ public class SpringRpcMessage implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
 
-    @Bean
-    public RmiServiceExporter rmiServiceExporter() {
-        RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
-
-
-        rmiServiceExporter.setServiceName("AccountService");
-        rmiServiceExporter.setService(applicationContext.getBean(AccountService.class));
-        rmiServiceExporter.setServiceInterface(AccountService.class);
-        rmiServiceExporter.setRegistryPort(1199);
-
-        return rmiServiceExporter;
-    }
+//    @Bean
+//    public RmiServiceExporter rmiServiceExporter() {
+//        RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
+//
+//
+//        rmiServiceExporter.setServiceName("AccountService");
+//        rmiServiceExporter.setService(applicationContext.getBean(AccountService.class));
+//        rmiServiceExporter.setServiceInterface(AccountService.class);
+//        rmiServiceExporter.setRegistryPort(1199);
+//
+//        return rmiServiceExporter;
+//    }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

@@ -1,9 +1,11 @@
 package com.source.spring.rpc;
 
 import com.google.common.collect.Lists;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AccountServiceImpl implements AccountService {
 
     @Override

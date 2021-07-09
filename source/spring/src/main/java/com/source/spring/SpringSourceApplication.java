@@ -27,19 +27,15 @@ import java.util.concurrent.TimeUnit;
  */
 @RestController
 //@SpringBootApplication
-public class SpringSourceApplication implements CommandLineRunner, ApplicationContextAware {
+public class SpringSourceApplication implements CommandLineRunner {
 
-    Cache<String, String> myCache = CacheBuilder.newBuilder().concurrencyLevel(4).expireAfterWrite(10, TimeUnit.DAYS).maximumSize(10000).build();
 
-    private ApplicationContext applicationContext;
 
 //    public static void main(String[] args) {
 //        SpringApplication sa = new SpringApplication(SpringSourceApplication.class);
 //
 //        sa.run();
-////        run.publishEvent(new MyEvent(new Object()));
 //    }
-
 
 
 
@@ -52,24 +48,16 @@ public class SpringSourceApplication implements CommandLineRunner, ApplicationCo
         return HttpResult.ok(data);
     }
 
-    @RequestMapping("/getBean")
-    public HttpResult getBean(String beanName) {
-        Assert.notNull(beanName,"beanName can not be null");
-        Object bean = applicationContext.getBean(beanName);
-        Resource resource = applicationContext.getResource("application.yml");
-        return HttpResult.ok(bean);
+
+    @RequestMapping("/ ")
+    public HttpResult rootPage() {
+        return HttpResult.ok("zhangsan");
     }
 
-
-
-    //todo 在SpringApplication.run 运行完成之前执行，特殊逻辑,实现原理是什么样子的？？？
     @Override
     public void run(String... args) throws Exception {
         System.out.println(JSON.toJSONString(args));
     }
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
+
 }
