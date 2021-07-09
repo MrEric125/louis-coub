@@ -10,11 +10,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Date: 2019/9/11
  * Description:
  */
-@MapperScan({"com.*"})
-@SpringBootApplication
-public class Application {
-
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
-}
+//@MapperScan({"com.*"})
+//@SpringBootApplication
+//public class Application {
+//
+//    public static void main(String[] args) {
+//        SpringApplication.run(Application.class, args);
+//    }
+//}
