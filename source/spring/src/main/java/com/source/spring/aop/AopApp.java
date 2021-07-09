@@ -41,7 +41,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  *
  *1. 如果 发现有advice 则会创建代理对象，讲代理对象放在{@link AbstractAutoProxyCreator#proxyTypes} 中，后期我们从Context中取的对象就是这里存进去的对象
  *
- *
+ *织入的时间，BeanPostProcessor获取的时间。
  *
  *
  */

@@ -17,6 +17,7 @@
         <module>coub-elasticsearch</module>
         <module>coub-netty</module>
         <module>louis-coub-parent</module>
+
     </modules>
 
     <groupId>com.louis</groupId>

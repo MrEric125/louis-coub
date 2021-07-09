@@ -22,6 +22,7 @@ public class SpringTest {
 
         context.scan("com.louis.annotation");
         context.refresh();
-        context.getBean(uncapitalize(AnnotationClass.class.getSimpleName()));
+        String uncapitalize = uncapitalize(AnnotationClass.class.getSimpleName());
+        AnnotationClass bean = context.getBean(uncapitalize, AnnotationClass.class);
     }
 }
