@@ -40,9 +40,9 @@ public class Config  implements WebMvcConfigurer {
     @Bean//相当于Spring配置文件bean节点
     public InternalResourceViewResolver viewResolver(){
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF/views/");
-        viewResolver.setSuffix(".success.jsp");
-        viewResolver.setViewClass(JstlView.class);
+        viewResolver.setPrefix("/WEB-INF/");
+        viewResolver.setSuffix(".jsp");
+//        viewResolver.setViewClass(JstlView.class);
         return viewResolver;
     }
     //注册静态资源，没注册的话，网站是访问不了的
