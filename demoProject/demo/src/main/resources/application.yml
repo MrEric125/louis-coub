@@ -11,7 +11,7 @@ spring:
           storage_engine: innodb
   datasource:
     platform: MYSQL
-    url: jdbc:mysql://localhost:3306/louis-coub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/louis-coub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
     password: '!qaz@wsx'
     driver-class-name: com.mysql.cj.jdbc.Driver

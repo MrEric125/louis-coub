@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
 
-@RestController
+@Controller
 public class TestController
 {
 
@@ -19,7 +19,7 @@ public class TestController
     //访问地址：http://localhost:8080/Test/returnSuccess
     @RequestMapping(value = "returnSuccess")    //实际访问的url地址
     public String returnSuccess() {
-        return "/views/success";    //返回Views文件夹下的success.jsp页面
+        return "success";    //返回Views文件夹下的success.jsp页面
     }
 
     //访问地址：http://localhost:8080/Test/returnString
@@ -39,6 +39,6 @@ public class TestController
     public String clickGet(@PathVariable Long id, @PathVariable String userName) {
         System.out.println(id);
         System.out.println(userName);
-        return "index";
+        return "success";
     }
 }

@@ -12,11 +12,10 @@ import javax.servlet.ServletRegistration;
 public class WbInit implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-//        ctx.register(Config.class);
+        ctx.register(MvcConfig.class);
         ctx.setServletContext(servletContext);
         ServletRegistration.Dynamic dynamic = servletContext.addServlet("dispatcher",new DispatcherServlet(ctx));
-//        dynamic.addMapping("/");
-//        servletContext.addListener(org.springframework.web.context.ContextLoaderListener.class);
+        dynamic.addMapping("/");
         dynamic.setLoadOnStartup(1);
 
     }
