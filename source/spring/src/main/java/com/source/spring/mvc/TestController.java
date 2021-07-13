@@ -22,8 +22,7 @@ public class TestController
         return "success";    //返回Views文件夹下的success.jsp页面
     }
 
-    //访问地址：http://localhost:8080/Test/returnString
-    @RequestMapping(value = "/", produces = {"text/plain;charset=UTF-8"})
+    @RequestMapping(value = "/returnString")
     @ResponseBody       //用于返回字符串,不写即返回视图
     public String returnString() {
         return "hello return string 这是中文，并没有乱码";
@@ -35,10 +34,18 @@ public class TestController
         return "index";
     }
 
-    @RequestMapping(value = "clickGet/{id}/{userName}")
+    @RequestMapping(value = "/clickGet/{id}/{userName}")
+    @ResponseBody
     public String clickGet(@PathVariable Long id, @PathVariable String userName) {
         System.out.println(id);
         System.out.println(userName);
         return "success";
+    }
+
+    @RequestMapping("/clickPost")
+    @ResponseBody
+    public String clickPost(String id) {
+        System.out.println(id);
+        return id;
     }
 }

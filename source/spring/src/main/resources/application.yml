@@ -1,9 +1,9 @@
 
 logging:
   level:
-    org.springframework: debug
+    org.springframework: info
 server:
-  port:
+  port: 8081
 spring:
   main:
    log-startup-info: true

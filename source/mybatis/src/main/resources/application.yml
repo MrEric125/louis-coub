@@ -13,19 +13,14 @@ spring:
     platform: MYSQL
     url: jdbc:mysql://localhost:3306/mybatis_source?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     username: root
-    password: !qaz@wsx
+    password: "!qaz@wsx"
     driver-class-name: com.mysql.cj.jdbc.Driver
   profiles:
     active: dev
-mybatis:
-  mapper-locations: classpath*:mybatis/tkmapper/*.xml
-  type-aliases-package: com.louis.mybatis.tkmybatis.entity
-
-
-
 logging:
   level:
     com:
       baomidou: debug
-
+server:
+  port: 8088
 
