@@ -30,7 +30,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * 那么就会执行{@link AbstractAdvisorAutoProxyCreator#postProcessAfterInitialization(Object, String)}  }
  *
  * 在这里就准备创建我们的代理对象
- * {@link AbstractAutoProxyCreator#createProxy(Class, String, Object[], TargetSource)}∑
+ * {@link AbstractAutoProxyCreator#createProxy(Class, String, Object[], TargetSource)}
  *
  * 这里还有几个问题，
  * 1. 我们创建的代理对象就是什么样的，代理对象的代理方法一般会在什么时候调用呢？等等吧
