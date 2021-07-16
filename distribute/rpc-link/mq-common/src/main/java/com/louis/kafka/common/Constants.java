@@ -150,6 +150,9 @@ public class Constants {
         public static final String FETCH_MESSAGE_MAX_BYTES_NAME = "fetch.message.max.bytes";
         public static final String DEF_FETCH_MESSAGE_MAX_BYTES_VAL = "5242880"; // 1024 * 1024 * 5
 
+        // 最小拉取的数量
+        public static final String CONSUME_FETCH_MIN_BYTES = "fetch.min.bytes";
+
         public static final int AUTO_COMMIT_OFFSET_TIME_MS = 30;
         public static final int AUTO_COMMIT_OFFSET_SIZE = 128;
 
@@ -157,6 +160,8 @@ public class Constants {
         public static final String DEF_DMG_AUTO_COMMIT_ENABLE_VAL = "true";
 
         public static final String CONSUME_STUCK_THRESHOLD_MS_NAME = "consume.stuck.threshold.ms";
+
+
 
 
         /**********************************************

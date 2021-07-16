@@ -102,9 +102,17 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
                 try {
                     while (consuming) {
                         try {
-                            ConsumerRecords<byte[], byte[]> records = consumer.poll(Duration.ofSeconds(6));
+                            ConsumerRecords<byte[], byte[]> records = consumer.poll(Duration.ofSeconds(10));
 
                             boolean noMessage = records.isEmpty();
+
+                            int totalSize = 0;
+                            for (ConsumerRecord<byte[], byte[]> record : records) {
+                                totalSize = totalSize+record.serializedValueSize();
+                            }
+                            log.info("当前拉取消息数量为：{},总大小为：{}", records.count(), totalSize);
+
+
                             for (ConsumerRecord<byte[], byte[]> record : records) {
                                 MessageExt<Key, Value> msgVo = null;
                                 try {

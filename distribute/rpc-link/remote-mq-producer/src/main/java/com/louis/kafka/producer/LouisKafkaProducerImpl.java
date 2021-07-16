@@ -17,8 +17,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class LouisKafkaProducerImpl<Key extends Serializable,Value extends Serializable> extends BaseKafkaProducer<Key,Value> implements IKafkaProducer<Key,Value> {
 
-    private volatile ConcurrentHashMap<String, KafkaProducer<Key,Value>> topicProducerMap = new ConcurrentHashMap<>();
-
 
     @Override
     public String send(String topic, Value message) throws Exception{

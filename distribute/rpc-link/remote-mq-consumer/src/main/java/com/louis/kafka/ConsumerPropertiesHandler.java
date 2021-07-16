@@ -35,6 +35,8 @@ public class ConsumerPropertiesHandler {
         PropertiesUtils.fillEmptyPropWithDefVal(properties,Constants.KafkaConsumerConstant.ISOLATION_LEVEL_NAME, Constants.KafkaConsumerConstant.ISOLATION_LEVEL_VAL);
         PropertiesUtils.fillEmptyPropWithDefVal(properties,Constants.KafkaConsumerConstant.NUM_CONSUMERS_NAME, Constants.KafkaConsumerConstant.DEF_NUM_CONSUMERS_VAL);
 
+        PropertiesUtils.fillEmptyPropWithDefVal(properties, Constants.KafkaConsumerConstant.CONSUME_FETCH_MIN_BYTES, String.valueOf(1024*2));
+
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 

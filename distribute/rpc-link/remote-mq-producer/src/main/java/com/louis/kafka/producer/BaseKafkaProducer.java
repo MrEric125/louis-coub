@@ -27,7 +27,6 @@ import java.util.stream.Collectors;
 public class BaseKafkaProducer<Key extends Serializable, Value extends Serializable> extends ClientTemplate {
 
 
-
     private KafkaProducer<Key, Value> kafkaProducer;
 
     protected Set<String> topics;
