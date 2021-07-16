@@ -22,15 +22,13 @@ public class KafkaConfig {
     @Value("${kafka.bootstrap.servers}")
     public String bootstrapServer;
 
-
-
     @Autowired
     private LouisMessageHandler louisMessageHandler;
 
 
     @Bean
-    public LouisKafkaConsumerImpl kafkaConsumer() throws Exception {
-        LouisKafkaConsumerImpl kafkaConsumer = new LouisKafkaConsumerImpl();
+    public LouisKafkaConsumerImpl<String,String> kafkaConsumer() throws Exception {
+        LouisKafkaConsumerImpl<String,String> kafkaConsumer = new LouisKafkaConsumerImpl<>();
         kafkaConsumer.setGroup(groupId);
         kafkaConsumer.setTopic(topic);
         AuthInfo authInfo = new AuthInfo();

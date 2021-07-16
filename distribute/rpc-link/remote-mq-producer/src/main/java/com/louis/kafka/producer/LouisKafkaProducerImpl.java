@@ -20,7 +20,6 @@ public class LouisKafkaProducerImpl<Key extends Serializable,Value extends Seria
     private volatile ConcurrentHashMap<String, KafkaProducer<Key,Value>> topicProducerMap = new ConcurrentHashMap<>();
 
 
-
     @Override
     public String send(String topic, Value message) throws Exception{
         Message<Key, Value> msg = new Message<>();

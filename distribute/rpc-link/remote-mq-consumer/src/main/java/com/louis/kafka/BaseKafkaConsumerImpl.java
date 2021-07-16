@@ -1,5 +1,6 @@
 package com.louis.kafka;
 
+import com.alibaba.fastjson.JSON;
 import com.louis.kafka.common.ClientTemplate;
 import com.louis.kafka.common.ClusterInfo;
 import com.louis.kafka.common.Constants;
@@ -81,10 +82,6 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
             throw new IllegalArgumentException("kafka 服务器信息不能为空");
         }
         clusterInfo.setBrokers(authInfo.getServerAddr());
-        if (StringUtils.isBlank(authInfo.getSysCode())) {
-            throw new IllegalArgumentException("sysCode 不能为空");
-        }
-        clusterInfo.setSysCode(authInfo.getSysCode());
         this.clusterInfo = clusterInfo;
     }
 
@@ -112,19 +109,13 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
                                 MessageExt<Key, Value> msgVo = null;
                                 try {
                                     msgVo = kafkaMsgParse.receiveParse(record, ConsumerRecord.class);
-                                    if (CollectionUtils.isEmpty(msgVo.getSysCodes())) {
-                                        return;
-                                    }
-                                    if (msgVo.getSysCodes().contains(clusterInfo.getSysCode())) {
-                                        messageHandler.onMessage(msgVo);
-                                    }
+                                    messageHandler.onMessage(msgVo);
                                 } catch (Throwable t) {
                                     log.error(String.format("consume error! msgVo: %s"
                                             , msgVo == null ? "" : msgVo.toString()), t);
                                 }
                                 if (dmgAutoCommitEnabled) {
                                     consumer.commitAsync();
-
                                     checkCommitOffsets(flag);
                                 }
                             }
@@ -136,6 +127,8 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
                             log.error("new version kafka consumer trifles process failed, please concern!", t);
                         }
                     }
+                } catch (Throwable throwable) {
+                    log.error("consumer error ", throwable);
                 } finally {
                     consumer.close();
                     destroyLatch.countDown();
@@ -189,6 +182,7 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
                 return new Thread(r, String.format("Kafka-20-Consume-Thread-%s-%s-%d", getTopic(), getGroup(), idx.getAndIncrement()));
             }
         });
+        log.info(JSON.toJSONString(properties, true));
 
     }
 

@@ -16,7 +16,7 @@ import java.util.Properties;
 @Getter
 public class ConsumerPropertiesHandler {
 
-    private Properties properties;
+    private Properties properties = new Properties();
 
     public ConsumerPropertiesHandler(Properties properties) {
         this.properties = properties;

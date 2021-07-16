@@ -16,14 +16,15 @@ public class KafkaConfig {
     @Value("${kafka.bootstrap.servers}")
     private String brokers;
 
-    @Bean
-    public LouisKafkaProducerImpl<String,String> louisKafkaProducer() {
+    @Bean("louisKafkaProducer")
+    public LouisKafkaProducerImpl<String,String> louisKafkaProducer() throws Exception{
         LouisKafkaProducerImpl<String,String> louisKafkaProducer = new LouisKafkaProducerImpl<>();
 
         louisKafkaProducer.setTopics(Sets.newHashSet(topic));
         AuthInfo authInfo = new AuthInfo();
         authInfo.setServerAddr(brokers);
         louisKafkaProducer.setAuthInfo(authInfo);
+        louisKafkaProducer.doInit();
 
         return louisKafkaProducer;
     }

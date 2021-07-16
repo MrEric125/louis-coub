@@ -1,5 +1,7 @@
 package com.louis.kafka.producer;
 
+import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Preconditions;
 import com.louis.kafka.common.*;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +25,7 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 public class BaseKafkaProducer<Key extends Serializable, Value extends Serializable> extends ClientTemplate {
+
 
 
     private KafkaProducer<Key, Value> kafkaProducer;
@@ -60,10 +63,6 @@ public class BaseKafkaProducer<Key extends Serializable, Value extends Serializa
         if (clusterInfo == null) {
             throw new KafkaInitException("kafka 初始化没有配置信息");
         }
-        properties.setProperty(Constants.KafkaProducerConstant.BOOTSTRAP_SERVERS_NAME, clusterInfo.getBrokers());
-        properties.setProperty(Constants.KafkaProducerConstant.METADATA_MAX_AGE_MS, String.valueOf(60000));
-
-
         return new KafkaProducer<Key, Value>(properties);
 
     }
@@ -83,9 +82,10 @@ public class BaseKafkaProducer<Key extends Serializable, Value extends Serializa
             properties = new Properties();
         }
         printStartInfo();
-//        PropsUtil.printProps(properties);
 
         checkSerializer();
+        fillEmptyPropWithDefVal(properties, Constants.KafkaProducerConstant.BOOTSTRAP_SERVERS_NAME, clusterInfo.getBrokers());
+        fillEmptyPropWithDefVal(properties, Constants.KafkaProducerConstant.METADATA_MAX_AGE_MS, String.valueOf(60000));
         fillEmptyPropWithDefVal(properties, Constants.KafkaProducerConstant.ACKS_NAME, Constants.KafkaProducerConstant.DEF_ACKS_VAL);
         fillEmptyPropWithDefVal(properties, Constants.KafkaProducerConstant.COMPRESSION_TYPE_NAME, Constants.KafkaProducerConstant.DEF_COMPRESSION_TYPE_VAL);
         fillEmptyPropWithDefVal(properties, Constants.KafkaProducerConstant.RETRIES_NAME, Constants.KafkaProducerConstant.DEF_RETRIES_VAL);
@@ -96,6 +96,8 @@ public class BaseKafkaProducer<Key extends Serializable, Value extends Serializa
         fillEmptyPropWithDefVal(properties, Constants.KafkaProducerConstant.BATCH_SIZE_NAME, Constants.KafkaProducerConstant.DEF_BATCH_SIZE_VAL);
         fillEmptyPropWithDefVal(properties, Constants.KafkaProducerConstant.LINGER_MS_NAME, Constants.KafkaProducerConstant.DEF_LINGER_MS_VAL);
         fillEmptyPropWithDefVal(properties, Constants.KafkaProducerConstant.MAX_REQUEST_SIZE_NAME, Constants.KafkaProducerConstant.MAX_REQUEST_SIZE_VAL);
+        log.info(JSON.toJSONString(properties, true));
+
     }
     private void fillEmptyPropWithDefVal (Properties props, String pname, String defVal) {
         Object originVal = props.get(pname);
@@ -112,25 +114,13 @@ public class BaseKafkaProducer<Key extends Serializable, Value extends Serializa
     }
 
     private void checkSerializer() {
-//            properties.put(Constants.KafkaProducerConstant.KEY_SERIALIZER_NAME, Constants.KafkaProducerConstant.DEF_KEY_SERIALIZER_VAL);
-//            properties.put(Constants.KafkaProducerConstant.VALUE_SERIALIZER_NAME, Constants.KafkaProducerConstant.DEF_VALUE_SERIALIZER_VAL);
 
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
     }
     protected void printStartInfo() {
-//        LOGGER.info("[{} - {}], {}, {}, {}, {} init...",
-//                dmgConfigs.getLogicDataCenterCode(),
-//                dmgConfigs.getFlowGroupCode(),
-//                getMqType(), getRole(), getClusterCode(),
-//                JSON.toJSONString(getClientTopics()));
-        log.info("dmg client info: [{}]; [{}, {}, {}, {}]; [{}, {}, {}]; {}; {} init...","");
-//                dmgConfigs.getFlowGroupCode(),
-//                dmgConfigs.getProjectCode(), dmgConfigs.getAppCode(), authInfo.getSecretKey(), authInfo.getServerAddr(),
-//                getMqType(), getRole(), getClusterCode(),
-//                JSON.toJSONString(getClientTopics()),
-////                JSON.toJSONString(getPerms()),
-//                JSON.toJSONString(props)
+
+//        log.info("dmg client info: [{}]; [{}, {}, {}, {}]; [{}, {}, {}]; {}; {} init...","");
 
     }
 

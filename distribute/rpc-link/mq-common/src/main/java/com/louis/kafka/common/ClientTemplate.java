@@ -1,10 +1,6 @@
 package com.louis.kafka.common;
 
 
-import com.louis.kafka.common.AuthInfo;
-import com.louis.kafka.common.ClusterInfo;
-
-import javax.annotation.PostConstruct;
 import java.util.Properties;
 
 /**
@@ -18,7 +14,6 @@ public abstract class ClientTemplate {
 
     protected ClusterInfo clusterInfo;
 
-    @PostConstruct
     public abstract void doInit() throws Exception;
 
 
