@@ -53,6 +53,6 @@
 //    }
 //    //根目录的时候直接跳转到登录界面
 //    public void addViewControllers(ViewControllerRegistry registry) {
-//        registry.addViewController("/")
+//        registry.addViewController("/");
 //    }
 //}

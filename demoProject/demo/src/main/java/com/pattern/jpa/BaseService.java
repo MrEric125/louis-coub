@@ -1,11 +1,19 @@
 package com.pattern.jpa;
 
 
+import org.assertj.core.util.Sets;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.Cursor;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ScanOptions;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.Set;
 
 /**
  * @author jun.liu
@@ -37,5 +45,20 @@ public class BaseService implements IBaseService<String, BizService> {
         redisTemplate.opsForValue().set(key, value);
 
 
+    }
+
+    public Set<String> scan(String pattern) {
+        return redisTemplate.execute((RedisCallback<Set<String>>) connection -> {
+            ScanOptions scanOptions = ScanOptions.scanOptions().match(pattern).count(Integer.MAX_VALUE).build();
+            Cursor<byte[]> scan = connection.scan(scanOptions);
+            Set<String> sets = Sets.newHashSet();
+            if (scan.hasNext()) {
+                byte[] next = scan.next();
+                String string = Arrays.toString(next);
+                sets.add(string);
+
+            }
+            return sets;
+        });
     }
 }
