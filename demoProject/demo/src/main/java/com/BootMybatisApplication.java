@@ -15,15 +15,16 @@ import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Future;
 import java.util.concurrent.locks.LockSupport;
-
-@EnableJpaRepositories
-@SpringBootApplication
-@CrossOrigin
+// @EnableJpaRepositories
+// @SpringBootApplication
+// @CrossOrigin
 public class BootMybatisApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BootMybatisApplication.class, args);
+       System.out.println("hello world");
+        // SpringApplication.run(BootMybatisApplication.class, args);
     }
+    
 
 
 
