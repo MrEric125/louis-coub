@@ -29,6 +29,14 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  *
  * 那么就会执行{@link AbstractAdvisorAutoProxyCreator#postProcessAfterInitialization(Object, String)}  }
  *
+ * 需要注意的是，在创建代理类之前，系统是需要知道哪些类需要被代理到我们指定的切面中去的，这里需要首先找到切面中的织入(Advisor)
+ *
+ * 通过在哪里找的呢？
+ *
+ * {@link org.springframework.aop.aspectj.annotation.BeanFactoryAspectJAdvisorsBuilder#buildAspectJAdvisors}
+ *
+ * 找到对应的切面点，并且也有对应的织入(Advisor)的时候，那么就需要创建代理类了
+ *
  * 在这里就准备创建我们的代理对象
  * {@link AbstractAutoProxyCreator#createProxy(Class, String, Object[], TargetSource)}
  *
