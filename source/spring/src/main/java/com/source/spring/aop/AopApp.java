@@ -58,7 +58,7 @@ public class AopApp {
         AopEntity aopEntity = context.getBean("aopEntity", AopEntity.class);
         aopEntity.test();
         EntityService en = context.getBean(EntityService.class);
-        System.out.println(en.aopentity());
+        System.out.println(en.test());
         System.out.println(JSON.toJSONString(aopEntity, true));
     }
 
