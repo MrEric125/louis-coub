@@ -1,8 +1,11 @@
 package com.source.spring.aop;
 
+import org.junit.Test;
+
 public class HandlerTest {
 
-    public static void main(String[] args) {
+    @Test
+    public void test() {
         EntityService entityService = new EntityServiceImpl();
 
         MyInvocationHandler invocationHandler = new MyInvocationHandler(entityService);
