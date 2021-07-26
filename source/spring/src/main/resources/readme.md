@@ -8,13 +8,18 @@ mvc 启动过程
 
     2. 加载配置的Servlet    DispatcherServlet
         找刚才创建的上下文，如果找到了，会将刚才的那个上下文作为当前上下文的父上下文，(合并 envirment,目前看到的是这些)
-        如果没有找到，那么久创建一个对应的上下文，然后往上下文中塞数据，
+        如果没有找到，那么就创建一个对应的上下文，然后往上下文中塞数据，但是需要塞进去的数据时从哪儿来的，找到这个confiLocation,如下图，默认是 SpringMvc-servlet.xml ，
+![img.png](img.png)
+
+        当然咯，这个配置的路径我们是可以在web.xml中修改的
+        
+![img_1.png](img_1.png)
+
         已经有了上下文，是不是可以将IOC 和AOP的那些bean给初始化一下，执行下面代码
         this.configureAndRefreshWebApplicationContext(wac);
         自动注入的代码也注入了，接下来，spring mvc 的一些处理器是不是可以初始化一下了
          FrameworkServlet#onRefresh()    
         刚才说的往上下文中方的数据又哪些，其实我们需要考虑web的几个场景
-       
 
         1. 上传文件
         2. 页面跳转ModelView
