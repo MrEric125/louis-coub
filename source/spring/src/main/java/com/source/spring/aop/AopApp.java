@@ -50,6 +50,7 @@ public class AopApp {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
         //切面配置类要么被手动加入上下文，要么通过注解的方式加入上下文，否则不生效
+        // todo 为什么这里需要将 AopAspect 这个放入到spring环境管理中去
         context.register(AopAspect.class);
         context.scan("com.source.spring.aop");
 
@@ -58,7 +59,7 @@ public class AopApp {
         AopEntity aopEntity = context.getBean("aopEntity", AopEntity.class);
         aopEntity.test();
         EntityService en = context.getBean(EntityService.class);
-        System.out.println(en.aopentity());
+        System.out.println(en.test());
         System.out.println(JSON.toJSONString(aopEntity, true));
     }
 
