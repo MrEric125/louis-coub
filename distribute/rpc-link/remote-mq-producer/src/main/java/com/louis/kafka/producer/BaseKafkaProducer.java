@@ -119,7 +119,7 @@ public class BaseKafkaProducer<Key extends Serializable, Value extends Serializa
     }
     protected void printStartInfo() {
 
-//        log.info("dmg client info: [{}]; [{}, {}, {}, {}]; [{}, {}, {}]; {}; {} init...","");
+//        log.info("mg client info: [{}]; [{}, {}, {}, {}]; [{}, {}, {}]; {}; {} init...","");
 
     }
 

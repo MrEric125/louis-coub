@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.Set;
 
 /**
- * DMC监控平台SDK工具类
+ *
  * 
  * @author xingw
  *

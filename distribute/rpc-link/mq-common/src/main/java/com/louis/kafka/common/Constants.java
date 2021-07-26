@@ -156,8 +156,8 @@ public class Constants {
         public static final int AUTO_COMMIT_OFFSET_TIME_MS = 30;
         public static final int AUTO_COMMIT_OFFSET_SIZE = 128;
 
-        public static final String DMG_AUTO_COMMIT_ENABLE = "dmg.auto.commit.enable";
-        public static final String DEF_DMG_AUTO_COMMIT_ENABLE_VAL = "true";
+        public static final String MG_AUTO_COMMIT_ENABLE = "mg.auto.commit.enable";
+        public static final String DEF_MG_AUTO_COMMIT_ENABLE_VAL = "true";
 
         public static final String CONSUME_STUCK_THRESHOLD_MS_NAME = "consume.stuck.threshold.ms";
 

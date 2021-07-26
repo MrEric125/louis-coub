@@ -41,7 +41,7 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
     private KafkaMsgParse<Key, Value> kafkaMsgParse = new KafkaMsgParse<>();
 
     private CountDownLatch destroyLatch;
-    private volatile boolean dmgAutoCommitEnabled = true;
+    private volatile boolean mgAutoCommitEnabled = true;
 
     public String getGroup() {
         return group;
@@ -122,13 +122,13 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
                                     log.error(String.format("consume error! msgVo: %s"
                                             , msgVo == null ? "" : msgVo.toString()), t);
                                 }
-                                if (dmgAutoCommitEnabled) {
+                                if (mgAutoCommitEnabled) {
                                     consumer.commitAsync();
                                     checkCommitOffsets(flag);
                                 }
                             }
 
-                            if (dmgAutoCommitEnabled && noMessage) {
+                            if (mgAutoCommitEnabled && noMessage) {
                                 checkCommitOffsets(flag);
                             }
                         } catch (Throwable t) {
