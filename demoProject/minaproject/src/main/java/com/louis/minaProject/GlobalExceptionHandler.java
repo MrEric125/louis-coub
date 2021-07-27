@@ -2,7 +2,6 @@ package com.louis.minaProject;
 
 import com.google.common.collect.ImmutableMap;
 import com.louis.common.common.HttpResult;
-import com.louis.common.common.HttpResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

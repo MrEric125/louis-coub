@@ -1,6 +1,5 @@
 package com.web.listener;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

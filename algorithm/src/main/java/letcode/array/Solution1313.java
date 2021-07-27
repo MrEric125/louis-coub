@@ -1,7 +1,5 @@
 package letcode.array;
 
-import org.assertj.core.util.Lists;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

@@ -1,8 +1,6 @@
 package com.sorting.heap;
 
 
-import java.util.Comparator;
-
 /**
  * @author John·Louis
  * @date create in 2019/9/1

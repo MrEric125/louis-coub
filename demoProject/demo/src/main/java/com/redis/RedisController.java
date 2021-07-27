@@ -3,8 +3,6 @@ package com.redis;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
 import com.louis.common.common.HttpResult;
-import com.louis.common.common.HttpResult;
-import io.lettuce.core.pubsub.RedisPubSubAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.DataType;
 import org.springframework.data.redis.core.RedisTemplate;

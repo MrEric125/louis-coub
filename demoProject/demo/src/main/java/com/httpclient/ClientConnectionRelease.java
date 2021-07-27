@@ -8,7 +8,6 @@ import org.apache.http.impl.client.HttpClients;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Optional;
 
 /**
  * @author louis

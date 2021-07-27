@@ -1,7 +1,6 @@
 package com.luois;
 
 import com.MssUtil;
-import com.luois.test.Person;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

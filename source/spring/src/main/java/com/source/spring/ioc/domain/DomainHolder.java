@@ -3,8 +3,6 @@ package com.source.spring.ioc.domain;
 
 import lombok.Data;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**

@@ -2,8 +2,6 @@ package com.louis.entity;
 
 import lombok.*;
 
-import java.util.List;
-
 /**
  * @author louis
  * <p>

@@ -2,7 +2,6 @@ package com.louis.controller;
 
 import com.google.common.collect.Maps;
 import com.louis.common.common.HttpResult;
-import com.louis.common.common.HttpResult;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.PathVariable;

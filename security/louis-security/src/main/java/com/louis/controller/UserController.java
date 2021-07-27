@@ -1,7 +1,6 @@
 package com.louis.controller;
 
 import com.louis.common.common.HttpResult;
-import com.louis.common.common.HttpResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

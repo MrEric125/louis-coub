@@ -5,7 +5,6 @@ import org.springframework.aop.TargetSource;
 import org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator;
 import org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator;
 import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
@@ -69,6 +68,8 @@ public class AopApp {
         EntityService en = context.getBean(EntityService.class);
         System.out.println(en.test());
         System.out.println(JSON.toJSONString(aopEntity, true));
+
+        context.close();
     }
 
 }

@@ -1,6 +1,5 @@
 package louis.server.oauth2service;
 
-import louis.server.entity.UserEntity;
 import louis.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;

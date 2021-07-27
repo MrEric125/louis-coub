@@ -1,7 +1,5 @@
 package com.pattern.jpa;
 
-import java.util.Map;
-
 /**
  * @author jun.liu
  * @date created on 2020/7/18

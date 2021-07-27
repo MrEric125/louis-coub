@@ -3,7 +3,6 @@ package com.future.future2;
 import com.future.Shop;
 import com.google.common.collect.ImmutableMap;
 import com.louis.common.common.HttpResult;
-import com.louis.common.common.HttpResult;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;

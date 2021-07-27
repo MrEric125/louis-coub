@@ -1,7 +1,6 @@
 package com.redis.pubsub;
 
 import com.louis.common.common.HttpResult;
-import com.louis.common.common.HttpResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.PathVariable;

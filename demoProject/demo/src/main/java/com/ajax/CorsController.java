@@ -2,7 +2,6 @@ package com.ajax;
 
 import com.google.common.collect.ImmutableMap;
 import com.louis.common.common.HttpResult;
-import com.louis.common.common.HttpResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
