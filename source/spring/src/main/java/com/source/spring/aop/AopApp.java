@@ -52,6 +52,15 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  *织入的时间，BeanPostProcessor获取的时间。
  *
  *
+ * ===================================
+ * 如果让你自己设计一个aop 框架会怎么设计？
+ * 1. 这个aop应该是个开关对象，有的项目中需要添加，有的项目中可能不需要添加aop。 invokeBeanFactoryPostProcessors（）中执行
+ * 1. 首先拿到这个目标对象
+ * 2. 找到切面点，判断当前对象是否为代理对象
+ * 3. 如果当前对象为代理对象，代理的方法有哪些？
+ * 4. 创建代理对象，放入ioc管理，后期执行就执行的这个代理对象中的代理方法。
+ *
+ *
  */
 public class AopApp {
 
