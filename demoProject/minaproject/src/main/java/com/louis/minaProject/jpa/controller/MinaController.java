@@ -6,7 +6,6 @@ import com.google.common.collect.Maps;
 import com.louis.common.common.HttpResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.web.bind.annotation.RequestMapping;

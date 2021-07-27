@@ -3,16 +3,11 @@ package com.future;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.commons.collections4.list.PredicatedList;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
-
-import static java.util.stream.Collectors.toList;
 
 /**
  * @author louis

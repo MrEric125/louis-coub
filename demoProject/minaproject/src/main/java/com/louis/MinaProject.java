@@ -2,22 +2,16 @@ package com.louis;
 
 import com.google.common.collect.Lists;
 import com.louis.common.common.HttpResult;
-import com.louis.lessifelse.OrderService;
-import com.louis.minashop.i18n.LocaleMessageSourceService;
 import lombok.SneakyThrows;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,12 +20,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.locks.LockSupport;
 
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.server.ServerWebExchange;
-import org.springframework.web.server.adapter.DefaultServerWebExchange;
 
-import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
 
 /**
  * @author John·Louis

@@ -1,8 +1,6 @@
 package louis.server.entity.asocciate;
 
 import lombok.*;
-import louis.server.entity.AuthorityEntity;
-import louis.server.entity.RoleEntity;
 import louis.server.entity.authbase.BaseEntity;
 
 import javax.persistence.*;

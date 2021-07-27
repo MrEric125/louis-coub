@@ -3,7 +3,6 @@ package com.source.spring.aop;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * @author jun.liu

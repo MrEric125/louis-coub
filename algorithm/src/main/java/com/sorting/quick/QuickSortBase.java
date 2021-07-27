@@ -1,10 +1,6 @@
 package com.sorting.quick;
 
-import com.sorting.common.ISorting;
 import com.sorting.common.SortUtils;
-import com.sorting.insert.Insertion;
-
-import java.util.Arrays;
 
 /**
  * @author John·Louis

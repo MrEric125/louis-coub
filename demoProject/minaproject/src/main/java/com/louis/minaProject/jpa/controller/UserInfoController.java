@@ -1,7 +1,6 @@
 package com.louis.minaProject.jpa.controller;
 
 import com.louis.common.common.HttpResult;
-import com.louis.common.common.HttpResult;
 import com.louis.minaProject.jpa.entity2.UserInfo;
 import com.louis.minaProject.jpa.repository2.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

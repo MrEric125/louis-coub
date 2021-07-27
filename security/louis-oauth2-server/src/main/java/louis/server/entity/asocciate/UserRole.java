@@ -1,8 +1,6 @@
 package louis.server.entity.asocciate;
 
 import lombok.*;
-import louis.server.entity.RoleEntity;
-import louis.server.entity.UserEntity;
 import louis.server.entity.authbase.BaseEntity;
 import org.hibernate.annotations.Where;
 

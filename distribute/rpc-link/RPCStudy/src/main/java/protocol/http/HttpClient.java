@@ -1,10 +1,8 @@
 package protocol.http;
 
 import framework.Invocation;
-import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;

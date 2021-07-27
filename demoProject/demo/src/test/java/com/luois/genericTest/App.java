@@ -1,11 +1,7 @@
 package com.luois.genericTest;
 
-import com.google.common.collect.Lists;
-
-import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author jun.liu

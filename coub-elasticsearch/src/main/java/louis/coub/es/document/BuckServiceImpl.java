@@ -1,6 +1,5 @@
 package louis.coub.es.document;
 
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import louis.coub.es.model.SearchTypeEnums;
 import org.elasticsearch.action.search.SearchResponse;
@@ -8,7 +7,6 @@ import org.elasticsearch.client.Client;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.SearchHits;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

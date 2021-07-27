@@ -1,6 +1,5 @@
 package com.java8;
 
-import com.java8.collectors.GroupingToOptional;
 import com.java8.collectors.ReportForm;
 
 /**

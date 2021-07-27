@@ -2,8 +2,6 @@ package com.concurrent.executor;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.concurrent.*;
-
 /**
  * @author louis
  * <p>

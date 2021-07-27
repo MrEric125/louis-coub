@@ -2,12 +2,9 @@ package com.louis.kafka.producer;
 
 import com.louis.kafka.common.Message;
 import org.apache.kafka.clients.producer.Callback;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author John·Louis

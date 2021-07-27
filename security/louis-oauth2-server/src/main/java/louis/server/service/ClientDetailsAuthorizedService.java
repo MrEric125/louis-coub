@@ -1,7 +1,5 @@
 package louis.server.service;
 
-import louis.server.entity.asocciate.ClientDetailsToAuthorizedGrantType;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 /**

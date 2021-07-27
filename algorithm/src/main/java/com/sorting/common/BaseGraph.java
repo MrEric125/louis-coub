@@ -1,7 +1,5 @@
 package com.sorting.common;
 
-import java.util.Vector;
-
 /**
  * @author Eric
  * @date create in 2018/12/1

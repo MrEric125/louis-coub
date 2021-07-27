@@ -2,7 +2,6 @@ package com.louis.minaProject.jpa.controller;
 
 import com.google.common.collect.Lists;
 import com.louis.common.common.HttpResult;
-import com.louis.common.common.HttpResult;
 import com.louis.minaProject.jpa.entity.Login;
 import com.louis.minaProject.jpa.repository.LoginRepository;
 import lombok.extern.slf4j.Slf4j;

@@ -3,9 +3,6 @@ package com.security;
 import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 
-import java.util.Random;
-import java.util.UUID;
-
 /**
  * @author louis
  * <p>

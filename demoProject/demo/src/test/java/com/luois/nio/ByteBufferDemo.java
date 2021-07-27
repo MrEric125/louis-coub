@@ -3,7 +3,6 @@ package com.luois.nio;
 import org.junit.Test;
 
 import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
 
 /**
  * @author Louis

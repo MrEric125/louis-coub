@@ -6,7 +6,6 @@ import com.louis.kafka.common.ClusterInfo;
 import com.louis.kafka.common.Constants;
 import com.louis.kafka.common.MessageExt;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;

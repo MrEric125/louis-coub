@@ -1,7 +1,5 @@
 package com.security;
 
-import lombok.Data;
-
 /**
  * @author louis
  * <p>

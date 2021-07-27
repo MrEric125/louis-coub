@@ -4,7 +4,6 @@ import com.google.common.collect.Maps;
 import org.junit.Test;
 
 import java.io.*;
-import java.nio.channels.FileChannel;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

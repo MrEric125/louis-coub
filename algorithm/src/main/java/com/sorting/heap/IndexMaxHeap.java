@@ -30,8 +30,8 @@ public class IndexMaxHeap<Item extends Comparable<Item>> {
 
     /**
      * heapify的一个过程 算法的复杂度是O(n)
-     * @param arr
-     * @param n
+     * @param
+     * @param
      */
 //    @SuppressWarnings("unchecked")
 //    public IndexMaxHeap(Item[] arr, int n) {

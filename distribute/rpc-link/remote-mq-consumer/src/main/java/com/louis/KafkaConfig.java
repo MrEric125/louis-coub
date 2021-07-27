@@ -1,7 +1,6 @@
 package com.louis;
 
 
-import com.louis.kafka.BaseKafkaConsumerImpl;
 import com.louis.kafka.LouisKafkaConsumerImpl;
 import com.louis.kafka.client.LouisMessageHandler;
 import com.louis.kafka.common.AuthInfo;

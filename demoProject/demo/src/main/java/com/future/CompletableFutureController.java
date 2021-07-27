@@ -1,8 +1,6 @@
 package com.future;
 
-import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.ImmutableMap;
-import com.louis.common.common.HttpResult;
 import com.louis.common.common.HttpResult;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;

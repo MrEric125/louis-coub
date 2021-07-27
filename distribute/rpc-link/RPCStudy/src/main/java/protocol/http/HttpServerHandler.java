@@ -4,7 +4,6 @@ import framework.Invocation;
 import org.apache.commons.io.IOUtils;
 import provider.LocalRegister;
 
-import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
