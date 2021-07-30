@@ -2,7 +2,6 @@ package com.source.spring.aop;
 
 import com.alibaba.fastjson.JSON;
 import org.springframework.aop.TargetSource;
-import org.springframework.aop.framework.CglibAopProxy;
 import org.springframework.aop.framework.ReflectiveMethodInvocation;
 import org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator;
 import org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator;
@@ -57,7 +56,7 @@ import java.lang.reflect.Method;
  *
  * 那么 我们定义的Advisor 这个织入是什么时候生效的呢？
  *
- * {@link CglibAopProxy.DynamicAdvisedInterceptor#intercept(Object, Method, Object[], MethodProxy)} 会通过调用的方法找到对应的织入，
+ * {@link org.springframework.aop.framework.CglibAopProxy.DynamicAdvisedInterceptor#intercept(Object, Method, Object[], MethodProxy)} 会通过调用的方法找到对应的织入，
  *
  * 如果有，那就执行advisor拦截器链
  *
