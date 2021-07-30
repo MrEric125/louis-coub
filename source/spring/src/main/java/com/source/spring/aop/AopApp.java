@@ -2,6 +2,7 @@ package com.source.spring.aop;
 
 import com.alibaba.fastjson.JSON;
 import org.springframework.aop.TargetSource;
+import org.springframework.aop.framework.ReflectiveMethodInvocation;
 import org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator;
 import org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -50,14 +51,18 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  *
  *织入的时间，BeanPostProcessor获取的时间。
  *
+ * 那么 我们定义的Advisor 这个织入是什么时候生效的呢？
  *
- * ===================================
+ * 一般一个 advice 会是一个MethodInterceptor 在这个拦截器中 最后会调用{@link ReflectiveMethodInvocation#proceed()} 这个方法拦截器会调用所有的 advice中的invoke方法
+ *
+ *
+ * ==================================================================
  * 如果让你自己设计一个aop 框架会怎么设计？
  * 1. 这个aop应该是个开关对象，有的项目中需要添加，有的项目中可能不需要添加aop。 invokeBeanFactoryPostProcessors（）中执行
  * 1. 首先拿到这个目标对象
  * 2. 找到切面点，判断当前对象是否为代理对象
  * 3. 如果当前对象为代理对象，代理的方法有哪些？
- * 4. 创建代理对象，放入ioc管理，后期执行就执行的这个代理对象中的代理方法。
+ * 4. 创建代理对象，放入ioc管理，后期使用目标对象的方法就执行的这个代理对象中的代理方法。
  *
  *
  */
@@ -74,9 +79,9 @@ public class AopApp {
 
         AopEntity aopEntity = context.getBean("aopEntity", AopEntity.class);
         aopEntity.test();
-        EntityService en = context.getBean(EntityService.class);
-        System.out.println(en.test());
-        System.out.println(JSON.toJSONString(aopEntity, true));
+//        EntityService en = context.getBean(EntityService.class);
+//        System.out.println(en.test());
+//        System.out.println(JSON.toJSONString(aopEntity, true));
 
         context.close();
     }
