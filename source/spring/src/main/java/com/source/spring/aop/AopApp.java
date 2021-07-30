@@ -2,12 +2,16 @@ package com.source.spring.aop;
 
 import com.alibaba.fastjson.JSON;
 import org.springframework.aop.TargetSource;
+import org.springframework.aop.framework.CglibAopProxy;
 import org.springframework.aop.framework.ReflectiveMethodInvocation;
 import org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator;
 import org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.cglib.proxy.MethodProxy;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+
+import java.lang.reflect.Method;
 
 /**
  * @author jun.liu
@@ -53,6 +57,10 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  *
  * 那么 我们定义的Advisor 这个织入是什么时候生效的呢？
  *
+ * {@link CglibAopProxy.DynamicAdvisedInterceptor#intercept(Object, Method, Object[], MethodProxy)} 会通过调用的方法找到对应的织入，
+ *
+ * 如果有，那就执行advisor拦截器链
+ *
  * 一般一个 advice 会是一个MethodInterceptor 在这个拦截器中 最后会调用{@link ReflectiveMethodInvocation#proceed()} 这个方法拦截器会调用所有的 advice中的invoke方法
  *
  *
@@ -62,7 +70,11 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * 1. 首先拿到这个目标对象
  * 2. 找到切面点，判断当前对象是否为代理对象
  * 3. 如果当前对象为代理对象，代理的方法有哪些？
- * 4. 创建代理对象，放入ioc管理，后期使用目标对象的方法就执行的这个代理对象中的代理方法。
+ * 4. 创建代理对象，放入ioc管理，
+ * 使用：
+ * 1. 找到代理对象
+ * 2. 如果有代理，执行方法之前，先检查当前方法有没有被织入，
+ *
  *
  *
  */
@@ -78,7 +90,8 @@ public class AopApp {
         context.refresh();
 
         AopEntity aopEntity = context.getBean("aopEntity", AopEntity.class);
-        aopEntity.test();
+        aopEntity.noInvoke();
+//        aopEntity.test();
 //        EntityService en = context.getBean(EntityService.class);
 //        System.out.println(en.test());
 //        System.out.println(JSON.toJSONString(aopEntity, true));

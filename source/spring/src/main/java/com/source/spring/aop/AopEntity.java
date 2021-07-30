@@ -20,6 +20,9 @@ public class AopEntity implements Cloneable{
     public  void  test() {
         System.out.println("test");
     }
+    public void noInvoke() {
+        System.out.println("noInvoke");
+    }
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
