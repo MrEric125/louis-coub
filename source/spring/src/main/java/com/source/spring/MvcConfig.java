@@ -20,9 +20,9 @@ import java.util.List;
  * description:
  */
 
-@Configuration//声明当前类是一个配置类（类似于 spring_xxx.xml 的文件）
-@EnableWebMvc//若无此注解，WebMvcConfigurerAdapter无效
-@ComponentScan(value = "com.source.spring")//自动扫描spring注解 比如@Service、@Component、@Repository和@Controller的类，并注册为Bean
+@Configuration
+@EnableWebMvc
+@ComponentScan(value = "com.source.spring")
 public class MvcConfig  implements WebMvcConfigurer {
 
 

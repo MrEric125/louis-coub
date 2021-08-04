@@ -4,8 +4,8 @@ import com.sun.jmx.mbeanserver.JmxMBeanServer;
 import lombok.extern.slf4j.Slf4j;
 
 
-import javax.management.MBeanServer;
-import javax.management.MBeanServerFactory;
+//import javax.management.MBeanServer;
+//import javax.management.MBeanServerFactory;
 import javax.management.ObjectName;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -124,52 +124,52 @@ public final class MonitorUtils {
 	public static Integer getTomcatPortByMBean() {
 		// final String PROTOCOL = "HTTP/1.1";
 
-		MBeanServer mBeanServer = null;
-		try {
-			ArrayList<MBeanServer> mBeanServers = MBeanServerFactory.findMBeanServer(null);
-			if (mBeanServers.size() > 0) {
-				for (MBeanServer _mBeanServer : mBeanServers) {
-					if (_mBeanServer instanceof JmxMBeanServer) {
-						mBeanServer = _mBeanServer;
-						break;
-					}
-				}
-			}
-			if (mBeanServer == null) {
-				return null;
-			}
+//		MBeanServer mBeanServer = null;
+//		try {
+//			ArrayList<MBeanServer> mBeanServers = MBeanServerFactory.findMBeanServer(null);
+//			if (mBeanServers.size() > 0) {
+//				for (MBeanServer _mBeanServer : mBeanServers) {
+//					if (_mBeanServer instanceof JmxMBeanServer) {
+//						mBeanServer = _mBeanServer;
+//						break;
+//					}
+//				}
+//			}
+//			if (mBeanServer == null) {
+//				return null;
+//			}
 			//标准容器采用这种
-			Integer port = getTomcatPort("Catalina:type=Connector,*",mBeanServer);
-			if (port != null){
-				return port;
-			}else{
-				//spring boot采用这种
-				return  getTomcatPort("Tomcat:type=Connector,*",mBeanServer);
-			}
-
-		} catch (Throwable e) {
-			log.warn("dmc get app web port fail:{}",e.getMessage());
-		}
+//			Integer port = getTomcatPort("Catalina:type=Connector,*",mBeanServer);
+//			if (port != null){
+//				return port;
+//			}else{
+//				spring boot采用这种
+//				return  getTomcatPort("Tomcat:type=Connector,*",mBeanServer);
+//			}
+//
+//		} catch (Throwable e) {
+//			log.warn("dmc get app web port fail:{}",e.getMessage());
+//		}
 		return null;
 	}
 
-	private static Integer getTomcatPort(String name,MBeanServer mBeanServer)throws Exception{
-		final String schema = "http";
-		Set<ObjectName> objectNames = mBeanServer.queryNames(new ObjectName(name), null);
-		if (objectNames != null && objectNames.size() > 0) {
-			for (ObjectName objectName : objectNames) {
-				String  protocol = (String) mBeanServer.getAttribute(objectName, "protocol");
-				if (protocol != null){
-					protocol = protocol.toLowerCase();
-					if (protocol.startsWith(schema)) {
-						return (Integer) mBeanServer.getAttribute(objectName, "port");
-					}
-				}
-
-			}
-		}
-		return null;
-	}
+//	private static Integer getTomcatPort(String name,MBeanServer mBeanServer)throws Exception{
+//		final String schema = "http";
+//		Set<ObjectName> objectNames = mBeanServer.queryNames(new ObjectName(name), null);
+//		if (objectNames != null && objectNames.size() > 0) {
+//			for (ObjectName objectName : objectNames) {
+//				String  protocol = (String) mBeanServer.getAttribute(objectName, "protocol");
+//				if (protocol != null){
+//					protocol = protocol.toLowerCase();
+//					if (protocol.startsWith(schema)) {
+//						return (Integer) mBeanServer.getAttribute(objectName, "port");
+//					}
+//				}
+//
+//			}
+//		}
+//		return null;
+//	}
 	/**
 	 * 返回JVM实例编号
 	 * 
