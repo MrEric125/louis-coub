@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author jun.liu
  * @since 2020/11/14 14:34
- * @SpirngbootApplication起作用的核心配置是@EnableAutoConfiguration
+ *  {@link SpringBootApplication} 起作用的核心配置是@EnableAutoConfiguration
  *
  * @ComponentScan 只是spring mvc xml功能迁移而已，扫描当前包下的所有带配置类
  */

@@ -4,10 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
 
-@Controller
+@RestController
 public class TestController
 {
 
@@ -15,7 +16,6 @@ public class TestController
     public void init() {
         System.out.println("init");
     }
-    //访问地址：http://localhost:8080/Test/returnSuccess
     @RequestMapping(value = "returnSuccess")    //实际访问的url地址
     public String returnSuccess() {
         return "success";    //返回Views文件夹下的success.jsp页面

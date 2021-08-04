@@ -47,5 +47,11 @@ mvc 启动过程
 ###. spring-boot 内置tomcat启动过程
     基于spring-boot启动的 mvc项目的顺序会和原生的mvc项目有些不一样，但是整体的逻辑还是一样的。
 
+    1. 初始化上下文
+    2. 启动内置tomcat 服务器
+    3. 创建DispartcherServlet
+    4. 访问的时候调用GenericServlet#init()
+
+
 ### 访问页面
     

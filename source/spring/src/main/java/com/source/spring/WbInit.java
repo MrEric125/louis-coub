@@ -12,12 +12,12 @@ import javax.servlet.ServletRegistration;
 @ComponentScan(basePackages = "com.source")
 public class WbInit implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) throws ServletException {
-        AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-        ctx.register(MvcConfig.class);
-        ctx.setServletContext(servletContext);
-        ServletRegistration.Dynamic dynamic = servletContext.addServlet("dispatcher",new DispatcherServlet(ctx));
-        dynamic.addMapping("/");
-        dynamic.setLoadOnStartup(1);
-
+//        AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
+//        ctx.register(MvcConfig.class);
+//        ctx.setServletContext(servletContext);
+//        ServletRegistration.Dynamic dynamic = servletContext.addServlet("dispatcher",new DispatcherServlet(ctx));
+//        dynamic.addMapping("/");
+//        dynamic.setLoadOnStartup(1);
+//
     }
 }
