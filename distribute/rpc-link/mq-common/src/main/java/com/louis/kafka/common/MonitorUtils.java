@@ -1,19 +1,16 @@
 package com.louis.kafka.common;
 
-import com.sun.jmx.mbeanserver.JmxMBeanServer;
+//import com.sun.jmx.mbeanserver.JmxMBeanServer;
 import lombok.extern.slf4j.Slf4j;
 
 
 //import javax.management.MBeanServer;
 //import javax.management.MBeanServerFactory;
-import javax.management.ObjectName;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.management.ManagementFactory;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Set;
 
 /**
  *
