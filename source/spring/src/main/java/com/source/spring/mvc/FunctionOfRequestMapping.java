@@ -86,13 +86,7 @@ public class FunctionOfRequestMapping {
         return HttpResult.ok(JSON.toJSONString(id));
     }
 
-    public static void main(String[] args) {
-        DemoParam param = new DemoParam();
-        param.setId("11");
-        System.out.println(JSON.toJSONString(param));
-        String ss = "{\"id\":\"11\"}";
 
-    }
 
 
     /**

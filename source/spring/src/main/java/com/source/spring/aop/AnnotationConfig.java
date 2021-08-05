@@ -10,17 +10,17 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * description:
  */
 @EnableAspectJAutoProxy
-@Configuration
+//@Configuration
 public class AnnotationConfig {
 
-    @Bean
-    public AopEntity aopEntity() {
-        AopEntity entity = new AopEntity();
-        entity.setId(1212L);
-        entity.setName("zhangsan");
-        entity.setTitle("title");
-        return entity;
-    }
+//    @Bean
+//    public AopEntity aopEntity() {
+//        AopEntity entity = new AopEntity();
+//        entity.setId(1212L);
+//        entity.setName("zhangsan");
+//        entity.setTitle("title");
+//        return entity;
+//    }
 
 
 }

@@ -1,5 +1,6 @@
 mvc 启动过程
 ###. web.xml
+
     1. 加载配置的Listener   ContextLoaderListener
             这个context的作用很简单就是当Tomcat 启动后创建应用程序的上下文，和servletsContext,这个时候的上下文里面其实什么都没有，就是一个空壳子（这一步非必须），
             在下一步创建上下文Context的时候就会把在listener中创建的context作为servlet init()中创建的context的父context.如下图 

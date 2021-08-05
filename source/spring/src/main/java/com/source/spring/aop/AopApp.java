@@ -1,10 +1,12 @@
 package com.source.spring.aop;
 
 import org.springframework.aop.TargetSource;
+import org.springframework.aop.config.AopNamespaceHandler;
 import org.springframework.aop.framework.ReflectiveMethodInvocation;
 import org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator;
 import org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.cglib.proxy.MethodProxy;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -18,12 +20,12 @@ import java.lang.reflect.Method;
  *
  * spring AOP启动过程
  * xml
- * 在AopNamespaceHandler中的init() 会new {@link org.springframework.aop.config.AspectJAutoProxyBeanDefinitionParser}
+ * 在{@link AopNamespaceHandler#init()}    会new {@link org.springframework.aop.config.AspectJAutoProxyBeanDefinitionParser}
  *
  * AspectJAutoProxyBeanDefinitionParser 又会注册一个 internalAutoProxyCreator{@link org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator}
  *
  * 注解的方式
- * 在 {@link EnableAspectJAutoProxy} 中会执行  AopConfigUtils.registerAspectJAnnotationAutoProxyCreatorIfNecessary(registry);同样会创建一个 internalAutoProxyCreator
+ * 在 {@link EnableAspectJAutoProxy} 中会执行 {@link org.springframework.aop.config.AopConfigUtils#registerAspectJAnnotationAutoProxyCreatorIfNecessary(BeanDefinitionRegistry)}  同样会创建一个 internalAutoProxyCreator
  *
  * 接下来xml与注解的形式都是一样的，主要就是看 AnnotationAwareAspectJAutoProxyCreator 的作用是什么？
  *
@@ -83,12 +85,13 @@ public class AopApp {
         //切面配置类要么被手动加入上下文，要么通过注解的方式加入上下文，否则不生效
         // todo 为什么这里需要将 AopAspect 这个放入到spring环境管理中去
         context.register(AopAspect.class);
+//        context.register(AopEntity.class);
         context.scan("com.source.spring.aop");
 
         context.refresh();
 
-        AopEntity aopEntity = context.getBean("aopEntity", AopEntity.class);
-        aopEntity.noInvoke();
+//        AopEntity aopEntity = context.getBean("aopEntity", AopEntity.class);
+//        aopEntity.noInvoke();
 //        aopEntity.test();
 //        EntityService en = context.getBean(EntityService.class);
 //        System.out.println(en.test());

@@ -218,18 +218,4 @@ public final class MonitorUtils {
 		return classPath;
 	}
 
-	public static void main(String[] args) {
-		System.out.println(getInstanceCode());
-		System.out.println(MonitorUtils.class.getClassLoader().getResource("").getPath());
-		System.out.println(MonitorUtils.class.getClassLoader().getResource("").getFile());
-		String startPath = System.getProperties().get("user.dir").toString();
-		System.out.println(startPath);
-		startPath = System.getProperty("java.class.path").toString();
-		System.out.println(startPath);
-		String classPath = Thread.currentThread().getContextClassLoader().getResource(MonitorUtils.class.getName().replaceAll("\\.","/") + ".class").getPath();
-		System.out.println(classPath);
-		classPath = classPath.replaceAll("\\\\", "/");
-		System.out.println(classPath);
-		System.out.println(getStartPath());
-	}
 }
