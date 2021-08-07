@@ -39,3 +39,4 @@ log\
 .DS_Store
 /source/gradle/.gradle/
 /out/
+/demoProject/minaproject/src/main/resources/rebel.xml
