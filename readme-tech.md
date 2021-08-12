@@ -187,5 +187,21 @@ RPC的几种方式：
 
 #### java8 
 
+https://github.com/itdevbooks/tech
+
 https://gitee.com/geektime-geekbang/geekbang-lessons
+
+GenericTypeResolve   ResolvableType  泛型
+
+IOC容器的职责：
+依赖处理：
+   依赖查找
+   依赖注入
+生命周期托管：
+   容器的生命周期
+   托管的资源
+配置：
+   容器的配置
+   外部化的配置
+   托管的资源配置
 
