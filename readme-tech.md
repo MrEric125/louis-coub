@@ -205,3 +205,70 @@ IOC容器的职责：
    外部化的配置
    托管的资源配置
 
+
+spring ioc 依赖的来源：
+1. 自定义的bean
+2. 容器内建依赖
+3. 容器内建bean
+
+源信息配置：
+   1. bean 定义配置
+   2. xml,properties,java注解,java api
+BeanFactory 和applicationContext 谁才是真正的 spring ioc 容器？
+      DefaultListableBeanFactory
+      ConfigurableApplicationContext<- ApplicationContext <- BeanFactory
+      ApplicationContext 设计模式是一个代理
+      
+ApplicationContext 除了Ioc 容器角色以外，还有哪些功能
+1. AOP
+2. Configuration metadata
+3. resources
+4. Events
+5. i18n
+6. annotations
+7. Environment Abstraction
+
+#### *beanFactory 与FactoryBean 的区别*
+beanFactory 是spring ioc的底层容器
+FactoryBean 帮助我们去暴露一个特殊的bean
+
+### spring ioc容器启动的时候做了哪些准备？ 通过功能把 spring 的原理拆解出来。
+IOC 配置源信息。 ioc容器生命周期，事件发布，国际化
+
+### 如何定义spring bean 
+![img.png](img.png)
+   
+![img_1.png](img_1.png)
+beanDefinition
+![img_2.png](img_2.png)
+BeanDefinitionBuilder().build()
+
+   
+
+-------------
+
+
+tcp/ip 记忆宫殿
+1. tcp/ip 高并发负载均衡，集群
+2. IO模型 连接如何建议，数据如何传输 ,程序是如何交互的，内核给程序暴露api 源自socket
+3. 分布式，微服务，服务网格，大数据，云计算
+
+三次连接 连的是资源，四次分手，分的是连接，释放的是资源
+三次连接 确定双方的网络都没有问题
+
+
+----------
+mysql
+一条查询语句的执行过程一般是经过连接器、分析器、优化器、执行器等功能模块，最后到达存储引擎。
+
+redo-log(innodb) 保证了当系统崩溃 之前提交的数据也不会丢失 这种能力叫做crash-safe
+
+1. binlog 没有crash-safe能力，是mysql 自带的日志功能
+2. redo log 是物理日志，记录的是“在某个数据页上做了什么修改”；binlog 是逻辑日志，记录的是这个语句的原始逻辑，比如“给 ID=2 这一行的 c 字段加 1 ”。
+3. redo log 是循环写的，空间固定会用完；binlog 是可以追加写入的。“追加写”是指 binlog 文件写到一定大小后会切换到下一个，并不会覆盖以前的日志。
+
+索引：
+二级索引查询的数据仅仅只有主键，不需要回表查询主键索引，这种方式称之为覆盖索引
+
+
+

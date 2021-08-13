@@ -22,7 +22,7 @@ public class IOCApp {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        context.register(DomainHolder.class);
+//        context.register(DomainHolder.class);
         context.scan("com.source.spring.ioc");
         context.refresh();
         DomainHolder bean = context.getBean(DomainHolder.class);

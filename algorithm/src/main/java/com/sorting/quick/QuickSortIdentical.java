@@ -57,15 +57,4 @@ public class QuickSortIdentical <T extends Comparable<T>> extends AbstractQuickS
         arr[j] = t;
     }
 
-//    // 测试 QuickSort
-//    public static void main(String[] args) {
-//
-//        // Quick Sort也是一个O(nlogn)复杂度的算法
-//        // 可以在1秒之内轻松处理100万数量级的数据
-//        int N = 1000000;
-//        Integer[] arr = SortTestHelper.generateRandomArray(N, 0, 100000);
-//        SortTestHelper.testSort("bobo.algo.QuickSort", arr);
-//
-//        return;
-//    }
 }

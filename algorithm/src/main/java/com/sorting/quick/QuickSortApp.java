@@ -14,8 +14,8 @@ public class QuickSortApp {
 
     public static void main(String[] args) {
 
-        AbstractQuickSort<Integer> merge = new QuickSortThreadWay<>();
-        int N =16 ;
+        AbstractQuickSort<Integer> quickSort = new QuickSortNearOrder<>();
+        int N =50 ;
         Integer[] arr = SortUtils.generateOrderArray(N);
         SortUtils.shuffle(arr);
         System.out.println("before: ");
@@ -23,7 +23,7 @@ public class QuickSortApp {
         Arrays.stream(arr).forEach(x-> System.out.print(x+"\t"));
 
         long timeMillis = System.currentTimeMillis();
-        merge.sort(arr);
+        quickSort.sort(arr);
         System.out.println(" ");
         System.out.println("after: ");
         long endTime = System.currentTimeMillis();

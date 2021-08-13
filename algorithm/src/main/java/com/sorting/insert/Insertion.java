@@ -56,7 +56,7 @@ public class Insertion<T extends Comparable<T>> implements ISorting<T> {
     }
 
     public static void main(String[] args) {
-        int N =16 ;
+        int N =50 ;
         Integer[] arr = SortUtils.generateOrderArray(N);
         SortUtils.shuffle(arr);
         Integer[] arr2=Arrays.copyOf(arr, arr.length);
