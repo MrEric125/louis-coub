@@ -33,9 +33,12 @@ import java.util.Map;
  * 1. {@link org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#singletonObjects}
  * 2. {@link org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#singletonFactories}
  * 3. {@link org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#earlySingletonObjects}
- *
+ * 从缓存中获取bean的逻辑在这里
+ * {@link org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#getSingleton(String, boolean)}
  * 属性注入逻辑在这里操作
  * {@link org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#populateBean(String, RootBeanDefinition, BeanWrapper)}
+ *
+ *
  *
  */
 public class IOCApp {
