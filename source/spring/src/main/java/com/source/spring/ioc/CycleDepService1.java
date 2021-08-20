@@ -12,11 +12,11 @@ public class CycleDepService1 implements CycleDepService {
 
     @Resource
     @Qualifier
-    private CycleDepService2 cycleDepService2;
+    private CycleDepService3 cycleDepService3;
 
     @Override
     public void run() {
-        cycleDepService2.run();
+        cycleDepService3.run();
 
     }
     public void service1() {

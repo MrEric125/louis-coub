@@ -22,13 +22,7 @@ public class Config {
         return cycleDepService1;
     }
 
-    @Bean
-    public CycleDepService2 cycleDepService2() {
-        CycleDepService2 cycleDepService2 = new CycleDepService2();
-//        cycleDepService2.setCycleDepService3(cycleDepService3);
-        System.out.println("创建 service2");
-        return cycleDepService2;
-    }
+
 
     @Bean
     public CycleDepService3 cycleDepService3() {

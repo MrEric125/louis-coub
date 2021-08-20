@@ -1,8 +1,8 @@
 package com.source.spring.ioc;
 
 import com.google.common.collect.Maps;
-import com.source.spring.ioc.domain.DomainHolder;
 import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.PropertyValues;
 import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -33,11 +33,19 @@ import java.util.Map;
  * 1. {@link org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#singletonObjects}
  * 2. {@link org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#singletonFactories}
  * 3. {@link org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#earlySingletonObjects}
- * 从缓存中获取bean的逻辑在这里
+ *
+ * 其中一级缓存是一个完整的普通bean,
+ * 二级缓存中存放的是 一个objectFactory: {@link org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory}
+ * 三级缓存主要解决的就是一个 aop的场景
+ *
+ *  * 不论是一级二级还是三级，从缓存中获取bean的逻辑都在这里
  * {@link org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#getSingleton(String, boolean)}
  * 属性注入逻辑在这里操作
  * {@link org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#populateBean(String, RootBeanDefinition, BeanWrapper)}
+ * 在哪里发现A 依赖B的，或者说是通过什么方式发现A依赖B的
+ *{@link org.springframework.context.annotation.CommonAnnotationBeanPostProcessor#postProcessProperties(PropertyValues, Object, String)}
  *
+ *详情看 readme-cycle-dep.md
  *
  *
  */
