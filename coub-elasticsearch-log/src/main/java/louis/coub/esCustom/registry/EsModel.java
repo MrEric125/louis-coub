@@ -1,4 +1,4 @@
-package louis.coub.es.registry;
+package louis.coub.esCustom.registry;
 
 import java.lang.annotation.*;
 

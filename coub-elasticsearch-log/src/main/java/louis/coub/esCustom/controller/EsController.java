@@ -1,10 +1,10 @@
-package louis.coub.es.controller;
+package louis.coub.esCustom.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.louis.common.common.HttpResult;
-import louis.coub.es.document.BuckServiceImpl;
-import louis.coub.es.document.DocumentServiceImpl;
-import louis.coub.es.model.BookEntity;
+import louis.coub.esCustom.document.BuckServiceImpl;
+import louis.coub.esCustom.document.DocumentServiceImpl;
+import louis.coub.esCustom.model.BookEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

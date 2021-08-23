@@ -1,4 +1,4 @@
-package louis.coub.es.registry;
+package louis.coub.esCustom.registry;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;

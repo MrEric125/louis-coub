@@ -1,7 +1,7 @@
-package louis.coub.es.model;
+package louis.coub.esCustom.model;
 
 import lombok.Data;
-import louis.coub.es.registry.EsModel;
+import louis.coub.esCustom.registry.EsModel;
 
 import java.util.List;
 

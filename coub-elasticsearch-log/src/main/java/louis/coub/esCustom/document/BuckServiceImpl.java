@@ -1,7 +1,7 @@
-package louis.coub.es.document;
+package louis.coub.esCustom.document;
 
 import lombok.extern.slf4j.Slf4j;
-import louis.coub.es.model.SearchTypeEnums;
+import louis.coub.esCustom.model.SearchTypeEnums;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.RestHighLevelClient;

@@ -1,4 +1,4 @@
-package louis.coub.es.model;
+package louis.coub.esCustom.model;
 
 public enum SearchTypeEnums {
 

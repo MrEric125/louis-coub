@@ -1,8 +1,8 @@
-package louis.coub.es.document;
+package louis.coub.esCustom.document;
 
-import louis.coub.es.exception.CommonError;
-import louis.coub.es.exception.Guarder;
-import louis.coub.es.model.SearchTypeEnums;
+import louis.coub.esCustom.exception.CommonError;
+import louis.coub.esCustom.exception.Guarder;
+import louis.coub.esCustom.model.SearchTypeEnums;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;

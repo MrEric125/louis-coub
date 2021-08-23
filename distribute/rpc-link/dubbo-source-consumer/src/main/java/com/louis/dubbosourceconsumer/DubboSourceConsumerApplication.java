@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @SpringBootApplication
 @RestController
 
@@ -22,8 +24,8 @@ public class DubboSourceConsumerApplication {
 
     @RequestMapping("sayHello")
     public HttpResult httpResult(String name) {
-
-        return HttpResult.ok(dubboService.sayHello(name));
+        Map<String, Object> stringObjectMap = dubboService.sayHello(name);
+        return HttpResult.ok(stringObjectMap);
     }
 
 }

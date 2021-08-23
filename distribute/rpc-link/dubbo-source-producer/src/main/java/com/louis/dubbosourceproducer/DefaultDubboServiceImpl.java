@@ -18,6 +18,7 @@ public class DefaultDubboServiceImpl implements DefaultDubboService {
     public Map<String, Object> sayHello(String name) {
         Map<String, Object> map = Maps.newHashMap();
         map.put(name, name);
+        System.out.println(map);
         return map;
 
     }

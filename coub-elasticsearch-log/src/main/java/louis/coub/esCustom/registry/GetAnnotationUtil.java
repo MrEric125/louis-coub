@@ -1,4 +1,4 @@
-package louis.coub.es.registry;
+package louis.coub.esCustom.registry;
 
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.type.AnnotationMetadata;
