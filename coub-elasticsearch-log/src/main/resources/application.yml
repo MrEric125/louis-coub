@@ -1,8 +1,9 @@
-spring:
-  data:
-    elasticsearch:
-      cluster-name: docker-cluster
-      cluster-nodes: 10.12.231.27:9300
-  elasticsearch:
-    rest:
-      uris: 10.12.231.27:9200
+#spring:
+#  elasticsearch:
+#    rest:
+#      uris: 10.12.231.27:9200
+
+es:
+  cluster-name: elasticsearch
+  cluster-nodes: localhost:9200
+  cluster-tcp-nodes: localhost:9300
