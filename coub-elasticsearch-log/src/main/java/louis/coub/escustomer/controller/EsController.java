@@ -54,6 +54,30 @@ public class EsController {
     }
 
 
+    /**
+     * 插入数据
+     * {
+     *     "id": "123",
+     *     "author":"author",
+     *     "characters":["1","2","3"],
+     *     "copies":3,
+     *     "otitle":"otitle",
+     *     "tags":["tags1","tags2","tags3"],
+     *     "title":"title1",
+     *     "year":2021,
+     *     "available":true,
+     *     "review":{
+     *         "nickName":"nickName",
+     *         "text":"text",
+     *         "stars":3
+     *     }
+     * }
+     * @param indexName
+     * @param type
+     * @param jsonStr
+     * @return
+     * @throws IOException
+     */
     @RequestMapping("save")
     public HttpResult httpResult(String indexName,String type ,@RequestBody BookEntity jsonStr) throws IOException {
         String s = JSON.toJSONString(jsonStr);
@@ -61,17 +85,37 @@ public class EsController {
         return HttpResult.ok(documentService.addDocument(indexName, type, jsonStr.getId(), s));
     }
 
+    /**
+     * 通过id获取数据
+     * @param indexName
+     * @param type
+     * @param id
+     * @return
+     * @throws IOException
+     */
     @RequestMapping("get")
     public HttpResult get(String indexName,String type , String id) throws IOException {
         return HttpResult.ok(documentService.getDocument(indexName, type, id));
     }
 
 
+    /**
+     * all 数据
+     * @param index
+     * @param type
+     * @return
+     */
     @RequestMapping("all")
     public HttpResult all(String index,String type) {
         return HttpResult.ok(documentService.queryAll(index, type));
     }
 
+    /**
+     * 批量操作
+     * @param index
+     * @param type
+     * @return
+     */
     @RequestMapping("buck")
     public HttpResult buck(String index, String type) {
         buckService.buckUpdate(index, type);
