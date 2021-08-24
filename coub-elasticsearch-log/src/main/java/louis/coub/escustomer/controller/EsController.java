@@ -3,6 +3,8 @@ package louis.coub.escustomer.controller;
 import com.alibaba.fastjson.JSON;
 import com.louis.common.common.HttpResult;
 import louis.coub.escustomer.model.BookEntity;
+import louis.coub.escustomer.service.document.BuckServiceImpl;
+import louis.coub.escustomer.service.document.DocumentServiceImpl;
 import org.elasticsearch.action.admin.indices.alias.get.GetAliasesRequest;
 import org.elasticsearch.client.GetAliasesResponse;
 import org.elasticsearch.client.IndicesClient;
