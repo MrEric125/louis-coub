@@ -17,6 +17,7 @@
         <module>coub-elasticsearch-log</module>
         <module>coub-netty</module>
         <module>louis-coub-parent</module>
+        <module>coub-spark</module>
 
     </modules>
 
