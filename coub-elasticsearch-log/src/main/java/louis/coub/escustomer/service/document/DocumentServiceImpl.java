@@ -3,6 +3,7 @@ package louis.coub.escustomer.service.document;
 import louis.coub.escustomer.exception.CommonError;
 import louis.coub.escustomer.exception.Guarder;
 import louis.coub.escustomer.model.SearchTypeEnums;
+import louis.coub.escustomer.service.IndexServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
@@ -19,6 +20,7 @@ import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.sort.SortOrder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -38,13 +40,15 @@ public class DocumentServiceImpl {
 
     private final RestHighLevelClient highLevelClient;
 
+    @Autowired
+    private IndexServiceImpl indexService;
+
 
     public DocumentServiceImpl(RestHighLevelClient highLevelClient) {
         this.highLevelClient = highLevelClient;
     }
 
     /**
-     *
      * @param indexName
      * @param type
      * @param id
@@ -52,30 +56,26 @@ public class DocumentServiceImpl {
      * @return IndexResponse 这个就是http 形式返回的数据
      * @throws IOException
      */
-    public IndexResponse addDocument(String indexName,String type ,String id,String jsonStr) throws IOException {
-        IndexRequest request = new IndexRequest(indexName, type, id);
-
+    public IndexResponse addDocument(String indexName, String type, String jsonStr) throws IOException {
+        IndexRequest request = new IndexRequest(indexName, type);
         request.source(jsonStr, XContentType.JSON);
+        return indexService.insertIndexData(indexName, type, jsonStr);
 
-        return highLevelClient.index(request, RequestOptions.DEFAULT);
     }
 
-    public GetResponse getDocument(String indexName,String type ,String id) throws IOException {
-        GetRequest getRequest = new GetRequest( indexName, type , id);
-
-         return highLevelClient.get(getRequest, RequestOptions.DEFAULT);
+    public GetResponse getDocument(String indexName, String type, String id) throws IOException {
+        GetRequest getRequest = new GetRequest(indexName, type, id);
+        return highLevelClient.get(getRequest, RequestOptions.DEFAULT);
     }
 
-    public SearchResponse queryAll(String index,String type)  {
-
+    public SearchResponse queryAll(String index, String type) {
         MatchAllQueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
-
         return query(index, type, () -> queryBuilder);
 
 
     }
 
-    public SearchResponse boolQuery(String index,String type)  {
+    public SearchResponse boolQuery(String index, String type) {
         BoolQueryBuilder bool = (BoolQueryBuilder) this.queryBuilder(SearchTypeEnums.BOOL, null);
         QueryBuilder queryBuilder = QueryBuilders.matchQuery("createTime", "123");
         bool.must(queryBuilder);
@@ -94,7 +94,7 @@ public class DocumentServiceImpl {
      * @throws IOException
      */
     public SearchResponse query(@NotEmpty String index, @NotNull String type,
-                                Supplier<QueryBuilder> builderSupplier)  {
+                                Supplier<QueryBuilder> builderSupplier) {
 
         QueryBuilder queryBuilder = builderSupplier.get();
         if (Objects.isNull(queryBuilder)) {
@@ -114,7 +114,7 @@ public class DocumentServiceImpl {
     }
 
     public SearchResponse query(@NotEmpty String index, @NotNull String type,
-                                Supplier<QueryBuilder> builderSupplier, Integer pageSize, Integer pageNum, String sortItem)  {
+                                Supplier<QueryBuilder> builderSupplier, Integer pageSize, Integer pageNum, String sortItem) {
 
         QueryBuilder queryBuilder = builderSupplier.get();
         if (Objects.isNull(queryBuilder)) {
@@ -148,7 +148,7 @@ public class DocumentServiceImpl {
         return query(index, type, builderSupplier, pageSize, pageNum, sortItem);
     }
 
-    public QueryBuilder queryBuilder(SearchTypeEnums queryType,Supplier<QueryBuilder> queryBuilders) {
+    public QueryBuilder queryBuilder(SearchTypeEnums queryType, Supplier<QueryBuilder> queryBuilders) {
 
         if (SearchTypeEnums.QUERY_ALL.equals(queryType)) {
             return QueryBuilders.matchAllQuery();

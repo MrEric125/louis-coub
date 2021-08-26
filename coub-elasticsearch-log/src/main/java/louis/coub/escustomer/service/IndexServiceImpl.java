@@ -5,15 +5,13 @@ import louis.coub.escustomer.config.EsProperties;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.admin.indices.get.GetIndexRequest;
+import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.IndicesClient;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.Requests;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -38,6 +36,11 @@ public class IndexServiceImpl {
         this.indicesClient = this.restHighLevelClient.indices();
     }
 
+    /**
+     * 通过mapping 创建index
+     * @param index 索引名
+     * @param json mapping 配置
+     */
     public void createIndex(String index, String json) {
         CreateIndexRequest createIndexRequest = Requests.createIndexRequest(index);
         createIndexRequest.source(json, XContentType.JSON);
@@ -46,6 +49,19 @@ public class IndexServiceImpl {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    /**
+     * 通过索引id 和type创建index
+     * @param index 索引名
+     * @param type type名
+     * @param json 保存数据
+     */
+    public IndexResponse insertIndexData(String index, String type, String json) throws IOException {
+        IndexRequest request = new IndexRequest(index, type);
+        request.source(json, XContentType.JSON);
+        return restHighLevelClient.index(request, RequestOptions.DEFAULT);
     }
 
     public boolean existIndex(String index) throws IOException {

@@ -1,6 +1,7 @@
 package louis.coub.escustomer.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.louis.common.common.HttpResult;
 import louis.coub.escustomer.model.BookEntity;
 import louis.coub.escustomer.service.document.BuckServiceImpl;
@@ -79,11 +80,12 @@ public class EsController {
      * @throws IOException
      */
     @RequestMapping("save")
-    public HttpResult httpResult(String indexName,String type ,@RequestBody BookEntity jsonStr) throws IOException {
+    public HttpResult httpResult(String indexName,String type ,@RequestBody JSONObject jsonStr) throws IOException {
         String s = JSON.toJSONString(jsonStr);
-
-        return HttpResult.ok(documentService.addDocument(indexName, type, jsonStr.getId(), s));
+        return HttpResult.ok(documentService.addDocument(indexName, type, s));
     }
+
+
 
     /**
      * 通过id获取数据
