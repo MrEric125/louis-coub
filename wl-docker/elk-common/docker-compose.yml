@@ -75,11 +75,11 @@ services:
       - SERVER_NAME=kibana
       - TZ="Asia/Shanghai"
       - XPACK_MONITORING_ENABLED=true
-  filebeat:
-    image: elastic/filebeat:6.4.3
-    container_name: filebeat
-    ports:
-    -
+#  filebeat:
+#    image: elastic/filebeat:6.4.3
+#    container_name: filebeat
+#    ports:
+#    -
 
 #  logstash:
 #    image: logstash:6.4.3

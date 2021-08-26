@@ -1,0 +1,20 @@
+{
+  "mappings": {
+    "log": {
+      "properties": {
+        "id": {
+          "type": "text"
+        },
+        "timestamp": {
+          "type": "date"
+        },
+        "content": {
+          "type": "text"
+        },
+        "logLevel": {
+          "type": "text"
+        }
+      }
+    }
+  }
+}

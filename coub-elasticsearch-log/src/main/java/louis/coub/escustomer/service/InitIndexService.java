@@ -41,7 +41,6 @@ public class InitIndexService  implements ApplicationContextAware, InitializingB
                     try {
                         String templatePath = bean.getClass().getAnnotation(EsModel.class).template();
                         String indexName = bean.getClass().getAnnotation(EsModel.class).index();
-                        String aliasName = bean.getClass().getAnnotation(EsModel.class).alias();
 
                         if (!indexService.existIndex(indexName)) {
                             Resource resource = new ClassPathResource(templatePath);
@@ -49,9 +48,6 @@ public class InitIndexService  implements ApplicationContextAware, InitializingB
                             String json = new String(template);
                             indexService.createIndex(indexName, json);
                             log.info("create index :{} success", indexName);
-//                            if (StringUtils.isNotBlank(aliasName)) {
-//                                indexService.createAlias(indexName, aliasName);
-//                            }
                         }
                         log.info("init index:{} success", indexName);
                     } catch (Exception e) {
