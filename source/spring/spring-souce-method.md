@@ -14,4 +14,15 @@ MessageSource,
 ApplicationEventPublisher,
 ResourcePatternResolver,
 DeferredImportSelector,
-AnnotationMetadata
+AnnotationMetadata,
+
+
+### 这些是我不知道的接口
+#### mvc中的
+
+ModelAndView
+WebAsyncManager
+HandlerExecutionChain
+HandlerAdapter
+HandlerExceptionResolver
+这个文档

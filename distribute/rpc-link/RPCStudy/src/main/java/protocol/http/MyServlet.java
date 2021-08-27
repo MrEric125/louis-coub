@@ -11,7 +11,7 @@ import java.io.IOException;
  * @date created on 2020/7/19
  * description:
  */
-public class DispatcherServlet extends HttpServlet {
+public class MyServlet extends HttpServlet {
 
 
     @Override
