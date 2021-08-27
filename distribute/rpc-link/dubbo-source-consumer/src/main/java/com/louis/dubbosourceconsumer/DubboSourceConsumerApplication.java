@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
+
+/**
+ * dubbo source article to
+ * @see {}https://www.cnblogs.com/cyfonly/p/9127712.html
+ */
 @SpringBootApplication
 @RestController
-
 public class DubboSourceConsumerApplication {
 
     @Reference
