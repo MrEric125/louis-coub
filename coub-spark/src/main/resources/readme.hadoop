@@ -1,0 +1,5 @@
+组成
+   mapReduce 计算
+   yarn  资源调度
+   hdfs   数据存储
+   common 工具包

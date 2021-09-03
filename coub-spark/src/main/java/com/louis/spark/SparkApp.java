@@ -1,11 +1,12 @@
 package com.louis.spark;
 
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.spark.SparkConf;
+
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.sql.Column;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.SparkSession;
 import scala.Tuple2;
@@ -24,6 +25,8 @@ public class SparkApp {
 
         JavaRDD<String> stringJavaRDD = jsc.textFile(inputFile);
 
+
+
         JavaRDD<String> words = stringJavaRDD.flatMap(s -> {
             List<String> tList = Arrays.asList(s.split(" "));
             return tList.iterator();
@@ -31,13 +34,15 @@ public class SparkApp {
         });
         JavaPairRDD<String, Integer> counts = words.mapToPair(s -> new Tuple2<>(s, 1)).reduceByKey(Integer::sum);
 
-        counts.collectAsMap();
+        System.out.println(counts.collectAsMap());
 
         SparkSession sparkSession = SparkSession.builder().appName("app").getOrCreate();
 
         Dataset<String> cache = sparkSession.read().textFile(inputFile).cache();
 
         System.out.println(cache.count());
+
+
 
 
     }
