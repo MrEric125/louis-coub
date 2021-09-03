@@ -93,9 +93,10 @@ public class AopApp {
 //        AopEntity aopEntity = context.getBean("aopEntity", AopEntity.class);
 //        aopEntity.noInvoke();
 //        aopEntity.test();
-//        EntityService en = context.getBean(EntityService.class);
-//        System.out.println(en.test());
-//        System.out.println(JSON.toJSONString(aopEntity, true));
+        EntityServiceImpl en = context.getBean(EntityServiceImpl.class);
+        String domainUrl = en.getDomainUrl();
+        System.out.println("结果:"+domainUrl);
+
 
         context.close();
     }
