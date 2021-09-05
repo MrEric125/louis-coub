@@ -17,6 +17,7 @@ import java.util.Optional;
  * <p>
  * Date: 2020/1/3
  * Description:
+ * 子线程能够查询到的数据是已经提交了的数据，
  */
 @RequestMapping("/trans")
 @RestController
@@ -46,7 +47,7 @@ public class TransactionController {
     }
 
     @PostMapping("/updateById")
-    public HttpResult updateById(Long id) {
+    public HttpResult updateById(Long id) throws Exception {
         return HttpResult.ok(tb1Service.update(id));
     }
 

@@ -31,7 +31,7 @@ public class Tb1Service {
     }
 
     @Transactional
-    public Tb1 update(Long id) {
+    public Tb1 update(Long id) throws Exception {
         Optional<Tb1> byId = tb1Repository.findById(id);
 
         Tb1 tb1 = byId.get();
@@ -39,11 +39,28 @@ public class Tb1Service {
 
         tb1.setName(new Date().toString());
         Tb1 save = tb1Repository.save(tb1);
-        taskExecutor.execute(()->{
-            save.setName(new Date().toString());
-            tb1Repository.save(save);
+        taskExecutor.execute(() -> {
+            Tb1 save2=selectById(save.getId());
+            save2.setName(new Date().toString());
+
+//            try {
+
+                tb1Repository.save(save2);
+//                throw new Exception("dd error");
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
         });
+        if (save != null) {
+            throw new Exception("dd");
+        }
         return save;
+    }
+
+//    @Transactional
+    public Tb1 selectById(Long id) {
+        Tb1 save2 = tb1Repository.findById(id).get();
+        return save2;
     }
 
 
