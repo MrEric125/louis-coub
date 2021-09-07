@@ -3,6 +3,7 @@ package com.louis.spark;
 
 import org.apache.spark.SparkConf;
 
+import org.apache.spark.SparkContext;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -32,6 +33,8 @@ public class SparkApp {
             return tList.iterator();
 
         });
+
+
         JavaPairRDD<String, Integer> counts = words.mapToPair(s -> new Tuple2<>(s, 1)).reduceByKey(Integer::sum);
 
         System.out.println(counts.collectAsMap());
