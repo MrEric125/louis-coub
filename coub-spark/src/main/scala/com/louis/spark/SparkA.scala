@@ -11,9 +11,9 @@ object SparkA{
     val path = url.getPath
     val inputFile = sc.textFile(path)
     val words = inputFile.flatMap(line => line.split(" "))
-    var counts = words.map(word => (word, 1)).reduceByKey { case (x, y) => x + y }
-    var wcounts = counts.filter(x => x._1.startsWith("w"))
-    var aCount = counts.filter(x => x._1.startsWith("a"))
+    val counts = words.map(word => (word, 1)).reduceByKey { case (x, y) => x + y }
+    val wcounts = counts.filter(x => x._1.startsWith("w"))
+    val aCount = counts.filter(x => x._1.startsWith("a"))
     val AAndWCount=wcounts.union(aCount)
 
     AAndWCount.sortBy(x => x._2).foreach(println)
@@ -25,9 +25,7 @@ class SparkA(val query:String){
   def isMatch(s:String): Boolean = {
     s.contains(query)
   }
-  def getMatchesFunctionReference(rdd:RDD[String]): RDD[String] = {
-    rdd.map(this.isMatch)
-  }
+
 
 }
 

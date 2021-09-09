@@ -17,7 +17,7 @@ import java.util.Map;
 public interface DefaultDubboService {
 
 
-        @GET
+    @GET
     @Path("selectByOpenId/{name}")
     Map<String, Object> sayHello(@PathParam("name") String name);
 }
