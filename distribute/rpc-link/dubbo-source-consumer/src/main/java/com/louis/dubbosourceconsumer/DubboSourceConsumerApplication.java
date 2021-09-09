@@ -20,10 +20,10 @@ import java.util.Map;
 @RestController
 public class DubboSourceConsumerApplication {
 
-    @Reference
+    @Reference(check = false)
     DefaultDubboService dubboService;
 
-    @Reference
+    @Reference(check = false)
     DubboService2 dubboService2;
 
     public static void main(String[] args) {
