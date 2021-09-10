@@ -1,6 +1,5 @@
 package com.louis.dubbosourceconsumer;
 
-import com.alibaba.fastjson.JSON;
 import com.louis.common.common.HttpResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.zookeeper.KeeperException;
@@ -62,9 +61,11 @@ public class ZkClientController {
         List<String> children = zkClient.getChildren(path, customerWatch);
 
         Map<String, Object> map = new HashMap<>();
-        map.put("data", new String(data));
+        map.put("data", data == null ? null : new String(data));
         map.put("stat", stat.getCzxid());
         map.put("children", children);
+        map.put("aVersion", stat.getAversion());
+        map.put("version", stat.getVersion());
         return HttpResult.ok(map);
 
     }
