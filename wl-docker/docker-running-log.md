@@ -4,3 +4,10 @@
     build :cd getting-started docker build -t docker101tutorial .
     run: docker run -d -p 80:80 --name docker-tutorial docker101tutorial
     查看文档： localhost
+
+
+启动了一台docker 容器，但是有时候宿主机根本连不上 都ping不通？为什么？
+
+这个原因主要还是因为docker 上的网络模型是基于桥接模式，会现在mac上创建一个linux的虚拟机，
+http://www.manongjc.com/detail/19-dlvjtpucmrwwhzj.html  
+https://www.cnblogs.com/lucky9322/p/13648282.html
