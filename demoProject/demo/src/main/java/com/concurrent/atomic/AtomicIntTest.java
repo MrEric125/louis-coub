@@ -15,7 +15,9 @@ public class AtomicIntTest {
         System.out.println(integer.get());
         Assert.assertEquals(10,integer.get());
 
-        integer.getAndSet(5);
+        int andSet = integer.getAndSet(5);
 
-   }
+        System.out.println(integer.get());
+
+    }
 }
