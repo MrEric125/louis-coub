@@ -96,6 +96,15 @@ public class AopApp {
         EntityServiceImpl en = context.getBean(EntityServiceImpl.class);
         String domainUrl = en.getDomainUrl();
         System.out.println("结果:"+domainUrl);
+        System.out.println(en.test());
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
+        thread.start();
 
 
         context.close();
