@@ -1,7 +1,7 @@
 
 logging:
   level:
-    org.springframework: debug
+    org.springframework: info
 server:
   port: 8081
 spring:

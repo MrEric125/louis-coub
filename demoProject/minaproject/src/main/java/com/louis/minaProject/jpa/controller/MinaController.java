@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Maps;
 import com.louis.common.common.HttpResult;
+import com.louis.minaProject.jpa.entity2.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -43,6 +44,14 @@ public class MinaController {
 
         ObjectMapper objectMapper = new ObjectMapper();
         return HttpResult.ok(maps);
+
+    }
+    @RequestMapping("numJson")
+    public HttpResult numJson() {
+        Long number = 10000001462545303L;
+        UserInfo userInfo = new UserInfo();
+        userInfo.setId(number);
+        return HttpResult.ok(JSON.toJSONString(userInfo));
 
     }
 

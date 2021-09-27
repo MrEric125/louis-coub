@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import tk.mybatis.spring.annotation.MapperScan;
 
 /**
  * @author jun.liu
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
  * {@link org.springframework.context.annotation.ComponentScan} 只是spring mvc xml功能迁移而已，扫描当前包下的所有带配置类
  *
  */
+
+@MapperScan(basePackages= {"com.source"},sqlSessionFactoryRef="sqlSessionFactory")
 @RestController
 @SpringBootApplication
 public class SpringSourceApplication implements CommandLineRunner {

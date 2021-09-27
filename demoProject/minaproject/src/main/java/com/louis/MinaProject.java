@@ -12,6 +12,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,6 +29,7 @@ import java.net.InetAddress;
  * @date created on 2020/2/23
  * description:
  */
+@EnableTransactionManagement
 @MapperScan(basePackages= {"com.louis"},sqlSessionFactoryRef="sqlSessionFactory")
 @SpringBootApplication
 @RestController
