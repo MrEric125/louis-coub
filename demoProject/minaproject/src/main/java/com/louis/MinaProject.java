@@ -4,10 +4,13 @@ import com.google.common.collect.Lists;
 import com.louis.common.common.HttpResult;
 import lombok.SneakyThrows;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -33,7 +36,9 @@ import java.net.InetAddress;
 @MapperScan(basePackages= {"com.louis"},sqlSessionFactoryRef="sqlSessionFactory")
 @SpringBootApplication
 @RestController
-public class MinaProject implements ExitCodeGenerator, ApplicationListener<ContextRefreshedEvent> {
+public class MinaProject implements ExitCodeGenerator, ApplicationListener<ContextRefreshedEvent>, ApplicationContextAware {
+
+    private ApplicationContext applicationContext;
     public static void main(String[] args) {
         SpringApplication.run(MinaProject.class, args);
 
@@ -86,36 +91,17 @@ public class MinaProject implements ExitCodeGenerator, ApplicationListener<Conte
      * 测试线程池报错
      * @return
      */
-    @RequestMapping("/threadPool")
-    public HttpResult threadPool() {
-        for (int i = 0; i < 10; i++) {
-            doTasks();
-            System.out.println("end=====");
+    @RequestMapping("/getBean")
+    public HttpResult threadPool(String beanName) {
 
-        }
+        Object bean = this.applicationContext.getBean(beanName);
 
-        return HttpResult.ok();
-    }
-    private void doTasks() {
-        ArrayList<Future> objectArrayList = Lists.newArrayListWithCapacity(15);
-        for(int i = 0; i < 15; ++i){
-            Future submit = taskExecutor.submit(() -> {
-                int sec = new Double(Math.random() * 5).intValue();
-                LockSupport.parkNanos(sec * 1000 * 1000 * 1000);
-                System.out.println(Thread.currentThread().getName() + " end");
-            });
-            objectArrayList.add(submit);
-
-        }
-
-        for(Future future : objectArrayList){
-            try {
-                future.get();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        return HttpResult.ok(bean);
     }
 
 
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
 }
