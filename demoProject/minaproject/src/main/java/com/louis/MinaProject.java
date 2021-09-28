@@ -1,5 +1,6 @@
 package com.louis;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.louis.common.common.HttpResult;
 import lombok.SneakyThrows;
@@ -87,17 +88,6 @@ public class MinaProject implements ExitCodeGenerator, ApplicationListener<Conte
     @Autowired
     private ThreadPoolTaskExecutor taskExecutor;
 
-    /**
-     * 测试线程池报错
-     * @return
-     */
-    @RequestMapping("/getBean")
-    public HttpResult threadPool(String beanName) {
-
-        Object bean = this.applicationContext.getBean(beanName);
-
-        return HttpResult.ok(bean);
-    }
 
 
     @Override

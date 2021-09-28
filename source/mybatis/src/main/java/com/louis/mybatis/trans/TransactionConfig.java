@@ -1,4 +1,4 @@
-package com.source.spring.trans;
+package com.louis.mybatis.trans;
 
 
 /**
