@@ -1,32 +1,10 @@
 package com.louis;
 
-import com.alibaba.fastjson.JSON;
-import com.google.common.collect.Lists;
-import com.louis.common.common.HttpResult;
-import lombok.SneakyThrows;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.*;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.concurrent.Future;
-import java.util.concurrent.locks.LockSupport;
-
-import org.springframework.web.client.RestTemplate;
-
-import java.net.InetAddress;
 
 /**
  * @author John·Louis
@@ -37,61 +15,9 @@ import java.net.InetAddress;
 @MapperScan(basePackages= {"com.louis"},sqlSessionFactoryRef="sqlSessionFactory")
 @SpringBootApplication
 @RestController
-public class MinaProject implements ExitCodeGenerator, ApplicationListener<ContextRefreshedEvent>, ApplicationContextAware {
+public class MinaProject  {
 
-    private ApplicationContext applicationContext;
     public static void main(String[] args) {
         SpringApplication.run(MinaProject.class, args);
-
-//        System.exit(SpringApplication.exit(SpringApplication.run(MinaProject.class, args)));
-    }
-
-    @LocalServerPort
-    private String port;
-
-    @Autowired
-    RestTemplate restTemplate;
-
-
-    @Override
-    public int getExitCode() {
-
-        return 01111;
-    }
-
-    @SneakyThrows
-    @Override
-    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-
-
-        System.out.println("=======China");
-
-        System.out.println(port);
-        InetAddress address = InetAddress.getLocalHost();
-        if (address != null) {
-            String hostName = address.getHostName();
-            System.out.println(hostName);
-            System.out.println(address.getHostAddress());
-        }
-    }
-
-
-    @Bean
-    public ThreadPoolTaskExecutor executor(){
-        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(14);
-        executor.setMaxPoolSize(30);
-        executor.setQueueCapacity(1);
-        return executor;
-    }
-
-    @Autowired
-    private ThreadPoolTaskExecutor taskExecutor;
-
-
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
     }
 }
