@@ -7,7 +7,7 @@ import tk.mybatis.mapper.common.BaseMapper;
  * @date created on 2020/12/8
  * description:
  */
-public interface LouisMapper extends BaseMapper {
+public interface UserInfoMapper extends BaseMapper<UserInfo> {
 
 
 

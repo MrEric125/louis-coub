@@ -1,8 +1,9 @@
 package com.louis.mybatis;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import tk.mybatis.spring.annotation.MapperScan;
 
 /**
  * @author louis
@@ -10,13 +11,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Date: 2019/9/11
  * Description:
  */
-@MapperScan("com.louis.mybatis.tkmybatis.mapper")
-@MapperScan("com.louis.mybatis.dynamic.mapper")
+@EnableTransactionManagement
+@MapperScan("com.louis.mybatis.tk")
 @SpringBootApplication
-public class Application {
+public class MyBatisApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-        System.out.println("aa");
+        SpringApplication.run(MyBatisApplication.class, args);
     }
 }

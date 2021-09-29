@@ -33,5 +33,10 @@ public class TransactionController implements ApplicationContextAware {
         return HttpResult.ok(JSON.toJSONString(null, true));
     }
 
+    @RequestMapping("/insert")
+    public HttpResult mybatisTrans() {
+        return null;
+    }
+
 
 }
