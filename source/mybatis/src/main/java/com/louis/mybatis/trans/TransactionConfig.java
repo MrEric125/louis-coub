@@ -24,6 +24,8 @@ import java.lang.reflect.Method;
  *
  * {@link TransactionAspectSupport#invokeWithinTransaction(Method, Class, TransactionAspectSupport.InvocationCallback)}
  *
+ * {@link org.springframework.jdbc.datasource.DataSourceTransactionManager}
+ *
  */
 
 public class TransactionConfig {

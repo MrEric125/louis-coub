@@ -21,6 +21,7 @@ logging:
   level:
     com.baomidou: debug
     org.springframework.orm: debug
+    org.springframework.jdbc: debug
 server:
   port: 8088
 
