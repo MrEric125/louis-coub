@@ -18,7 +18,7 @@ import java.util.List;
  * description:
  */
 @RestController
-@RequestMapping("/userInfo")
+@RequestMapping("/user")
 public class UserInfoController {
 
     @Autowired
@@ -26,10 +26,10 @@ public class UserInfoController {
 
 
     @Transactional(rollbackFor = Exception.class)
-    @RequestMapping(path = "/add", method = RequestMethod.POST)
-    public HttpResult add(@RequestBody UserInfo login,Boolean rollback) throws Exception {
+    @RequestMapping(path = "/insert", method = RequestMethod.POST)
+    public HttpResult add(@RequestBody UserInfo login,Boolean throwable) throws Exception {
         UserInfo save = userInfoRepository.save(login);
-        if (rollback) {
+        if (throwable) {
             throw new RuntimeException("插入数据逻辑报错");
         }
 

@@ -16,7 +16,7 @@ public class UserController {
     @RequestMapping("/insert")
     public HttpResult insert(@RequestBody UserInfo userInfo,Boolean throwable) throws Exception {
         UserInfo insertUser = userService.insertUser(userInfo, throwable);
-        return HttpResult.ok(userInfo);
+        return HttpResult.ok(insertUser);
 
     }
 }

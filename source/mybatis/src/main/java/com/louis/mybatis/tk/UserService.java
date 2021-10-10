@@ -20,8 +20,8 @@ public class UserService {
      * @return
      * @throws Exception
      */
-    @Transactional(rollbackFor = Exception.class)
-    public UserInfo insertUser(UserInfo userInfo, boolean throwable) throws Exception {
+    @Transactional()
+    public UserInfo insertUser(UserInfo userInfo, boolean throwable) throws RuntimeException {
 
         int insert = userInfoMapper.insert(userInfo);
         if (throwable) {
