@@ -10,3 +10,20 @@ B+tree dgree 为3的时候，总共能放多少数据
 
 聚集索引可以理解为索引与实际数据设计在一块
 
+
+mac wifi 异常日志
+
+Tue Oct 26 20:45:50.259 <kernel> installGTK: GTK installed
+Tue Oct 26 20:45:54.289 <airport[170]> __enableTemporarilyDisabledNetworks: FAILED to complete operation within 4.0s, continuing
+Tue Oct 26 20:45:54.296 <airport[170]> ERROR: rapportd (425) is not entitled for com.apple.wifi.join_history, will not allow request
+Tue Oct 26 20:45:54.296 <airport[170]> ERROR: sharingd (492) is not entitled for com.apple.wifi.join_history, will not allow request
+Tue Oct 26 20:49:34.410 <airport[170]> psCallback: set powersave(7) failed, 5 (Input/output error)
+Tue Oct 26 20:50:23.646 <kernel> Unexpected payload found for message 4, dataLen 0
+
+如何读懂mac 异常日志
+
+1. spring 对事务支持原理，以及数据库事务原理，to 文档
+
+2. zk 短时间down了，consumer 也能够调用消费者，为什么，原理，在什么地方。
+
+3. mysql 优化分为那几个层面
