@@ -15,6 +15,7 @@ import java.util.Arrays;
  *  时间复杂度 O(n2)
  *  空间复杂度 O(1)
  *  可以通过二分插入排序这种方式来优化
+ *  这是一种最常规的插入排序
  */
 public class Insertion<T extends Comparable<T>> implements ISorting<T> {
 
@@ -35,15 +36,15 @@ public class Insertion<T extends Comparable<T>> implements ISorting<T> {
     public void sort(T[] a, int lo, int hi) {
         for (int i = lo; i <=hi ; i++) {
 //            写法一
-            for (int j = i; j > lo && SortUtils.less(a[j], a[j - 1]); j--) {
-                SortUtils.exch(a, j, j - 1);
-            }
-//            写法二
-//            for (int j = i; j > 0; j--) {
-//                if (SortUtils.less(a[j], a[j - 1])) {
-//                    SortUtils.exch(a, j, j - 1);
-//                }
+//            for (int j = i; j > lo && SortUtils.less(a[j], a[j - 1]); j--) {
+//                SortUtils.exch(a, j, j - 1);
 //            }
+//            写法二
+            for (int j = i; j > 0; j--) {
+                if (SortUtils.less(a[j], a[j - 1])) {
+                    SortUtils.exch(a, j, j - 1);
+                }
+            }
 //            写法三
 //            T e = a[i];
 //            int j = i;
