@@ -12,6 +12,12 @@ public class BaseMergeSort<T extends Comparable<T>> {
 
     /**
      * 将arr[l...mid]和arr[mid+1...r]两部分进行归并
+     * 将前后两个有序数组合并的过程，
+     * 处理逻辑如下
+     * 1. 给定两个有序数组，其实位置都是最左侧
+     * 2. 便利总数组的长度，找出对应位置的值
+     * 如果这个位置的值是前面的数据，那么数组1 的index +1
+     * 如果这个位置的值是后面的数据，那么数组2 的index +1
      * @param arr 需要排序的数组
      * @param lo  排序的最低位
      * @param mid 数组的中位
@@ -21,7 +27,8 @@ public class BaseMergeSort<T extends Comparable<T>> {
 //
         T[] aux = Arrays.copyOfRange(arr, lo, hi + 1);
         // 初始化，i指向左半部分的起始索引位置l；j指向右半部分起始索引位置mid+1
-        int i = lo, j = mid + 1;
+        int i = lo;  //i指向左半部分的起始索引位置
+        int j = mid + 1; //j指向右半部分起始索引位置mid+1
         for (int k = lo ; k <=hi ; k++) {
 //            前面两个if 相当于判断索引是否合法
             // 如果[i,mid]的元素已经全部处理完毕，那么就将[mid+1,h]的元素防止到arr后面的位置
