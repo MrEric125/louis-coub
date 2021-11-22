@@ -1,8 +1,7 @@
-package com.sorting.other;
+package com.sorting.selectSort;
 
 import com.sorting.common.ISorting;
 import com.sorting.common.SortUtils;
-import com.sorting.insert.Insertion;
 
 import java.util.Arrays;
 
@@ -31,7 +30,7 @@ public class Selection<T extends Comparable<T>> implements ISorting<T> {
                 }
             }
             SortUtils.exch(a, i, min);
-            assert SortUtils.isSort(a, 0, i);
+//            assert SortUtils.isSort(a, 0, i);
         }
         assert SortUtils.isSort(a);
     }

@@ -44,3 +44,8 @@ https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
 
 
 遍历方式：(深度优先搜索，广度优先搜索，前序遍历，中序遍历，后序遍历)
+
+贪心算法
+分治算法
+回溯算法
+动态规划

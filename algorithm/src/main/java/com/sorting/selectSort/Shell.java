@@ -1,7 +1,9 @@
-package com.sorting.other;
+package com.sorting.selectSort;
 
 import com.sorting.common.ISorting;
 import com.sorting.common.SortUtils;
+
+import java.util.Arrays;
 
 /**
  * create by louis
@@ -24,12 +26,28 @@ public class Shell<T extends Comparable<T>> implements ISorting<T> {
         while (h >= 1) {
             for (int i = h; i < n; i++) {
                 //j-=h   ====>: j=j-h
-                for (int j = i; j >= h && SortUtils.less(a[j], a[j - h]); j -= h) {
-                    SortUtils.exch(a, j, j - h);
+                for (int j = i; j >= h; j -= h) {
+                    if ( SortUtils.less(a[j], a[j - h])){
+                        SortUtils.exch(a, j, j - h);
+                    }
                 }
             }
             assert SortUtils.isHsort(a, h);
             h /= 3;
         }
+    }
+
+    public static void main(String[] args) {
+        int N =50 ;
+        Integer[] arr = SortUtils.generateOrderArray(N);
+        SortUtils.shuffle(arr);
+        System.out.println("before: ");
+
+        Arrays.stream(arr).forEach(x-> System.out.print(x+"\t"));
+        Shell<Integer> shell = new Shell<>();
+        shell.sort(arr);
+        System.out.println("\nafter: ");
+        Arrays.stream(arr).forEach(x-> System.out.print(x+"\t"));
+
     }
 }

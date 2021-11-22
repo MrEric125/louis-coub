@@ -3,6 +3,8 @@ package com.sorting.insert;
 import com.sorting.common.ISorting;
 import com.sorting.common.SortUtils;
 
+import java.util.Arrays;
+
 
 /**
  * create by louis
@@ -46,6 +48,20 @@ public class BinaryInsertion<T extends Comparable<T>> implements ISorting<T> {
         }
 
         return lo;
+
+    }
+
+    public static void main(String[] args) {
+        int N =50 ;
+        Integer[] arr = SortUtils.generateOrderArray(N);
+        SortUtils.shuffle(arr);
+        System.out.println("before: ");
+
+        Arrays.stream(arr).forEach(x-> System.out.print(x+"\t"));
+        BinaryInsertion<Integer> shell = new BinaryInsertion<>();
+        shell.sort(arr);
+        System.out.println("\nafter: ");
+        Arrays.stream(arr).forEach(x-> System.out.print(x+"\t"));
 
     }
 }
