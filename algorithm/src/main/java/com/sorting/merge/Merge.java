@@ -85,6 +85,21 @@ public class Merge<T extends Comparable<T>> extends BaseMergeSort<T> implements 
         }
     }
 
+    public static void main(String[] args) {
+        int N =8 ;
+        Integer[] arr = SortUtils.generateOrderArray(N);
+        SortUtils.shuffle(arr);
+
+        System.out.println("before: ");
+
+        Arrays.stream(arr).forEach(x-> System.out.print(x+"\t"));
+
+        ISorting<Integer> insertion = new Merge<>();
+        insertion.sort(arr);
+        System.out.println("\nafter: ");
+        Arrays.stream(arr).forEach(x-> System.out.print(x+"\t"));
+    }
+
 
 
 }
