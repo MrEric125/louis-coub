@@ -1,16 +1,70 @@
-version: '2'
+version: '3.1'
+
+networks:
+  default:
+    external:
+      name: zookeeper_network
 services:
-  kafka:
+  kafka1:
     image: wurstmeister/kafka:2.12-2.5.0
+    container_name: kafka1
+    hostname: kafka1
     ports:
       - "9092:9092"
-    networks:
-      - zookeeper
+    external_links:
+      - zoo1
+      - zoo2
+      - zoo3
     environment:
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181,zookeeper:2182,zookeeper:2183
-      # modify the KAFKA_ADVERTISED_HOST_NAME in docker-compose.yml to match your docker host IP (Note: Do not use localhost or 127.0.0.1 as the host ip if you want to run multiple brokers.)
-      KAFKA_ADVERTISED_HOST_NAME: localhost
-networks:
-  zookeeper:
-    external: true
+      KAFKA_BROKER_ID: 1
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://10.12.232.38:9092    ## 宿主机IP
+      KAFKA_ADVERTISED_HOST_NAME: kafka1
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181,zoo2:2181,zoo3:2181"
+    volumes:
+      - "./kafka/kafka1/data/:/kafka"
+
+
+  kafka2:
+    image: wurstmeister/kafka:2.12-2.5.0
+    restart: unless-stopped
+    container_name: kafka2
+    hostname: kafka2
+    ports:
+      - "9093:9092"
+    external_links:
+      - zoo1
+      - zoo2
+      - zoo3
+    environment:
+      KAFKA_BROKER_ID: 2
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://10.12.232.38:9093    ## 宿主机IP
+      KAFKA_ADVERTISED_HOST_NAME: kafka2
+      KAFKA_ADVERTISED_PORT: 9093
+      KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181,zoo2:2181,zoo3:2181"
+    volumes:
+      - "./kafka/kafka2/data/:/kafka"
+
+  kafka3:
+    image: wurstmeister/kafka:2.12-2.5.0
+    restart: unless-stopped
+    container_name: kafka3
+    hostname: kafka3
+    ports:
+      - "9094:9092"
+    external_links:
+      - zoo1
+      - zoo2
+      - zoo3
+    environment:
+      KAFKA_BROKER_ID: 3
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://10.12.232.38:9094   ## 宿主机IP
+      KAFKA_ADVERTISED_HOST_NAME: kafka3
+      KAFKA_ADVERTISED_PORT: 9094
+      KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181,zoo2:2181,zoo3:2181"
+    volumes:
+      - "./kafka/kafka3/data/:/kafka"
 
