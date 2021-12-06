@@ -16,7 +16,7 @@ services:
       - kafka2
       - kafka3
     environment:
-      ZK_HOSTS: zoo1:2181,zoo2:2181,zoo3:2181
+      ZK_HOSTS: 172.18.0.2:2181,172.18.0.3:2181,172.18.0.4:2181
       KAFKA_BROKERS: kafka1:9092,kafka2:9093,kafka3:9094
 
 networks:
