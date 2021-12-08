@@ -105,6 +105,7 @@ public class IdWorker {
 				(workerId << workerIdShift) | sequence;
 	}
 
+	//ssss
 	private synchronized long nextId(long workerId, long datacenterId, long sequence) {
 
 		// 检查机房id和机器id是否超过31 不能小于0
