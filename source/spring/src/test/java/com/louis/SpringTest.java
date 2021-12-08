@@ -16,13 +16,14 @@ public class SpringTest {
      */
     @Test
     public void test() {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-
-        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext();
-
-        context.scan("com.louis.annotation");
-        context.refresh();
-        String uncapitalize = uncapitalize(AnnotationClass.class.getSimpleName());
-        AnnotationClass bean = context.getBean(uncapitalize, AnnotationClass.class);
+//        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+//
+//        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext();
+//
+//        context.scan("com.louis.annotation");
+//        context.refresh();
+//        String uncapitalize = uncapitalize(AnnotationClass.class.getSimpleName());
+//        AnnotationClass bean = context.getBean(uncapitalize, AnnotationClass.class);
+        System.out.println(9000000000000000033L);
     }
 }
