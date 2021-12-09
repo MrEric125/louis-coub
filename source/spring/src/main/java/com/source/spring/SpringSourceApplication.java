@@ -1,10 +1,13 @@
 package com.source.spring;
 
 import com.alibaba.fastjson.JSON;
+import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  * {@link org.springframework.context.annotation.ComponentScan} 只是spring mvc xml功能迁移而已，扫描当前包下的所有带配置类
  *
  */
-
+@Slf4j
 @EnableTransactionManagement
 @MapperScan(basePackages= {"com.source"},sqlSessionFactoryRef="sqlSessionFactory")
 @RestController
@@ -33,6 +36,8 @@ public class SpringSourceApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         System.out.println(JSON.toJSONString(args));
     }
+
+
 
 
 }
