@@ -68,3 +68,5 @@ services:
     volumes:
       - "./kafka/kafka3/data/:/kafka"
 
+
+#https://segmentfault.com/a/1190000039264674

@@ -2,10 +2,17 @@ package com;
 
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.HashMap;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
+
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author jun.liu
@@ -15,6 +22,10 @@ import lombok.Setter;
 @Setter
 @Getter
 public class MinaTest {
+
+    private static ReentrantLock reentrantLock = new ReentrantLock();
+
+
 
     /**
      * name
@@ -27,5 +38,42 @@ public class MinaTest {
         MinaTest test = new MinaTest();
         System.out.println(JSON.toJSONString(test, SerializerFeature.WriteNullStringAsEmpty));
 
+        HashMap hashMap = new HashMap();
+            System.out.println("i--->" + tableSizeFor(17));
+
+        ConcurrentHashMap<String,String> concurrentHashMap = new ConcurrentHashMap<>();
+
+        concurrentHashMap.put("aa", "aa");
+
+        ReentrantLock lock = new ReentrantLock();
+        Semaphore semaphore = new Semaphore(10);
+
+
+        try {
+            lock.lock();
+            semaphore.acquire();
+
+        } catch (Exception e) {
+
+        }finally {
+            lock.unlock();
+            semaphore.release();
+
+        }
+
+    }
+    static final int tableSizeFor(int cap) {
+        int n = cap - 1;
+        int a = n >>> 1;
+        n |= a;
+        int b = n >>> 2;
+        n |= b;
+        int c = n >>> 4;
+        n |= c;
+        int d = n >>> 8;
+        n |= d;
+        int e = n >>> 16;
+        n |= e;
+        return n + 1;
     }
 }

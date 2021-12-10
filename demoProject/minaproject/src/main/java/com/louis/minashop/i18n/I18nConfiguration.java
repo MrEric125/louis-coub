@@ -3,6 +3,7 @@ package com.louis.minashop.i18n;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionMessage;
 import org.springframework.boot.autoconfigure.condition.ConditionOutcome;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.SpringBootCondition;
 import org.springframework.boot.autoconfigure.context.MessageSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -30,11 +31,16 @@ import java.util.Locale;
  */
 @Configuration
 @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
-@EnableConfigurationProperties
+@EnableConfigurationProperties()
+@ConditionalOnProperty(name = "i18n",prefix = "louis",havingValue = "true")
 public class I18nConfiguration {
 
+    static {
+        System.out.println("init");
+    }
+
     @Bean()
-    @Conditional(I18nConfiguration.ResourceBundleCondition.class)
+//    @Conditional(I18nConfiguration.ResourceBundleCondition.class)
     public MessageSource messageSource(MessageSourceProperties properties) {
         I18nResourceBundleMessageSourceService messageSource = new I18nResourceBundleMessageSourceService();
         if (StringUtils.hasText(properties.getBasename())) {

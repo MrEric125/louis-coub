@@ -18,6 +18,10 @@ public class Person implements Serializable {
 
     private String name;
 
+    public void init() {
+        System.out.println("init");
+    }
+
 //    private Integer age;
 
 

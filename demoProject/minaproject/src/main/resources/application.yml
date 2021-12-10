@@ -18,7 +18,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: '!qaz@wsx'
+    password: Root
     url: jdbc:mysql://localhost:3306/louis-coub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     platform: MYSQL
   #    one:
@@ -33,12 +33,16 @@ spring:
 #       username: root
 #       password: !qaz@wsx
 #       driver-class-name: com.mysql.cj.jdbc.Driver
-  main:
-    allow-bean-definition-overriding: true
-    lazy-initialization: true
+#  main:
+#    allow-bean-definition-overriding: true
+#    lazy-initialization: true
   redis:
     port: 32102
     host: 10.12.231.27
+  task:
+    scheduling:
+      pool:
+        size: 5
 #  data:
 #    mongodb:
 #      uri: mongodb://10.12.231.27:27017/test
@@ -53,7 +57,8 @@ logging:
     org: info
   pattern:
     console: "%clr(%d{${LOG_DATEFORMAT_PATTERN}}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(${PID:-}){magenta} %clr{faint} %clr([%t]){faint} %clr([%-40.40logger{39} %L]){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
-
+louis:
+  i18n: true
 acme:
   remote-address: 192.168.1.1
   security:
