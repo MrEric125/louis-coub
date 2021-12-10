@@ -10,7 +10,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * description:
  */
 @EnableAspectJAutoProxy
-//@Configuration
+@Configuration
 public class AnnotationConfig {
 
 //    @Bean
