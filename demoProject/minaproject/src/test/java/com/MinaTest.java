@@ -2,13 +2,16 @@ package com;
 
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
+
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -21,6 +24,8 @@ import java.util.concurrent.locks.ReentrantLock;
 public class MinaTest {
 
     private static ReentrantLock reentrantLock = new ReentrantLock();
+
+
 
     /**
      * name
@@ -35,6 +40,26 @@ public class MinaTest {
 
         HashMap hashMap = new HashMap();
             System.out.println("i--->" + tableSizeFor(17));
+
+        ConcurrentHashMap<String,String> concurrentHashMap = new ConcurrentHashMap<>();
+
+        concurrentHashMap.put("aa", "aa");
+
+        ReentrantLock lock = new ReentrantLock();
+        Semaphore semaphore = new Semaphore(10);
+
+
+        try {
+            lock.lock();
+            semaphore.acquire();
+
+        } catch (Exception e) {
+
+        }finally {
+            lock.unlock();
+            semaphore.release();
+
+        }
 
     }
     static final int tableSizeFor(int cap) {
