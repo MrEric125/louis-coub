@@ -53,7 +53,7 @@ server:
     context-path: /mina
 logging:
   level:
-    org.springframework.orm: debug
+#    org.springframework.orm: debug
     org: info
   pattern:
     console: "%clr(%d{${LOG_DATEFORMAT_PATTERN}}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(${PID:-}){magenta} %clr{faint} %clr([%t]){faint} %clr([%-40.40logger{39} %L]){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"

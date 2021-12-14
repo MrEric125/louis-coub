@@ -11,6 +11,10 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>dubbo-source-producer</name>
     <description>Demo project for Spring Boot</description>
+    <packaging>jar</packaging>
+    <properties>
+        <project.finalName>dubbo-source-producer</project.finalName>
+    </properties>
 
 
     <dependencies>
@@ -74,10 +78,10 @@
             <artifactId>resteasy-netty4</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.thrift</groupId>
-            <artifactId>libthrift</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.thrift</groupId>-->
+<!--            <artifactId>libthrift</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxb-provider</artifactId>
@@ -86,45 +90,52 @@
         <!--        使用jetty服务器-->
 
         <!--        java.lang.NoClassDefFoundError: org/eclipse/jetty/util/log/StdErrLog-->
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-servlet</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.eclipse.jetty</groupId>-->
+<!--            <artifactId>jetty-servlet</artifactId>-->
+<!--        </dependency>-->
 
 
         <!--Caused by: java.lang.NoClassDefFoundError: javax/ws/rs/WebApplicationException-->
         <!--rest 接口-->
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jaxrs</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.jboss.resteasy</groupId>-->
+<!--            <artifactId>resteasy-jaxrs</artifactId>-->
+<!--        </dependency>-->
 
     </dependencies>
 
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
-                <groupId>org.asciidoctor</groupId>
-                <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>1.5.8</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>generate-docs</id>
-                        <phase>prepare-package</phase>
                         <goals>
-                            <goal>process-asciidoc</goal>
+                            <goal>repackage</goal>
+                            <goal>build-info</goal>
                         </goals>
-                        <configuration>
-                            <backend>html</backend>
-                            <doctype>book</doctype>
-                        </configuration>
                     </execution>
                 </executions>
-
             </plugin>
-
         </plugins>
+        <finalName>${project.finalName}</finalName>
     </build>
 
 </project>
