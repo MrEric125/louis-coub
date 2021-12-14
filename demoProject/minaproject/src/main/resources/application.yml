@@ -43,6 +43,8 @@ spring:
     scheduling:
       pool:
         size: 5
+  messages:
+    basename: i18n.bussiness,i18n.exception,i18n.message
 #  data:
 #    mongodb:
 #      uri: mongodb://10.12.231.27:27017/test

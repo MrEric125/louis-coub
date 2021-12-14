@@ -40,7 +40,7 @@ public class I18nConfiguration {
     }
 
     @Bean()
-//    @Conditional(I18nConfiguration.ResourceBundleCondition.class)
+    @Conditional(I18nConfiguration.ResourceBundleCondition.class)
     public MessageSource messageSource(MessageSourceProperties properties) {
         I18nResourceBundleMessageSourceService messageSource = new I18nResourceBundleMessageSourceService();
         if (StringUtils.hasText(properties.getBasename())) {
@@ -62,7 +62,7 @@ public class I18nConfiguration {
     }
 
     @Bean
-//    @Conditional(I18nConfiguration.ResourceBundleCondition.class)
+    @Conditional(I18nConfiguration.ResourceBundleCondition.class)
     public CookieLocaleResolver cookieLocaleResolver(LocaleMessageSourceProperties properties) {
         CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
         String defaultLocale = properties.getDefaultLocale();
