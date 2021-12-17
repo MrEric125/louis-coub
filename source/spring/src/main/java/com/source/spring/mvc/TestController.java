@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.PostConstruct;
 
 @RestController
-public class TestController
-{
+@RequestMapping(value = "api")
+public class TestController {
 
     @PostConstruct
     public void init() {
         System.out.println("init");
     }
+
     @RequestMapping(value = "returnSuccess")    //实际访问的url地址
     public String returnSuccess() {
         return "success";    //返回Views文件夹下的success.jsp页面
