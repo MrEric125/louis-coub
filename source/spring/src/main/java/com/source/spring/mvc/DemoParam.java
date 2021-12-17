@@ -18,5 +18,21 @@ public class DemoParam {
 
     private String name;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DemoParam)) return false;
 
+        DemoParam demoParam = (DemoParam) o;
+
+        if (!getId().equals(demoParam.getId())) return false;
+        return getName().equals(demoParam.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId().hashCode();
+        result = 31 * result + getName().hashCode();
+        return result;
+    }
 }

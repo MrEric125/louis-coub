@@ -1,0 +1,31 @@
+version: '3.1'
+networks:
+  default:
+    external:
+      name: zookeeper_network
+services:
+  dubbo-producer1:
+    image: dubbo-source-producer
+    container_name: dubbo-producer1
+    hostname: dubbo-producer1
+    ports:
+      - 10007:10007
+#    volumes:
+#    environment:
+#      ZOO_SERVERS: server.1=zoo1:2888:3888;2181 server.2=zoo2:2888:3888;2181 server.3=zoo3:2888:3888;2181
+  dubbo-producer2:
+    image: dubbo-source-producer
+    container_name: dubbo-producer2
+    hostname: dubbo-producer2
+    ports:
+      - 10008:10007
+#    environment:
+#      ZOO_SERVERS: server.1=zoo1:2888:3888;2181 server.2=zoo2:2888:3888;2181 server.3=zoo3:2888:3888;2181
+  dubbo-producer3:
+    image: dubbo-source-producer
+    container_name: dubbo-producer3
+    hostname: dubbo-producer3
+    ports:
+      - 10009:10007
+#    environment:
+#      ZOO_SERVERS: server.1=zoo1:2888:3888;2181 server.2=zoo2:2888:3888;2181 server.3=zoo3:2888:3888;2181
