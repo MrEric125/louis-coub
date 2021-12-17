@@ -15,8 +15,14 @@ public class RedisLockService {
 
     private static final String RELEASE_SUCCESS = "success";
 
+    private static final Long DEFAULT_TIME = 3000L;
+
     @Autowired
     RedisTemplate<String,String> redisTemplate;
+
+    public boolean tryLock(String lockKey, String value) {
+        return tryLock(lockKey, value, DEFAULT_TIME, TimeUnit.MILLISECONDS);
+    }
 
     public Boolean tryLock(String lockKey, String value, Long expire, TimeUnit timeUnit) {
         try {
