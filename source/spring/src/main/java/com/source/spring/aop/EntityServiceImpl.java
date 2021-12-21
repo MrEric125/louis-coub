@@ -10,7 +10,7 @@ public class EntityServiceImpl  {
 
     @AutoSysConfig
     @Value("${domain.url:}")
-    private String domainUrl = "domainUrl";
+    private String domainUrl;
 
 
 
