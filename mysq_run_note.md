@@ -12,4 +12,8 @@ alter table `dd` partition by range (year_col)(
 ```
 
 2020年11月14日20:50:12
-curl  乱码设置
+curl  乱码设置      
+show variables like "log%";  
+show binary logs;  
+show binlog events in 'DESKTOP-8V0T9EF-bin.000083';  
+ mysqlbinlog  C:\ProgramData\MySQL\MySQL Server 8.0\Data\DESKTOP-8V0T9EF-bin.000083  | more  

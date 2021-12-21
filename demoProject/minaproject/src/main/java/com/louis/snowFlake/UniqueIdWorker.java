@@ -175,4 +175,9 @@ public class UniqueIdWorker {
                 , ((id >> timestampLeftShift) + baseTimestamp));
     }
 
+    public static void main(String[] args) {
+        UniqueIdWorker uniqueIdWorker = new UniqueIdWorker();
+        System.out.println(uniqueIdWorker.sequenceMask);
+    }
+
 }

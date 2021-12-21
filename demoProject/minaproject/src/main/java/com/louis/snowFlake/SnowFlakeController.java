@@ -27,7 +27,7 @@ public class SnowFlakeController {
     @Autowired
     UniqueIdWorker uniqueIdWorker;
 
-//    @Scheduled(fixedRate = 100)
+    @Scheduled(fixedRate = 30)
     public void unique1Worker() {
         long id = uniqueIdWorker.nextId(RandomUtils.nextLong(0, 7), RandomUtils.nextLong(0, 1));
         try {
@@ -44,7 +44,7 @@ public class SnowFlakeController {
         }
         log.info("save success table1:{}", id);
     }
-//    @Scheduled(fixedRate = 100)
+    @Scheduled(fixedRate = 30)
     public void unique2Worker() {
         long id = uniqueIdWorker.nextId(RandomUtils.nextLong(0, 8), RandomUtils.nextLong(0, 4));
         try {

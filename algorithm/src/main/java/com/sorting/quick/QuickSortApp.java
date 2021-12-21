@@ -14,7 +14,7 @@ public class QuickSortApp {
 
     public static void main(String[] args) {
 
-        AbstractQuickSort<Integer> quickSort = new QuickSortNearOrder<>();
+        AbstractQuickSort<Integer> quickSort = new QuickSortBase<>();
         int N =50 ;
         Integer[] arr = SortUtils.generateOrderArray(N);
         SortUtils.shuffle(arr);

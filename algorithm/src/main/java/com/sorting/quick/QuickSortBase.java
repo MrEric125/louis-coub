@@ -30,7 +30,7 @@ public class QuickSortBase<T extends Comparable<T>> extends AbstractQuickSort<T>
      * @return p位置，使得arr[lo..p-1]< arr[p],arr[p+1]> arr[p]
      */
     public int partition(T[] arr, int lo, int hi) {
-        Comparable v = arr[lo];
+        Comparable<T> v = arr[lo];
 //        arr[lo+1..j]<v;  arr[j+1...i]>v
         int j = lo;
         for (int i = lo+1; i <=hi ; i++) {
