@@ -51,7 +51,7 @@ import java.lang.reflect.Method;
  *
  * 需要注意的是，我们在使用AOP的时候往往会切入到某个方法上，，并且切入的方式有前置的，后置的，环绕的，这些都是怎么实现的呢？
  *
- *1. 如果 发现有advice 则会创建代理对象，讲代理对象放在{@link AbstractAutoProxyCreator#proxyTypes} 中，后期我们从Context中取的对象就是这里存进去的对象
+ *1. 如果 发现有advice 则会创建代理对象，将代理对象放在{@link AbstractAutoProxyCreator#proxyTypes} 中，后期我们从Context中取的对象就是这里存进去的对象
  *
  *织入的时间，BeanPostProcessor获取的时间。
  *
@@ -84,7 +84,7 @@ public class AopApp {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
         //切面配置类要么被手动加入上下文，要么通过注解的方式加入上下文，否则不生效
         // todo 为什么这里需要将 AopAspect 这个放入到spring环境管理中去
-        context.register(AopAspect.class);
+//        context.register(AopAspect.class);
 //        context.register(AopEntity.class);
         context.scan("com.source.spring.aop");
 
@@ -98,13 +98,6 @@ public class AopApp {
         System.out.println("结果:"+domainUrl);
         System.out.println(en.test());
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        });
-        thread.start();
 
 
         context.close();

@@ -1,14 +1,11 @@
 package com.source.spring.ioc;
 
 import lombok.Data;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Data
-//@Service
 public class CycleDepService3 implements CycleDepService {
-    @Resource
+    @Autowired
     private CycleDepService1 cycleDepService1;
 
 //    public CycleDepService3(CycleDepService1 cycleDepService1) {

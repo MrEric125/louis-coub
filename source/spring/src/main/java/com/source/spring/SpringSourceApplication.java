@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
  *  {@link SpringBootApplication} 起作用的核心配置是@EnableAutoConfiguration
  *
  * {@link org.springframework.context.annotation.ComponentScan} 只是spring mvc xml功能迁移而已，扫描当前包下的所有带配置类
- *
+ * -Xms20m    JVM初始分配的内存20m
+ * -Xmx20m   JVM最大可用内存为20m
+ * -XX:+HeapDumpOnOutOfMemoryError 当JVM发生OOM时，自动生成DUMP文件
+ * -XX:HeapDumpPath=/Users/weihuaxiao/Desktop/dump/  生成DUMP文件的路径
  */
 @Slf4j
 @EnableTransactionManagement

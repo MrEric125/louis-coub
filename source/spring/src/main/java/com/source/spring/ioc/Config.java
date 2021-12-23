@@ -14,22 +14,22 @@ public class Config {
         return new DomainHolder();
     }
 
-    @Bean
-    public CycleDepService1 cycleDepService1() {
-        CycleDepService1 cycleDepService1 = new CycleDepService1();
-//        cycleDepService1.setCycleDepService2(cycleDepService2);
-        System.out.println("创建 service1");
-        return cycleDepService1;
-    }
+//    @Bean
+//    public CycleDepService1 cycleDepService1() {
+//        CycleDepService1 cycleDepService1 = new CycleDepService1();
+////        cycleDepService1.setCycleDepService2(cycleDepService2);
+//        System.out.println("创建 service1");
+//        return cycleDepService1;
+//    }
 
 
 
-    @Bean
-    public CycleDepService3 cycleDepService3() {
-        CycleDepService3 cycleDepService3 = new CycleDepService3();
-//        cycleDepService3.setCycleDepService1(cycleDepService1);
-        System.out.println("创建 service3");
-
-        return cycleDepService3;
-    }
+//    @Bean
+//    public CycleDepService3 cycleDepService3() {
+//        CycleDepService3 cycleDepService3 = new CycleDepService3();
+////        cycleDepService3.setCycleDepService1(cycleDepService1);
+//        System.out.println("创建 service3");
+//
+//        return cycleDepService3;
+//    }
 }
