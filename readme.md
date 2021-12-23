@@ -27,3 +27,11 @@ Tue Oct 26 20:50:23.646 <kernel> Unexpected payload found for message 4, dataLen
 2. zk 短时间down了，consumer 也能够调用消费者，为什么，原理，在什么地方。
 
 3. mysql 优化分为那几个层面
+
+----
+
+调用interrupt()方法仅仅是在当前线程中打了一个停止的标记，并不是真正的停止线程
+
+interrupted()测试当前线程是否已经是中断状态，执行后具有清除中断状态flag的功能
+
+isInterrupted()测试线程Thread对象是否已经是中断状态，但不清除中断状态flag 

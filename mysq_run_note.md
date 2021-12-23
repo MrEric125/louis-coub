@@ -16,4 +16,4 @@ curl  乱码设置
 show variables like "log%";  
 show binary logs;  
 show binlog events in 'DESKTOP-8V0T9EF-bin.000083';  
- mysqlbinlog  C:\ProgramData\MySQL\MySQL Server 8.0\Data\DESKTOP-8V0T9EF-bin.000083  | more  
+mysqlbinlog --no-defaults --database=louis-coub -vvv DESKTOP-8V0T9EF-bin.000083
