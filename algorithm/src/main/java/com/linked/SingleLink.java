@@ -6,16 +6,16 @@ import java.io.Serializable;
 import java.util.NoSuchElementException;
 
 @Data
-public class SingleLink<E extends Serializable> implements MyList<E>{
+public class SingleLink implements MyList<Integer>{
 
     private int size=0;
 
-    private Node<E> first;
+    private Node first;
 
-    private Node<E> last;
+    private Node last;
 
     @Override
-    public void add(E e) {
+    public void add(Integer e) {
         if (first == null) {
             addFirst(e);
         } else {
@@ -24,26 +24,56 @@ public class SingleLink<E extends Serializable> implements MyList<E>{
 
     }
 
+    public Node getFirst() {
+        return first;
+    }
+
+
+    public void compare(Node node1, Node node2, SingleLink singleLink) {
+        if (node1==null && node2==null){
+            return;
+        }
+        if (node1==null){
+            singleLink.add(node2.data);
+            compare(node1, node2.next, singleLink);
+            return;
+        }
+        if (node2==null){
+            singleLink.add(node1.data);
+            compare(node1.next, node2, singleLink);
+            return;
+        }
+        
+        if (node1.data-node2.data>0){
+            singleLink.add(node2.data);
+            compare(node1, node2.next, singleLink);
+
+        }else {
+            singleLink.add(node1.data);
+            compare(node1.next, node2, singleLink);
+        }
+    }
+
 
     @Override
-    public E find(int index) {
+    public Integer find(int index) {
         return node(index).data;
     }
 
-    private Node<E> node(int index) {
+    private Node node(int index) {
         if (index > size - 1) {
             throw new NoSuchElementException();
         }
-        Node<E> x = first;
+        Node x = first;
         for (int i = 0; i < index; i++) {
             x = x.next;
         }
         return x;
     }
 
-    public void addLast(E e) {
-        Node<E> l = this.last;
-        Node<E> newNode = new Node<>(e, null);
+    public void addLast(Integer e) {
+        Node l = this.last;
+        Node newNode = new Node(e, null);
         this.last = newNode;
         if (l == null) {
             first = newNode;
@@ -54,7 +84,7 @@ public class SingleLink<E extends Serializable> implements MyList<E>{
         size++;
     }
     public void deleteLast() {
-        Node<E> l = last;
+        Node l = last;
         if (l == null) {
             throw  new NoSuchElementException();
         }
@@ -62,9 +92,9 @@ public class SingleLink<E extends Serializable> implements MyList<E>{
         size--;
     }
 
-    public void addFirst(E e) {
-        Node<E> f = first;
-        Node<E> newNode = new Node<>(e, f);
+    public void addFirst(Integer e) {
+        Node f = first;
+        Node newNode = new Node(e, f);
         first = newNode;
         if (f == null) {
             last = newNode;
@@ -75,7 +105,7 @@ public class SingleLink<E extends Serializable> implements MyList<E>{
 
 
     @Override
-    public void addIndex(int index, E e) {
+    public void addIndex(int index, Integer e) {
         if (index > this.size) {
             throw new NoSuchElementException();
         }
@@ -84,9 +114,9 @@ public class SingleLink<E extends Serializable> implements MyList<E>{
         } else if (index == 0) {
             addFirst(e);
         } else {
-            Node<E> eleCurrent = node(index);
-            Node<E> ePre = node(index - 1);
-            Node<E> node = new Node<>(e, eleCurrent);
+            Node eleCurrent = node(index);
+            Node ePre = node(index - 1);
+            Node node = new Node(e, eleCurrent);
             ePre.next = node;
             size++;
         }
@@ -95,7 +125,7 @@ public class SingleLink<E extends Serializable> implements MyList<E>{
 
     @Override
     public void deleteFirst() {
-        Node<E> node = node(1);
+        Node node = node(1);
         first = node;
         size--;
 
@@ -111,8 +141,8 @@ public class SingleLink<E extends Serializable> implements MyList<E>{
         } else if (index == size - 1) {
             deleteLast();
         } else {
-            Node<E> pre = node(index - 1);
-            Node<E> last = node(index + 1);
+            Node pre = node(index - 1);
+            Node last = node(index + 1);
             pre.next = last;
             size--;
         }
@@ -120,11 +150,11 @@ public class SingleLink<E extends Serializable> implements MyList<E>{
     }
 
     @Data
-    private class Node<E extends Serializable> {
-        private E data;
-        private Node<E> next;
+    private class Node {
+        private Integer data;
+        private Node next;
 
-        public Node(E data, Node<E> next) {
+        public Node(Integer data, Node next) {
             this.data = data;
             this.next = next;
         }
