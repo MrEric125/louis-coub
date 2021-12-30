@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -25,7 +26,7 @@ public class UserInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nickName")
+    @Column(name = "nick_name")
     private String nickName;
 
     @Column(name = "gender")
@@ -45,5 +46,9 @@ public class UserInfo {
 
     @Column(name = "avata_url")
     private String avataUrl;
+
+    @Column(name = "json")
+    private String json;
+
 
 }
