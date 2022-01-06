@@ -1,5 +1,6 @@
 package com.louis.minaProject.jpa.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.louis.common.common.HttpResult;
 import com.louis.minaProject.jpa.entity2.UserInfo;
 import com.louis.minaProject.jpa.repository2.UserInfoRepository;
@@ -28,6 +29,8 @@ public class UserInfoController {
     @Transactional(rollbackFor = Exception.class)
     @RequestMapping(path = "/insert", method = RequestMethod.POST)
     public HttpResult add(@RequestBody UserInfo login,Boolean throwable) throws Exception {
+        String s = JSON.toJSONString(login);
+        login.setJson(s);
         UserInfo save = userInfoRepository.save(login);
         if (throwable) {
             throw new RuntimeException("插入数据逻辑报错");

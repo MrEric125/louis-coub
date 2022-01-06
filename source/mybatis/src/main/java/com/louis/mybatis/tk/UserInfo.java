@@ -33,4 +33,7 @@ public class UserInfo {
 
     @Column(name = "avata_url")
     private String avataUrl;
+
+    private String json;
+
 }
