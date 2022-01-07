@@ -12,10 +12,4 @@ public class CustomerWatch implements Watcher {
         log.info("接收到watch 信息 {}", event);
 
     }
-
-    public static void main(String[] args) {
-        int a = 12345 / 100;
-        System.out.println(a);
-
-    }
 }

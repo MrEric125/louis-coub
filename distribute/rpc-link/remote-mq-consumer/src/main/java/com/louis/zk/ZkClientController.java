@@ -24,7 +24,7 @@ import java.util.Map;
 public class ZkClientController {
 
     @Autowired
-    private ZkClient zkClient;
+    private ZkClientLouis zkClient;
 
 
     @GetMapping("/getPath")
