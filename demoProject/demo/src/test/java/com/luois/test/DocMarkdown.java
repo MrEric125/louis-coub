@@ -21,32 +21,29 @@ import java.util.stream.Collectors;
 @Slf4j
 public class DocMarkdown {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        String typeName = JVMTest.class.getTypeName();
 
-        Method[] methods = JVMTest.class.getMethods();
+        execute(Doclet.class, typeName);
+        buildTable(typeName);
+    }
+
+    public static void buildInterfaceDoc(Class<?> interfaceClass) {
+        Method[] methods =interfaceClass.getMethods();
 
         int num = 1;
         for (Method method : methods) {
             Parameter[] parameters = method.getParameters();
 
             System.out.println("#### " + num + ". 接口名：" + method.getName());
-            System.out.println("*接口功能：*");
+
+            List<NameDoc> methodDoc = classDocDetail.get("methodDoc");
+
+            String methodDocumentation=methodDoc.stream().filter(item -> method.getName().equals(item.getName())).map(NameDoc::getDocumentation).findFirst().orElse("");
+            System.out.println("*接口功能：*" + methodDocumentation);
             for (Parameter parameter : parameters) {
 
-                Class<?> instanceClass = buildHeader(parameter);
-
-                if (instanceClass == null) {
-                   continue;
-                }
-
-                List<Field> declaredFields = Lists.newArrayList(instanceClass.getDeclaredFields());
-                Class<?> superclass = instanceClass.getSuperclass();
-
-                if (superclass != null) {
-                    Field[] superclassFields = superclass.getDeclaredFields();
-                    declaredFields.addAll(Lists.newArrayList(superclassFields));
-                }
-                buildTableDetail(declaredFields);
+                buildTable(parameter.getParameterizedType().getTypeName());
 
             }
             System.out.println("响应：" + buildReturnType(method));
@@ -55,8 +52,26 @@ public class DocMarkdown {
         }
     }
 
-    public static Class<?> buildHeader(Parameter parameter) {
-        String typeName = parameter.getParameterizedType().getTypeName();
+    public static void buildTable(String typeName) {
+        Class<?> instanceClass = buildHeader(typeName);
+
+        if (instanceClass == null) {
+            return;
+        }
+
+        List<Field> declaredFields = Lists.newArrayList(instanceClass.getDeclaredFields());
+        Class<?> superclass = instanceClass.getSuperclass();
+
+        if (superclass != null) {
+            Field[] superclassFields = superclass.getDeclaredFields();
+            declaredFields.addAll(Lists.newArrayList(superclassFields));
+        }
+        buildTableDetail(declaredFields);
+
+    }
+
+    public static Class<?> buildHeader(String typeName) {
+//        String typeName = parameter.getParameterizedType().getTypeName();
 
         ClassLoader defaultClassLoader = ClassUtils.getDefaultClassLoader();
         Class<?> instanceClass = null;
@@ -71,7 +86,7 @@ public class DocMarkdown {
         }
         // 如果参数是java.lang 开头的，就不构建表格
         if (typeName.startsWith("java.lang")){
-           return null;
+            return null;
         }
         System.out.println("|参数|类型|是否必传|备注|");
         System.out.println("|--|--|--|--|");
@@ -100,7 +115,14 @@ public class DocMarkdown {
 //                haveTo = Boolean.TRUE;
 //            }
             String y = (haveTo ? "Y" : "");
-            System.out.println("| " + param + "\t|" + type + "\t|" + y+ "\t| |");
+
+            List<NameDoc> fieldsDoc = classDocDetail.get("fieldsDoc");
+
+            String doc = fieldsDoc.stream().filter(item -> param.equals(item.getName())).map(item -> item.getDocumentation()).findAny().orElse("");
+
+            doc=doc.replace("\r", "").replace("\n", ",");
+
+            System.out.println("| " + param + "\t|" + type + "\t|" + y+ "\t| "+doc+" |");
         }
         System.out.println();
 
@@ -146,7 +168,7 @@ public class DocMarkdown {
             List<NameDoc> methodsDocs= Arrays.stream(classes[i].methods()).map(item -> new NameDoc(item.name(), item.commentText())).collect(Collectors.toList());
             docMap.put("methodDoc", methodsDocs);
 
-            List<NameDoc> fieldsDoc=Arrays.stream(classes[i].fields()).map(item -> new NameDoc(item.name(), item.commentText())).collect(Collectors.toList());
+            List<NameDoc> fieldsDoc=Arrays.stream(classes[i].fields(false)).map(item -> new NameDoc(item.name(), item.commentText())).collect(Collectors.toList());
             docMap.put("fieldsDoc", fieldsDoc);
         }
         return docMap;
@@ -167,6 +189,8 @@ public class DocMarkdown {
 
     private static final String sourcePathPrefix = projectPath + "src\\main\\java\\";
 
+    private static Map<String, List<NameDoc>> classDocDetail = Maps.newConcurrentMap();
+
     public static void execute(Class<?> docClass, String fullClassName) throws Exception {
 
         if (docClass == null) {
@@ -175,20 +199,20 @@ public class DocMarkdown {
         if (StringUtils.isEmpty(fullClassName)) {
             throw new IllegalAccessException("docClass can not be null");
         }
-        String sourcePath = sourcePathPrefix + fullClassName;
+        String replace = fullClassName.replace(".", "\\");
+        String sourcePath = sourcePathPrefix + replace+".java";
 
         com.sun.tools.javadoc.Main.execute(new String[]{
                 "-doclet",
-               docClass.getName(),
+                Doclet.class.getName(),
                 "-docletpath",
-                docClass.getResource("/").getPath(),
+                Doclet.class.getResource("/").getPath(),
                 "-encoding",
                 "utf-8",
                 "-classpath",
                 classPathPrefix,
                 sourcePath
         });
-        buildDoc();
+        classDocDetail = buildDoc();
     }
-
 }
