@@ -1,13 +1,11 @@
 package com.enums;
 
-import org.apache.ibatis.type.MappedTypes;
 
 /**
  * @author Louis
  * @date created on 2020/11/30
  * description:
  */
-@MappedTypes(value = Fivarite.class)
 public enum Fivarite implements IBaseEnum {
 
     MOOR_PHONE(1, "电话"),

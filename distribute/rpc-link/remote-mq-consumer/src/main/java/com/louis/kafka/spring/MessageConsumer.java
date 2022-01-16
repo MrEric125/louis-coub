@@ -1,4 +1,4 @@
-package com.louis.kafka;
+package com.louis.kafka.spring;
 
 import com.louis.common.common.KeyValue;
 import lombok.extern.slf4j.Slf4j;

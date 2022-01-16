@@ -32,6 +32,7 @@ public class SpringSourceApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
         SpringApplication sa = new SpringApplication(SpringSourceApplication.class);
+        log.info("msg");
         sa.run();
     }
 
@@ -39,7 +40,6 @@ public class SpringSourceApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         System.out.println(JSON.toJSONString(args));
     }
-
 
 
 
