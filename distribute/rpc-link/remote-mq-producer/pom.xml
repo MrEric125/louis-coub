@@ -5,7 +5,7 @@
     <parent>
         <artifactId>rpc-link</artifactId>
         <groupId>com.louis</groupId>
-        <version>${revision}</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -28,7 +28,7 @@
         <dependency>
             <groupId>com.louis</groupId>
             <artifactId>mq-common</artifactId>
-            <version>${revision}</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
