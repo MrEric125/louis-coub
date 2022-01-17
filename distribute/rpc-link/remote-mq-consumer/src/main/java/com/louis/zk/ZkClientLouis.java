@@ -9,7 +9,7 @@ import java.io.IOException;
 
 
 @Service
-public class ZkClient {
+public class ZkClientLouis {
 
     @Value("${registry.address}")
     public String registryAddress;
