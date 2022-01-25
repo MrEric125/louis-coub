@@ -1,4 +1,4 @@
-package com.louis.mybatis.tk;
+package com.louis.mybatis.tk.entry;
 
 
 import lombok.Data;

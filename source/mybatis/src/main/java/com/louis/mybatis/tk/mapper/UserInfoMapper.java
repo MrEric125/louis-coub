@@ -1,6 +1,7 @@
-package com.louis.mybatis.tk;
+package com.louis.mybatis.tk.mapper;
 
-import tk.mybatis.mapper.common.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.louis.mybatis.tk.entry.UserInfo;
 
 /**
  * @author Louis

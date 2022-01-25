@@ -183,7 +183,7 @@ public class DocMarkdown {
         private String documentation;
     }
 
-    private static final String projectPath = "D:\\ideaworkspace\\dmall\\aftersale\\dmall-refund\\dmall-refund\\dmall-refund-si\\";
+    private static final String projectPath = "D:\\ideaworkspace\\louis\\louis-coub\\demoProject\\demo";
 
     private static final String classPathPrefix = projectPath + "target\\classes";
 

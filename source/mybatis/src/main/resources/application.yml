@@ -15,4 +15,10 @@ logging:
     com.louis.mybatis.tk: debug
 server:
   port: 8088
+mybatis-plus:
+  mapper-locations: classpath*:/base/*.xml
+  type-aliases-package: com.louis.mybatis.tk.entry
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
 
