@@ -245,11 +245,11 @@
 
             <!-- DataSource -->
 
-            <dependency>
-                <groupId>tk.mybatis</groupId>
-                <artifactId>mapper-spring-boot-starter</artifactId>
-                <version>${spring-boot-mapper.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>tk.mybatis</groupId>-->
+<!--                <artifactId>mapper-spring-boot-starter</artifactId>-->
+<!--                <version>${spring-boot-mapper.version}</version>-->
+<!--            </dependency>-->
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-common</artifactId>
@@ -260,7 +260,7 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-generator</artifactId>
-                <version>3.4.0</version>
+                <version>3.1.0</version>
             </dependency>
 
             <dependency>
@@ -275,11 +275,11 @@
                 <version>1.9.0.RELEASE</version>
             </dependency>
 
-            <dependency>
-                <groupId>tk.mybatis</groupId>
-                <artifactId>mapper</artifactId>
-                <version>4.0.4</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>tk.mybatis</groupId>-->
+<!--                <artifactId>mapper</artifactId>-->
+<!--                <version>4.0.4</version>-->
+<!--            </dependency>-->
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>

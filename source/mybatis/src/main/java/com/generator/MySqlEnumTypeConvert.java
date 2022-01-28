@@ -16,11 +16,10 @@ import java.util.Optional;
  */
 public class MySqlEnumTypeConvert extends MySqlTypeConvert {
 
-    @Override
     public IColumnType processTypeConvert(GlobalConfig globalConfig, TableField tableField) {
         if (globalConfig instanceof CswsGlobalConfig) {
             List<FieldEnumInfo> fieldEnumList = ((CswsGlobalConfig) globalConfig).getFieldEnumList();
-            String columnName = tableField.getColumnName();
+            String columnName = tableField.getName();
             Optional<FieldEnumInfo> fieldEnumInfo = fieldEnumList.stream().filter(item -> item.getColumnName().equals(columnName)).findFirst();
             IColumnType columnType = fieldEnumInfo.map(field -> {
                 return (IColumnType) new OrdinaryColumnType(field.getEnumName(), field.getEnumFullName());
