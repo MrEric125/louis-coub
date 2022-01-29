@@ -183,7 +183,7 @@
 //        private String documentation;
 //    }
 //
-//    private static final String projectPath = "D:\\ideaworkspace\\dmall\\aftersale\\dmall-refund\\dmall-refund\\dmall-refund-si\\";
+//    private static final String projectPath = "D:\\ideaworkspace\\local-project-path\\";
 //
 //    private static final String classPathPrefix = projectPath + "target\\classes";
 //
