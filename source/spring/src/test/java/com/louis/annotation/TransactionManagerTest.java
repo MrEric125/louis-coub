@@ -19,7 +19,7 @@ public class TransactionManagerTest {
 
     private DataSource dataSource;
 
-    @Before
+    // @Before
     public void before() {
         dataSource = new DriverDataSource(null, null, null, null, null);
     }
@@ -32,7 +32,7 @@ public class TransactionManagerTest {
      *
      * @throws SQLException
      */
-    @Test
+    // @Test
     public void test1() throws SQLException {
         Connection connection = dataSource.getConnection();
 //        设置自动提交为false
@@ -52,7 +52,7 @@ public class TransactionManagerTest {
     /**
      * 编程式的事务方式
      */
-    @Test
+    // @Test
     public void test2() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         // 不同的ORM 框架这里使用不同的TransactionManager就可以了
