@@ -48,7 +48,7 @@ public class Jsontest {
             }
             String s = resultList
                     .stream().findFirst().map(String::valueOf).orElse("zhang");
-            System.out.println(s);
+           log.info(s);
         }
 
 
@@ -60,13 +60,6 @@ public class Jsontest {
         byte[] b = Base64.getDecoder().decode(code);
         String str = new String(b, StandardCharsets.UTF_8);
         System.out.println(str);
-    }
-    @Test
-    public void test5() {
-        String code = "eyJyZXN1bHQiOiIwMCJ9";
-        String decrypt = MssUtil.decrypt(code);
-        System.out.println(decrypt);
-
     }
     @Test
     public void test6() {

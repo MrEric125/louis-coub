@@ -11,6 +11,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.instrument.Instrumentation;
+
 /**
  * @author jun.liu
  * @since 2020/11/14 14:34
@@ -39,6 +41,17 @@ public class SpringSourceApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println(JSON.toJSONString(args));
+    }
+
+    /**
+     * 通过 -javaAgent的方式执行参数.. 通常用于拦截，代理等方式，会在main方法之前注入参数，相当于给jar运行时加参数，例如jrebel的热部署就是通过这个方式加的
+     * @param agentOps
+     * @param inst
+     */
+    public static void premain(String agentOps, Instrumentation inst) {
+        System.out.println(agentOps);
+        System.out.println(agentOps);
+
     }
 
 
