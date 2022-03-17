@@ -14,32 +14,10 @@ import java.util.function.Supplier;
  */
 public class Test {
 
-    private static Consumer<String> consumer= s -> {
-
-    };
-    private static Function<String,String> transformation=s-> s+"121212";
-    private static Supplier<String> supplier= ()-> "sss";
-
     public static void main(String[] args) {
-//        StaticTest.method1();
-
-        Consumer<Tuple2<Consumer<String>, String>> biConsumer = tuple -> {
-
-            for(int i = 0; i < 10; i++){
-                // 类型正确，开启编译器
-                tuple.getT1().accept(tuple.getT2());
-            }
-        };
-
-
-
-        biConsumer.accept(
-                Tuples.of(
-                        consumer,
-                        transformation.apply(supplier.get())
-                )
-        );
-
+        do{
+            System.out.println("-------------死循环e----------------");
+        }while(true);
     }
 
 

@@ -16,7 +16,7 @@ https://github.com/docker/for-win/issues/5202
 如果需要永久改变 需要修改`/etc/sysctl.conf` 文件
 vi /etc/sysctl.conf
 fs.file-max=655360
-vm.max_map_count=262144
+vm.max_map_count=262144 
 立即生效 sysctl -p /etc/sysctl.conf 
 
  看来自己需要好好提高一下关于linux  网络相关方面知识
