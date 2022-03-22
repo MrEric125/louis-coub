@@ -6,7 +6,6 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
-import org.assertj.core.util.Lists;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -67,9 +66,8 @@ public class TourBinLogListener implements CommandLineRunner {
             log.info("注册监听信息，注册DB：" + binLogConstants.getSchema() + "，注册表：" + table);
             try {
                 //todo  这里可以新增自定义事件,来处理 监听到的binlog 事件
-                mysqlBinLogEventListener.regListener(binLogConstants.getSchema(), table, item -> {
-                    log.info("监听逻辑处理:item:{}", item);
-                });
+                DMLEvent dmlEvent = new DMLEvent();
+                mysqlBinLogEventListener.regListener(binLogConstants.getSchema(), table, dmlEvent);
             } catch (Exception e) {
                 log.error("BinLog监听异常：" ,e);
             }

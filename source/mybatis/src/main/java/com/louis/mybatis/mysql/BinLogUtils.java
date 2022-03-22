@@ -11,11 +11,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.io.Serializable;
 import java.sql.*;
-import java.util.Arrays;
+import java.util.*;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import static com.github.shyiko.mysql.binlog.event.EventType.isDelete;
 import static com.github.shyiko.mysql.binlog.event.EventType.isUpdate;
@@ -52,7 +49,7 @@ public class BinLogUtils {
             ps.setString(1, db);
             ps.setString(2, table);
             ResultSet rs = ps.executeQuery();
-            Map<String, Column> map = new HashMap<>(rs.getRow());
+            Map<String, Column> map = new LinkedHashMap<>(rs.getRow());
             while (rs.next()) {
                 String schema = rs.getString("TABLE_SCHEMA");
                 String tableName = rs.getString("TABLE_NAME");

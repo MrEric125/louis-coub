@@ -5,7 +5,10 @@ import com.google.common.collect.Maps;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import static com.github.shyiko.mysql.binlog.event.EventType.isDelete;
 import static com.github.shyiko.mysql.binlog.event.EventType.isWrite;
@@ -25,8 +28,8 @@ public class BinLogItem implements Serializable {
     private Long timestamp = null;
     private Long serverId = null;
     // 存储字段-之前的值之后的值
-    private Map<String, Serializable> before = null;
-    private Map<String, Serializable> after = null;
+    private Map<Integer, Serializable> before = null;
+    private Map<Integer, Serializable> after = null;
     // 存储字段--类型
     private Map<String, Column> colums = null;
 
@@ -44,16 +47,17 @@ public class BinLogItem implements Serializable {
         BinLogItem item = new BinLogItem();
         item.eventType = eventType;
         item.colums = columMap;
-        item.before = Maps.newHashMap();
-        item.after = Maps.newHashMap();
+        item.before = Maps.newLinkedHashMap();
+        item.after = Maps.newLinkedHashMap();
 
-        Map<String, Serializable> beOrAf = Maps.newHashMap();
+        Map<Integer, Serializable> beOrAf = Maps.newHashMap();
 
         columMap.entrySet().forEach(entry -> {
             String key = entry.getKey();
             Column colum = entry.getValue();
-            beOrAf.put(key, row[colum.getIndex()]);
+            beOrAf.put(colum.getIndex(), row[colum.getIndex()]);
         });
+
 
         // 写操作放after，删操作放before
         if (isWrite(eventType)) {
@@ -80,15 +84,15 @@ public class BinLogItem implements Serializable {
         item.before = Maps.newHashMap();
         item.after = Maps.newHashMap();
 
-        Map<String, Serializable> be = Maps.newHashMap();
-        Map<String, Serializable> af = Maps.newHashMap();
+        Map<Integer, Serializable> be = Maps.newHashMap();
+        Map<Integer, Serializable> af = Maps.newHashMap();
 
         columMap.entrySet().forEach(entry -> {
             String key = entry.getKey();
             Column colum = entry.getValue();
-            be.put(key, mapEntry.getKey()[colum.getIndex()]);
+            be.put(colum.getIndex(), mapEntry.getKey()[colum.getIndex()]);
 
-            af.put(key, mapEntry.getValue()[colum.getIndex()]);
+            af.put(colum.getIndex(), mapEntry.getValue()[colum.getIndex()]);
         });
 
         item.before = be;

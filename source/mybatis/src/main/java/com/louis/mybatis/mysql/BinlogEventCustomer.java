@@ -2,11 +2,9 @@ package com.louis.mybatis.mysql;
 
 import com.github.shyiko.mysql.binlog.BinaryLogClient;
 import com.github.shyiko.mysql.binlog.event.deserialization.EventDeserializer;
-import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
 import java.io.IOException;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -15,8 +13,6 @@ public class BinlogEventCustomer {
 
     private static final Integer consumerThreads = BinLogConstants.consumerThreads;
 
-
-    private Conf conf;
 
     private BinaryLogClient binaryLogClient;
 
@@ -29,7 +25,6 @@ public class BinlogEventCustomer {
 
     public BinlogEventCustomer(Conf conf, BinaryLogClient.EventListener eventListener,
                                BlockingQueue<BinLogItem> blockingQueue,Multimap<String, BinLogListener> listeners) {
-        this.conf = conf;
         binaryLogClient = new BinaryLogClient(conf.getHost(), conf.getPort(), conf.getUsername(), conf.getPasswd());
         EventDeserializer eventDeserializer = new EventDeserializer();
         binaryLogClient.setEventDeserializer(eventDeserializer);
