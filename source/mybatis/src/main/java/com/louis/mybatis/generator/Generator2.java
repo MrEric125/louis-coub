@@ -1,4 +1,4 @@
-package com.generator;
+package com.louis.mybatis.generator;
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.google.common.collect.Lists;
@@ -19,7 +19,7 @@ public class Generator2 {
         List<FieldEnumInfo> fieldEnumInfos = Lists.newArrayList();
         FieldEnumInfo fieldEnumInfo = new FieldEnumInfo();
         fieldEnumInfo.setColumnName("wx_app_id");
-        fieldEnumInfo.setEnumFullName("com.enums.Fivarite");
+        fieldEnumInfo.setEnumFullName("com.louis.mybatis.enums.Fivarite");
         fieldEnumInfo.setEnumName("Fivarite");
         fieldEnumInfo.setTableName("login");
         List<String> tablePrefix = Lists.newArrayList("ws_");

@@ -99,6 +99,13 @@
 <!--            <artifactId>swagger-annotations</artifactId>-->
 <!--        </dependency>-->
 
+        <dependency>
+            <groupId>com.github.shyiko</groupId>
+            <artifactId>mysql-binlog-connector-java</artifactId>
+            <version>0.21.0</version>
+        </dependency>
+
+
     </dependencies>
 
 

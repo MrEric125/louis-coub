@@ -1,4 +1,4 @@
-package com.generator;
+package com.louis.mybatis.generator;
 
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.generator.AutoGenerator;

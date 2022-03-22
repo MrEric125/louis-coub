@@ -1,4 +1,4 @@
-package com.generator;
+package com.louis.mybatis.generator;
 
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.builder.ConfigBuilder;

@@ -1,4 +1,4 @@
-package com.enums;
+package com.louis.mybatis.enums;
 
 import org.apache.commons.lang3.StringUtils;
 

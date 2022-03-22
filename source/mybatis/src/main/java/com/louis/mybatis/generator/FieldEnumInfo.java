@@ -1,4 +1,4 @@
-package com.generator;
+package com.louis.mybatis.generator;
 
 import lombok.Data;
 
