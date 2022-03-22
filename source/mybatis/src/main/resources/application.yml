@@ -3,7 +3,7 @@ spring:
     platform: MYSQL
     url: jdbc:mysql://localhost:3306/louis-coub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
-    password: "!qaz@wsx"
+    password: Root
     driver-class-name: com.mysql.cj.jdbc.Driver
   profiles:
     active: dev
@@ -20,5 +20,11 @@ mybatis-plus:
   type-aliases-package: com.louis.mybatis.tk.entry
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-
+binlog:
+  datasource:
+    host: localhost
+    port: 3306
+    username: root
+    password: Root
+  schema: louis-coub
+  table: tb_product

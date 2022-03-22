@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 public class Column {
 
+    private String schema;
+    private String table;
     private int index;
     private String colName;
     private String dataType;
-    private String schema;
-    private String table;
 
 }

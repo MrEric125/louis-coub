@@ -1,14 +1,10 @@
 package com.louis.mybatis.mysql;
 
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.util.StrUtil;
-import com.ennova.tour.search.core.service.enums.CategoryEnum;
-import com.ennova.tour.search.dal.mapper.ext.SearchStoreLogoExtMapper;
-import com.ennova.tour.search.dal.po.mbg.SearchStoreLogo;
 import com.github.shyiko.mysql.binlog.event.EventType;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
+import cn.hutool.core.date.DateUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -35,22 +31,11 @@ import static com.github.shyiko.mysql.binlog.event.EventType.isWrite;
 @Component
 public class BinLogUtils {
 
-    private static BinLogUtils binLogUtils;
-
-    @Resource
-    private SearchStoreLogoExtMapper searchStoreLogoExtMapper;
-
-    @PostConstruct
-    public void init() {
-        binLogUtils = this;
-        binLogUtils.searchStoreLogoExtMapper = this.searchStoreLogoExtMapper;
-    }
-
     /**
      * 拼接dbTable
      */
     public static String getdbTable(String db, String table) {
-        return db + "-" + table;
+        return db + "." + table;
     }
 
     /**
@@ -67,7 +52,7 @@ public class BinLogUtils {
             ps.setString(1, db);
             ps.setString(2, table);
             ResultSet rs = ps.executeQuery();
-            Map<String, Colum> map = new HashMap<>(rs.getRow());
+            Map<String, Column> map = new HashMap<>(rs.getRow());
             while (rs.next()) {
                 String schema = rs.getString("TABLE_SCHEMA");
                 String tableName = rs.getString("TABLE_NAME");
@@ -75,7 +60,7 @@ public class BinLogUtils {
                 int idx = rs.getInt("ORDINAL_POSITION");
                 String dataType = rs.getString("DATA_TYPE");
                 if (column != null && idx >= 1) {
-                    map.put(column, new Colum(schema, tableName, idx - 1, column, dataType)); // sql的位置从1开始
+                    map.put(column, new Column(schema, tableName, idx - 1, column, dataType)); // sql的位置从1开始
                 }
             }
             ps.close();
@@ -86,137 +71,16 @@ public class BinLogUtils {
         }
         return null;
     }
-
-    /**
-     * 根据table获取code
-     *
-     * @param table
-     * @return java.lang.Integer
-     */
-    public static Integer getCodeByTable(String table) {
-        if (StrUtil.isEmpty(table)) {
-            return null;
-        }
-        return CategoryEnum.getCodeByTab(table);
-    }
-
-    public static String getMsgByTab(String table) {
-        if (StrUtil.isEmpty(table)) {
-            return null;
-        }
-        return CategoryEnum.getMsgByTab(table);
-    }
-
-    /**
-     * 根据DBTable获取table
-     *
-     * @param dbTable
-     * @return java.lang.String
-     */
-    public static String getTable(String dbTable) {
-        if (StrUtil.isEmpty(dbTable)) {
-            return "";
-        }
-        String[] split = dbTable.split("-");
-        if (split.length == 2) {
-            return split[1];
-        }
-        return "";
-    }
-
     /**
      * 将逗号拼接字符串转List
-     *
      * @param str
      * @return
      */
     public static List<String> getListByStr(String str) {
-        if (StrUtil.isEmpty(str)) {
+        if (StringUtils.isEmpty(str)) {
             return Lists.newArrayList();
         }
-
         return Arrays.asList(str.split(","));
-    }
-
-    /**
-     * 根据操作类型获取对应集合
-     *
-     * @param binLogItem
-     * @return
-     */
-    public static Map<String, Serializable> getOptMap(BinLogItem binLogItem) {
-        // 获取操作类型
-        EventType eventType = binLogItem.getEventType();
-        if (isWrite(eventType) || isUpdate(eventType)) {
-            return binLogItem.getAfter();
-        }
-        if (isDelete(eventType)) {
-            return binLogItem.getBefore();
-        }
-        return null;
-    }
-
-    /**
-     * 获取操作类型
-     *
-     * @param binLogItem
-     * @return
-     */
-    public static Integer getOptType(BinLogItem binLogItem) {
-        // 获取操作类型
-        EventType eventType = binLogItem.getEventType();
-        if (isWrite(eventType)) {
-            return 1;
-        }
-        if (isUpdate(eventType)) {
-            return 2;
-        }
-        if (isDelete(eventType)) {
-            return 3;
-        }
-        return null;
-    }
-
-
-    /**
-     * 根据storeId获取imgUrl
-     */
-    public static String getImgUrl(Long storeId) {
-
-        if (storeId == null) {
-            return "";
-        }
-        //获取url
-        SearchStoreLogo searchStoreLogo = new SearchStoreLogo();
-        searchStoreLogo.setStoreId(storeId);
-        List<SearchStoreLogo> searchStoreLogos = binLogUtils.searchStoreLogoExtMapper.selectList(searchStoreLogo);
-        if (CollectionUtil.isNotEmpty(searchStoreLogos)) {
-            SearchStoreLogo storeLogo = searchStoreLogos.get(0);
-            if (storeLogo != null) {
-                return storeLogo.getStoreLogo();
-            }
-        }
-        return "";
-    }
-
-    /**
-     * 格式化date
-     *
-     * @param date
-     * @return java.util.Date
-     */
-    public static Date getDateFormat(Date date) {
-        if (date == null) {
-            return null;
-        }
-        String dateFormat = "yyyy-MM-dd HH:mm:ss";
-        String strDate = DateUtil.format(date, dateFormat);
-        if (StrUtil.isEmpty(strDate)) {
-            return null;
-        }
-
-        Date formatDate = DateUtil.parse(strDate, dateFormat);
-        return formatDate;
     }
 }
 

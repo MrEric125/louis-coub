@@ -1,13 +1,21 @@
 package com.louis.mybatis.mysql;
 
+import com.github.shyiko.mysql.binlog.event.EventType;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
+import org.assertj.core.util.Lists;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 /**
  * 乐游监听器
@@ -15,6 +23,10 @@ import java.util.List;
  * CommandLineRunner去实现此操作
  * 在有多个可被执行的业务时，通过使用 @Order 注解，设置各个线程的启动顺序（value值由小到大表示启动顺序）。
  * 多个实现CommandLineRunner接口的类必须要设置启动顺序，不让程序启动会报错！
+ *
+ *
+ * 监听的库,表
+ * 时间类型的处理，比如查询的处理，插入的处理，都拆分下来
  *
  * @author zrj
  * @since 2021/7/27
@@ -32,10 +44,18 @@ public class TourBinLogListener implements CommandLineRunner {
         log.info("初始化配置信息：" + binLogConstants.toString());
 
         // 初始化配置信息
-        Conf conf = new Conf(binLogConstants.getHost(), binLogConstants.getPort(), binLogConstants.getUsername(), binLogConstants.getPasswd());
+        Conf conf = new Conf(binLogConstants.getHost(), binLogConstants.getPort(), binLogConstants.getUsername(), binLogConstants.getPassword());
 
-        // 初始化监听器
-        MysqlBinLogListener mysqlBinLogListener = new MysqlBinLogListener(conf);
+        Set<EventType> eventType = Sets.newHashSet();
+        eventType.addAll(BinLogConstants.updateType);
+        eventType.addAll(BinLogConstants.writeType);
+        eventType.addAll(BinLogConstants.deleteType);
+
+        BlockingQueue<BinLogItem> blockingQueue = new ArrayBlockingQueue<>(1024);
+
+        Multimap<String, BinLogListener> multimap = ArrayListMultimap.create();
+
+        MysqlBinLogEventListener mysqlBinLogEventListener = new MysqlBinLogEventListener(conf, eventType,blockingQueue,multimap);
 
         // 获取table集合
         List<String> tableList = BinLogUtils.getListByStr(binLogConstants.getTable());
@@ -44,15 +64,18 @@ public class TourBinLogListener implements CommandLineRunner {
         }
         // 注册监听
         tableList.forEach(table -> {
-            log.info("注册监听信息，注册DB：" + binLogConstants.getDb() + "，注册表：" + table);
+            log.info("注册监听信息，注册DB：" + binLogConstants.getSchema() + "，注册表：" + table);
             try {
-                mysqlBinLogListener.regListener(binLogConstants.getDb(), table, item -> {
-                    log.info("监听逻辑处理");
+                //todo  这里可以新增自定义事件,来处理 监听到的binlog 事件
+                mysqlBinLogEventListener.regListener(binLogConstants.getSchema(), table, item -> {
+                    log.info("监听逻辑处理:item:{}", item);
                 });
             } catch (Exception e) {
-                log.error("BinLog监听异常：" + e);
+                log.error("BinLog监听异常：" ,e);
             }
         });
+        // 初始化监听器
+        BinlogEventCustomer mysqlBinLogListener = new BinlogEventCustomer(conf, mysqlBinLogEventListener, blockingQueue, multimap);
         // 多线程消费
         mysqlBinLogListener.parse();
     }
