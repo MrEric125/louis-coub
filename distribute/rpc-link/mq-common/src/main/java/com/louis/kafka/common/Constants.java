@@ -144,8 +144,8 @@ public class Constants {
         public static final String OFFSET_STORAGE_NAME = "offsets.storage"; // where is offsets stored. options: zookeeper / kafka, default: zookeeper
         public static final String DEF_OFFSET_STORAGE_VAL = "zookeeper";
 
-//        public static final String NUM_CONSUMERS_NAME = "num.consumers";
-//        public static final String DEF_NUM_CONSUMERS_VAL = "1";
+        public static final String NUM_CONSUMERS_NAME = "num.consumers";
+        public static final String DEF_NUM_CONSUMERS_VAL = "1";
 
         public static final String FETCH_MESSAGE_MAX_BYTES_NAME = "fetch.message.max.bytes";
         public static final String DEF_FETCH_MESSAGE_MAX_BYTES_VAL = "5242880"; // 1024 * 1024 * 5
