@@ -1,21 +1,22 @@
 version: '3.2'
 services:
   es:
-    image: elasticsearch:6.4.3
+    image: elasticsearch:7.2.1
     container_name: es
     environment:
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
+      - discovery.type=single-node
       - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
-      - "discovery.zen.ping.unicast.hosts=es,es2,es3"
+#      - "discovery.zen.ping.unicast.hosts=es,es2,es3"
     ulimits:
       memlock:
         soft: -1
         hard: -1
-    volumes:
+#    volumes:
 #      - ./es1/data:/usr/share/elasticsearch/data
 #      - ./es1/log:/usr/share/elasticsearch/logs
-      - ./es1/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:rw
+#      - ./es1/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:rw
     ports:
       - 9200:9200
     networks:
@@ -63,12 +64,12 @@ services:
 #    ports:
 #      - 9202:9200
   kibana:
-    image: kibana:6.4.3
+    image: kibana:7.2.1
     container_name: kibana
     ports:
       - 5601:5601
-    volumes:
-      - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml:rw
+#    volumes:
+#      - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml:rw
     networks:
       - esnet
     environment:

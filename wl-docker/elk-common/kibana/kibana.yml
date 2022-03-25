@@ -1,5 +1,0 @@
-server.name: kibana
-server.host: "0"
-elasticsearch.url: "http://es:9200"
-#elasticsearch.hosts: ["http://elasticsearch:9200","http://elasticsearch:9201","http://elasticsearch:9202"]
-xpack.monitoring.ui.container.elasticsearch.enabled: true

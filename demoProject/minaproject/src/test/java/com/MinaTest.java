@@ -1,18 +1,12 @@
 package com;
 
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.HashMap;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
-
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author jun.liu
@@ -21,59 +15,26 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 @Setter
 @Getter
-public class MinaTest {
+public class MinaTest extends Application {
 
-    private static ReentrantLock reentrantLock = new ReentrantLock();
-
-
-
-    /**
-     * name
-     */
-    private String name;
-
-    private String age;
-
-    public static void main(String[] args) {
-        MinaTest test = new MinaTest();
-        System.out.println(JSON.toJSONString(test, SerializerFeature.WriteNullStringAsEmpty));
-
-        HashMap hashMap = new HashMap();
-            System.out.println("i--->" + tableSizeFor(17));
-
-        ConcurrentHashMap<String,String> concurrentHashMap = new ConcurrentHashMap<>();
-
-        concurrentHashMap.put("aa", "aa");
-
-        ReentrantLock lock = new ReentrantLock();
-        Semaphore semaphore = new Semaphore(10);
-
+    @Override
+    public void start(Stage primaryStage) throws Exception {
 
         try {
-            lock.lock();
-            semaphore.acquire();
+
+            BorderPane root = new BorderPane();
+            Scene scene = new Scene(root,400,400);
+
+            primaryStage.setScene(scene);
+            primaryStage.show();
 
         } catch (Exception e) {
-
-        }finally {
-            lock.unlock();
-            semaphore.release();
-
+            e.printStackTrace();
         }
-
     }
-    static final int tableSizeFor(int cap) {
-        int n = cap - 1;
-        int a = n >>> 1;
-        n |= a;
-        int b = n >>> 2;
-        n |= b;
-        int c = n >>> 4;
-        n |= c;
-        int d = n >>> 8;
-        n |= d;
-        int e = n >>> 16;
-        n |= e;
-        return n + 1;
+
+    public static void main(String[] args) {
+        launch(args);
+
     }
 }
