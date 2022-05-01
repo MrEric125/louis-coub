@@ -1,6 +1,7 @@
 package com.source.spring;
 
 import com.alibaba.fastjson.JSON;
+import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.CommandLineRunner;
@@ -29,6 +30,7 @@ import java.lang.instrument.Instrumentation;
 @MapperScan(basePackages= {"com.source"},sqlSessionFactoryRef="sqlSessionFactory")
 @RestController
 @SpringBootApplication
+@EnableAdminServer
 public class SpringSourceApplication implements CommandLineRunner {
 
 

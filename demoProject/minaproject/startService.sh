@@ -1,5 +1,5 @@
 mvn -v
-#mvn clean package -Dmaven.test.skip=true -pl demoProject/minaproject -am
+#mvn clean package --setings ~/.m2/settings.xml  -Dmaven.test.skip=true -pl demoProject/minaproject -am
 docker version
 docker build -t 'docker-experiece' .
 containerId=$(docker ps -aq -f  'name=docker-experience')
