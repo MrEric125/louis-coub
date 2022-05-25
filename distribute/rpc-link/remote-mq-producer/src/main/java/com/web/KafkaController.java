@@ -3,6 +3,7 @@ package com.web;
 import com.louis.common.common.HttpResult;
 import com.louis.kafka.common.Message;
 import com.louis.kafka.producer.LouisKafkaProducerImpl;
+import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.KafkaAdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.BeansException;
@@ -31,7 +32,8 @@ public class KafkaController implements ApplicationContextAware {
     @Value("${kafka.topic}")
     private String topic;
 
-//    private KafkaAdminClient kafkaAdminClient;
+    @Autowired
+    private AdminClient adminClient;
 
 
 
@@ -63,6 +65,12 @@ public class KafkaController implements ApplicationContextAware {
         message.setSendTime(new Date());
         String send = kafkaSender.send(message);
         return HttpResult.ok(send);
+    }
+
+    @RequestMapping("/topicManager")
+    public HttpResult topicManager() {
+
+        return HttpResult.ok(adminClient.listTopics());
     }
 
     @Override

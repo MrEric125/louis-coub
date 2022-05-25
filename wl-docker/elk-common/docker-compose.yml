@@ -13,10 +13,10 @@ services:
       memlock:
         soft: -1
         hard: -1
-#    volumes:
+    volumes:
 #      - ./es1/data:/usr/share/elasticsearch/data
 #      - ./es1/log:/usr/share/elasticsearch/logs
-#      - ./es1/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:rw
+      - ./es1/plugin:/usr/share/elasticsearch/plugins
     ports:
       - 9200:9200
     networks:
@@ -54,9 +54,9 @@ services:
 #        soft: -1
 #        hard: -1
 #    volumes:
-##      - ./es3/data:/usr/share/elasticsearch/data
-##      - ./es3/log:/usr/share/elasticsearch/logs
-#      - ./es3/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:rw
+#      - ./es3/data:/usr/share/elasticsearch/data
+#      - ./es3/log:/usr/share/elasticsearch/logs
+#      - ./es3/config:/usr/share/elasticsearch/config
 #    networks:
 #      - esnet
 ##    depends_on:
@@ -69,13 +69,15 @@ services:
     ports:
       - 5601:5601
 #    volumes:
-#      - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml:rw
+#      - ./kibana:/usr/share/kibana/config
     networks:
       - esnet
     environment:
       - SERVER_NAME=kibana
       - TZ="Asia/Shanghai"
       - XPACK_MONITORING_ENABLED=true
+      - ELASTICSEARCH_HOSTS=http://es:9200
+      - I18N_LOCALE=zh-CN
 #  filebeat:
 #    image: elastic/filebeat:6.4.3
 #    container_name: filebeat

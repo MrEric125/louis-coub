@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author louis
@@ -39,7 +41,7 @@ public abstract class BaseEntity<ID extends Serializable> implements Persistable
         return String.valueOf(id);
     }
     @Override
-    public boolean isNew() {
+    public boolean  isNew() {
         return null == getId();
     }
 

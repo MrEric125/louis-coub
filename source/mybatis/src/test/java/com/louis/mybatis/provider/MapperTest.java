@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import sun.misc.Unsafe;
 
+import java.io.IOException;
 import java.lang.instrument.Instrumentation;
 import java.lang.reflect.Field;
 
@@ -43,20 +44,7 @@ public class MapperTest {
      * 计算对象的偏移量
      * @param args
      */
-    public static void main(String[] args) {
-
-        Obj bo = new Obj();
-        bo.setString1("121212121222222222222222222222222222222222222222222222222222222222222222222");
-
-
-        Field[] declaredFields = bo.getClass().getDeclaredFields();
-
-        log.info("oop 指针：{}", objectRefSize);
-
-        for (Field declaredField : declaredFields) {
-            log.info("{};--offset--:{}", declaredField.getName(), unsafe.objectFieldOffset(declaredField));
-        }
-
+    public static void main(String[] args) throws IOException {
 
     }
 

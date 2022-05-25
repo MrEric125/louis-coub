@@ -40,6 +40,10 @@ public class BaseKafkaProducer<Key extends Serializable, Value extends Serializa
         this.topics = Sets.newHashSet();
     }
 
+    public Properties getProperties() {
+        return this.properties;
+    }
+
     @Override
     public void doInit() throws Exception {
 
