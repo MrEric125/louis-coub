@@ -132,6 +132,8 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
                             }
                         } catch (Throwable t) {
                             log.error("new version kafka consumer trifles process failed, please concern!", t);
+                        }finally {
+                            consumer.commitAsync();
                         }
                     }
                 } catch (Throwable throwable) {
@@ -147,7 +149,7 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
     }
 
     private void checkCommitOffsets(int flag) {
-        log.info("flag:{}", flag);
+//        log.info("flag:{}", flag);
 
 
     }

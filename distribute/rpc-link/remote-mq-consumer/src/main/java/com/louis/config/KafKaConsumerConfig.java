@@ -37,6 +37,9 @@ public class KafKaConsumerConfig {
     @Value("${kafka.max.poll.records.config}")
     private Integer maxPollRecords;
 
+    @Value("${kafka.max.poll.interval.ms}")
+    private Integer maxPollIntervalMs;
+
     @Value("${kafka.groupId}")
     private String groupId;
 
@@ -53,6 +56,7 @@ public class KafKaConsumerConfig {
         props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, sessionTimeoutMs);
         //一次拉取消息数量
         props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, maxPollRecords);
+        props.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG, maxPollIntervalMs);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         return props;
