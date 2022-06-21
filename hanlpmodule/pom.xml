@@ -16,6 +16,7 @@
             <groupId>com.hankcs</groupId>
             <artifactId>hanlp</artifactId>
         </dependency>
+
     </dependencies>
 
 

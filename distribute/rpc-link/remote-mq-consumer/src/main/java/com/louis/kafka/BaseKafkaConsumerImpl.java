@@ -132,8 +132,6 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
                             }
                         } catch (Throwable t) {
                             log.error("new version kafka consumer trifles process failed, please concern!", t);
-                        }finally {
-                            consumer.commitAsync();
                         }
                     }
                 } catch (Throwable throwable) {
