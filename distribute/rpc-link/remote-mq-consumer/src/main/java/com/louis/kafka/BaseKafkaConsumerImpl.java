@@ -16,6 +16,7 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -94,7 +95,13 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
             String clientId = String.format("%s-%s-%s-%s",
                     Constants.DEF_CLIENT_ID_VAL, getTopic(), random.nextInt(1000), flag);
             properties.put(Constants.KafkaConsumerConstant.CLIENT_ID_NAME, clientId);
+            log.info("clientId:{}", clientId);
             final KafkaConsumer<byte[], byte[]> consumer = new KafkaConsumer<>(properties);
+
+            Set<String> topics = consumer.listTopics().keySet();
+
+            log.info("topics:{}", JSON.toJSONString(topics));
+
             consumer.subscribe(Collections.singletonList(getTopic()));
 
             consumePool.execute(() -> {
@@ -104,6 +111,9 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
                             ConsumerRecords<byte[], byte[]> records = consumer.poll(Duration.ofSeconds(10));
 
                             boolean noMessage = records.isEmpty();
+                            if (noMessage) {
+                                continue;
+                            }
 
                             int totalSize = 0;
                             for (ConsumerRecord<byte[], byte[]> record : records) {
@@ -201,6 +211,7 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
             log.warn("getConsumerNum parse {} error! {}", consumerNumsStr, e.getMessage());
             return Integer.parseInt(Constants.KafkaConsumerConstant.DEF_NUM_CONSUMERS_VAL);
         }
+//        return 10;
     }
 
     private void printStartInfo() {
