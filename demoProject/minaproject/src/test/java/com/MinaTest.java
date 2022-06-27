@@ -1,13 +1,22 @@
 package com;
 
 
+import com.dingtalk.api.DefaultDingTalkClient;
+import com.dingtalk.api.DingTalkClient;
+import com.dingtalk.api.request.OapiRobotSendRequest;
+import com.dingtalk.api.response.OapiRobotSendResponse;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.codec.binary.Base64;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.net.URLEncoder;
 import java.util.stream.Collectors;
 
 /**
@@ -15,6 +24,7 @@ import java.util.stream.Collectors;
  * @date created on 2020/11/2
  * description:
  */
+@Slf4j
 @Setter
 @Getter
 public class MinaTest extends Application {
@@ -35,12 +45,29 @@ public class MinaTest extends Application {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 //        launch(args);
-        String a = "aaabbcccabbbb";
-        System.out.println(char_count(a));
+        Long timestamp = System.currentTimeMillis();
+        String url = "";
+        url = url + "&timestamp=" + timestamp;
+//        url = url + "&sign=" + sign;
+        DingTalkClient client = new DefaultDingTalkClient(url);
+        OapiRobotSendRequest request = new OapiRobotSendRequest();
+        request.setMsgtype("text");
+        request.setTimestamp(System.currentTimeMillis());
+        OapiRobotSendRequest.Text text = new OapiRobotSendRequest.Text();
+        text.setContent("启动成功");
+
+        request.setText(text);
+
+        OapiRobotSendRequest.At at = new OapiRobotSendRequest.At();
+        at.setIsAtAll(false);
+        request.setAt(at);
+        OapiRobotSendResponse response = client.execute(request);
+        log.info(response.getBody());
 
     }
+
 
     static String char_count(String str) {
         if (str==null){
@@ -72,48 +99,4 @@ public class MinaTest extends Application {
 
     }
 
-
-
-//    static String quick_sort(String str) {
-//        if (str == null) {
-//            return null;
-//        }
-//        String[] split = str.split(",");
-//        Integer[] sortArr = new Integer[split.length];
-//        for (int i = 0; i < split.length; i++) {
-//            sortArr[i] = Integer.valueOf(split[i]);
-//        }
-//        quick_sort(sortArr,0,sortArr.length-1);
-//        return Arrays.stream(sortArr).map(Object::toString).collect(Collectors.joining(","));
-//
-//
-//    }
-//    static void quick_sort(Integer arr[],int lo,int hi){
-//        if (lo >= hi)
-//            return;
-//        int p = partition(arr, lo, hi);
-//        quick_sort(arr, lo,p-1);
-//        quick_sort(arr, p + 1, hi);
-//    }
-//    static int partition(Integer[] arr, int lo, int hi) {
-//        Integer v = arr[lo];
-////        arr[lo+1..j]<v;  arr[j+1...i]>v
-//        int j = lo;
-//        for (int i = lo+1; i <=hi ; i++) {
-//            if (less(arr[i],v)) {
-//                exch(arr, j+1, i);
-//                j++;
-//            }
-//        }
-//        exch(arr, lo, j);
-//        return j;
-//    }
-//    public static  boolean less(Integer v,Integer w) {
-//        return v.compareTo(w) < 0;
-//    }
-//    public static  void exch(Integer[] objects, int i, int j) {
-//        Integer swap = objects[i];
-//        objects[i] = objects[j];
-//        objects[j] = swap;
-//    }
 }
