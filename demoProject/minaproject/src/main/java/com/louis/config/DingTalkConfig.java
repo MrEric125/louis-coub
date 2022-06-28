@@ -4,10 +4,12 @@ import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
-import org.aspectj.weaver.patterns.IToken;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -19,6 +21,7 @@ import java.net.URLEncoder;
  */
 @Slf4j
 @Configuration
+@EnableAutoConfiguration
 public class DingTalkConfig {
 
 
@@ -31,14 +34,17 @@ public class DingTalkConfig {
     @Value("${ding.talk.originalSign}")
     private String originalSign;
 
+    public static DingTalkClient dingTalkClient;
+
     @Bean
     public DingTalkClient dingTalkClient() {
 
         String url = buildUrl();
         DingTalkClient client = new DefaultDingTalkClient(url);
+        DingTalkConfig.dingTalkClient = client;
         return client;
     }
-    public String buildUrl() {
+    public  String buildUrl() {
         String url = callBack + "?access_token=" + token;
         long timestamp = System.currentTimeMillis();
         String sign = sign(originalSign, timestamp);

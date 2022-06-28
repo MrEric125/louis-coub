@@ -2,3 +2,5 @@
 # Application Context Initializers
 org.springframework.context.ApplicationContextInitializer=\
 com.louis.MinaProject
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.louis.config.DingTalkConfig
