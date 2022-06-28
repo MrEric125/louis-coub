@@ -3,14 +3,14 @@ package com.louis.coub.escustomer.collect;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class DmcThreadFactory implements ThreadFactory {
+public class McThreadFactory implements ThreadFactory {
     private static final AtomicInteger poolNumber = new AtomicInteger(1);
     private final ThreadGroup group;
     private final AtomicInteger threadNumber = new AtomicInteger(1);
     private final String namePrefix;
     private final boolean isDaemon;
 
-    public DmcThreadFactory(String factoryName,boolean isDaemon) {
+    public McThreadFactory(String factoryName, boolean isDaemon) {
         SecurityManager s = System.getSecurityManager();
         group = (s != null) ? s.getThreadGroup() :
                 Thread.currentThread().getThreadGroup();

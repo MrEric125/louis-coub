@@ -1,8 +1,12 @@
 version: '3.0'
 services:
   louis_jenkins:
-    image:  jenkins/jenkins:lts
+    image:  jenkinsci/blueocean
     container_name: louis_jenkins
     ports:
       - 8080:8080
       - 50000:50000
+    user: '0'
+    volumes:
+      - /usr/jenkins_home/:/var/jenkins_home
+      -

@@ -61,7 +61,7 @@ public class AmpAppender extends AppenderBase<LoggingEvent> {
 
     private final ScheduledExecutorService createScheduledExecutor() {
 
-        final ScheduledExecutorService pool = new ScheduledThreadPoolExecutor(5, new DmcThreadFactory("dmc-log", false));
+        final ScheduledExecutorService pool = new ScheduledThreadPoolExecutor(5, new McThreadFactory("dmc-log", false));
         // 退出时，终止监控数据发送线程
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
