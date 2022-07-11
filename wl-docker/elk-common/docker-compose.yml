@@ -1,26 +1,27 @@
 version: '3.2'
 services:
   es:
-    image: elasticsearch:7.3.1
+    image: elasticsearch:6.6.1
     container_name: es
     environment:
       - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
-      - discovery.type=single-node
+      - bootstrap.memory_lock=false
+      - bootstrap.system_call_filter=false
+#      - discovery.type=single-node
       - ES_JAVA_OPTS= -Xms1g -Xmx1g
-      - cluster.remote.connect=true
+#      - cluster.remote.connect=true
 #      - "discovery.zen.ping.unicast.hosts=es,es2,es3"
-    platform: linux/x86_64
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
+#    ulimits:
+#      memlock:
+#        soft: -1
+#        hard: -1
+#    volumes:
 #      - ./es1/data:/usr/share/elasticsearch/data
 #      - ./es1/log:/usr/share/elasticsearch/logs
-      - ./es1/plugin:/usr/share/elasticsearch/plugins
+#      - ./es1/plugin:/usr/share/elasticsearch/plugins
     ports:
       - 9200:9200
+      - 9300:9300
     networks:
       - esnet
 #  es2:
@@ -66,9 +67,8 @@ services:
 #    ports:
 #      - 9202:9200
   kibana:
-    image: kibana:7.3.1
+    image: kibana:6.6.1
     container_name: kibana
-    platform: linux/x86_64
     ports:
       - 5601:5601
 #    volumes:
@@ -79,7 +79,7 @@ services:
       - SERVER_NAME=kibana
       - TZ="Asia/Shanghai"
       - XPACK_MONITORING_ENABLED=true
-      - ELASTICSEARCH_HOSTS=http://es:9200
+      - ELASTICSEARCH_URL=http://es:9200
 #      - I18N_LOCALE=zh-CN
 #  filebeat:
 #    image: elastic/filebeat:6.4.3
