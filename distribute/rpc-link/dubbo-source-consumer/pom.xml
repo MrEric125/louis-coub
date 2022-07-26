@@ -10,6 +10,9 @@
     <artifactId>dubbo-source-consumer</artifactId>
     <name>dubbo-source-consumer</name>
     <description>Demo project for Spring Boot</description>
+    <properties>
+        <customer-interface.version>1.9.2-SNAPSHOT</customer-interface.version>
+    </properties>
 
 
     <dependencies>
@@ -35,6 +38,7 @@
             <version>${dubbo.version}</version>
 
         </dependency>
+
 
         <!-- Zookeeper dependencies -->
         <dependency>
@@ -92,6 +96,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
         </dependency>
 
     </dependencies>

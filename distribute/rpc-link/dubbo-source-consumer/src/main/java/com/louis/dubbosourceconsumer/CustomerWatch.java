@@ -9,7 +9,7 @@ import org.apache.zookeeper.Watcher;
 public class CustomerWatch implements Watcher {
     @Override
     public void process(WatchedEvent event) {
-        log.info("接收到watch 信息 {}", event);
+//        log.info("接收到watch 信息 {}", event);
 
     }
 

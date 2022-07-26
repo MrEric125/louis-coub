@@ -32,9 +32,10 @@ public class ZkClient {
 //        }
 //        zkServerPath = split[1];
 //        zkServerPath
-        zkClient = new ZooKeeper(zkServerPath, 5000,customerWatch);
-        sessionId = zkClient.getSessionId();
-        sessionPasswd = zkClient.getSessionPasswd();
+        return;
+//        zkClient = new ZooKeeper(zkServerPath, 5000,customerWatch);
+//        sessionId = zkClient.getSessionId();
+//        sessionPasswd = zkClient.getSessionPasswd();
     }
     public ZooKeeper getZkClient() {
         return zkClient;
