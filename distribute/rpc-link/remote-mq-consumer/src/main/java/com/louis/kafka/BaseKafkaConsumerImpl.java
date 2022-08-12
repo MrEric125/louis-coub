@@ -98,9 +98,9 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
             log.info("clientId:{}", clientId);
             final KafkaConsumer<byte[], byte[]> consumer = new KafkaConsumer<>(properties);
 
-            Set<String> topics = consumer.listTopics().keySet();
-
-            log.info("topics:{}", JSON.toJSONString(topics));
+//            Set<String> topics = consumer.listTopics().keySet();
+//
+//            log.info("topics:{}", JSON.toJSONString(topics));
 
             consumer.subscribe(Collections.singletonList(getTopic()));
 
@@ -163,32 +163,36 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
     }
 
     private void createConsumer() {
-        if (properties == null) {
-            properties = new Properties();
+
+        propertiesHandler.init(getGroup(), clusterInfo.getBrokers());
+        Properties defaultProperties = propertiesHandler.getProperties();
+        defaultProperties.putAll(getProperties());
+        this.properties = defaultProperties;
+
+        if (this.properties == null) {
+            this.properties = new Properties();
         }
         printStartInfo();
 
         if (clusterInfo == null || StringUtils.isBlank(clusterInfo.getBrokers())) {
             throw new IllegalArgumentException(" kafka brokers 信息不能为空");
         }
-        propertiesHandler.init(getGroup(), clusterInfo.getBrokers());
-        properties = propertiesHandler.getProperties();
 
         if (restarting) {
-            properties.setProperty(Constants.KafkaConsumerConstant.AUTO_OFFSET_RESET_NAME, Constants.KAFKA_20_HEAD);
+            this.properties.setProperty(Constants.KafkaConsumerConstant.AUTO_OFFSET_RESET_NAME, Constants.KAFKA_20_HEAD);
             log.info("set kafka restart consumer parameter, {} = {}", Constants.KafkaConsumerConstant.AUTO_OFFSET_RESET_NAME,
                     Constants.KAFKA_20_HEAD);
         }
-        if (properties.getProperty(Constants.KafkaConsumerConstant.BOOTSTRAP_SERVERS_NAME) == null) {
+        if (this.properties.getProperty(Constants.KafkaConsumerConstant.BOOTSTRAP_SERVERS_NAME) == null) {
             throw new IllegalArgumentException(String.format(
                     "kafka consumer param %s can not be null!", Constants.KafkaConsumerConstant.BOOTSTRAP_SERVERS_NAME));
         }
-        if (properties.getProperty(Constants.KafkaConsumerConstant.GROUP_ID_NAME) == null) {
+        if (this.properties.getProperty(Constants.KafkaConsumerConstant.GROUP_ID_NAME) == null) {
             throw new IllegalArgumentException(String.format(
                     "kafka consumer param %s can not be null!", Constants.KafkaConsumerConstant.GROUP_ID_NAME));
         }
-        if (properties.getProperty(Constants.KafkaConsumerConstant.CONSUME_STUCK_THRESHOLD_MS_NAME) != null) {
-            consumeStuckThreshold = Long.parseLong(properties.getProperty(Constants.KafkaConsumerConstant.CONSUME_STUCK_THRESHOLD_MS_NAME));
+        if (this.properties.getProperty(Constants.KafkaConsumerConstant.CONSUME_STUCK_THRESHOLD_MS_NAME) != null) {
+            consumeStuckThreshold = Long.parseLong(this.properties.getProperty(Constants.KafkaConsumerConstant.CONSUME_STUCK_THRESHOLD_MS_NAME));
         }
 
         int consumerNums = getConsumerNums();
@@ -199,7 +203,7 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
                 return new Thread(r, String.format("Kafka-20-Consume-Thread-%s-%s-%d", getTopic(), getGroup(), idx.getAndIncrement()));
             }
         });
-        log.info(JSON.toJSONString(properties, true));
+        log.info(JSON.toJSONString(this.properties, true));
 
     }
 
