@@ -31,22 +31,22 @@ public class KafkaConfig {
     @Autowired
     private CanalMessageConsumer canalMessageConsumer;
 
-//    @Bean("louisMessageConsumerImpl")
-//    public LouisKafkaConsumerImpl<String,String> kafkaConsumer() throws Exception {
-//        LouisKafkaConsumerImpl<String,String> kafkaConsumer = new LouisKafkaConsumerImpl<>();
-//        kafkaConsumer.setGroup(groupId);
-//        kafkaConsumer.setTopic(topic);
-//        AuthInfo authInfo = new AuthInfo();
-//        authInfo.setServerAddr(bootstrapServer);
-//
-//        kafkaConsumer.setAuthInfo(authInfo);
-//        kafkaConsumer.setMessageHandler(louisMessageHandler);
-//        kafkaConsumer.doInit();
-//
-//        kafkaConsumer.start();
-//
-//        return kafkaConsumer;
-//    }
+    @Bean("louisMessageConsumerImpl")
+    public LouisKafkaConsumerImpl<String,String> kafkaConsumer() throws Exception {
+        LouisKafkaConsumerImpl<String,String> kafkaConsumer = new LouisKafkaConsumerImpl<>();
+        kafkaConsumer.setGroup(groupId);
+        kafkaConsumer.setTopic(topic);
+        AuthInfo authInfo = new AuthInfo();
+        authInfo.setServerAddr(bootstrapServer);
+
+        kafkaConsumer.setAuthInfo(authInfo);
+        kafkaConsumer.setMessageHandler(louisMessageHandler);
+        kafkaConsumer.doInit();
+
+        kafkaConsumer.start();
+
+        return kafkaConsumer;
+    }
 
     @Bean("canalMessageConsumerImpl")
     public LouisKafkaConsumerImpl<String,String> canalConsumer() {
