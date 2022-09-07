@@ -12,4 +12,5 @@ public class CustomerWatch implements Watcher {
 //        log.info("接收到watch 信息 {}", event);
 
     }
+
 }

@@ -1,10 +1,12 @@
 package com.web;
 
+import com.KafkaAdminServiceImpl;
 import com.alibaba.fastjson.JSON;
 import com.louis.common.common.HttpResult;
 import com.louis.kafka.common.Message;
 import com.louis.kafka.producer.LouisKafkaProducerImpl;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.KafkaAdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -26,6 +28,7 @@ import java.util.Date;
  * @date create in 2019/10/3
  * description:
  */
+@Slf4j
 @RestController
 public class KafkaController implements ApplicationContextAware {
 
@@ -35,17 +38,12 @@ public class KafkaController implements ApplicationContextAware {
     @Value("${kafka.topic}")
     private String topic;
 
+
     @Autowired
-    private AdminClient adminClient;
-
-
-
-
+    private KafkaAdminServiceImpl kafkaAdminService;
 
     @Autowired(required = true)
     private LouisKafkaProducerImpl kafkaSender;
-
-
 
     @RequestMapping("sendTopic")
     public HttpResult sentKafkaToTopic(@RequestParam String param,@RequestParam String pTopic) {
@@ -53,7 +51,26 @@ public class KafkaController implements ApplicationContextAware {
         message.setTopic(pTopic);
         message.setValue(param);
         message.setSendTime(new Date());
-        String send = kafkaSender.send(message);
+        String topic=param + "_" + pTopic;
+
+        boolean exist = kafkaAdminService.isExist(topic);
+
+        String send;
+        if (exist) {
+            message.setTopic(topic);
+            log.info("已存在：:{}", JSON.toJSONString(message));
+
+            send = kafkaSender.send(message);
+        } else {
+
+            boolean status = kafkaAdminService.createTopic(topic, 1, (short) 1);
+            log.info("创建：:{}", JSON.toJSONString(message));
+
+            message.setTopic(topic);
+            send = kafkaSender.send(message);
+        }
+        log.info("info:{}", JSON.toJSONString(message));
+
         return HttpResult.ok(send);
     }
 
@@ -72,11 +89,6 @@ public class KafkaController implements ApplicationContextAware {
         return HttpResult.ok(send);
     }
 
-    @RequestMapping("/topicManager")
-    public HttpResult topicManager() {
-
-        return HttpResult.ok(adminClient.listTopics());
-    }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
