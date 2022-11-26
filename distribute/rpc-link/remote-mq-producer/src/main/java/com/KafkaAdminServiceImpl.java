@@ -61,6 +61,9 @@ public class KafkaAdminServiceImpl  {
         try {
 
 
+            while (!future.isDone()) {
+                Thread.sleep(100L);// 等待100ms
+            }
             // 当topic 不存在时，此行会抛出异常，由此可知topic不存在。
             // java.util.concurrent.ExecutionException: org.apache.kafka.common.errors.UnknownTopicOrPartitionException: This server does not host this topic-partition.
             future.get();
@@ -94,6 +97,9 @@ public class KafkaAdminServiceImpl  {
         try {
             Map<String, KafkaFuture<Void>> map = createTopicsResult.values();
             KafkaFuture<Void> future = map.get(topic);
+            while (!future.isDone()) {
+                Thread.sleep(100L);// 等待100ms
+            }
 
 
             // 当topic存在时，调用此方法会抛出异常。

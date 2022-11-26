@@ -17,7 +17,11 @@ public class SpringTest {
      */
     @Test
     public void test() {
-//        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+
+
+
+        context.register();
 //
 //        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext();
 //

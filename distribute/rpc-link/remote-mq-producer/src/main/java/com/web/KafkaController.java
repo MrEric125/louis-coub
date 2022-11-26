@@ -2,6 +2,7 @@ package com.web;
 
 import com.KafkaAdminServiceImpl;
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Maps;
 import com.louis.common.common.HttpResult;
 import com.louis.kafka.common.Message;
 import com.louis.kafka.producer.LouisKafkaProducerImpl;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * @author John·Louis
@@ -43,10 +45,10 @@ public class KafkaController implements ApplicationContextAware {
     private KafkaAdminServiceImpl kafkaAdminService;
 
     @Autowired(required = true)
-    private LouisKafkaProducerImpl kafkaSender;
+    private LouisKafkaProducerImpl<String,String> kafkaSender;
 
     @RequestMapping("sendTopic")
-    public HttpResult sentKafkaToTopic(@RequestParam String param,@RequestParam String pTopic) {
+    public HttpResult sentKafkaToTopic(@RequestParam String param,@RequestParam String pTopic) throws Exception {
         Message<String,String> message = new Message<>();
         message.setTopic(pTopic);
         message.setValue(param);
@@ -64,6 +66,14 @@ public class KafkaController implements ApplicationContextAware {
         } else {
 
             boolean status = kafkaAdminService.createTopic(topic, 1, (short) 1);
+
+
+            DynamicEvent dynamicEvent = new DynamicEvent();
+            dynamicEvent.setDynamicTopic(topic);
+            dynamicEvent.setTopic(pTopic);
+
+            kafkaSender.send("create_topic", JSON.toJSONString(dynamicEvent));
+
             log.info("创建：:{}", JSON.toJSONString(message));
 
             message.setTopic(topic);
@@ -116,6 +126,14 @@ public class KafkaController implements ApplicationContextAware {
          * 是否由会议调用群发服务创建
          */
         private boolean createByMeeting;
+    }
+
+    @Data
+    private class DynamicEvent{
+        private String topic;
+
+        private String dynamicTopic;
+
     }
 
 }

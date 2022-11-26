@@ -5,6 +5,7 @@ services:
     ports:
       - 80:80
       - 443:443
+      - 32:22
 
     volumes:
       - ./conf/nginx-80-2.conf:/etc/nginx/nginx.conf
