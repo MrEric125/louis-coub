@@ -1,6 +1,7 @@
 version: "3"
 services:
   my-ubuntu-1:
+    entrypoint: ["sh"]
     build:
       context: ./
       dockerfile: Dockerfile
@@ -22,3 +23,5 @@ services:
 networks:
   host:
     external: true
+
+#  docker-compose up --build 
