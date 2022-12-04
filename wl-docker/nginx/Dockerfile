@@ -9,13 +9,14 @@ RUN apt-get install -y vim  \
 && apt-get install net-tools \
 && apt-get install -y iputils-ping \
 && apt-get install -y openssh-* \
-&& apt-get install -y nginx 
+&& apt-get install -y nginx \
+&7 apt-get install -y bash-completion
 
 RUN apt-get install  -y rpm   \
 && apt-get install -y curl \
 && apt-get install -y  openjdk-8-jdk
 
-# ENTRYPOINT [ "/etc/init.d/ssh",""start"]
+# ENTRYPOINT [ "/etc/init.d/ssh","start"]
 
 ENTRYPOINT [ "/usr/sbin/nginx","-g","daemon off;" ]
 
@@ -37,4 +38,6 @@ EXPOSE 22
 # RUN apt-get install lsof  \
 # && apt-get install htop  \
 # && apt-get install -y wget  
+
+#  docker-compose up --build -d
 

@@ -13,6 +13,19 @@ systemctl start sshd
 
 netstat -antp | grep sshd
 
+## linux 建立互信 
+
+
+ssh-keygen -t rsa
+```
+vim /etc/ssh/sshd_config 
+
+PermitRootLogin yes
+PubkeyAuthentication yes
+
+ssh-copy-id root@172.19.0.2
+
+```
 
 安装jenkins
 

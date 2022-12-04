@@ -1,7 +1,6 @@
 version: "3"
 services:
   my-ubuntu-1:
-    entrypoint: ["sh"]
     build:
       context: ./
       dockerfile: Dockerfile
