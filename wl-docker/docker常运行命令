@@ -26,6 +26,7 @@ PubkeyAuthentication yes
 ssh-copy-id root@172.19.0.2
 
 ```
+ssh node1 "java -version >> /tmp/ssh  2>&1 "
 
 安装jenkins
 
