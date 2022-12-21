@@ -40,8 +40,12 @@ node
     容器引擎
     插件
 
-
-
-
 1. service 
+
+参考文档: https://github.com/guangzhengli/k8s-tutorials
+
+1. kubectl apply -f nginx.yaml
+2. kubectl get pods
+3. kubectl port-forward nginx-pod 4000:80
+4. 
 
