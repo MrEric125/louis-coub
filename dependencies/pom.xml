@@ -37,7 +37,7 @@
         <swagger.webjar.version>3.20.3</swagger.webjar.version>
 
         <dubbo.version>2.7.3</dubbo.version>
-        <zookeeper-version>3.4.6</zookeeper-version>
+        <zookeeper-version>3.4.14</zookeeper-version>
         <netty4_version>4.1.25.Final</netty4_version>
         <resteasy_version>3.0.19.Final</resteasy_version>
         <es.version>6.4.3</es.version>
@@ -119,7 +119,7 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>21.0</version>
+                <version>29.0</version>
             </dependency>
             <dependency>
                 <groupId>com.hankcs</groupId>
