@@ -98,3 +98,15 @@ job ,cron job: 负责批处理任务，也就是执行一次的任务，
 ### prometheus
 提供一个k8s 的监控能力
 ### elk 集群日志分析平台
+
+## k8s 课件：11111111
+https://github.com/spring2go/k8s-msa-in-action-ppt
+https://github.com/spring2go/k8s-msa-in-action
+
+## pod 端口转发
+kubectl port-forward pod-name 8080(主机端口):8080(容器端口)
+
+## 服务暴露 通过service 暴露pod 端口，方便外部访问（类似nginx 反向代理）
+
+理解service 是步入k8s 大门的基础
+
