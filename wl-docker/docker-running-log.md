@@ -11,3 +11,9 @@
 这个原因主要还是因为docker 上的网络模型是基于桥接模式，会现在mac上创建一个linux的虚拟机，mac 与 window上会出现的问题
 http://www.manongjc.com/detail/19-dlvjtpucmrwwhzj.html  
 https://www.cnblogs.com/lucky9322/p/13648282.html
+
+docker 删除虚悬镜像
+
+docker rmi $(docker images -q -f dangling=true)
+
+docker run -it -d --restart always --net host --cap-add NET_ADMIN --name connector wenjunxiao/mac-docker-connector

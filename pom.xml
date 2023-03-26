@@ -8,13 +8,11 @@
     <modules>
         <module>dependencies</module>
         <module>common</module>
-        <module>security</module>
         <module>algorithm</module>
         <module>distribute</module>
         <module>demoProject</module>
         <module>source</module>
         <module>hanlpmodule</module>
-        <module>coub-elasticsearch-log</module>
         <module>coub-netty</module>
         <module>louis-coub-parent</module>
         <module>coub-spark</module>

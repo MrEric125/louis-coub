@@ -8,7 +8,7 @@ import java.util.Properties;
  */
 public abstract class ClientTemplate {
 
-    protected Properties properties;
+    protected Properties properties = new Properties();
 
     protected AuthInfo authInfo;
 
@@ -24,6 +24,10 @@ public abstract class ClientTemplate {
     public void setAuthInfo(AuthInfo authInfo) {
         this.authInfo = authInfo;
     }
+    public Properties getProperties() {
+        return this.properties;
+    }
+
 
     public ClusterInfo getClusterInfo() {
         return clusterInfo;

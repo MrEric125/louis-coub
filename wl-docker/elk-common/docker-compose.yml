@@ -8,15 +8,15 @@ services:
       - bootstrap.memory_lock=false
       - bootstrap.system_call_filter=false
 #      - discovery.type=single-node
-      - ES_JAVA_OPTS= -Xms1g -Xmx1g
 #      - cluster.remote.connect=true
 #      - "discovery.zen.ping.unicast.hosts=es,es2,es3"
 #    ulimits:
 #      memlock:
 #        soft: -1
 #        hard: -1
-#    volumes:
+    volumes:
 #      - ./es1/data:/usr/share/elasticsearch/data
+      - ./es1/config/jvm.options:/usr/share/elasticsearch/config/jvm.options
 #      - ./es1/log:/usr/share/elasticsearch/logs
 #      - ./es1/plugin:/usr/share/elasticsearch/plugins
     ports:

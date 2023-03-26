@@ -4,6 +4,7 @@ import com.louis.common.common.HttpResult;
 import com.louis.dubbo.DefaultDubboService;
 import com.louis.dubbo.DubboService2;
 import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import java.util.Map;
  */
 @SpringBootApplication
 @RestController
+@EnableDubbo
 public class DubboSourceConsumerApplication {
 
     @Reference(check = false)
