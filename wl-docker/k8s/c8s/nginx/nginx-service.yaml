@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+#  LoadBalancer 与NodePort的区别在于，LoadBalancer会在集群外部创建一个负载均衡器，而NodePort则不会
+  type: LoadBalancer
+  selector:
+    app: nginx
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80

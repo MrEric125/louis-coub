@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        # k8s pod中的配置地址
+          - mountPath: /etc/nginx/conf.d
+            name: nginx-config
+            readOnly: true
+      volumes:
+      # 宿主机的配置地址
+        - name: nginx-config
+          hostPath:
+            path: /Users/louis/workspace/louis/louis-coub/wl-docker/k8s/c8s/nginx/nginx-config.d
+
