@@ -110,3 +110,4 @@ kubectl port-forward pod-name 8080(主机端口):8080(容器端口)
 
 理解service 是步入k8s 大门的基础
 
+kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2

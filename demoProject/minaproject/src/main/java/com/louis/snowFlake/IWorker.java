@@ -5,14 +5,14 @@ import com.google.common.base.Preconditions;
 import org.apache.commons.lang3.RandomUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
+//import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
 public class IWorker implements InitializingBean {
 
-    @Autowired
-    RedisTemplate<String, String> redisTemplate;
+//    @Autowired
+//    RedisTemplate<String, String> redisTemplate;
 
     @Override
     public void afterPropertiesSet() throws Exception {

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.louis.common.common.HttpResult;
 import com.louis.minaProject.jpa.entity2.UserInfo;
 import com.louis.minaProject.jpa.repository2.UserInfoRepository;
+import com.louis.minaProject.jpa.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,4 +45,14 @@ public class UserInfoController {
         List<UserInfo> all = userInfoRepository.findAll();
         return HttpResult.ok(all);
     }
+
+    @Autowired
+    private UserService userService;
+
+    @RequestMapping(path = "/txDemo", method = RequestMethod.GET)
+    public HttpResult txDemo(){
+        userService.tx1();
+        return HttpResult.ok();
+    }
+
 }
