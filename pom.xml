@@ -16,6 +16,7 @@
         <module>coub-netty</module>
         <module>louis-coub-parent</module>
         <module>coub-spark</module>
+        <module>rabitmq</module>
 
     </modules>
 
