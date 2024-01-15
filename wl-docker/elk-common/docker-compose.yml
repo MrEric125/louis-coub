@@ -86,12 +86,14 @@ services:
       - 5601:5601
     networks:
       - elastic
-    environment:
+#    environment:
 #  todo ELASTICSEARCH_HOSTS 配置没有生效
-      - SERVER_NAME=kibana
+#      - SERVER_NAME=kibana
 #      - elasticsearch.hosts=["http://es-1:9200","http://es-2:9200"，"http://es-3:9200"]
-      - ELASTICSEARCH_HOSTS=["http://es-1:9200"]
-      - I18N_LOCALE=zh-CN
+#      - ELASTICSEARCH_HOSTS=["http://es-1:9200"]
+#      - I18N_LOCALE=zh-CN
+    volumes:
+      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
 
 #  filebeat:
 #    image: elastic/filebeat:6.4.3
