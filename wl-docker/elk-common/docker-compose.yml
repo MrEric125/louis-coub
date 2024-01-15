@@ -1,86 +1,98 @@
 version: '3.2'
 services:
-  es:
-    image: elasticsearch:6.6.1
-    container_name: es
+  es-1:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.16
+    container_name: es-1
     environment:
+      - node.name=es-1
       - cluster.name=docker-cluster
-      - bootstrap.memory_lock=false
-      - bootstrap.system_call_filter=false
+      - network.host=0.0.0.0
+      - bootstrap.memory_lock=true
+      - node.master=true
+      - discovery.seed_hosts=es-2,es-3
+      - cluster.initial_master_nodes=es-1,es-2,es-3
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+
+
 #      - discovery.type=single-node
 #      - cluster.remote.connect=true
 #      - "discovery.zen.ping.unicast.hosts=es,es2,es3"
-#    ulimits:
-#      memlock:
-#        soft: -1
-#        hard: -1
-    volumes:
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    # volumes:
 #      - ./es1/data:/usr/share/elasticsearch/data
-      - ./es1/config/jvm.options:/usr/share/elasticsearch/config/jvm.options
+      # - ./es1/config/jvm.options:/usr/share/elasticsearch/config/jvm.options
 #      - ./es1/log:/usr/share/elasticsearch/logs
 #      - ./es1/plugin:/usr/share/elasticsearch/plugins
     ports:
       - 9200:9200
       - 9300:9300
     networks:
-      - esnet
-#  es2:
-#    image: elasticsearch:6.4.3
-#    container_name: es2
-#    environment:
-#      - cluster.name=docker-cluster
-#      - bootstrap.memory_lock=true
-#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-#      - "discovery.zen.ping.unicast.hosts=es,es2,es3"
-#    ulimits:
-#      memlock:
-#        soft: -1
-#        hard: -1
-#    volumes:
-##      - ./es2/data:/usr/share/elasticsearch/data
-##      - ./es2/log:/usr/share/elasticsearch/logs
-#      - ./es2/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:rw
-#    networks:
-#      - esnet
-#    ports:
-#      - 9201:9200
-#  es3:
-#    image: elasticsearch:6.4.3
-#    container_name: es3
-#    environment:
-#      - cluster.name=docker-cluster
-#      - bootstrap.memory_lock=true
-#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-#      - "discovery.zen.ping.unicast.hosts=es,es2,es3"
-#    ulimits:
-#      memlock:
-#        soft: -1
-#        hard: -1
-#    volumes:
-#      - ./es3/data:/usr/share/elasticsearch/data
-#      - ./es3/log:/usr/share/elasticsearch/logs
-#      - ./es3/config:/usr/share/elasticsearch/config
-#    networks:
-#      - esnet
-##    depends_on:
-##      - es
-#    ports:
-#      - 9202:9200
+      - elastic
+  es-2:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.16
+    container_name: es-2
+    environment:
+      - node.name=es-2
+      - cluster.name=docker-cluster
+      - network.host=0.0.0.0
+      - bootstrap.memory_lock=true
+      - node.master=true
+      - discovery.seed_hosts=es-2,es-3
+      - cluster.initial_master_nodes=es-1,es-2,es-3
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    # volumes:
+      # - ./es2/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:rw
+    networks:
+      - elastic
+    ports:
+      - 9201:9200
+      - 9301:9300
+  es-3:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.16
+    container_name: es-3
+    environment:
+      - node.name=es-3
+      - cluster.name=docker-cluster
+      - network.host=0.0.0.0
+      - bootstrap.memory_lock=true
+      - node.master=true
+      - discovery.seed_hosts=es-1,es-2,es-3
+      - cluster.initial_master_nodes=es-1,es-2,es-3
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    # volumes:
+      # - ./es-3/config:/usr/share/elasticsearch/config
+    networks:
+      - elastic
+#    depends_on:
+#      - es
+    ports:
+     - 9202:9200
+     - 9302:9300
   kibana:
-    image: kibana:6.6.1
+    image: docker.elastic.co/kibana/kibana:7.17.16
     container_name: kibana
     ports:
       - 5601:5601
-#    volumes:
-#      - ./kibana:/usr/share/kibana/config
     networks:
-      - esnet
+      - elastic
     environment:
+#  todo ELASTICSEARCH_HOSTS 配置没有生效
       - SERVER_NAME=kibana
-      - TZ="Asia/Shanghai"
-      - XPACK_MONITORING_ENABLED=true
-      - ELASTICSEARCH_URL=http://es:9200
-#      - I18N_LOCALE=zh-CN
+#      - elasticsearch.hosts=["http://es-1:9200","http://es-2:9200"，"http://es-3:9200"]
+      - ELASTICSEARCH_HOSTS=["http://es-1:9200"]
+      - I18N_LOCALE=zh-CN
+
 #  filebeat:
 #    image: elastic/filebeat:6.4.3
 #    container_name: filebeat
@@ -102,4 +114,4 @@ volumes:
     driver: local
 # 保证这个compose 之间各个容器能够相互访问
 networks:
-  esnet:
+  elastic:
