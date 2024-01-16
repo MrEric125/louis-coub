@@ -13,19 +13,11 @@ services:
       - cluster.initial_master_nodes=es-1,es-2,es-3
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
 
-
-#      - discovery.type=single-node
-#      - cluster.remote.connect=true
-#      - "discovery.zen.ping.unicast.hosts=es,es2,es3"
     ulimits:
       memlock:
         soft: -1
         hard: -1
     # volumes:
-#      - ./es1/data:/usr/share/elasticsearch/data
-      # - ./es1/config/jvm.options:/usr/share/elasticsearch/config/jvm.options
-#      - ./es1/log:/usr/share/elasticsearch/logs
-#      - ./es1/plugin:/usr/share/elasticsearch/plugins
     ports:
       - 9200:9200
       - 9300:9300
@@ -48,7 +40,6 @@ services:
         soft: -1
         hard: -1
     # volumes:
-      # - ./es2/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:rw
     networks:
       - elastic
     ports:
@@ -71,7 +62,6 @@ services:
         soft: -1
         hard: -1
     # volumes:
-      # - ./es-3/config:/usr/share/elasticsearch/config
     networks:
       - elastic
 #    depends_on:
@@ -89,9 +79,6 @@ services:
 #    environment:
 #  todo ELASTICSEARCH_HOSTS 配置没有生效
 #      - SERVER_NAME=kibana
-#      - elasticsearch.hosts=["http://es-1:9200","http://es-2:9200"，"http://es-3:9200"]
-#      - ELASTICSEARCH_HOSTS=["http://es-1:9200"]
-#      - I18N_LOCALE=zh-CN
     volumes:
       - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
 
@@ -114,6 +101,5 @@ volumes:
     driver: local
   esdata2:
     driver: local
-# 保证这个compose 之间各个容器能够相互访问
 networks:
   elastic:
