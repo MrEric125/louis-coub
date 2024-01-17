@@ -18,56 +18,57 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
 #      然后再宿主机配置好kafka1 对应的ip就可以
-      KAFKA_LISTENERS: PLAINTEXT://kafka1:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
 #    配置volumes 与docker 使用同一个sock,使 producer 与consumer 无需频繁变更ip
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://172.27.12.96:9092    ## 宿主机IP
+      ## 宿主机IP
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://172.30.48.1:9092
       KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181,zoo2:2181,zoo3:2181"
-#    volumes:
-#      - /var/run/docker.sock:/var/run/docker.sock
-#      - "./kafka/kafka1/data/:/kafka"
-#
-#
-#  kafka2:
-#    image: wurstmeister/kafka:2.12-2.5.0
-#    restart: unless-stopped
-#    container_name: kafka2
-#    hostname: kafka2
-#    ports:
-#      - "9093:9092"
-#    external_links:
-#      - zoo1
-#      - zoo2
-#      - zoo3
-#    environment:
-#      KAFKA_BROKER_ID: 2
-#      KAFKA_LISTENERS: PLAINTEXT://localhost:9092
-#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9093    ## 宿主机IP
-#      KAFKA_ADVERTISED_HOST_NAME: kafka2
-#      KAFKA_ADVERTISED_PORT: 9093
-#      KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181,zoo2:2181,zoo3:2181"
+
+
+  kafka2:
+    image: wurstmeister/kafka:2.12-2.5.0
+    container_name: kafka2
+    hostname: kafka2
+    ports:
+      - "9093:9092"
+    external_links:
+      - zoo1
+      - zoo2
+      - zoo3
+    environment:
+      KAFKA_BROKER_ID: 2
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      ## 宿主机IP
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://172.30.48.1:9093
+      KAFKA_ADVERTISED_HOST_NAME: kafka2
+      KAFKA_ADVERTISED_PORT: 9093
+      KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181,zoo2:2181,zoo3:2181"
+
 #    volumes:
 #      - "./kafka/kafka2/data/:/kafka"
-#
-#  kafka3:
-#    image: wurstmeister/kafka:2.12-2.5.0
-#    restart: unless-stopped
-#    container_name: kafka3
-#    hostname: kafka3
-#    ports:
-#      - "9094:9092"
-#    external_links:
-#      - zoo1
-#      - zoo2
-#      - zoo3
-#    environment:
-#      KAFKA_BROKER_ID: 3
-#      KAFKA_LISTENERS: PLAINTEXT://localhost:9092
-#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9094   ## 宿主机IP
-#      KAFKA_ADVERTISED_HOST_NAME: kafka3
-#      KAFKA_ADVERTISED_PORT: 9094
-#      KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181,zoo2:2181,zoo3:2181"
+
+  kafka3:
+    image: wurstmeister/kafka:2.12-2.5.0
+    restart: unless-stopped
+    container_name: kafka3
+    hostname: kafka3
+    ports:
+      - "9094:9092"
+    external_links:
+      - zoo1
+      - zoo2
+      - zoo3
+    environment:
+      KAFKA_BROKER_ID: 3
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      ## 宿主机IP
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://172.30.48.1:9094
+      KAFKA_ADVERTISED_HOST_NAME: kafka3
+      KAFKA_ADVERTISED_PORT: 9094
+      KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181,zoo2:2181,zoo3:2181"
+
 #    volumes:
 #      - "./kafka/kafka3/data/:/kafka"
-#
+
 
 #https://segmentfault.com/a/1190000039264674
