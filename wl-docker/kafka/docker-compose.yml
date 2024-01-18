@@ -23,8 +23,6 @@ services:
       ## 宿主机IP
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://172.30.48.1:9092
       KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181,zoo2:2181,zoo3:2181"
-
-
   kafka2:
     image: wurstmeister/kafka:2.12-2.5.0
     container_name: kafka2
@@ -49,7 +47,6 @@ services:
 
   kafka3:
     image: wurstmeister/kafka:2.12-2.5.0
-    restart: unless-stopped
     container_name: kafka3
     hostname: kafka3
     ports:
