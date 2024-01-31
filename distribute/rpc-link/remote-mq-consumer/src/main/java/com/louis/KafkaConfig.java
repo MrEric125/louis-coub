@@ -6,10 +6,14 @@ import com.louis.kafka.client.CanalMessageConsumer;
 import com.louis.kafka.client.CreateTopicMessageHandler;
 import com.louis.kafka.client.LouisMessageHandler;
 import com.louis.kafka.common.AuthInfo;
+import org.apache.kafka.clients.CommonClientConfigs;
+import org.apache.kafka.clients.admin.AdminClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.Properties;
 
 @Configuration
 public class KafkaConfig {
@@ -54,23 +58,30 @@ public class KafkaConfig {
 
         return kafkaConsumer;
     }
+    @Bean
+    public AdminClient kafkaAdminClient() {
+        Properties props = new Properties();
+        props.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, bootstrapServer);
 
-    @Bean("createTopicConsumerImpl")
-    public LouisKafkaConsumerImpl<String,String> createTopic() throws Exception {
-        LouisKafkaConsumerImpl<String,String> kafkaConsumer = new LouisKafkaConsumerImpl<>();
-        kafkaConsumer.setGroup(groupId);
-        kafkaConsumer.setTopic(createTopic);
-        AuthInfo authInfo = new AuthInfo();
-        authInfo.setServerAddr(bootstrapServer);
-
-        kafkaConsumer.setAuthInfo(authInfo);
-        kafkaConsumer.setMessageHandler(createTopicMessageHandler);
-        kafkaConsumer.doInit();
-
-        kafkaConsumer.start();
-
-        return kafkaConsumer;
+        return AdminClient.create(props);
     }
+
+//    @Bean("createTopicConsumerImpl")
+//    public LouisKafkaConsumerImpl<String,String> createTopic() throws Exception {
+//        LouisKafkaConsumerImpl<String,String> kafkaConsumer = new LouisKafkaConsumerImpl<>();
+//        kafkaConsumer.setGroup(groupId);
+//        kafkaConsumer.setTopic(createTopic);
+//        AuthInfo authInfo = new AuthInfo();
+//        authInfo.setServerAddr(bootstrapServer);
+//
+//        kafkaConsumer.setAuthInfo(authInfo);
+//        kafkaConsumer.setMessageHandler(createTopicMessageHandler);
+//        kafkaConsumer.doInit();
+//
+//        kafkaConsumer.start();
+//
+//        return kafkaConsumer;
+//    }
 
 
 

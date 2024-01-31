@@ -7,10 +7,11 @@ services:
       - node.name=es-1
       - cluster.name=docker-cluster
       - network.host=0.0.0.0
+      - discovery.type=single-node
       - bootstrap.memory_lock=true
-      - node.master=true
-      - discovery.seed_hosts=es-2,es-3
-      - cluster.initial_master_nodes=es-1,es-2,es-3
+#      - node.master=true
+#      - discovery.seed_hosts=es-2,es-3
+#      - cluster.initial_master_nodes=es-1,es-2,es-3
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
 
     ulimits:

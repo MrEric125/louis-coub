@@ -7,6 +7,7 @@ server.host: "0.0.0.0"
 server.name: kibana
 server.shutdownTimeout: "5s"
 # 配置es 集群
-elasticsearch.hosts: [ "http://es-1:9200","http://es-2:9200","http://es-3:9200" ]
-monitoring.ui.container.elasticsearch.enabled: true
+#elasticsearch.hosts: [ "http://es-1:9200","http://es-2:9200","http://es-3:9200" ]
+elasticsearch.hosts: [ "http://es-1:9200" ]
+#monitoring.ui.container.elasticsearch.enabled: true
 i18n.locale: zh-CN
