@@ -77,9 +77,4 @@ public class DefaultMKThreadFactory  implements ThreadFactory {
         return buffer.toString();
     }
 
-    public static void main(String[] args) {
-        int v = (int) (Math.random() * 10);
-        AtomicInteger atomicInteger = new AtomicInteger(v);
-        System.out.println(atomicInteger);
-    }
 }

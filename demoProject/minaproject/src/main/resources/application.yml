@@ -18,8 +18,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: '!QAZ2wsx'
-    url: jdbc:mysql://localhost:3306/louis-coub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    password: 'Root'
+    url: jdbc:mysql://localhost:3306/louis_coub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     platform: MYSQL
   #    one:
 #      platform: MYSQL
