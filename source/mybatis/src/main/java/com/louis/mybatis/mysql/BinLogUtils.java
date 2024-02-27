@@ -1,22 +1,13 @@
 package com.louis.mybatis.mysql;
 
-import com.github.shyiko.mysql.binlog.event.EventType;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
-import cn.hutool.core.date.DateUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import java.io.Serializable;
 import java.sql.*;
 import java.util.*;
-import java.util.Date;
 
-import static com.github.shyiko.mysql.binlog.event.EventType.isDelete;
-import static com.github.shyiko.mysql.binlog.event.EventType.isUpdate;
-import static com.github.shyiko.mysql.binlog.event.EventType.isWrite;
 
 /**
  * 监听工具
