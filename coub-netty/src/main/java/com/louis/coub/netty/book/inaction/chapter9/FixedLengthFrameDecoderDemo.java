@@ -2,7 +2,7 @@ package com.louis.coub.netty.book.inaction.chapter9;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author John·Louis
