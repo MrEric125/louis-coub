@@ -48,7 +48,7 @@
         <common-collection4>4.4</common-collection4>
         <histrix-version>1.5.18</histrix-version>
         <mybatis-spring-version>3.0.3</mybatis-spring-version>
-        <zookeeper.version>3.6.0</zookeeper.version>
+        <zookeeper.version>3.7.2</zookeeper.version>
 
 
     </properties>
