@@ -7,6 +7,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -22,16 +23,17 @@ import java.net.URLEncoder;
 @Slf4j
 @Configuration
 @EnableAutoConfiguration
+@ConditionalOnProperty(value = "ding.talk.callback")
 public class DingTalkConfig {
 
 
-    @Value("${ding.talk.callback}")
+    @Value("${ding.talk.callback:http://localhost:8080/callback}")
     private String callBack;
 
-    @Value("${ding.talk.token}")
+    @Value("${ding.talk.token:token}")
     private String token;
 
-    @Value("${ding.talk.originalSign}")
+    @Value("${ding.talk.originalSign:originalSign}")
     private String originalSign;
 
     public static DingTalkClient dingTalkClient;

@@ -19,8 +19,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 'Root'
-    url: jdbc:mysql://localhost:3306/louis_coub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    platform: MYSQL
+    url: jdbc:mysql://localhost:3306/louis-coub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
   #    one:
 #      platform: MYSQL
 #      url: jdbc:mysql://localhost:3306/louis-coub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
@@ -45,7 +44,12 @@ spring:
         size: 5
   messages:
     basename: i18n.bussiness,i18n.exception,i18n.message
-#  data:
+  sql:
+    init:
+      platform: MYSQL
+  main:
+    allow-circular-references: true
+#   data:
 #    mongodb:
 #      uri: mongodb://10.12.231.27:27017/test
 LOG_DATEFORMAT_PATTERN: yyyy/MM/dd HH:mm:ss:sss

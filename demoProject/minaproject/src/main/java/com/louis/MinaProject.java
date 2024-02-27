@@ -41,7 +41,7 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableScheduling
 @Slf4j
 @EnableTransactionManagement
-@MapperScan(basePackages= {"com.louis"},sqlSessionFactoryRef="sqlSessionFactory")
+@MapperScan()
 @SpringBootApplication
 @Import({DingTalkConfig.class})
 public class MinaProject implements ApplicationContextInitializer<ConfigurableApplicationContext>, CommandLineRunner {

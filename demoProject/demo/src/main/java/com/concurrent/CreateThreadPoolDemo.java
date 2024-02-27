@@ -2,7 +2,7 @@ package com.concurrent;
 
 import com.concurrent.tools.ThreadPoolExecutorLouis;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.*;
 

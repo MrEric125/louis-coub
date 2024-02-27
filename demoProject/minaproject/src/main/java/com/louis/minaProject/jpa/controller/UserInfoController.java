@@ -26,6 +26,8 @@ public class UserInfoController {
     @Autowired
     private UserInfoRepository userInfoRepository;
 
+    @Autowired
+    private UserService userService;
 
     @Transactional(rollbackFor = Exception.class)
     @RequestMapping(path = "/insert", method = RequestMethod.POST)
@@ -46,8 +48,7 @@ public class UserInfoController {
         return HttpResult.ok(all);
     }
 
-    @Autowired
-    private UserService userService;
+
 
     @RequestMapping(path = "/txDemo", method = RequestMethod.GET)
     public HttpResult txDemo(){

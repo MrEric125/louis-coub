@@ -12,6 +12,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -152,7 +153,7 @@ public class SearchableMethodArgumentResolver extends BaseMethodArgumentResolver
 
     @SuppressWarnings("unckecked")
     private String[] filterSearchValues(String[] values) {
-        List<String> result = Lists.newArrayList(CollectionUtils.arrayToList(values));
+        List<String> result = Arrays.asList(values);
         for (int i = 0; i < result.size(); i++) {
             if (StringUtils.isBlank(result.get(i))) {
                 result.remove(i);

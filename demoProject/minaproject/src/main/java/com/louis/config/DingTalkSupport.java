@@ -3,6 +3,7 @@ package com.louis.config;
 import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.OapiRobotSendRequest;
 import com.dingtalk.api.response.OapiRobotSendResponse;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -21,7 +22,6 @@ public class DingTalkSupport {
     @Autowired
     private Environment environment;
 
-    @Autowired
     DingTalkClient dingTalkClient;
 
     public static void send(String msg) {
@@ -61,8 +61,8 @@ public class DingTalkSupport {
         request.setAt(at);
         try {
 
-            OapiRobotSendResponse response = dingTalkClient.execute(request);
-            log.info(response.getBody());
+//            OapiRobotSendResponse response = dingTalkClient.execute(request);
+//            log.info(response.getBody());
         } catch (Exception e) {
             log.error("error", e);
 
