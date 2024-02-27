@@ -3,7 +3,6 @@ package com.louis.kafka.client.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
-import sun.rmi.runtime.Log;
 
 import java.io.Serializable;
 import java.util.Date;
