@@ -14,7 +14,7 @@ spring:
     platform: MYSQL
     url: jdbc:mysql://localhost:3306/louis-coub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     username: root
-    password: "!QAZ2wsx"
+    password: "Root"
     driver-class-name: com.mysql.cj.jdbc.Driver
   profiles:
     active: dev

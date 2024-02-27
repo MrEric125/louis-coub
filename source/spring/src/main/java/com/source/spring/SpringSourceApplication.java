@@ -27,7 +27,7 @@ import java.lang.instrument.Instrumentation;
  */
 @Slf4j
 @EnableTransactionManagement
-@MapperScan(basePackages= {"com.source"},sqlSessionFactoryRef="sqlSessionFactory")
+@MapperScan(basePackages= {"com.source"})
 @RestController
 @SpringBootApplication
 @EnableAdminServer

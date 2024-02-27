@@ -2,7 +2,7 @@ package com.louis;
 
 import com.louis.annotation.AnnotationClass;
 import com.source.spring.mvc.DemoParam;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
