@@ -1,0 +1,12 @@
+spring:
+    application:
+        name: zk-config-center
+    profiles:
+        active: dev
+    cloud:
+      zookeeper:
+          connect-string: localhost:2181
+    config:
+      import: 'optional:zookeeper'
+server:
+    port: 8080

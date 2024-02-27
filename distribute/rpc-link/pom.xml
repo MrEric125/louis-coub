@@ -26,7 +26,6 @@
     <modules>
         <module>remote-mq-producer</module>
         <module>remote-mq-consumer</module>
-        <module>RPCStudy</module>
         <module>dubbo-source-producer</module>
         <module>dubbo-source-api</module>
         <module>dubbo-source-consumer</module>

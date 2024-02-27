@@ -2,10 +2,10 @@ package com.louis.dubbosourceconsumer;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.HandlerInterceptor;
 
 /**
  * @author louis
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Component
 @Slf4j
-public class TraceIdHandlerInterceptor extends HandlerInterceptorAdapter {
+public class TraceIdHandlerInterceptor implements HandlerInterceptor {
 
 
     @Override
