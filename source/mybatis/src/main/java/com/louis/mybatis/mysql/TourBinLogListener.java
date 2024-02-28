@@ -4,14 +4,14 @@ import com.github.shyiko.mysql.binlog.event.EventType;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -78,7 +78,7 @@ public class TourBinLogListener implements CommandLineRunner {
         // 初始化监听器
         BinlogEventCustomer mysqlBinLogListener = new BinlogEventCustomer(conf, mysqlBinLogEventListener, blockingQueue, multimap);
         // 多线程消费
-        mysqlBinLogListener.parse();
+//        mysqlBinLogListener.parse();
     }
 }
 

@@ -211,7 +211,7 @@ public class AsApplymentGoods extends Model<AsApplymentGoods> {
     private Double realRefundWeight;
 
     @Override
-    protected Serializable pkVal() {
+    public Serializable pkVal() {
         return this.id;
     }
 

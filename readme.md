@@ -11,16 +11,6 @@ B+tree dgree 为3的时候，总共能放多少数据
 聚集索引可以理解为索引与实际数据设计在一块
 
 
-mac wifi 异常日志
-
-Tue Oct 26 20:45:50.259 <kernel> installGTK: GTK installed
-Tue Oct 26 20:45:54.289 <airport[170]> __enableTemporarilyDisabledNetworks: FAILED to complete operation within 4.0s, continuing
-Tue Oct 26 20:45:54.296 <airport[170]> ERROR: rapportd (425) is not entitled for com.apple.wifi.join_history, will not allow request
-Tue Oct 26 20:45:54.296 <airport[170]> ERROR: sharingd (492) is not entitled for com.apple.wifi.join_history, will not allow request
-Tue Oct 26 20:49:34.410 <airport[170]> psCallback: set powersave(7) failed, 5 (Input/output error)
-Tue Oct 26 20:50:23.646 <kernel> Unexpected payload found for message 4, dataLen 0
-
-如何读懂mac 异常日志
 
 1. spring 对事务支持原理，以及数据库事务原理，to 文档
 
@@ -45,3 +35,16 @@ java.exe -agentlib:jdwp=transport=dt_socket,address=localhost:51973,suspend=y,se
 -Dspring.jmx.enabled=true
 -Dfile.encoding=UTF-8
 -classpath "D:\..."
+
+
+分布式共识算法
+
+posser
+zab
+zookeeper 选举机制
+redis 看门狗机制
+
+究竟是什么影响着我们的收入，又有哪些使我们可恶意孔子的呢？
+
+解决github 配置浏览器可访问，但是命令行无法连接github
+https://zhuanlan.zhihu.com/p/481574024

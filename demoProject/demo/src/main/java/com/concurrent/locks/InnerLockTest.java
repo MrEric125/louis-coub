@@ -1,6 +1,6 @@
 package com.concurrent.locks;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openjdk.jol.vm.VM;
 
 /**

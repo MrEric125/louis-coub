@@ -14,9 +14,9 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.*;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,14 +38,14 @@ public class HttpClientTest {
 
     private CloseableHttpClient client;
 
-    @Before
+    @BeforeAll
     public void buildClient() {
 //        client=HttpClientBuilder.create().build();
         client = HttpClientBuilder.create().setMaxConnPerRoute(5)
                 .setMaxConnTotal(5).build();
     }
 
-    @After
+    @AfterAll
     public void close() {
         try {
             if (client != null) {

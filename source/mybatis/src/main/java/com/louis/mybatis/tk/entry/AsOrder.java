@@ -97,7 +97,7 @@ public class AsOrder extends Model<AsOrder> {
 
 
     @Override
-    protected Serializable pkVal() {
+    public Serializable pkVal() {
         return this.id;
     }
 

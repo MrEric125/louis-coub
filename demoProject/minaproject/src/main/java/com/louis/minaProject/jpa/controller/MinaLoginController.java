@@ -68,6 +68,6 @@ public class MinaLoginController {
         UUID uuid = UUID.randomUUID();
         return uuid.toString();
     }
-    
+
 
 }

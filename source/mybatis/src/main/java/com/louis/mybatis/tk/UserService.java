@@ -2,10 +2,10 @@ package com.louis.mybatis.tk;
 
 import com.louis.mybatis.tk.entry.UserInfo;
 import com.louis.mybatis.tk.mapper.UserInfoMapper;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 
 @Service
 public class UserService {

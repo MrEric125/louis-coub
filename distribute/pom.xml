@@ -13,6 +13,7 @@
     <artifactId>distribute</artifactId>
     <modules>
         <module>rpc-link</module>
+        <module>zk-config-center</module>
     </modules>
 
 

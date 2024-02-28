@@ -53,7 +53,7 @@ public class KafkaController implements ApplicationContextAware {
         message.setTopic(pTopic);
         message.setValue(param);
         message.setSendTime(new Date());
-        String topic=param + "_" + pTopic;
+        String topic=pTopic;
 
         boolean exist = kafkaAdminService.isExist(topic);
 

@@ -16,7 +16,7 @@ import com.louis.http.HttpClientUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.Lists;
 import org.gitlab.api.GitlabAPI;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;

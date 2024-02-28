@@ -1,6 +1,7 @@
 package letcode;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * @author louis

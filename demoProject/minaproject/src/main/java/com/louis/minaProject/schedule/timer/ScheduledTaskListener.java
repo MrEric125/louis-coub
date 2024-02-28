@@ -1,7 +1,8 @@
 package com.louis.minaProject.schedule.timer;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
+
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
 
 /**
  * @author John·Louis
