@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+    # 重启策略 会记录重启次数，但是需要注意，如果是手动删除pod(kubectl delete pod nginx-deployment-79869ddfc8-vcn9v)，那么重启次数会被清零
+      restartPolicy: Always
+      containers:
+      - name: nginx
+        image: nginx
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        # k8s pod中的配置地址
+          - mountPath: /etc/nginx/conf.d
+            name: nginx-config
+            readOnly: true
+      volumes:
+      # 宿主机的配置地址
+        - name: nginx-config
+          hostPath:
+            path: /Users/louis/workspace/louis/louis-coub/wl-docker/k8s/c8s/nginx/nginx-config.d
+

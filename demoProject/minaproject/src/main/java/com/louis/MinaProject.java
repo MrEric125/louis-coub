@@ -9,7 +9,6 @@ import com.louis.common.utils.NetUtils;
 import com.louis.config.DingTalkConfig;
 import com.louis.config.DingTalkSupport;
 import com.louis.config.SpringBeanUtils;
-import io.netty.util.NetUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
