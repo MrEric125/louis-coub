@@ -4,6 +4,12 @@ spring:
     profiles:
         active: dev
     config:
-        import: optional:zookeeper:localhost:2181/discovery/config
+#        https://docs.spring.io/spring-cloud-zookeeper/reference/config.html
+         import:
+            zookeeper:localhost:2181/discovery/config/application-${spring.profiles.active};/discovery/config/config-center-${spring.profiles.active}
+    cloud:
+        zookeeper:
+            config:
+                enabled: true
 server:
     port: 8081
