@@ -71,6 +71,7 @@ public class SingleLink implements MyList<Integer>{
         return x;
     }
 
+
     public void addLast(Integer e) {
         Node l = this.last;
         Node newNode = new Node(e, null);
