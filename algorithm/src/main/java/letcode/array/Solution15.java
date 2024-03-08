@@ -74,33 +74,38 @@ public class Solution15 {
             if (i > 0 && first == nums[i - 1]) {
                 continue;
             }
-            for (int j = len-1; j > preIdex; ) {
-
-                if (first + nums[preIdex] + nums[j] < 0) {
+            for (int j = len-1; j > preIdex;) {
+                int sum = first + nums[preIdex] + nums[j];
+                if (sum < 0) {
                     preIdex++;
                     if (preIdex >= j) {
                         break;
                     }
                     continue;
                 }
-                if (first + nums[preIdex] + nums[j] > 0) {
+                if (sum > 0) {
                     j--;
+                    if (preIdex >= j) {
+                        break;
+                    }
                     continue;
                 }
-                if (nums[preIdex]==nums[preIdex-1]) {
-                    preIdex++;
-                    continue;
-                }
-                if (j < (len - 1) && nums[j + 1] == nums[j]) {
-                    j--;
-                    continue;
 
+                // 以下判断为满足条件，但是数据去重操作
+                // preIndex: 是我们要找的第二位数，如果num[preIndex]=nums[preIndex+1];避免重复计算那么我们就直接用num[preIndex+1]
+                while (j>preIdex &&  nums[preIdex]==nums[preIdex+1]){
+                    preIdex++;
+                }
+//                避免重复计算那么我们就直接用num[j - 1]
+                while (j>preIdex && nums[j] == nums[j - 1] ){
+                    j--;
                 }
                 List<Integer> arr = new ArrayList<>();
                 arr.add(first);
                 arr.add(nums[preIdex]);
                 arr.add(nums[j]);
                 result.add(arr);
+
                 j--;
             }
         }
@@ -131,31 +136,32 @@ public class Solution15 {
 
     }
 
-//    public static void main(String[] args) {
-//        Solution15 solution15 = new Solution15();
-//        String[] split = args[0].split(",");
-//        long s2 = System.currentTimeMillis();
-//        System.out.println(solution15.threeSum2(new int[]{0,0,0,0}));
-//        long e2 = System.currentTimeMillis();
-//        System.out.println("2-cost time" + (e2 - s2));
-//
-//    }
-
-
     public static void main(String[] args) {
         Solution15 solution15 = new Solution15();
         String[] split = args[0].split(",");
-        int[] a1 = Arrays.stream(split).mapToInt(Integer::parseInt).toArray();
-        int[] a2 = Arrays.stream(split).mapToInt(Integer::parseInt).toArray();
-        int[] a3 = Arrays.stream(split).mapToInt(Integer::parseInt).toArray();
-        long start = System.currentTimeMillis();
-        System.out.println(solution15.threeSum2(a1));
-        long end1 = System.currentTimeMillis();
-
         long s2 = System.currentTimeMillis();
-        System.out.println(solution15.threeSum3(a2));
+//        System.out.println(solution15.threeSum3(new int[]{-1,0,1,2,-1,-4}));
+        System.out.println(solution15.threeSum2(new int[]{0,0,0,0}));
         long e2 = System.currentTimeMillis();
-        System.out.println("my-cost time" + (end1 - start) + ";2-cost time" + (e2 - s2));
+        System.out.println("2-cost time" + (e2 - s2));
 
     }
+
+
+//    public static void main(String[] args) {
+//        Solution15 solution15 = new Solution15();
+//        String[] split = args[0].split(",");
+//        int[] a1 = Arrays.stream(split).mapToInt(Integer::parseInt).toArray();
+//        int[] a2 = Arrays.stream(split).mapToInt(Integer::parseInt).toArray();
+//        int[] a3 = Arrays.stream(split).mapToInt(Integer::parseInt).toArray();
+//        long start = System.currentTimeMillis();
+//        System.out.println(solution15.threeSum2(a1));
+//        long end1 = System.currentTimeMillis();
+//
+//        long s2 = System.currentTimeMillis();
+//        System.out.println(solution15.threeSum3(a2));
+//        long e2 = System.currentTimeMillis();
+//        System.out.println("my-cost time" + (end1 - start) + ";2-cost time" + (e2 - s2));
+//
+//    }
 }
