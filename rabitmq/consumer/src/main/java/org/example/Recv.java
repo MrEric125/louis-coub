@@ -17,11 +17,26 @@ public class Recv {
 
         DeliverCallback deliverCallback = (consumer, delivery) -> {
             String msg = new String(delivery.getBody(), "UTF-8");
+
+            try {
+                doWork(msg);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }finally {
+                System.out.println("done");
+            }
+
             System.out.println("receive Message:" + msg);
         };
         channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> {
         });
 
+    }
+
+    private static void doWork(String msg) throws InterruptedException {
+        for (char c : msg.toCharArray()) {
+            if (c == '.') Thread.sleep(1000);
+        }
     }
 
     public static void connect() {
