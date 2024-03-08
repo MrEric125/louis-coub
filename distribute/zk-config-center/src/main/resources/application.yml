@@ -11,5 +11,9 @@ spring:
         zookeeper:
             config:
                 enabled: true
+        gateway:
+            filter:
+                hystrix:
+                    enabled: true
 server:
     port: 8081

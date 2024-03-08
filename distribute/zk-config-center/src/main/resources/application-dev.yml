@@ -1,0 +1,9 @@
+spring:
+    jpa:
+        database-platform:
+        database: postgresql
+
+    datasource:
+        url:
+        username:
+        password:
