@@ -11,7 +11,7 @@ import java.util.Arrays;
  * @date create in 2019/11/5
  * description:
  */
-public class Solution {
+public class SolutionList {
 
     public static void main(String[] args) {
         ListNode a = new ListNode(3);

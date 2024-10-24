@@ -37,6 +37,18 @@
             <groupId>com.louis</groupId>
             <artifactId>common</artifactId>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.skywalking/apm-toolkit-trace -->
+
+        
+
+        <!-- https://mvnrepository.com/artifact/org.apache.skywalking/apm-toolkit-logback-1.x -->
+        <dependency>
+            <groupId>org.apache.skywalking</groupId>
+            <artifactId>apm-toolkit-logback-1.x</artifactId>
+            <version>8.9.0</version>
+        </dependency>
+
     </dependencies>
 
 
