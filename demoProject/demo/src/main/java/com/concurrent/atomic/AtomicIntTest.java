@@ -1,5 +1,7 @@
 package com.concurrent.atomic;
+
 import org.junit.jupiter.api.Test;
+
 import java.util.concurrent.atomic.AtomicInteger;
 /**
  * @author John·Louis

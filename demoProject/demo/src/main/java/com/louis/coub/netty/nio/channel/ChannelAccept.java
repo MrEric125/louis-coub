@@ -1,9 +1,9 @@
 package com.louis.coub.netty.nio.channel;
 
+import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
-import java.net.InetSocketAddress;
 
 /**
  * Test nonblocking accept( ) using ServerSocketChannel.

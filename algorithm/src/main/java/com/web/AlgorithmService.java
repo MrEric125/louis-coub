@@ -6,12 +6,12 @@ import com.sorting.insert.Insertion;
 import com.sorting.insert.InsertionX;
 import com.sorting.merge.Merge;
 import com.sorting.merge.MergeBU;
-import com.sorting.selectSort.Selection;
-import com.sorting.selectSort.Shell;
 import com.sorting.quick.QuickSortBase;
 import com.sorting.quick.QuickSortIdentical;
 import com.sorting.quick.QuickSortNearOrder;
 import com.sorting.quick.QuickSortThreadWay;
+import com.sorting.selectSort.Selection;
+import com.sorting.selectSort.Shell;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;

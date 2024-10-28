@@ -1,7 +1,7 @@
 package com.louis.coub.netty.nio.channel;
 
-import java.nio.channels.SocketChannel;
 import java.net.InetSocketAddress;
+import java.nio.channels.SocketChannel;
 
 /**
  * Demonstrate asynchronous connection of a SocketChannel.

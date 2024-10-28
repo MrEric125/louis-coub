@@ -1,25 +1,12 @@
 package com.louis;
 
-import com.alibaba.fastjson.JSON;
-import com.dingtalk.api.DefaultDingTalkClient;
-import com.dingtalk.api.DingTalkClient;
-import com.dingtalk.api.request.OapiRobotSendRequest;
-import com.dingtalk.api.response.OapiRobotSendResponse;
 import com.louis.common.utils.NetUtils;
 import com.louis.config.DingTalkConfig;
 import com.louis.config.DingTalkSupport;
 import com.louis.config.SpringBeanUtils;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.Arrays;
-import java.util.Map;
-import java.util.concurrent.locks.Lock;
-
 import org.apache.commons.lang3.StringUtils;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,7 +17,8 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 /**
  * @author John·Louis

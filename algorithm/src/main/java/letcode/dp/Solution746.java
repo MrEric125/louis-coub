@@ -1,7 +1,5 @@
 package letcode.dp;
 
-import java.util.Map;
-
 /**
  * https://leetcode.cn/problems/min-cost-climbing-stairs/description/?envType=study-plan-v2&envId=dynamic-programming
  *

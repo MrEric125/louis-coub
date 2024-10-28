@@ -1,7 +1,6 @@
 package com.louis.http;
 
 import com.louis.common.common.HttpResult;
-import com.louis.http.HttpClientUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;

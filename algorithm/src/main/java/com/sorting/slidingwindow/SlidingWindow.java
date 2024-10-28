@@ -1,11 +1,5 @@
 package com.sorting.slidingwindow;
 
-import com.google.common.collect.Maps;
-import com.sorting.common.SortUtils;
-
-import java.util.HashMap;
-import java.util.Map;
-
 public class SlidingWindow {
 
     public static void main(String[] args) {

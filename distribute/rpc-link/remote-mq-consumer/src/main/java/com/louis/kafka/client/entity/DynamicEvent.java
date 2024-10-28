@@ -1,8 +1,5 @@
 package com.louis.kafka.client.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
  * @author louis
  * @date 2022/9/7

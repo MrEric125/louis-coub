@@ -1,7 +1,5 @@
 package letcode.dp;
 
-import java.util.Arrays;
-
 public class Solution931 {
 
     public int minFallingPathSum(int[][] matrix) {

@@ -1,9 +1,9 @@
 package com.louis.coub.netty.nio.selector;
 
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
-import java.nio.ByteBuffer;  
-import java.io.IOException;  
-import java.net.InetSocketAddress;  
 public class SelectorExampleClient {
     public static void main (String [] args)  
             throws IOException, InterruptedException {  

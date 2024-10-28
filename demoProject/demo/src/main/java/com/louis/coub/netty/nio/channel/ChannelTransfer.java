@@ -1,9 +1,9 @@
 package com.louis.coub.netty.nio.channel;
 
+import java.io.FileInputStream;
+import java.nio.channels.Channels;
 import java.nio.channels.FileChannel;
 import java.nio.channels.WritableByteChannel;
-import java.nio.channels.Channels;
-import java.io.FileInputStream;
 
 /**
  * Test channel transfer. This is a very simplistic concatenation

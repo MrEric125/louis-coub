@@ -1,13 +1,10 @@
 package com.source.spring.ioc;
 
 
-import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
 import jakarta.annotation.Resource;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 @Data
 @Service

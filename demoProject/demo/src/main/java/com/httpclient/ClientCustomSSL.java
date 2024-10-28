@@ -1,9 +1,5 @@
 package com.httpclient;
 
-import java.io.File;
-
-import javax.net.ssl.SSLContext;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -13,6 +9,9 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContexts;
 import org.apache.http.util.EntityUtils;
+
+import javax.net.ssl.SSLContext;
+import java.io.File;
 
 /**
  * This example demonstrates how to create secure connections with a custom SSL

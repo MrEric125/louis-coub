@@ -1,5 +1,3 @@
-import org.apache.dubbo.config.ApplicationConfig;
-import org.apache.dubbo.config.RegistryConfig;
 import org.apache.dubbo.config.ServiceConfig;
 
 import java.io.IOException;

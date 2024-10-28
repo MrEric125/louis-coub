@@ -2,28 +2,22 @@ package com.web;
 
 import com.KafkaAdminServiceImpl;
 import com.alibaba.fastjson.JSON;
-import com.google.common.collect.Maps;
 import com.louis.common.common.HttpResult;
 import com.louis.kafka.common.Message;
 import com.louis.kafka.producer.LouisKafkaProducerImpl;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.admin.AdminClient;
-import org.apache.kafka.clients.admin.KafkaAdminClient;
-import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.kafka.core.KafkaAdmin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
-import java.util.Map;
 
 /**
  * @author John·Louis

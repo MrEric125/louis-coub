@@ -1,7 +1,5 @@
 package com.louis.mybatis.tk.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.louis.mybatis.tk.entry.AsOrder;
 import com.louis.mybatis.tk.mapper.AsOrderMapper;

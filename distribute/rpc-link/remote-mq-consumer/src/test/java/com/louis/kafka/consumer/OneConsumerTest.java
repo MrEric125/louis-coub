@@ -1,22 +1,14 @@
 package com.louis.kafka.consumer;
 
 import com.alibaba.fastjson.JSON;
-import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.I0Itec.zkclient.IZkChildListener;
 import org.I0Itec.zkclient.ZkClient;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.PartitionInfo;
-import org.apache.kafka.common.TopicPartition;
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;
-import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
 /**

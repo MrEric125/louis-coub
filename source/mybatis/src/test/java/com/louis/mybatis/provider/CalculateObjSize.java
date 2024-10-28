@@ -1,17 +1,11 @@
 package com.louis.mybatis.provider;
 
+import sun.misc.Unsafe;
+
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.IdentityHashMap;
-import java.util.List;
-import java.util.Map;
-
-import sun.misc.Unsafe;
+import java.util.*;
 
 public class CalculateObjSize {
 

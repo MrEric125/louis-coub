@@ -7,8 +7,6 @@ import org.apache.dubbo.common.constants.CommonConstants;
 import org.apache.dubbo.common.extension.Activate;
 import org.apache.dubbo.rpc.*;
 
-import java.util.Optional;
-
 /**
  * @author louis
  * @date 2022/7/26

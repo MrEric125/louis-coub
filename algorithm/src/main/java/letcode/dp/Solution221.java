@@ -1,7 +1,5 @@
 package letcode.dp;
 
-import com.alibaba.fastjson2.JSON;
-
 /**
  * https://leetcode.cn/problems/maximal-square/?envType=study-plan-v2&envId=dynamic-programming
  */

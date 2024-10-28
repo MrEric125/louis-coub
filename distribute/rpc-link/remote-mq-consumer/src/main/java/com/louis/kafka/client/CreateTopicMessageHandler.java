@@ -6,12 +6,10 @@ import com.louis.kafka.LouisKafkaConsumerImpl;
 import com.louis.kafka.client.entity.DynamicEvent;
 import com.louis.kafka.common.AuthInfo;
 import com.louis.kafka.common.MessageExt;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;

@@ -1,6 +1,7 @@
 package com.louis.minashop.i18n;
 
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
@@ -8,7 +9,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 
-import jakarta.servlet.http.HttpServletRequest;
 import java.util.Locale;
 
 /**

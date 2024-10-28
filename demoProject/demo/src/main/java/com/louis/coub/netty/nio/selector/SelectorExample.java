@@ -1,14 +1,14 @@
 package com.louis.coub.netty.nio.selector;
 
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
-import java.nio.channels.Selector;
-import java.nio.channels.SelectionKey;
-import java.nio.ByteBuffer;
-import java.io.IOException;
-import java.util.Set;
 import java.util.Iterator;
-import java.net.InetSocketAddress;
+import java.util.Set;
 
 public class SelectorExample {
     public static void main(String[] args)

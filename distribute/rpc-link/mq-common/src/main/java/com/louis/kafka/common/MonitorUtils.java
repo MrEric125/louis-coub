@@ -1,11 +1,9 @@
 package com.louis.kafka.common;
 
 //import com.sun.jmx.mbeanserver.JmxMBeanServer;
+
 import lombok.extern.slf4j.Slf4j;
 
-
-//import javax.management.MBeanServer;
-//import javax.management.MBeanServerFactory;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.management.ManagementFactory;

@@ -1,8 +1,13 @@
 package com.pattern.abstractfactory;
 
-import com.pattern.abstractfactory.example2.*;
+import com.pattern.abstractfactory.example2.EricKingdomFactory;
+import com.pattern.abstractfactory.example2.KingdomFactory;
+import com.pattern.abstractfactory.example2.LouisKingdomFactory;
 
-import java.util.*;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Vector;
 import java.util.concurrent.ConcurrentSkipListSet;
 
 /**

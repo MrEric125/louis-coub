@@ -2,7 +2,6 @@ package com.louis.mybatis.mysql;
 
 import com.github.shyiko.mysql.binlog.BinaryLogClient;
 import com.github.shyiko.mysql.binlog.event.*;
-import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import lombok.extern.slf4j.Slf4j;
 

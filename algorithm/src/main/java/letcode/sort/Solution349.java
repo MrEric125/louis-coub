@@ -1,6 +1,6 @@
 package letcode.sort;
 
-import java.util.*;
+import java.util.HashSet;
 
 /**
  * @author louis

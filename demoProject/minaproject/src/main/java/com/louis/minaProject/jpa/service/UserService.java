@@ -1,6 +1,5 @@
 package com.louis.minaProject.jpa.service;
 
-import com.louis.minaProject.jpa.repository2.UserInfoRepository;
 import com.louis.snowFlake.ErrorMessage;
 import com.louis.snowFlake.ErrorMessageRepository;
 import lombok.extern.slf4j.Slf4j;

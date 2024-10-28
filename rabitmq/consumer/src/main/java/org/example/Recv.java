@@ -1,6 +1,9 @@
 package org.example;
 
-import com.rabbitmq.client.*;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.DeliverCallback;
 import com.rabbitmq.client.impl.StandardMetricsCollector;
 
 public class Recv {

@@ -2,8 +2,6 @@ package letcode.dp;
 
 import com.alibaba.fastjson2.JSON;
 
-import java.util.Arrays;
-
 public class Solution63 {
 
     /**

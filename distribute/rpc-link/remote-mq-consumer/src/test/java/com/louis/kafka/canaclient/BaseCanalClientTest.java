@@ -1,30 +1,20 @@
 package com.louis.kafka.canaclient;
 
-import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
-import lombok.extern.slf4j.Slf4j;
+import com.alibaba.otter.canal.client.CanalConnector;
+import com.alibaba.otter.canal.protocol.CanalEntry;
+import com.alibaba.otter.canal.protocol.CanalEntry.*;
+import com.alibaba.otter.canal.protocol.Message;
+import com.google.protobuf.InvalidProtocolBufferException;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 
-import com.alibaba.otter.canal.client.CanalConnector;
-import com.alibaba.otter.canal.protocol.CanalEntry;
-import com.alibaba.otter.canal.protocol.CanalEntry.Column;
-import com.alibaba.otter.canal.protocol.CanalEntry.Entry;
-import com.alibaba.otter.canal.protocol.CanalEntry.EntryType;
-import com.alibaba.otter.canal.protocol.CanalEntry.EventType;
-import com.alibaba.otter.canal.protocol.CanalEntry.Pair;
-import com.alibaba.otter.canal.protocol.CanalEntry.RowChange;
-import com.alibaba.otter.canal.protocol.CanalEntry.RowData;
-import com.alibaba.otter.canal.protocol.CanalEntry.TransactionBegin;
-import com.alibaba.otter.canal.protocol.CanalEntry.TransactionEnd;
-import com.alibaba.otter.canal.protocol.Message;
-import com.google.protobuf.InvalidProtocolBufferException;
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 public class BaseCanalClientTest {
 

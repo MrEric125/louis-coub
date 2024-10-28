@@ -1,25 +1,15 @@
 package com;
 
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.Key;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.util.UUID;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.DESedeKeySpec;
-import javax.crypto.spec.IvParameterSpec;
-
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.crypto.*;
+import javax.crypto.spec.DESedeKeySpec;
+import javax.crypto.spec.IvParameterSpec;
+import java.io.UnsupportedEncodingException;
+import java.security.*;
+import java.security.spec.InvalidKeySpecException;
+import java.util.UUID;
 
 /**
  * 移动销售系统工具类

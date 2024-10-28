@@ -1,11 +1,11 @@
 package com.louis.coub.netty.nio.channel;
 
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
+import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.channels.DatagramChannel;
-import java.net.SocketAddress;
-import java.net.InetSocketAddress;
-import java.net.SocketException;
 
 /**
  * Provide RFC 868 time service (http://www.ietf.org/rfc/rfc0868.txt).

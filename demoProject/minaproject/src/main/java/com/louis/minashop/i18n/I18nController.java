@@ -1,12 +1,11 @@
 package com.louis.minashop.i18n;
 
 import com.louis.common.common.HttpResult;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * @author jun.liu

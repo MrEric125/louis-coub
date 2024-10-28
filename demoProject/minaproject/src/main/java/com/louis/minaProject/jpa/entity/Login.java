@@ -1,11 +1,10 @@
 package com.louis.minaProject.jpa.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import jakarta.persistence.*;
 
 /**
  * @author John·Louis
