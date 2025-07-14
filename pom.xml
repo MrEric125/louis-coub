@@ -8,10 +8,10 @@
     <modules>
         <module>dependencies</module>
         <module>common</module>
-        <module>algorithm</module>
-        <module>distribute</module>
-        <module>demoProject</module>
-        <module>source</module>
+        <module>coub-algorithm</module>
+        <module>coub-distribute</module>
+        <module>coub-mina</module>
+        <module>coub-source</module>
         <module>hanlpmodule</module>
         <module>coub-netty</module>
         <module>louis-coub-parent</module>

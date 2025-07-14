@@ -1,0 +1,21 @@
+package com.louis.longagocode.concurrent.collection.queue;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+
+/**
+ * @author louis
+ * <p>
+ * Date: 2019/9/4
+ * Description:
+ */
+public class QueueTest {
+
+    @Test
+    public void blockingQueue() {
+        BlockingQueue queue = new ArrayBlockingQueue(10);
+
+    }
+}

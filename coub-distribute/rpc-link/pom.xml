@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>coub-distribute</artifactId>
+        <groupId>com.louis</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>rpc-link</artifactId>
+    <packaging>pom</packaging>
+
+
+
+    <developers>
+        <developer>
+            <id>liujun</id>
+            <name>louis</name>
+            <email>lj125999@163.com</email>
+        </developer>
+    </developers>
+
+
+    <modules>
+        <module>remote-mq-producer</module>
+        <module>remote-mq-consumer</module>
+        <module>dubbo-source-producer</module>
+        <module>dubbo-source-api</module>
+        <module>dubbo-source-consumer</module>
+        <module>mq-common</module>
+    </modules>
+    <dependencies>
+
+        <dependency>
+            <groupId>com.louis</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.skywalking/apm-toolkit-trace -->
+
+        
+
+        <!-- https://mvnrepository.com/artifact/org.apache.skywalking/apm-toolkit-logback-1.x -->
+        <dependency>
+            <groupId>org.apache.skywalking</groupId>
+            <artifactId>apm-toolkit-logback-1.x</artifactId>
+            <version>8.9.0</version>
+        </dependency>
+
+    </dependencies>
+
+
+</project>
