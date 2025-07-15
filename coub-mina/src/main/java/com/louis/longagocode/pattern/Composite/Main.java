@@ -1,7 +1,5 @@
 package com.louis.longagocode.pattern.Composite;
 
-import com.pattern.Composite.Composite;
-import com.pattern.Composite.Leaf;
 
 /**
  * @author John·Louis

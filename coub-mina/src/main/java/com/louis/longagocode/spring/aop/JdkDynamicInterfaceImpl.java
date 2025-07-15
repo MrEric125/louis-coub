@@ -1,6 +1,5 @@
 package com.louis.longagocode.spring.aop;
 
-import com.spring.aop.JdkDynamicInterface;
 import org.springframework.stereotype.Service;
 
 /**

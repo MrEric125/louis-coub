@@ -1,6 +1,7 @@
 package com.louis.longagocode.concurrent.atomic;
 
-import com.concurrent.User;
+
+import com.louis.longagocode.concurrent.User;
 
 import java.util.concurrent.atomic.AtomicStampedReference;
 import java.util.concurrent.locks.Lock;

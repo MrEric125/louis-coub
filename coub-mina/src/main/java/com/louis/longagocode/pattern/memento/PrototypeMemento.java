@@ -1,6 +1,5 @@
 package com.louis.longagocode.pattern.memento;
 
-import com.pattern.memento.PrototypeCaretaker;
 
 /**
  * @author John·Louis

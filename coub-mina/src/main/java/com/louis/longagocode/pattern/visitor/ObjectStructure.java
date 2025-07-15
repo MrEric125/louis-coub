@@ -1,7 +1,5 @@
 package com.louis.longagocode.pattern.visitor;
 
-import com.pattern.visitor.Element;
-import com.pattern.visitor.Visitor;
 import org.assertj.core.util.Lists;
 
 import java.util.Iterator;

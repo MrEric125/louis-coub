@@ -1,8 +1,5 @@
 package com.louis.longagocode.future;
 
-import com.future.Product;
-import com.future.Shop;
-import com.future.ShopServiceImpl;
 import com.google.common.collect.ImmutableMap;
 import com.louis.common.common.HttpResult;
 import org.assertj.core.util.Lists;

@@ -1,8 +1,9 @@
 package com.louis.longagocode.pattern.abstractfactory;
 
-import com.pattern.abstractfactory.example2.EricKingdomFactory;
-import com.pattern.abstractfactory.example2.KingdomFactory;
-import com.pattern.abstractfactory.example2.LouisKingdomFactory;
+
+import com.louis.longagocode.pattern.abstractfactory.example2.EricKingdomFactory;
+import com.louis.longagocode.pattern.abstractfactory.example2.KingdomFactory;
+import com.louis.longagocode.pattern.abstractfactory.example2.LouisKingdomFactory;
 
 import java.util.List;
 import java.util.Set;

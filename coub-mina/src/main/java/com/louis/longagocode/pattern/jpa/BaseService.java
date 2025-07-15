@@ -1,8 +1,6 @@
 package com.louis.longagocode.pattern.jpa;
 
 
-import com.pattern.jpa.BizService;
-import com.pattern.jpa.IBaseService;
 import org.assertj.core.util.Sets;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

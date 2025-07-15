@@ -1,6 +1,5 @@
 package com.louis.longagocode.effectivejava.chapter6;
 
-import com.effectivejava.chapter6.ExceptionTest;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

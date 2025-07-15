@@ -1,6 +1,5 @@
 package com.louis.longagocode.louis.bootmybatis.config;
 
-import com.louis.bootmybatis.config.BootLouisProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

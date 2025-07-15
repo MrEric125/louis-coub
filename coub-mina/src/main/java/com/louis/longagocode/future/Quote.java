@@ -1,6 +1,5 @@
 package com.louis.longagocode.future;
 
-import com.future.Discount;
 
 import java.math.BigDecimal;
 

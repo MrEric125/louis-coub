@@ -22,7 +22,6 @@
  */
 package com.louis.longagocode.louis.coub.netty.nio.reactor.framework;
 
-import com.louis.coub.netty.nio.reactor.framework.NioReactor;
 
 import java.io.IOException;
 import java.nio.channels.SelectableChannel;

@@ -22,7 +22,6 @@
  */
 package com.louis.longagocode.louis.coub.netty.nio.reactor.framework;
 
-import com.louis.coub.netty.nio.reactor.framework.AbstractNioChannel;
 
 import java.nio.channels.SelectionKey;
 

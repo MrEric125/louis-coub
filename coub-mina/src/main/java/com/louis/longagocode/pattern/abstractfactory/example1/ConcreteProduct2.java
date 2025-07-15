@@ -1,6 +1,5 @@
 package com.louis.longagocode.pattern.abstractfactory.example1;
 
-import com.pattern.abstractfactory.example1.Product;
 
 /**
  * @author John·Louis

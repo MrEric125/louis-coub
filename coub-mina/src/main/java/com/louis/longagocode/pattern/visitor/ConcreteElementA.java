@@ -1,6 +1,5 @@
 package com.louis.longagocode.pattern.visitor;
 
-import com.pattern.visitor.Visitor;
 
 /**
  * @author John·Louis

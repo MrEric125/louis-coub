@@ -1,6 +1,7 @@
 package com.louis.longagocode.java8;
 
-import com.java8.collectors.ReportForm;
+
+import com.louis.longagocode.java8.collectors.ReportForm;
 
 /**
  * @author jun.liu

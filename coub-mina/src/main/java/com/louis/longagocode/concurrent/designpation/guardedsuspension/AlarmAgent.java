@@ -1,9 +1,6 @@
 package com.louis.longagocode.concurrent.designpation.guardedsuspension;
 
 
-import com.concurrent.designpation.guardedsuspension.Blocker;
-import com.concurrent.designpation.guardedsuspension.ConditionVarBlocker;
-import com.concurrent.designpation.guardedsuspension.Predicate;
 
 import java.util.Timer;
 

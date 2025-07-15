@@ -1,6 +1,5 @@
 package com.louis.longagocode.spring.transaction;
 
-import com.spring.transaction.Tb1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Service;

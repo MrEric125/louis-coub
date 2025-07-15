@@ -1,6 +1,5 @@
 package com.louis.longagocode.spring.transaction;
 
-import com.spring.transaction.Tb1;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

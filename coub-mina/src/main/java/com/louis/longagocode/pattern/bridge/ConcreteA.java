@@ -1,6 +1,5 @@
 package com.louis.longagocode.pattern.bridge;
 
-import com.pattern.bridge.Implementor;
 
 /**
  * @author John·Louis

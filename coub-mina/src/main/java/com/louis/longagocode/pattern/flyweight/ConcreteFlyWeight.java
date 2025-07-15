@@ -1,6 +1,5 @@
 package com.louis.longagocode.pattern.flyweight;
 
-import com.pattern.flyweight.UnSharedConcreteFlyweight;
 
 /**
  * @author John·Louis

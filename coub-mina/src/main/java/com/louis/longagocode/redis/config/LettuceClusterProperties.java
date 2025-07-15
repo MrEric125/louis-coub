@@ -1,6 +1,5 @@
 package com.louis.longagocode.redis.config;
 
-import com.redis.config.LettuceSingleProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

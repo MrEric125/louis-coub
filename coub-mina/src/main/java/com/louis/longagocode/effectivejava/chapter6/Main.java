@@ -1,6 +1,5 @@
 package com.louis.longagocode.effectivejava.chapter6;
 
-import com.effectivejava.chapter6.Operation;
 
 public class Main {
 

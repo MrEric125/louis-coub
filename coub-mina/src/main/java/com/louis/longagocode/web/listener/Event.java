@@ -1,6 +1,5 @@
 package com.louis.longagocode.web.listener;
 
-import com.web.listener.People;
 
 /**
  * @author John·Louis

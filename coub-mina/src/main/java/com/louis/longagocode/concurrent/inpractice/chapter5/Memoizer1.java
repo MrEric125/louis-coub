@@ -1,7 +1,6 @@
 package com.louis.longagocode.concurrent.inpractice.chapter5;
 
 
-import com.concurrent.inpractice.chapter5.Computable;
 
 import java.util.HashMap;
 import java.util.Map;

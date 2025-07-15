@@ -1,7 +1,5 @@
 package com.louis.longagocode.pattern.bridge;
 
-import com.pattern.bridge.ConcreteA;
-import com.pattern.bridge.Implementor;
 
 /**
  * the different of Bridge,Adapter

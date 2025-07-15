@@ -1,6 +1,5 @@
 package com.louis.longagocode.louis.rmi.server;
 
-import com.louis.rmi.server.HelloRegistryFacade;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

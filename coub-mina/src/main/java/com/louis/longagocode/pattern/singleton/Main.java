@@ -1,6 +1,5 @@
 package com.louis.longagocode.pattern.singleton;
 
-import com.pattern.singleton.Singleton;
 
 /**
  * @author John·Louis

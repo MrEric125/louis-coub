@@ -30,7 +30,7 @@ import java.util.Map;
 @Slf4j
 @EnableTransactionManagement
 //@MapperScan()
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.louis"})
 @Import({DingTalkConfig.class})
 public class MinaProject implements ApplicationContextInitializer<ConfigurableApplicationContext>, CommandLineRunner {
 

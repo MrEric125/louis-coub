@@ -1,6 +1,5 @@
 package com.louis.longagocode.concurrent.locks;
 
-import com.concurrent.locks.ConditionWait;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;

@@ -1,6 +1,6 @@
 package com.louis.longagocode.concurrent;
 
-import com.concurrent.tools.ThreadPoolExecutorLouis;
+import com.louis.longagocode.concurrent.tools.ThreadPoolExecutorLouis;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.BlockingQueue;

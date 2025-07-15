@@ -1,6 +1,5 @@
 package com.louis.longagocode.future;
 
-import com.future.Shop;
 
 import java.util.List;
 

@@ -15,7 +15,7 @@ import javax.annotation.PostConstruct;
  * @Date 2020/1/17
  * description:
  */
-@Component
+@Component(value = "coub-lifeCycle")
 public class LifeCycle
         implements BeanNameAware, BeanFactoryAware, ApplicationContextAware, BeanPostProcessor, InitializingBean, DisposableBean
 {
