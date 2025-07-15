@@ -12,25 +12,26 @@ import java.util.concurrent.locks.Lock;
  */
 public class MyReentrantLock implements Lock, Serializable {
 
-    abstract static class Sync extends AbstractQueuedSynchronizer{
+    abstract static class Sync extends AbstractQueuedSynchronizer {
 
         abstract void lock();
 
         /**
-         *  通过exclusiveOwnerThread 和state 来决定操作是否独占，
+         * 通过exclusiveOwnerThread 和state 来决定操作是否独占，
+         *
          * @param acquires
          * @return
          */
-        final boolean nonfairTryAcquire(int acquires){
+        final boolean nonfairTryAcquire(int acquires) {
             final Thread current = Thread.currentThread();
             int c = getState();
-            if (c==0) {
-                if (compareAndSetState(0,acquires)) {
+            if (c == 0) {
+                if (compareAndSetState(0, acquires)) {
                     setExclusiveOwnerThread(current);
                     return true;
                 }
-            // 如果当前线程不为独占线程，并且状态bu等于0的情况，说明当前线程获取锁失败
-            }else if (current==getExclusiveOwnerThread()){
+                // 如果当前线程不为独占线程，并且状态bu等于0的情况，说明当前线程获取锁失败
+            } else if (current == getExclusiveOwnerThread()) {
                 int nextc = c + acquires;
                 if (nextc < 0) {
                     throw new Error("ee");
@@ -42,6 +43,7 @@ public class MyReentrantLock implements Lock, Serializable {
         }
 
     }
+
     @Override
     public void lock() {
 

@@ -9,10 +9,10 @@ import java.io.Serializable;
 
 
 @Slf4j
-public class KafkaMsgParse<Key extends Serializable,Value extends Serializable> {
+public class KafkaMsgParse<Key extends Serializable, Value extends Serializable> {
     @SuppressWarnings("unchecked")
-    public MessageExt<Key,Value> receiveParse(Object msgMate, Class<?> clazz)  {
-        MessageExt<Key,Value> msgExt;
+    public MessageExt<Key, Value> receiveParse(Object msgMate, Class<?> clazz) {
+        MessageExt<Key, Value> msgExt;
         String topic = null;
         Key key = null;
         Value body = null;
@@ -29,7 +29,7 @@ public class KafkaMsgParse<Key extends Serializable,Value extends Serializable> 
                 msgExt.setOffset(offset);
                 msgExt.setPartition(partition);
             } catch (JSONException je) {
-            log.warn("parse message failed! error: {}, body:{}", je.getMessage(), body);
+                log.warn("parse message failed! error: {}, body:{}", je.getMessage(), body);
                 msgExt = new MessageExt<>(key, body, topic, null);
             }
 

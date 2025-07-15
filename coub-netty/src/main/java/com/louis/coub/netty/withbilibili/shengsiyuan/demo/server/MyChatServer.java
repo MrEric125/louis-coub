@@ -11,12 +11,12 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * @author John·Louis
  * @date create in 2019/10/5
  * description:
- *  初始化，绑定handler这是netty 流程都是这样的
- *
- *  netty能做什么？？
- *  1.作为一个web服务器，只是netty 并没有实现一个server规范， netty 并没有对请求路由做任何事
- *  2.底层socket开发，方便数据传输，还能支持自定义协议
- *  3.长连接数据传输
+ * 初始化，绑定handler这是netty 流程都是这样的
+ * <p>
+ * netty能做什么？？
+ * 1.作为一个web服务器，只是netty 并没有实现一个server规范， netty 并没有对请求路由做任何事
+ * 2.底层socket开发，方便数据传输，还能支持自定义协议
+ * 3.长连接数据传输
  */
 public class MyChatServer {
 
@@ -38,7 +38,7 @@ public class MyChatServer {
 //        绑定端口
             ChannelFuture channelFuture = bootstrap.bind(8899).sync();
             channelFuture.channel().closeFuture().sync();
-        }finally {
+        } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }

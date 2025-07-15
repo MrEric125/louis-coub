@@ -17,6 +17,7 @@ public class CustomerWatch implements Watcher {
 
     @Autowired
     private ZkClientLouis zkClientLouis;
+
     @Override
     public void process(WatchedEvent event) {
         log.info("接收到watch 信息 {}", event);

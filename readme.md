@@ -2,15 +2,13 @@ B+tree dgree 为3的时候，总共能放多少数据
 
 1.假设索引为Bigint 8byte
 
-一个页有16k   大概能放1170个索引
+一个页有16k 大概能放1170个索引
 
 总共数据能放的数据为1170 * 1170 * 16=2kw,
 
 为什么每个页的数据不要太大，因为每次会把当前page load 到内存中，如果太大，占用内存太多，就很划不来了
 
 聚集索引可以理解为索引与实际数据设计在一块
-
-
 
 1. spring 对事务支持原理，以及数据库事务原理，to 文档
 
@@ -24,18 +22,16 @@ B+tree dgree 为3的时候，总共能放多少数据
 
 interrupted()测试当前线程是否已经是中断状态，执行后具有清除中断状态flag的功能
 
-isInterrupted()测试线程Thread对象是否已经是中断状态，但不清除中断状态flag 
-
+isInterrupted()测试线程Thread对象是否已经是中断状态，但不清除中断状态flag
 
 运行命令：
-java.exe -agentlib:jdwp=transport=dt_socket,address=localhost:51973,suspend=y,server=n 
+java.exe -agentlib:jdwp=transport=dt_socket,address=localhost:51973,suspend=y,server=n
 -XX:tieredStopAtLevel=1
 -javaAgent:C:\Users....
--Dcom.sun.management.jmxremote 
+-Dcom.sun.management.jmxremote
 -Dspring.jmx.enabled=true
 -Dfile.encoding=UTF-8
 -classpath "D:\..."
-
 
 分布式共识算法
 
@@ -48,8 +44,6 @@ redis 看门狗机制
 
 解决github 配置浏览器可访问，但是命令行无法连接github
 https://zhuanlan.zhihu.com/p/481574024
-
-
 
 1. 一个日志监控，收集系统
 

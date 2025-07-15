@@ -30,7 +30,7 @@ public class NIOClient {
 
         socketChannel.write(buffer);
 
-        System.out.println("发送完成"+socketChannel.toString());
+        System.out.println("发送完成" + socketChannel.toString());
 
 
 //        System.in.read();

@@ -17,7 +17,7 @@ import java.io.FileInputStream;
 public class ClientChunkEncodedPost {
 
     public static void main(String[] args) throws Exception {
-        if (args.length != 1)  {
+        if (args.length != 1) {
             System.out.println("File path not given");
             System.exit(1);
         }

@@ -12,11 +12,11 @@ import java.util.List;
  * description:
  */
 
-public class LouisKafkaProducerImpl<Key extends Serializable,Value extends Serializable> extends BaseKafkaProducer<Key,Value> implements IKafkaProducer<Key,Value> {
+public class LouisKafkaProducerImpl<Key extends Serializable, Value extends Serializable> extends BaseKafkaProducer<Key, Value> implements IKafkaProducer<Key, Value> {
 
 
     @Override
-    public String send(String topic, Value message) throws Exception{
+    public String send(String topic, Value message) throws Exception {
         Message<Key, Value> msg = new Message<>();
         msg.setTopic(topic);
         msg.setKey(null);
@@ -26,7 +26,7 @@ public class LouisKafkaProducerImpl<Key extends Serializable,Value extends Seria
     }
 
     @Override
-    public String send(String topic, Value message, String partitionKey) throws Exception{
+    public String send(String topic, Value message, String partitionKey) throws Exception {
 
         Message<Key, Value> msg = new Message<>();
         msg.setTopic(topic);
@@ -37,10 +37,10 @@ public class LouisKafkaProducerImpl<Key extends Serializable,Value extends Seria
     }
 
     @Override
-    public String send(Message<Key, Value> message)  {
+    public String send(Message<Key, Value> message) {
         try {
             return super.send(message);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
 
         }
@@ -48,7 +48,7 @@ public class LouisKafkaProducerImpl<Key extends Serializable,Value extends Seria
     }
 
     @Override
-    public String send(List<Message<Key, Value>> kafkaMessages) throws Exception{
+    public String send(List<Message<Key, Value>> kafkaMessages) throws Exception {
         for (Message<Key, Value> kafkaMessage : kafkaMessages) {
             super.send(kafkaMessage);
         }

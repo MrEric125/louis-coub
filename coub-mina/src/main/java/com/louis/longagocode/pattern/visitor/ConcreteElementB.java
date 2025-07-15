@@ -1,7 +1,5 @@
 package com.louis.longagocode.pattern.visitor;
 
-import com.pattern.visitor.Element;
-import com.pattern.visitor.Visitor;
 
 /**
  * @author John·Louis
@@ -9,7 +7,6 @@ import com.pattern.visitor.Visitor;
  * description:
  */
 public class ConcreteElementB implements Element {
-
 
 
     public String operationB() {

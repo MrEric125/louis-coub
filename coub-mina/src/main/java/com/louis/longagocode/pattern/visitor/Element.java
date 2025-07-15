@@ -1,6 +1,5 @@
 package com.louis.longagocode.pattern.visitor;
 
-import com.pattern.visitor.Visitor;
 
 /**
  * @author John·Louis
@@ -10,7 +9,6 @@ import com.pattern.visitor.Visitor;
 public interface Element {
 
     void accept(Visitor visitor);
-
 
 
 }

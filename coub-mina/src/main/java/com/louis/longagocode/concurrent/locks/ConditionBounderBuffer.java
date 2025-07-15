@@ -21,28 +21,30 @@ public class ConditionBounderBuffer<T> {
     @SuppressWarnings("unchecked")
     private final T[] items = (T[]) new Object[10];
     @GuardedBy("lock")
-    private int tail,head, count;
-//    阻塞直到notFull
-    public void put(T t){
+    private int tail, head, count;
+
+    //    阻塞直到notFull
+    public void put(T t) {
         lock.lock();
         try {
             while (count == items.length) {
                 notFull.await();
             }
             items[tail] = t;
-            if (++tail==items.length) {
+            if (++tail == items.length) {
                 tail = 0;
             }
             ++count;
             notEmpty.signal();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             lock.unlock();
 
         }
 
     }
+
     public T take() {
         lock.lock();
         T t = null;
@@ -50,9 +52,9 @@ public class ConditionBounderBuffer<T> {
             while (count == 0) {
                 notEmpty.await();
             }
-             t = items[head];
+            t = items[head];
             items[head] = null;
-            if (++head==items.length) {
+            if (++head == items.length) {
                 head = 0;
             }
             --count;
@@ -60,7 +62,7 @@ public class ConditionBounderBuffer<T> {
 
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             lock.unlock();
 
         }

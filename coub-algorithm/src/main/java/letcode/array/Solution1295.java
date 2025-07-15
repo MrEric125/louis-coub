@@ -10,6 +10,7 @@ public class Solution1295 {
     public static void main(String[] args) {
 
     }
+
     public int findNumbers(int[] nums) {
         int length = nums.length;
         int count = 0;

@@ -16,7 +16,7 @@ import java.util.Objects;
  */
 @Slf4j
 @Service
-public class SpringBeanUtils  {
+public class SpringBeanUtils {
 
     private static ApplicationContext applicationContext;
 
@@ -24,7 +24,7 @@ public class SpringBeanUtils  {
 
     public static void setApplicationContext(ApplicationContext applicationContext) {
         SpringBeanUtils.applicationContext = applicationContext;
-        if (Objects.isNull(applicationContext)){
+        if (Objects.isNull(applicationContext)) {
             return;
         }
         AbstractApplicationContext context = (AbstractApplicationContext) applicationContext;
@@ -35,12 +35,12 @@ public class SpringBeanUtils  {
         SpringBeanUtils.beanFactory = beanFactory;
     }
 
-    public static <T> T  getBean(Class<T> clazz) {
-        return beanFactory != null?beanFactory.getBean(clazz):null;
+    public static <T> T getBean(Class<T> clazz) {
+        return beanFactory != null ? beanFactory.getBean(clazz) : null;
     }
 
     public static Object getBeanByString(String beanName) throws BeansException {
-        return beanFactory != null?beanFactory.getBean(beanName):null;
+        return beanFactory != null ? beanFactory.getBean(beanName) : null;
     }
 
 }

@@ -18,21 +18,22 @@ public class BaseMergeSort<T extends Comparable<T>> {
      * 2. 便利总数组的长度，找出对应位置的值
      * 如果这个位置的值是前面的数据，那么数组1 的index +1
      * 如果这个位置的值是后面的数据，那么数组2 的index +1
+     *
      * @param arr 需要排序的数组
      * @param lo  排序的最低位
      * @param mid 数组的中位
-     * @param hi 数组的高位
+     * @param hi  数组的高位
      */
-    public void baseMerge(T[] arr ,int lo, int mid, int hi) {
+    public void baseMerge(T[] arr, int lo, int mid, int hi) {
 //
         T[] aux = Arrays.copyOfRange(arr, lo, hi + 1);
         // 初始化，i指向左半部分的起始索引位置l；j指向右半部分起始索引位置mid+1
         int i = lo;  //i指向左半部分的起始索引位置
         int j = mid + 1; //j指向右半部分起始索引位置mid+1
-        for (int k = lo ; k <=hi ; k++) {
+        for (int k = lo; k <= hi; k++) {
 //            前面两个if 相当于判断索引是否合法
             // 如果[i,mid]的元素已经全部处理完毕，那么就将[mid+1,h]的元素防止到arr后面的位置
-            if (i>mid) {
+            if (i > mid) {
 //                这个地方的aux[j-lo] 是因为aux 每次都是从索引0开始的，如果aux是传入进来的话，
 //                那么这个地方就不用aux[j-lo]
                 arr[k] = aux[j - lo];
@@ -57,11 +58,12 @@ public class BaseMergeSort<T extends Comparable<T>> {
      * 归并排序用接口将a[lo....]和a[mid+1...hi]两部分数据进行归并
      * 详细看图片
      * <a src="/algorithm/etc/merge.png">图片</a>
+     *
      * @param arr 需要排序的数组
      * @param aux 复制的aux
      * @param lo  排序的最低位
      * @param mid 数组的中位
-     * @param hi 数组的高位
+     * @param hi  数组的高位
      */
     public void baseMerge(T[] arr, T[] aux, int lo, int mid, int hi) {
         //复制数组a
@@ -72,47 +74,46 @@ public class BaseMergeSort<T extends Comparable<T>> {
 //        指向两个要合并数组开头的位置
         int i = lo, j = mid + 1;
 
-        for (int k = lo; k <=hi; k++) {
+        for (int k = lo; k <= hi; k++) {
             // 如果[i,mid]的元素已经全部处理完毕，那么就将[mid+1,h]的元素防止到arr后面的位置
-            if (i>mid)                      arr[k] = aux[j++];
+            if (i > mid) arr[k] = aux[j++];
                 // 如果右半部分元素已经全部处理完毕
-            else if(j>hi)                   arr[k] = aux[i++];
+            else if (j > hi) arr[k] = aux[i++];
                 // 左半部分所指元素 < 右半部分所指元素
-            else if (SortUtils.less(aux[i],aux[j]))   arr[k] = aux[i++];
+            else if (SortUtils.less(aux[i], aux[j])) arr[k] = aux[i++];
                 // 左半部分所指元素 >= 右半部分所指元素
-            else                            arr[k] = aux[j++];
+            else arr[k] = aux[j++];
         }
 //
     }
 
     /**
-     *
      * @param arr
      * @param left
      * @param mid
      * @param right
      * @param temp
      */
-    private  void baseMerge2(int[] arr,int[] temp,int left,int mid,int right){
+    private void baseMerge2(int[] arr, int[] temp, int left, int mid, int right) {
         int i = left;//左序列指针
-        int j = mid+1;//右序列指针
+        int j = mid + 1;//右序列指针
         int t = 0;//临时数组指针
-        while (i<=mid && j<=right){
-            if(arr[i]<=arr[j]){
+        while (i <= mid && j <= right) {
+            if (arr[i] <= arr[j]) {
                 temp[t++] = arr[i++];
-            }else {
+            } else {
                 temp[t++] = arr[j++];
             }
         }
-        while(i<=mid){//将左边剩余元素填充进temp中
+        while (i <= mid) {//将左边剩余元素填充进temp中
             temp[t++] = arr[i++];
         }
-        while(j<=right){//将右序列剩余元素填充进temp中
+        while (j <= right) {//将右序列剩余元素填充进temp中
             temp[t++] = arr[j++];
         }
         t = 0;
         //将temp中的元素全部拷贝到原数组中
-        while(left <= right){
+        while (left <= right) {
             arr[left++] = temp[t++];
         }
     }

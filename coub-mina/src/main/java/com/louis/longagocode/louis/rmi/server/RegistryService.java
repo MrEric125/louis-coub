@@ -16,7 +16,7 @@ public class RegistryService {
         try {
             Registry registry = LocateRegistry.createRegistry(1099);
             HelloRegistryFacade facade = new HelloRegistryFacadeImpl();
-            registry.rebind("helloRegistry",facade);
+            registry.rebind("helloRegistry", facade);
             System.out.println("启动 RMI 服务成功");
 
         } catch (RemoteException e) {

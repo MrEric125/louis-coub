@@ -13,10 +13,11 @@ public class Solution162 {
 
     @Test
     public void test() {
-        int[] nums = new int[]{3,2, 1};
+        int[] nums = new int[]{3, 2, 1};
         System.out.println(findPeakElement(nums));
 
     }
+
     public int findPeakElement(int[] nums) {
         int length = nums.length;
         int lo = 0;

@@ -24,7 +24,7 @@ public class TestN {
         double P = 1000; // 替换为实际的 P 值
         double n = 1; // 替换为实际的 n 值
 
-        double i = Math.exp(Math.log(F/P)/n) - 1;
+        double i = Math.exp(Math.log(F / P) / n) - 1;
 
         DecimalFormat df = new DecimalFormat("#.000000000");
         String formattedValue = df.format(i);

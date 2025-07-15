@@ -14,6 +14,7 @@ public class Solution15 {
 
     /**
      * 三数之和，暴力求解 时间复杂度为O(n^3 + nLog(n)) 提交代码超时
+     *
      * @param nums
      * @return
      */
@@ -26,19 +27,19 @@ public class Solution15 {
                 break;
             }
             for (int j = 0; j < nums.length; j++) {
-                if(i == j){
+                if (i == j) {
                     continue;
                 }
                 for (int k = 0; k < nums.length; k++) {
-                    if(j == k || i == k ){
+                    if (j == k || i == k) {
                         continue;
                     }
-                    if (  nums[i] + nums[j] + nums[k] == 0  ) {
+                    if (nums[i] + nums[j] + nums[k] == 0) {
                         List<Integer> arr = new ArrayList<>();
                         if (nums[j] < nums[i]) {
                             continue;
                         }
-                        if (nums[k] < nums[j]){
+                        if (nums[k] < nums[j]) {
                             continue;
 
                         }
@@ -58,6 +59,7 @@ public class Solution15 {
 
     /**
      * 这个解法也是用了双指针，但是提交还是提示超时了
+     *
      * @param nums
      * @return
      */
@@ -65,8 +67,8 @@ public class Solution15 {
         List<List<Integer>> result = new ArrayList<>();
         int len = nums.length;
         Arrays.sort(nums);
-        for (int i = 0; i < len-2; i++) {
-            if (nums[i]>0) {
+        for (int i = 0; i < len - 2; i++) {
+            if (nums[i] > 0) {
                 return result;
             }
             int first = nums[i];
@@ -76,7 +78,7 @@ public class Solution15 {
             if (i > 0 && first == nums[i - 1]) {
                 continue;
             }
-            for (int j = len-1; j > preIdex;) {
+            for (int j = len - 1; j > preIdex; ) {
                 int sum = first + nums[preIdex] + nums[j];
                 if (sum < 0) {
                     preIdex++;
@@ -95,11 +97,11 @@ public class Solution15 {
 
                 // 以下判断为满足条件，但是数据去重操作
                 // preIndex: 是我们要找的第二位数，如果num[preIndex]=nums[preIndex+1];避免重复计算那么我们就直接用num[preIndex+1]
-                while (j>preIdex &&  nums[preIdex]==nums[preIdex+1]){
+                while (j > preIdex && nums[preIdex] == nums[preIdex + 1]) {
                     preIdex++;
                 }
 //                避免重复计算那么我们就直接用num[j - 1]
-                while (j>preIdex && nums[j] == nums[j - 1] ){
+                while (j > preIdex && nums[j] == nums[j - 1]) {
                     j--;
                 }
                 List<Integer> arr = new ArrayList<>();
@@ -117,20 +119,20 @@ public class Solution15 {
     public List<List<Integer>> threeSum3(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> res = new ArrayList<>();
-        for(int k = 0; k < nums.length - 2; k++){
-            if(nums[k] > 0) break;
-            if(k > 0 && nums[k] == nums[k - 1]) continue;
+        for (int k = 0; k < nums.length - 2; k++) {
+            if (nums[k] > 0) break;
+            if (k > 0 && nums[k] == nums[k - 1]) continue;
             int i = k + 1, j = nums.length - 1;
-            while(i < j){
+            while (i < j) {
                 int sum = nums[k] + nums[i] + nums[j];
-                if(sum < 0){
-                    while(i < j && nums[i] == nums[++i]);
+                if (sum < 0) {
+                    while (i < j && nums[i] == nums[++i]) ;
                 } else if (sum > 0) {
-                    while(i < j && nums[j] == nums[--j]);
+                    while (i < j && nums[j] == nums[--j]) ;
                 } else {
                     res.add(new ArrayList<Integer>(Arrays.asList(nums[k], nums[i], nums[j])));
-                    while(i < j && nums[i] == nums[++i]);
-                    while(i < j && nums[j] == nums[--j]);
+                    while (i < j && nums[i] == nums[++i]) ;
+                    while (i < j && nums[j] == nums[--j]) ;
                 }
             }
         }
@@ -143,7 +145,7 @@ public class Solution15 {
         String[] split = args[0].split(",");
         long s2 = System.currentTimeMillis();
 //        System.out.println(solution15.threeSum3(new int[]{-1,0,1,2,-1,-4}));
-        System.out.println(solution15.threeSum2(new int[]{0,0,0,0}));
+        System.out.println(solution15.threeSum2(new int[]{0, 0, 0, 0}));
         long e2 = System.currentTimeMillis();
         System.out.println("2-cost time" + (e2 - s2));
 

@@ -8,5 +8,4 @@ package com.louis.longagocode.pattern.abstractfactory.example2;
 public class LouisCastle implements Castle {
 
 
-
 }

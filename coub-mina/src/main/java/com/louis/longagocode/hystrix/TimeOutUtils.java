@@ -10,10 +10,10 @@ import java.util.Random;
 public class TimeOutUtils {
 
 
-    public static int randomlyRunLong(int bound,long sleepTime) {
+    public static int randomlyRunLong(int bound, long sleepTime) {
         Random random = new Random();
         int randomNum = random.nextInt((bound - 1) + 1) + 1;
-        if (bound==randomNum) sleep(sleepTime);
+        if (bound == randomNum) sleep(sleepTime);
         return randomNum;
 
 

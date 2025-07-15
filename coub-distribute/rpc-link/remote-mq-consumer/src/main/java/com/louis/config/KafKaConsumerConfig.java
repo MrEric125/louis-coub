@@ -21,7 +21,6 @@ import java.util.Map;
 public class KafKaConsumerConfig {
 
 
-
     @Value("${kafka.bootstrap.servers}")
     private String bootstrapServers;
 
@@ -44,14 +43,12 @@ public class KafKaConsumerConfig {
     private String groupId;
 
 
-
-
-//    批量消费配置
+    //    批量消费配置
     private Map<String, Object> consumerProps() {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapServers);
-        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, autoCommitConfig==1);
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, autoCommitConfig == 1);
         props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, autoComitInterval);
         props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, sessionTimeoutMs);
         //一次拉取消息数量
@@ -61,14 +58,16 @@ public class KafKaConsumerConfig {
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         return props;
     }
+
     @Bean("batchContainerFactory")
     public ConcurrentKafkaListenerContainerFactory ackContainerFactory() {
-         ConcurrentKafkaListenerContainerFactory factory = new ConcurrentKafkaListenerContainerFactory();
-         factory.setConsumerFactory(new DefaultKafkaConsumerFactory(consumerProps()));
-         factory.setBatchListener(true);
-         factory.setConcurrency(maxPollRecords);
-         return factory;
+        ConcurrentKafkaListenerContainerFactory factory = new ConcurrentKafkaListenerContainerFactory();
+        factory.setConsumerFactory(new DefaultKafkaConsumerFactory(consumerProps()));
+        factory.setBatchListener(true);
+        factory.setConcurrency(maxPollRecords);
+        return factory;
     }
+
     @Bean
     public KafkaConsumer kafkaConsumer() {
         return new KafkaConsumer(consumerProps());

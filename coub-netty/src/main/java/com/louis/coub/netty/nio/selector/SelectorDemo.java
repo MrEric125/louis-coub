@@ -14,29 +14,28 @@ import java.util.Iterator;
 
 /**
  * {@link java.nio.channels.Selector}: 管理着一个被注册的通道集合的信息和他们的就绪状态
- *
+ * <p>
  * channel是和Selector 一起被注册的，并且使用选择起来更新通道的就绪状态，当我们这么操作的时候，可以选择
- *
+ * <p>
  * 讲被激发的线程挂起，一直等到有就绪的通道
- *
+ * <p>
  * {@link java.nio.channels.SelectableChannel} 提供了实现通道的可选择性所需要的公共方法。它是所有支持
- *
+ * <p>
  * 就绪检查（todo 什么是就绪检查 ）的通道类的父类
- *
+ * <p>
  * SelectableChannel可以被注册到Selector对象上，同时可以制定对哪个选择器而言，哪种操作是感兴趣的，一个通道可以被
- *
+ * <p>
  * 注册到多个选择器上，但是在每个选择器上只能注册一次
- *
+ * <p>
  * {@link java.nio.channels.SelectionKey} 选择键封装了特定的通道与特定的选择器的注册关系，选择键对象被SelectableChannel.register()
- *
+ * <p>
  * 返回并提供一个表示这种注册关系的标记。选择键包含了两个byte集，指示了该注册关系所关心的同道操作，以及通道已经准备好的操作
- *
+ * <p>
  * SelectionKey;
  * Selector;
  * ServerSocketChannel;
  * SocketChannel;
  * todo 以上四个类的关系，如何协同处理
- *
  */
 public class SelectorDemo {
 

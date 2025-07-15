@@ -26,7 +26,7 @@ public class HeartBeatServer {
                     .channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, false)
-                    .childHandler(new ChannelInitializer<SocketChannel>(){
+                    .childHandler(new ChannelInitializer<SocketChannel>() {
 
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
@@ -38,7 +38,7 @@ public class HeartBeatServer {
 
             ChannelFuture channelFuture = bootstrap.bind(9999).sync();
             channelFuture.channel().closeFuture().sync();
-        }finally {
+        } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }

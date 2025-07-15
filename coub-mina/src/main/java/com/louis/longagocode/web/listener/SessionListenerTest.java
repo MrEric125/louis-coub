@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpSessionListener;
 public class SessionListenerTest implements HttpSessionListener {
 
 
-
     @Override
     public void sessionCreated(HttpSessionEvent se) {
 

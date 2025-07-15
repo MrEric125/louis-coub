@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * dubbo 中
+ *
  * @see Adaptive
  * @see org.apache.dubbo.common.extension.Activate
  * @see org.apache.dubbo.common.extension.SPI
@@ -17,7 +18,7 @@ import java.util.List;
  * @see ExtensionLoader#getAdaptiveExtension()
  */
 //@Adaptive
-public class DubboSPIServiceImpl1 implements DubboSPIService{
+public class DubboSPIServiceImpl1 implements DubboSPIService {
     @Override
     public void printInfo() {
         System.out.println("dubbo spi");

@@ -1,23 +1,21 @@
 package com.louis.longagocode.pattern.bridge;
 
-import com.pattern.bridge.ConcreteA;
-import com.pattern.bridge.Implementor;
 
 /**
  * the different of Bridge,Adapter
- *共同点：桥接和适配器都是让两个东西配合工作
+ * 共同点：桥接和适配器都是让两个东西配合工作
  * 不同点：出发点不同。
- *          适配器：改变已有的两个接口，让他们相容。
- *          桥接模式：分离抽象化和实现，使两者的接口可以不同，目的是分离。
- *
+ * 适配器：改变已有的两个接口，让他们相容。
+ * 桥接模式：分离抽象化和实现，使两者的接口可以不同，目的是分离。
+ * <p>
  * 所以说，如果你拿到两个已有模块，想让他们同时工作，那么你使用的适配器。
  * 如果你还什么都没有，但是想分开实现，那么桥接是一个选择。
- *
+ * <p>
  * 桥接是先有桥，才有两端的东西
  * 适配是先有两边的东西，才有适配器
- *
+ * <p>
  * 桥接是在桥好了之后，两边的东西还可以变化。
- *
+ * <p>
  * 例如游戏手柄，就象个桥，它把你的任何操作转化成指令。
  * （虽然，你可以任何操作组合，但是你的操作脱不开山下左右，a,b，选择 ，确定）
  * JRE本身就是一个就是一个很好的桥，先写好在linux上执行的Jre，再写好可以在windows下执行的JRE，
@@ -82,8 +80,9 @@ import com.pattern.bridge.Implementor;
  * 是最复杂情况，最灵活情况，当我们实际的开发中并没有遇到这么多这样的情况。
  * 所以在需要的时候使用，根据需求简化使用，而不是照搬。
  * 4,虽然模式是相关的，但是只有知道了每个模式的区别点，才能更好的根据需求选择使用哪个模式。
- *
+ * <p>
  * from : http://www.blogjava.net/dreamstone/archive/2007/01/08/92482.html
+ *
  * @author John·Louis
  * @date created on 2020/3/12
  * description:
@@ -91,8 +90,8 @@ import com.pattern.bridge.Implementor;
 public class Main {
 
     public static void main(String[] args) {
-        Implementor imple=new ConcreteA();
-        Abstraction abs=new RefinedAbstraction(imple);
+        Implementor imple = new ConcreteA();
+        Abstraction abs = new RefinedAbstraction(imple);
         abs.operation();
     }
 }

@@ -7,6 +7,6 @@ package com.louis.longagocode.pattern.adapter.clazz;
  */
 public interface Target {
 
-     void request();
+    void request();
 
 }

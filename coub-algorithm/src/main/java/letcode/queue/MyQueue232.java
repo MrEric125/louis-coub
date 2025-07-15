@@ -5,6 +5,7 @@ import java.util.Stack;
 public class MyQueue232 {
     private Stack<Integer> inStack;
     private Stack<Integer> outStack;
+
     public MyQueue232() {
         inStack = new Stack<>();
         outStack = new Stack<>();
@@ -18,6 +19,7 @@ public class MyQueue232 {
 
     /**
      * 弹出头元素
+     *
      * @return
      */
     public int pop() {
@@ -30,6 +32,7 @@ public class MyQueue232 {
 
     /**
      * 获取头元素，不弹出
+     *
      * @return
      */
     public int peek() {
@@ -43,6 +46,7 @@ public class MyQueue232 {
         return inStack.empty() && outStack.empty();
 
     }
+
     private void in2out() {
         while (!inStack.isEmpty()) {
             outStack.push(inStack.pop());

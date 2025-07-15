@@ -20,7 +20,7 @@ import java.util.Objects;
  */
 @Slf4j
 @Service
-public class CreateTopicMessageHandler implements KafkaMessageHandler<String,String>{
+public class CreateTopicMessageHandler implements KafkaMessageHandler<String, String> {
 
     @Autowired
     private DefaultListableBeanFactory applicationContext;

@@ -25,26 +25,24 @@
     <dependencies>
 
 
+        <!--    dubbo dependencies-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.dubbo</groupId>-->
+        <!--            <artifactId>dubbo-spring-boot-starter</artifactId>-->
+        <!--        </dependency>-->
 
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.dubbo</groupId>-->
+        <!--            <artifactId>dubbo</artifactId>-->
 
-<!--    dubbo dependencies-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.dubbo</groupId>-->
-<!--            <artifactId>dubbo-spring-boot-starter</artifactId>-->
-<!--        </dependency>-->
+        <!--        </dependency>-->
+        <dependency>
+            <groupId>com.louis</groupId>
+            <artifactId>mq-common</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.apache.dubbo</groupId>-->
-<!--            <artifactId>dubbo</artifactId>-->
-
-<!--        </dependency>-->
-            <dependency>
-                <groupId>com.louis</groupId>
-                <artifactId>mq-common</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
-            </dependency>
-
-<!--         Zookeeper dependencies-->
+        <!--         Zookeeper dependencies-->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-dependencies-zookeeper</artifactId>
@@ -58,8 +56,7 @@
         </dependency>
 
 
-
-<!--        rest client需要引入的包-->
+        <!--        rest client需要引入的包-->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxrs</artifactId>
@@ -82,7 +79,6 @@
         </dependency>
 
 
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -100,7 +96,6 @@
         </dependency>
 
     </dependencies>
-
 
 
 </project>

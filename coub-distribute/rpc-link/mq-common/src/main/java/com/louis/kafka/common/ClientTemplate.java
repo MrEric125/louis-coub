@@ -24,6 +24,7 @@ public abstract class ClientTemplate {
     public void setAuthInfo(AuthInfo authInfo) {
         this.authInfo = authInfo;
     }
+
     public Properties getProperties() {
         return this.properties;
     }

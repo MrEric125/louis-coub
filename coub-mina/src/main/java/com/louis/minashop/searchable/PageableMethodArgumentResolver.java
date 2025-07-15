@@ -1,4 +1,3 @@
-
 package com.louis.minashop.searchable;
 
 import com.google.common.collect.Lists;
@@ -202,7 +201,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
     }
 
     private int getPageSize(Map<String, String[]> pageableMap, Pageable defaultPageRequest) {
-        int pageSize ;
+        int pageSize;
         try {
             String pageSizeStr = pageableMap.get("size")[0];
             if (pageSizeStr != null) {
@@ -225,7 +224,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
     }
 
     private int getPn(Map<String, String[]> pageableMap, Pageable defaultPageRequest) {
-        int pn ;
+        int pn;
         try {
             String pnStr = pageableMap.get("pn")[0];
             if (pnStr != null) {
@@ -257,7 +256,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
         Qualifier qualifier = parameter.getParameterAnnotation(Qualifier.class);
 
         if (qualifier != null) {
-            return ( qualifier).value() + "_" + pagePrefix;
+            return (qualifier).value() + "_" + pagePrefix;
         }
 
         return pagePrefix;
@@ -413,7 +412,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
     static class OrderedSort implements Comparable<OrderedSort> {
         private String property;
         private Sort.Direction direction;
-        private int order ; //默认0 即无序
+        private int order; //默认0 即无序
 
         OrderedSort(String property, Sort.Direction direction, int order) {
             this.property = property;
@@ -422,7 +421,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
         }
 
         @Override
-        public int compareTo( OrderedSort o) {
+        public int compareTo(OrderedSort o) {
             if (o == null) {
                 return -1;
             }

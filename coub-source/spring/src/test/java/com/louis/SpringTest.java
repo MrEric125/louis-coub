@@ -8,12 +8,10 @@ public class SpringTest {
 
     /**
      * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory}
-     *
      */
     @Test
     public void test() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-
 
 
         context.register();

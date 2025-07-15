@@ -20,7 +20,6 @@ public class ConditionWait implements Runnable {
     }
 
 
-
     @Override
     public void run() {
         try {
@@ -30,9 +29,9 @@ public class ConditionWait implements Runnable {
             condition.await();
             System.out.println("end - wait");
 
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
 
-        }finally {
+        } finally {
             lock.unlock();
         }
 

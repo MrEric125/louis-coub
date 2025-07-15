@@ -31,7 +31,8 @@ public final class SearchableConvertUtils {
     public static void setConversionService(ConversionService conversionService) {
         SearchableConvertUtils.conversionService = conversionService;
     }
-//
+
+    //
     private static ConversionService getConversionService() {
         if (conversionService == null) {
             synchronized (SearchableConvertUtils.class) {
@@ -114,7 +115,7 @@ public final class SearchableConvertUtils {
 
         Object value = condition.getValue();
 
-        Object newValue ;
+        Object newValue;
         boolean isCollection = value instanceof Collection;
         boolean isArray = value != null && value.getClass().isArray();
         if (isCollection || isArray) {

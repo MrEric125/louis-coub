@@ -26,6 +26,7 @@ public class NIOTest5 {
      * 1. 读取文件获取FileChannel
      * 2. 给ByteBuffer 分配大小，并且得到ByteBuffer
      * 3. 将数据读取到Buffer中
+     *
      * @throws Exception
      */
     @Test
@@ -37,7 +38,7 @@ public class NIOTest5 {
         resource.getFile();
         Path path = Paths.get("/");
 
-        RandomAccessFile randomAccessFile = new RandomAccessFile("F:\\louis\\boot-mybatis\\rpc-link\\remote-producer\\src\\main\\resources\\input.txt","rw");
+        RandomAccessFile randomAccessFile = new RandomAccessFile("F:\\louis\\boot-mybatis\\rpc-link\\remote-producer\\src\\main\\resources\\input.txt", "rw");
 
         FileChannel fileChannel = randomAccessFile.getChannel();
 
@@ -69,7 +70,6 @@ public class NIOTest5 {
      * 5. 通过Selector选择通道
      * 6. wakeUp()
      * 7. close()
-     *
      */
     @Test
     public void selectorTest() throws IOException {

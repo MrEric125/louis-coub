@@ -1,10 +1,6 @@
 package com.louis.longagocode.concurrent.designpation.guardedsuspension;
 
 
-import com.concurrent.designpation.guardedsuspension.Blocker;
-import com.concurrent.designpation.guardedsuspension.ConditionVarBlocker;
-import com.concurrent.designpation.guardedsuspension.Predicate;
-
 import java.util.Timer;
 
 /**
@@ -26,15 +22,12 @@ public class AlarmAgent {
         }
     };
 
-//    心跳定时器
+    //    心跳定时器
     private final Timer heartbeatTimer = new Timer(true);
 
     //    模式角色：
 //    GuardedSuspension.Blocker
     private final Blocker blocker = new ConditionVarBlocker();
-
-
-
 
 
 }

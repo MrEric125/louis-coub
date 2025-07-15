@@ -1,7 +1,6 @@
 package letcode;
 
 
-
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -31,11 +30,12 @@ public class SolutionList {
             listNode = listNode.next;
         }
     }
+
     private static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode root = new ListNode(0);
         ListNode cursor = root;
         int carry = 0;
-        while(l1 != null || l2 != null || carry != 0) {
+        while (l1 != null || l2 != null || carry != 0) {
             int l1Val = l1 != null ? l1.val : 0;
             int l2Val = l2 != null ? l2.val : 0;
             int sumVal = l1Val + l2Val + carry;
@@ -45,8 +45,8 @@ public class SolutionList {
             cursor.next = sumNode;
             cursor = sumNode;
 
-            if(l1 != null) l1 = l1.next;
-            if(l2 != null) l2 = l2.next;
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
         }
 
         return root.next;
@@ -57,6 +57,7 @@ public class SolutionList {
     public void test1() {
         System.out.println(isAnagram("zhangsan", "sanzhango"));
     }
+
     public boolean isAnagram(String s, String t) {
         char[] chars = s.toCharArray();
         Arrays.sort(chars);
@@ -66,6 +67,7 @@ public class SolutionList {
 
         return new String(chars).equals(new String(chart));
     }
+
     public int[][] merge(int[][] intervals) {
         for (int i = 0; i < intervals.length; i++) {
             int[] interval = intervals[i];
@@ -82,10 +84,12 @@ public class SolutionList {
 }
 
 class ListNode {
-       int val;
+    int val;
 
-      ListNode next;
+    ListNode next;
 
-      ListNode(int x) { val = x; }
+    ListNode(int x) {
+        val = x;
+    }
 
 }

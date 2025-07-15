@@ -11,11 +11,11 @@ import java.util.Arrays;
  * <p> Date: 2018-12-04
  * <p> Version:1.0
  * 插入排序,将数据分为有序空间和无序空间
- *  默认数组的最前面是有序的，将后面的元素依次插入到这个数组的相应位置
- *  时间复杂度 O(n2)
- *  空间复杂度 O(1)
- *  可以通过二分插入排序这种方式来优化
- *  这是一种最常规的插入排序
+ * 默认数组的最前面是有序的，将后面的元素依次插入到这个数组的相应位置
+ * 时间复杂度 O(n2)
+ * 空间复杂度 O(1)
+ * 可以通过二分插入排序这种方式来优化
+ * 这是一种最常规的插入排序
  */
 public class Insertion<T extends Comparable<T>> implements ISorting<T> {
 
@@ -34,7 +34,7 @@ public class Insertion<T extends Comparable<T>> implements ISorting<T> {
     }
 
     public void sort(T[] a, int lo, int hi) {
-        for (int i = lo; i <=hi ; i++) {
+        for (int i = lo; i <= hi; i++) {
 //            写法一
 //            for (int j = i; j > lo && SortUtils.less(a[j], a[j - 1]); j--) {
 //                SortUtils.exch(a, j, j - 1);
@@ -57,23 +57,23 @@ public class Insertion<T extends Comparable<T>> implements ISorting<T> {
     }
 
     public static void main(String[] args) {
-        int N =50 ;
+        int N = 50;
         Integer[] arr = SortUtils.generateOrderArray(N);
         SortUtils.shuffle(arr);
-        Integer[] arr2=Arrays.copyOf(arr, arr.length);
+        Integer[] arr2 = Arrays.copyOf(arr, arr.length);
         System.out.println("before: ");
 
-        Arrays.stream(arr).forEach(x-> System.out.print(x+"\t"));
+        Arrays.stream(arr).forEach(x -> System.out.print(x + "\t"));
 
         Insertion<Integer> insertion = new Insertion<>();
         insertion.sort(arr);
         System.out.println("\nafter: ");
-        Arrays.stream(arr).forEach(x-> System.out.print(x+"\t"));
+        Arrays.stream(arr).forEach(x -> System.out.print(x + "\t"));
 
         System.out.println("\n=============");
-        insertion.sort(arr2,0,arr2.length-1);
+        insertion.sort(arr2, 0, arr2.length - 1);
         System.out.println("\nafter: ");
-        Arrays.stream(arr).forEach(x-> System.out.print(x+"\t"));
+        Arrays.stream(arr).forEach(x -> System.out.print(x + "\t"));
     }
 
 

@@ -20,7 +20,7 @@ public class WorkerThread extends Thread {
         String requestID;
         RequestIDGenerator instance = RequestIDGenerator.getInstance();
         while (i-- > 0) {
-            requestID=instance.nextID();
+            requestID = instance.nextID();
 
         }
     }
@@ -28,7 +28,7 @@ public class WorkerThread extends Thread {
     private void processRequest(String requestId) {
         try {
             Thread.sleep(50);
-            System.out.println(Thread.currentThread().getName()+"got requestID:" +requestId);
+            System.out.println(Thread.currentThread().getName() + "got requestID:" + requestId);
 
         } catch (InterruptedException e) {
             e.printStackTrace();

@@ -1,8 +1,6 @@
 package com.louis.longagocode.java8;
 
 import com.google.common.collect.Lists;
-import com.java8.Person;
-import com.java8.PubApp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +18,7 @@ public class App extends PubApp {
     public App() {
         System.out.println("bbb");
     }
+
     static {
         System.out.println("aaaaa");
     }

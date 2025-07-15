@@ -29,7 +29,7 @@ public class HttpServer {
 
             ChannelFuture channelFuture = bootstrap.bind(9999).sync();
             channelFuture.channel().closeFuture().sync();
-        }finally {
+        } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }

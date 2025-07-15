@@ -7,9 +7,9 @@ package com.louis.longagocode.concurrent.foundation;
  */
 public interface CircularSeqGenerator {
 
-     short nextSequence();
+    short nextSequence();
 
-     String nextID();
+    String nextID();
 
 
 }

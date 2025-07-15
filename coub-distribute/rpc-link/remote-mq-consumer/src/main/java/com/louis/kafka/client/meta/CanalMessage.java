@@ -30,7 +30,7 @@ public class CanalMessage<T> implements Serializable {
     /**
      * 数字字段类型
      */
-    private Map<String,String> mysqlType;
+    private Map<String, String> mysqlType;
 
     private List<T> old;
 
@@ -38,7 +38,7 @@ public class CanalMessage<T> implements Serializable {
 
     private String sql;
 
-    private Map<String,Integer>  sqlType;
+    private Map<String, Integer> sqlType;
 
     private String table;
 

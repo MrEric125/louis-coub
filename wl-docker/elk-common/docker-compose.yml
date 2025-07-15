@@ -9,9 +9,9 @@ services:
       - network.host=0.0.0.0
       - discovery.type=single-node
       - bootstrap.memory_lock=true
-#      - node.master=true
-#      - discovery.seed_hosts=es-2,es-3
-#      - cluster.initial_master_nodes=es-1,es-2,es-3
+      #      - node.master=true
+      #      - discovery.seed_hosts=es-2,es-3
+      #      - cluster.initial_master_nodes=es-1,es-2,es-3
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
 
     ulimits:
@@ -65,11 +65,11 @@ services:
     # volumes:
     networks:
       - elastic
-#    depends_on:
-#      - es
+    #    depends_on:
+    #      - es
     ports:
-     - 9202:9200
-     - 9302:9300
+      - 9202:9200
+      - 9302:9300
   kibana:
     image: docker.elastic.co/kibana/kibana:7.17.16
     container_name: kibana
@@ -77,9 +77,9 @@ services:
       - 5601:5601
     networks:
       - elastic
-#    environment:
-#  todo ELASTICSEARCH_HOSTS 配置没有生效
-#      - SERVER_NAME=kibana
+    #    environment:
+    #  todo ELASTICSEARCH_HOSTS 配置没有生效
+    #      - SERVER_NAME=kibana
     volumes:
       - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
 

@@ -1,8 +1,8 @@
 package com.louis.longagocode.future.future2;
 
-import com.future.Shop;
 import com.google.common.collect.ImmutableMap;
 import com.louis.common.common.HttpResult;
+import com.louis.longagocode.future.Shop;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -47,21 +47,21 @@ public class FutureController {
         Map<String, Object> map = ImmutableMap.of("list", list, "time", endTime - startTime);
         return HttpResult.ok(map);
     }
+
     @RequestMapping("getList")
     public HttpResult getList() {
         return HttpResult.ok(list);
     }
 
     @RequestMapping("price/{product}/{threadNum}")
-    public HttpResult getPrice(@PathVariable String product ,@PathVariable int threadNum) {
+    public HttpResult getPrice(@PathVariable String product, @PathVariable int threadNum) {
         long start = System.currentTimeMillis();
-        List<String> prices = findPrices(list, product,threadNum);
+        List<String> prices = findPrices(list, product, threadNum);
         long end = System.currentTimeMillis();
-        Map<String,Object> map = ImmutableMap.of( "time", end - start);
+        Map<String, Object> map = ImmutableMap.of("time", end - start);
         return HttpResult.ok(map);
 
     }
-
 
 
     @RequestMapping("/threadNum")
@@ -73,17 +73,17 @@ public class FutureController {
 
 
         Map<String, Object> map = ImmutableMap
-                .of("groupCount", groupCount, "threadCount", count,"parentGroupCount",parentCount);
+                .of("groupCount", groupCount, "threadCount", count, "parentGroupCount", parentCount);
 
         return HttpResult.ok(map);
     }
 
-    private  List<String> findPrices(List<Shop> shops,String product,Integer threadNum) {
+    private List<String> findPrices(List<Shop> shops, String product, Integer threadNum) {
 //        ExecutorService executor = Executors.newFixedThreadPool(threadNum == null ? 8 : threadNum);
         if (executor.getMaxPoolSize() < threadNum) {
             executor.setMaxPoolSize(threadNum);
         }
-        List<String > collect = shops
+        List<String> collect = shops
                 .stream()
                 .map(shop -> CompletableFuture.supplyAsync(() ->
                         String.format("%s price is %.2f",

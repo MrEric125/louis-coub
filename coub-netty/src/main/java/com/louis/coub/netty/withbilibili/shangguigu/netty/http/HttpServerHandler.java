@@ -20,6 +20,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<HttpObject> {
 
     /**
      * 读取客户端的数据
+     *
      * @param ctx
      * @param msg
      * @throws Exception
@@ -27,7 +28,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<HttpObject> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
         if (msg instanceof HttpRequest) {
-            log.info("msg 类型：{}" , msg.getClass());
+            log.info("msg 类型：{}", msg.getClass());
             log.info("客户端地址：{}", ctx.channel().remoteAddress());
             log.info("url:{}", ((HttpRequest) msg).uri());
 

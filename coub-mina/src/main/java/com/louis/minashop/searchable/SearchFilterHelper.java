@@ -53,7 +53,7 @@ public final class SearchFilterHelper {
     /**
      * 拼and条件
      *
-     * @param first first
+     * @param first  first
      * @param others others
      * @return searchFilter
      */

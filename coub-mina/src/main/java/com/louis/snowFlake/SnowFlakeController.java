@@ -25,7 +25,7 @@ public class SnowFlakeController {
     @Autowired
     UniqueIdWorker uniqueIdWorker;
 
-//    @Scheduled(fixedRate = 30)
+    //    @Scheduled(fixedRate = 30)
     public void unique1Worker() {
         long id = uniqueIdWorker.nextId(RandomUtils.nextLong(0, 7), RandomUtils.nextLong(0, 1));
         try {
@@ -33,7 +33,7 @@ public class SnowFlakeController {
             snowFlack1.setId(id);
             snowFlack1Repository.save(snowFlack1);
         } catch (Exception e) {
-            taskExecutor.execute(()->{
+            taskExecutor.execute(() -> {
                 ErrorMessage errorMessage = new ErrorMessage();
                 errorMessage.setTableName("snowFlack1");
                 errorMessage.setTableId(id);
@@ -42,7 +42,8 @@ public class SnowFlakeController {
         }
         log.info("save success table1:{}", id);
     }
-//    @Scheduled(fixedRate = 30)
+
+    //    @Scheduled(fixedRate = 30)
     public void unique2Worker() {
         long id = uniqueIdWorker.nextId(RandomUtils.nextLong(0, 8), RandomUtils.nextLong(0, 4));
         try {
@@ -50,7 +51,7 @@ public class SnowFlakeController {
             snowFlack1.setId(id);
             snowFlack2Repository.save(snowFlack1);
         } catch (Exception e) {
-            taskExecutor.execute(()->{
+            taskExecutor.execute(() -> {
                 ErrorMessage errorMessage = new ErrorMessage();
                 errorMessage.setTableName("snowFlack1");
                 errorMessage.setTableId(id);

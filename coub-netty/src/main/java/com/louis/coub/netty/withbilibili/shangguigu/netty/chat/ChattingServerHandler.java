@@ -18,13 +18,12 @@ public class ChattingServerHandler extends SimpleChannelInboundHandler<String> {
 
 //    定义个Channel组，来管理所有的channel
 
-//    是一个全局时间执行器，单利模式
+    //    是一个全局时间执行器，单利模式
     private static ChannelGroup channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
     private static SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD HH:mm:ss");
 
     /**
-     *
      * @param ctx
      * @param msg
      * @throws Exception
@@ -33,7 +32,7 @@ public class ChattingServerHandler extends SimpleChannelInboundHandler<String> {
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
         Channel channel = ctx.channel();
 
-        channelGroup.stream().filter(ch->channel!=ch).forEach(ch ->{
+        channelGroup.stream().filter(ch -> channel != ch).forEach(ch -> {
             ch.writeAndFlush("[客户]" + channel.remoteAddress() + "发送来了消息" + msg + "\n");
         });
     }
@@ -47,6 +46,7 @@ public class ChattingServerHandler extends SimpleChannelInboundHandler<String> {
     /**
      * 一旦被连接就会被执行
      * 将当前的channel加入到ChannelGroup
+     *
      * @param ctx
      * @throws Exception
      */
@@ -60,6 +60,7 @@ public class ChattingServerHandler extends SimpleChannelInboundHandler<String> {
 
     /**
      * 表示服务器出狱活动状态，服务器端提示
+     *
      * @param ctx
      * @throws Exception
      */
@@ -70,6 +71,7 @@ public class ChattingServerHandler extends SimpleChannelInboundHandler<String> {
 
     /**
      * 处于非活动状态，服务器端提示
+     *
      * @param ctx
      * @throws Exception
      */

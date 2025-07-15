@@ -16,6 +16,7 @@ public class Solution70 {
         }
         return climbStairs(n - 1) + climbStairs(n - 2);
     }
+
     public int climbStairs2(int n) {
         Map<Integer, Integer> calculate = Maps.newHashMap();
 

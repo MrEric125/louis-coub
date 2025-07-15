@@ -1,8 +1,5 @@
 package com.louis.longagocode.future;
 
-import com.future.Product;
-import com.future.Shop;
-import com.future.ShopServiceImpl;
 import com.google.common.collect.ImmutableMap;
 import com.louis.common.common.HttpResult;
 import org.assertj.core.util.Lists;
@@ -24,7 +21,7 @@ import java.util.stream.Collectors;
  */
 @RequestMapping("future")
 @RestController
-public class CompletableFutureController  {
+public class CompletableFutureController {
     @Autowired
     private ShopServiceImpl shopService;
 
@@ -37,7 +34,7 @@ public class CompletableFutureController  {
 
     @PostMapping("/createShop")
     public HttpResult createShop(String shopName) {
-        List<Shop> shops = shopService.creatShop(shopName==null?null:Lists.newArrayList(shopName));
+        List<Shop> shops = shopService.creatShop(shopName == null ? null : Lists.newArrayList(shopName));
         int size = shops.size();
         Map map = ImmutableMap.of("item", shops, "size", size);
         return HttpResult.ok(map);
@@ -46,7 +43,7 @@ public class CompletableFutureController  {
     @PostMapping("/createProduct")
     public HttpResult createProduct(String productNam, BigDecimal productPrice) {
         List<Shop> shopList = shopService.getShopList();
-        shopList.forEach(item->{
+        shopList.forEach(item -> {
             Product product = new Product();
             product.setProductName(productNam);
             product.setPrice(productPrice);
@@ -55,7 +52,6 @@ public class CompletableFutureController  {
         });
         return HttpResult.ok(shopList);
     }
-
 
 
     @GetMapping("/streamGroup")
@@ -67,8 +63,8 @@ public class CompletableFutureController  {
     }
 
     @GetMapping("/findPrice")
-    public HttpResult findPrice(String product,int stratageCode,Integer threadNum) {
+    public HttpResult findPrice(String product, int stratageCode, Integer threadNum) {
         List<String> list = shopService.runStratage(product, stratageCode, threadNum);
-       return HttpResult.ok(list);
+        return HttpResult.ok(list);
     }
 }

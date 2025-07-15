@@ -9,9 +9,9 @@ class Solution238 {
         int[] answerRight = new int[len];
         int[] answer = new int[len];
 
-        int  leftStart = 1, rightStart = len - 2;
+        int leftStart = 1, rightStart = len - 2;
         answerLeft[0] = nums[0];
-        answerRight[len-1] = nums[len-1];
+        answerRight[len - 1] = nums[len - 1];
 
         while (leftStart < len && rightStart >= 0) {
 

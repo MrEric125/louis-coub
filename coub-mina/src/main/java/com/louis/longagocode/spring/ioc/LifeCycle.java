@@ -15,15 +15,15 @@ import javax.annotation.PostConstruct;
  * @Date 2020/1/17
  * description:
  */
-@Component
+@Component(value = "coub-lifeCycle")
 public class LifeCycle
-        implements BeanNameAware, BeanFactoryAware, ApplicationContextAware, BeanPostProcessor, InitializingBean, DisposableBean
-{
+        implements BeanNameAware, BeanFactoryAware, ApplicationContextAware, BeanPostProcessor, InitializingBean, DisposableBean {
 
     @PostConstruct
     public void init() {
         System.out.println("init");
     }
+
     public void user() {
         System.out.println("use method");
     }
@@ -36,7 +36,7 @@ public class LifeCycle
 
     @Override
     public void setBeanName(String name) {
-        System.out.println("set bean name"+name);
+        System.out.println("set bean name" + name);
 
     }
 

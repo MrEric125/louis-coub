@@ -5,10 +5,11 @@ public class Solution2834 {
 
     /**
      * 求解是要求取最小数据和： 也就是  num[i]+num[j] 最小
-     *
+     * <p>
      * 这样解其实有问题
-     *
+     * <p>
      * 条件： num[i]+num[j]!=target
+     *
      * @param n
      * @param target
      * @return
@@ -22,7 +23,7 @@ public class Solution2834 {
 //        for (int i = 0; i < n; i++) {
 //            nums[i] = i + 1;
 //        }
-        int max = n,j = n - 1,i = 0, sum = 0;
+        int max = n, j = n - 1, i = 0, sum = 0;
         nums[0] = 1;
         if (n == 1) {
             return nums[0];
@@ -60,6 +61,6 @@ public class Solution2834 {
     public static void main(String[] args) {
         Solution2834 solution2834 = new Solution2834();
         //162
-        System.out.println(solution2834.minimumPossibleSum(37,46));
+        System.out.println(solution2834.minimumPossibleSum(37, 46));
     }
 }

@@ -15,7 +15,6 @@ import java.nio.channels.*;
  * 创建Channel有多种方式，
  * 1. Socket创建Channel有socket通道的工厂方法
  * 2. FileChannel创建只能通过RandomAccessFile， FileOutputStream,FileInputStream的getChannel()来创建
- *
  */
 public class ChannelTest1 {
 
@@ -31,10 +30,10 @@ public class ChannelTest1 {
     }
 
 
-
     /**
      * 将src的数据复制到desc
      * 这种方式使用{@link ByteBuffer#compact()} 使用了数据复制，减少了系统调用
+     *
      * @param src
      * @param desc
      * @throws IOException
@@ -51,9 +50,11 @@ public class ChannelTest1 {
         while (buffer.hasRemaining())
             desc.write(buffer);
     }
+
     /**
      * 和copy1的功能点相同，可以具体比较不同点 {@link ChannelTest1#channelCopy1(ReadableByteChannel, WritableByteChannel)}
      * 不需要重复复制，但是可能会造成更多的系统调用
+     *
      * @param src
      * @param desc
      * @throws IOException
@@ -67,20 +68,24 @@ public class ChannelTest1 {
             byteBuffer.clear();
         }
     }
+
     public static Channel fileChannel(String srcdir) throws FileNotFoundException {
         FileInputStream fis = new FileInputStream(srcdir);
         return fis.getChannel();
     }
+
     public static SocketChannel socketChannel() throws IOException {
         SocketChannel sc = SocketChannel.open();
         sc.connect(new InetSocketAddress("localhost", 8090));
         return sc;
     }
+
     public static ServerSocketChannel serverSocketChannel() throws IOException {
         ServerSocketChannel ssc = ServerSocketChannel.open();
         ssc.socket().bind(new InetSocketAddress(8080));
         return ssc;
     }
+
     public static DatagramChannel datagramChannel() throws IOException {
         return DatagramChannel.open();
     }

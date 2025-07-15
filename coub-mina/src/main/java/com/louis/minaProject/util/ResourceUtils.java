@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
  * description:
  */
 public class ResourceUtils {
-    public static String getEnglishValueByKey(String key){
+    public static String getEnglishValueByKey(String key) {
 
         Locale locale = new Locale("en", "US");
         //使用指定的英文Locale
@@ -18,7 +18,7 @@ public class ResourceUtils {
         return mySource.getString(key);
     }
 
-    public static String getChineseValueByKey(String key){
+    public static String getChineseValueByKey(String key) {
 
         Locale locale = new Locale("zh", "CN");
         //使用指定的中文Locale
@@ -26,14 +26,14 @@ public class ResourceUtils {
         return mySource.getString(key);
     }
 
-    public static String getDeafultValueByKey(String key){
+    public static String getDeafultValueByKey(String key) {
 
         //使用默认的Locale
         ResourceBundle mySource = ResourceBundle.getBundle("i18n/message");
         return mySource.getString(key);
     }
 
-    public static String getValueAndPlaceholder(String key){
+    public static String getValueAndPlaceholder(String key) {
 
         //使用默认的Locale
         ResourceBundle mySource = ResourceBundle.getBundle("i18n/message");

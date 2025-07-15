@@ -44,7 +44,8 @@ public class DingTalkConfig {
         DingTalkConfig.dingTalkClient = client;
         return client;
     }
-    public  String buildUrl() {
+
+    public String buildUrl() {
         String url = callBack + "?access_token=" + token;
         long timestamp = System.currentTimeMillis();
         String sign = sign(originalSign, timestamp);
@@ -53,7 +54,7 @@ public class DingTalkConfig {
         return url;
     }
 
-    public static String sign(String secret,Long timestamp)  {
+    public static String sign(String secret, Long timestamp) {
         String stringToSign = timestamp + "\n" + secret;
         String sign = null;
         try {

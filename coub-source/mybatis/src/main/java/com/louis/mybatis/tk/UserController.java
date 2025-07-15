@@ -47,7 +47,7 @@ public class UserController {
     }
 
     @RequestMapping("/saveGoods")
-    private HttpResult goodsSave(@RequestBody AsApplymentGoods asApplymentGoods){
+    private HttpResult goodsSave(@RequestBody AsApplymentGoods asApplymentGoods) {
 
         asApplymentGoodsMapper.insert(asApplymentGoods);
         return HttpResult.ok(asApplymentGoods);

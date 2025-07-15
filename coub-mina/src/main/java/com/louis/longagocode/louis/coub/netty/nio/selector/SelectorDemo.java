@@ -80,7 +80,7 @@ public class SelectorDemo {
         }
     }
 
-    public void operateSelectedKeys(Selector selector)  {
+    public void operateSelectedKeys(Selector selector) {
         Set<SelectionKey> selectionKeys = selector.selectedKeys();
         selectionKeys.forEach(key -> {
             if (key.isAcceptable()) {

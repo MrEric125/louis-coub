@@ -22,8 +22,8 @@ public class TransactionController implements ApplicationContextAware {
     }
 
     /**
-     * @see DateSourceTransactionManager
      * @return
+     * @see DateSourceTransactionManager
      */
     @RequestMapping("/getBean")
     public HttpResult getBean(String beanName) {

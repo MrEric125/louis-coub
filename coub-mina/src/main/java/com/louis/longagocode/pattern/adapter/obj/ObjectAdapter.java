@@ -1,7 +1,8 @@
 package com.louis.longagocode.pattern.adapter.obj;
 
-import com.pattern.adapter.clazz.Adapter;
-import com.pattern.adapter.clazz.Target;
+
+import com.louis.longagocode.pattern.adapter.clazz.Adapter;
+import com.louis.longagocode.pattern.adapter.clazz.Target;
 
 /**
  * @author John·Louis

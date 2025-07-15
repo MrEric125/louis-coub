@@ -11,7 +11,7 @@ import java.math.BigDecimal;
  * @author jun.liu
  * @date created on 2020/5/4
  * description:
- *  不同商店销售的产品
+ * 不同商店销售的产品
  */
 @Entity
 @Table(name = "tb_product")

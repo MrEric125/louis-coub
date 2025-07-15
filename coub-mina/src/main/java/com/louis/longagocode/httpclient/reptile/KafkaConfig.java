@@ -34,7 +34,7 @@ public class KafkaConfig {
         try {
             CloseableHttpResponse httpResponse = httpClient.execute(get);
             int statusCode = httpResponse.getStatusLine().getStatusCode();
-            if (statusCode== HttpStatus.SC_OK) {
+            if (statusCode == HttpStatus.SC_OK) {
                 HttpEntity entity = httpResponse.getEntity();
                 html = Optional.ofNullable(entity).map(entity1 -> {
                     try {

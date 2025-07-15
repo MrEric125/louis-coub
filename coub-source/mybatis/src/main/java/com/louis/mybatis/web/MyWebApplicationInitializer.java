@@ -18,21 +18,20 @@ import java.util.Map;
 
 /**
  * @author jun.liu
- * @since  2020/11/2
- * description:
  * @see org.springframework.web.servlet.HandlerMapping 主要的两个接口功能
  * Map a request to a handler along with a list of interceptors{@link } for pre- and post-processing.
  * The mapping is based on some criteria, the details of which vary by HandlerMapping implementation.
- *
+ * <p>
  * {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping}：
- *  主要是解析{@link org.springframework.web.bind.annotation.RequestMapping}
- *
+ * 主要是解析{@link org.springframework.web.bind.annotation.RequestMapping}
+ * <p>
  * {@link org.springframework.web.servlet.handler.SimpleUrlHandlerMapping}
  * which maintains explicit registrations of URI path patterns to handlers
- *
+ * <p>
  * spring web Mvc context,about detail to see
  * <a>https://docs.spring.io/spring-framework/docs/5.1.3.RELEASE/spring-framework-reference/web.html#mvc-servlet-context-hierarchy </a>
- *
+ * @since 2020/11/2
+ * description:
  */
 public class MyWebApplicationInitializer implements WebApplicationInitializer {
     @Override
@@ -72,7 +71,7 @@ class MyHandlerAdapter implements HandlerAdapter {
 
 /**
  * Strategy to resolve exceptions, possibly mapping them to handlers, to HTML error views, or other targets. ,See
- *<a>https://docs.spring.io/spring-framework/docs/5.1.3.RELEASE/spring-framework-reference/web.html#mvc-exceptionhandlers</a>
+ * <a>https://docs.spring.io/spring-framework/docs/5.1.3.RELEASE/spring-framework-reference/web.html#mvc-exceptionhandlers</a>
  */
 class MyHandlerExceptionResolver implements HandlerExceptionResolver {
 
@@ -100,7 +99,6 @@ class MyThemeResolve implements ThemeResolver {
 }
 
 /**
- *
  * Abstraction for parsing a multi-part request (for example, browser form file upload) with the help of some multipart parsing library.
  * See Multipart Resolver(<a>https://docs.spring.io/spring-framework/docs/5.1.3.RELEASE/spring-framework-reference/web.html#mvc-multipart</a>).
  */

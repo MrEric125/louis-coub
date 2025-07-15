@@ -19,6 +19,7 @@ public class CycleDepService1 implements CycleDepService {
         cycleDepService3.run();
 
     }
+
     public void service1() {
         System.out.println("service1");
     }

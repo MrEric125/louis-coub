@@ -5,7 +5,7 @@ public class Solution5 {
 
     public String longestPalindrome(String s) {
         int max = 0;
-        int start=0,end=0;
+        int start = 0, end = 0;
         for (int i = 0; i < s.length(); i++) {
             int expanded = expandAroundCenter(s, i, i);
             max = Math.max(max, expanded);
@@ -30,7 +30,6 @@ public class Solution5 {
         System.out.println(new Solution5().longestPalindrome("bab"));
 
     }
-
 
 
 }

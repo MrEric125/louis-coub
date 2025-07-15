@@ -9,25 +9,23 @@ import java.util.ArrayList;
  */
 public class Composite implements Component {
 
-    private ArrayList<Component> children=new ArrayList<Component>();
+    private ArrayList<Component> children = new ArrayList<Component>();
+
     @Override
     public void add(Component component) {
         children.add(component);
 
     }
 
-    public Component getChild(int i)
-    {
+    public Component getChild(int i) {
         return children.get(i);
     }
 
 
-
     @Override
     public void operation() {
-            for(Component component:children)
-            {
-                component.operation();
-            }
+        for (Component component : children) {
+            component.operation();
+        }
     }
 }

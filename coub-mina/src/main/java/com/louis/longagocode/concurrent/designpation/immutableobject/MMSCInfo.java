@@ -1,6 +1,5 @@
 package com.louis.longagocode.concurrent.designpation.immutableobject;
 
-import com.concurrent.designpation.immutableobject.ImmutableObject;
 
 /**
  * @author John·Louis

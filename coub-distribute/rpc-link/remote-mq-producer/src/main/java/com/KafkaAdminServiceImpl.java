@@ -17,14 +17,14 @@ import java.util.TreeSet;
 import java.util.concurrent.ExecutionException;
 
 /**
- * @title KafkaAdminServiceImpl
  * @author yanmaoyuan
- * @date 2019年7月25日
  * @version 1.0
+ * @title KafkaAdminServiceImpl
+ * @date 2019年7月25日
  */
 @Service
 @Slf4j
-public class KafkaAdminServiceImpl  {
+public class KafkaAdminServiceImpl {
 
     @Autowired
     private AdminClient adminClient;
@@ -50,7 +50,7 @@ public class KafkaAdminServiceImpl  {
 
     /**
      * 判断topic是否存在
-     * 
+     *
      * @param topic
      */
     public boolean isExist(String topic) {
@@ -85,7 +85,7 @@ public class KafkaAdminServiceImpl  {
 
     /**
      * 创建topic
-     * 
+     *
      * @param topic
      * @return
      */

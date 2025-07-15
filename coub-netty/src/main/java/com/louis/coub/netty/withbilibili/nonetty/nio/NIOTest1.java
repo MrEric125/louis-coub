@@ -22,7 +22,7 @@ public class NIOTest1 {
     public void test() {
         IntBuffer buffer = IntBuffer.allocate(10);
         for (int i = 0; i < buffer.capacity(); i++) {
-            int randomNum=new SecureRandom().nextInt(20) ;
+            int randomNum = new SecureRandom().nextInt(20);
             buffer.put(randomNum);
         }
         buffer.flip();
@@ -32,6 +32,7 @@ public class NIOTest1 {
         }
 
     }
+
     @Test
     public void test1() throws IOException {
         FileInputStream fileInputStream = new FileInputStream("D:\\workspace\\IntelliJ Idea\\netty-learnning\\src\\main\\resources\\nio.md");
@@ -48,6 +49,7 @@ public class NIOTest1 {
             System.out.println("Character: " + b);
         }
     }
+
     @Test
     public void test2() throws IOException {
         try (FileOutputStream outputStream = new FileOutputStream("")) {
@@ -63,7 +65,8 @@ public class NIOTest1 {
             channel.write(buffer);
         }
     }
-//    将一个文件中的内容读取到另一个文件
+
+    //    将一个文件中的内容读取到另一个文件
     @Test
     public void test3() throws IOException {
         ClassPathResource inputResource = new ClassPathResource("input.txt");
@@ -72,7 +75,7 @@ public class NIOTest1 {
         ClassPathResource outputResource = new ClassPathResource("output.txt");
         FileOutputStream outputStream = new FileOutputStream(outputResource.getFile());
 
-        try  {
+        try {
             FileChannel inputChannel = inputStream.getChannel();
             FileChannel outputChannel = outputStream.getChannel();
 
@@ -99,11 +102,12 @@ public class NIOTest1 {
 //                outputChannel.write(byteBuffer);
 //
 //            }
-        }finally {
+        } finally {
 //            inputStream.close();
 //            outputStream.close();
         }
     }
+
     @Test
     public void test4() throws IOException {
 

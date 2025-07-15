@@ -4,10 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.zookeeper.*;
 
 @Slf4j
-public class Producer implements Runnable, Watcher{
+public class Producer implements Runnable, Watcher {
 
     private ZooKeeper zk;
-
 
 
     public Producer(String address) {
@@ -22,10 +21,10 @@ public class Producer implements Runnable, Watcher{
     public void run() {
         int i = 0;
         //每隔10s向队列中放入数据
-        while (true){
+        while (true) {
             try {
-                zk.create("/zookeeper/queue/queue-",(Thread.currentThread().getName()+"-"+i).getBytes(),
-                        ZooDefs.Ids.OPEN_ACL_UNSAFE,CreateMode.PERSISTENT_SEQUENTIAL);
+                zk.create("/zookeeper/queue/queue-", (Thread.currentThread().getName() + "-" + i).getBytes(),
+                        ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT_SEQUENTIAL);
                 Thread.sleep(10000);
                 i++;
             } catch (KeeperException e) {

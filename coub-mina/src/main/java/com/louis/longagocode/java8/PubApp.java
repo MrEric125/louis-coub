@@ -10,6 +10,7 @@ public class PubApp {
     static {
         System.out.println("pub");
     }
+
     public static void ss() {
         System.out.println("ssss");
     }

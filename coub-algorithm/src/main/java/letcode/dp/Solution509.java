@@ -13,6 +13,7 @@ public class Solution509 {
 
         return fib(n - 2) + fib(n - 1);
     }
+
     public static void main(String[] args) {
         Solution509 solution509 = new Solution509();
         long l = System.currentTimeMillis();

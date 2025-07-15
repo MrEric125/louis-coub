@@ -24,11 +24,11 @@ public class Solution852 {
         int left = 0;
         int right = length - 1;
         while (left < right) {
-            int mid = (left + right ) >>> 1;
+            int mid = (left + right) >>> 1;
 //           如果数据很大，刚好中位数就是需要寻找的，那么可以一次命中
             if (A[mid] > A[mid + 1] && A[mid] > A[mid - 1]) {
                 return mid;
-            }else if (A[mid] < A[mid + 1]) {
+            } else if (A[mid] < A[mid + 1]) {
                 left = mid + 1;
             } else {
                 right = mid;
@@ -36,6 +36,7 @@ public class Solution852 {
         }
         return left;
     }
+
     private int peakIndexInMountainArray2(int[] A) {
         int flag = 0;
         while (A[flag] < A[flag + 1]) {

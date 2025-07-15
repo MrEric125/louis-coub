@@ -1,7 +1,5 @@
 package com.louis.longagocode.pattern.bridge;
 
-import com.pattern.bridge.Abstraction;
-import com.pattern.bridge.Implementor;
 
 /**
  * @author John·Louis
@@ -16,7 +14,7 @@ public class RefinedAbstraction extends Abstraction {
 
     @Override
     public void operation() {
-        System.out.println("扩展抽象化(Refined Abstraction)角色被访问" );
+        System.out.println("扩展抽象化(Refined Abstraction)角色被访问");
         implementor.operationImpl();
     }
 }

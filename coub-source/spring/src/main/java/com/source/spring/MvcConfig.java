@@ -14,10 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableWebMvc
 @ComponentScan(value = "com.source.spring")
-public class MvcConfig  implements WebMvcConfigurer {
-
-
-
+public class MvcConfig implements WebMvcConfigurer {
 
 
 //    @Autowired

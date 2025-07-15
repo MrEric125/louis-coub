@@ -7,7 +7,7 @@ package com.louis.longagocode.pattern.abstractfactory.example2;
  */
 public interface Description {
 
-     default String getDescription(){
-         return this.getClass().getSimpleName();
-     }
+    default String getDescription() {
+        return this.getClass().getSimpleName();
+    }
 }

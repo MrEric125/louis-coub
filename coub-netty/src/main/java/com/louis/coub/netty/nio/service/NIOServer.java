@@ -39,7 +39,7 @@ public class NIOServer {
     private Selector selector;
     private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.US);
 
-    public NIOServer(){
+    public NIOServer() {
         try {
             init();
             listen();
@@ -47,7 +47,8 @@ public class NIOServer {
             e.printStackTrace();
         }
     }
-    private void init() throws IOException{
+
+    private void init() throws IOException {
         /*
          *启动服务器端，配置为非阻塞，绑定端口，注册accept事件
          *ACCEPT事件：当服务端收到客户端连接请求时，触发该事件
@@ -58,13 +59,13 @@ public class NIOServer {
         serverSocket.bind(new InetSocketAddress(port));
         selector = Selector.open();
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
-        System.out.println("server start on port:"+port);
+        System.out.println("server start on port:" + port);
     }
 
     /**
      * 服务器端轮询监听，select方法会一直阻塞直到有相关事件发生或超时
      */
-    private void listen(){
+    private void listen() {
 
         while (true) {
             try {
@@ -92,8 +93,8 @@ public class NIOServer {
 
         ServerSocketChannel server = null;
         SocketChannel client = null;
-        String receiveText=null;
-        int count=0;
+        String receiveText = null;
+        int count = 0;
         if (selectionKey.isAcceptable()) {
             /*
              * 客户端请求连接事件
@@ -117,9 +118,9 @@ public class NIOServer {
             if (count > 0) {
                 rBuffer.flip();
                 receiveText = decode.decode(rBuffer.asReadOnlyBuffer()).toString();
-                System.out.println(client.toString()+":"+receiveText);
+                System.out.println(client.toString() + ":" + receiveText);
                 sBuffer.clear();
-                sBuffer.put((sdf.format(new Date())+"服务器收到你的消息").getBytes());
+                sBuffer.put((sdf.format(new Date()) + "服务器收到你的消息").getBytes());
                 sBuffer.flip();
                 client.write(sBuffer);
                 dispatch(client, receiveText);
@@ -132,16 +133,16 @@ public class NIOServer {
     /**
      * 把当前客户端信息 推送到其他客户端
      */
-    private void dispatch(SocketChannel client,String info) throws IOException{
+    private void dispatch(SocketChannel client, String info) throws IOException {
 
         Socket s = client.socket();
-        String name = "["+s.getInetAddress().toString().substring(1)+":"+Integer.toHexString(client.hashCode())+"]";
-        if(!clientsMap.isEmpty()){
-            for(Map.Entry<String, SocketChannel> entry : clientsMap.entrySet()){
+        String name = "[" + s.getInetAddress().toString().substring(1) + ":" + Integer.toHexString(client.hashCode()) + "]";
+        if (!clientsMap.isEmpty()) {
+            for (Map.Entry<String, SocketChannel> entry : clientsMap.entrySet()) {
                 SocketChannel temp = entry.getValue();
-                if(!client.equals(temp)){
+                if (!client.equals(temp)) {
                     sBuffer.clear();
-                    sBuffer.put((name+":"+info).getBytes());
+                    sBuffer.put((name + ":" + info).getBytes());
                     sBuffer.flip();
                     //输出到通道
                     temp.write(sBuffer);

@@ -1,4 +1,3 @@
-
 package com.louis.minashop.searchable;
 
 import org.apache.commons.lang3.StringUtils;
@@ -36,7 +35,7 @@ import java.util.Map;
  *     3.1、禁用查询时分页及排序
  *          public void test(@Search(page = false, sort = false) Searchable searchable);
  * </pre>
- *
+ * <p>
  * 一般查询在请求参数中指定一个Searchable就可以了
  * </pre>listPageBy?
  * page.size=6&
@@ -114,10 +113,10 @@ public class SearchableMethodArgumentResolver extends BaseMethodArgumentResolver
                         searchable.addSearchParam(name, StringUtils.split(mapValues[0], ",; "));
                     } else if (name.endsWith("or")) {
                         orSearchFilter = SearchFilterHelper.newCondition(name, mapValues[0]);
-                        if(orSearchFilter != null) {
+                        if (orSearchFilter != null) {
                             orSearchFilterList.add(orSearchFilter);
                         }
-                    }else {
+                    } else {
                         searchable.addSearchParam(name, mapValues[0]);
                     }
                 } else {
@@ -125,7 +124,7 @@ public class SearchableMethodArgumentResolver extends BaseMethodArgumentResolver
                 }
             }
             // 把最后一次添加的移除
-            if(orSearchFilterList.size() > 0) {
+            if (orSearchFilterList.size() > 0) {
                 orSearchFilterList.remove(orSearchFilterList.size() - 1);
                 searchable.or(orSearchFilter, orSearchFilterList.toArray(new SearchFilter[]{}));
             }
@@ -164,7 +163,7 @@ public class SearchableMethodArgumentResolver extends BaseMethodArgumentResolver
         Qualifier qualifier = parameter.getParameterAnnotation(Qualifier.class);
 
         if (qualifier != null) {
-            return ( qualifier).value() + "_" + prefix;
+            return (qualifier).value() + "_" + prefix;
         }
 
         return prefix;

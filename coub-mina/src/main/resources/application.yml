@@ -21,23 +21,23 @@ spring:
     password: 'Root'
     url: jdbc:mysql://localhost:3306/louis_trade_coub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
   #    one:
-#      platform: MYSQL
-#      url: jdbc:mysql://localhost:3306/louis-coub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-#      username: root
-#      password: !qaz@wsx
-#      driver-class-name: com.mysql.cj.jdbc.Driver
-#    two:
-#       platform: MYSQL
-#       url: jdbc:mysql://localhost:3306/louis-coub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
-#       username: root
-#       password: !qaz@wsx
-#       driver-class-name: com.mysql.cj.jdbc.Driver
-#  main:
-#    allow-bean-definition-overriding: true
-#    lazy-initialization: true
-#  redis:
-#    port: 32102
-#    host: 10.12.231.27
+  #      platform: MYSQL
+  #      url: jdbc:mysql://localhost:3306/louis-coub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+  #      username: root
+  #      password: !qaz@wsx
+  #      driver-class-name: com.mysql.cj.jdbc.Driver
+  #    two:
+  #       platform: MYSQL
+  #       url: jdbc:mysql://localhost:3306/louis-coub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+  #       username: root
+  #       password: !qaz@wsx
+  #       driver-class-name: com.mysql.cj.jdbc.Driver
+  #  main:
+  #    allow-bean-definition-overriding: true
+  #    lazy-initialization: true
+  #  redis:
+  #    port: 32102
+  #    host: 10.12.231.27
   task:
     scheduling:
       pool:
@@ -59,7 +59,7 @@ server:
     context-path: /mina
 logging:
   level:
-#    org.springframework.orm: debug
+    #    org.springframework.orm: debug
     org: info
   pattern:
     console: "%clr(%d{${LOG_DATEFORMAT_PATTERN}}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(${PID:-}){magenta} %clr{faint} %clr([%t]){faint} %clr([%-40.40logger{39} %L]){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"

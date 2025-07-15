@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class Obj{
+public class Obj {
     private String string1;
     private String string2;
     private String string3;

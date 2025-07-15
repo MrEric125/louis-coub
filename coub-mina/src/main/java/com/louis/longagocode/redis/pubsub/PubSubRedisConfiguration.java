@@ -10,7 +10,7 @@ package com.louis.longagocode.redis.pubsub;//package com.redis.pubsub;
 //import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 //import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 //
-///**
+/// **
 // * @author louis
 // * <p>
 // * Date: 2019/11/25

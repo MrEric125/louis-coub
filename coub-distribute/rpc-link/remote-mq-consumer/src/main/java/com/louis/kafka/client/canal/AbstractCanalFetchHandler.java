@@ -39,7 +39,7 @@ public abstract class AbstractCanalFetchHandler<T extends Serializable> implemen
 
         CanalEntry.EventType type = canalMessage.getType();
 
-        switch (type){
+        switch (type) {
             case DELETE:
                 delete(canalMessage);
             case INSERT:

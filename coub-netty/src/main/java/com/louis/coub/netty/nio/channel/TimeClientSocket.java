@@ -27,7 +27,7 @@ public class TimeClientSocket {
     public TimeClientSocket(String[] arg) throws Exception {
 
         if (arg.length == 0) {
-            throw new Exception ("Usage: [ -p port ] host ...");
+            throw new Exception("Usage: [ -p port ] host ...");
         }
         this.channel = DatagramChannel.open();
     }
@@ -37,18 +37,19 @@ public class TimeClientSocket {
         return (InetSocketAddress) channel.receive(buffer);
     }
 
-    protected  void sendRequests() throws IOException {
+    protected void sendRequests() throws IOException {
         ByteBuffer buffer = ByteBuffer.allocate(1);
         Iterator iterator = remoteHosts.iterator();
         while (iterator.hasNext()) {
             InetSocketAddress sa = (InetSocketAddress) iterator.next();
-            System.out.println ("Requesting time from " + sa.getHostName() + ":" + sa.getPort( ));
+            System.out.println("Requesting time from " + sa.getHostName() + ":" + sa.getPort());
 
             buffer.clear().flip();
 
             channel.send(buffer, sa);
         }
     }
+
     public void getReplies() {
         ByteBuffer buffer = ByteBuffer.allocate(8);
         buffer.order(ByteOrder.BIG_ENDIAN);

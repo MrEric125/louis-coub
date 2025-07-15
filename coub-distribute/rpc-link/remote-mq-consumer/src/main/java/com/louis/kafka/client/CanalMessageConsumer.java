@@ -17,11 +17,11 @@ import java.util.Objects;
  */
 @Slf4j
 @Service
-public class CanalMessageConsumer implements KafkaMessageHandler<String,String> {
+public class CanalMessageConsumer implements KafkaMessageHandler<String, String> {
     @Override
     public void onMessage(MessageExt<String, String> messageExt) throws Exception {
 
-        log.info("CanalMessageHandler:topic:{},offset:{},value:{}", messageExt.getTopic(),messageExt.getOffset(), messageExt.getValue());
+        log.info("CanalMessageHandler:topic:{},offset:{},value:{}", messageExt.getTopic(), messageExt.getOffset(), messageExt.getValue());
 
         if (Objects.isNull(messageExt.getValue())) {
             return;

@@ -57,15 +57,15 @@ public class ChatServer {
                         SelectionKey selectionKey = keyIterator.next();
                         //                相当于Reactor 单线程中的建立连接
                         if (selectionKey.isAcceptable()) {
-                            System.out.println("处理连接的线程:"+Thread.currentThread().getName());
+                            System.out.println("处理连接的线程:" + Thread.currentThread().getName());
                             SocketChannel socketChannel = listener.accept();
                             socketChannel.configureBlocking(false);
                             socketChannel.register(selector, SelectionKey.OP_READ);
-                            System.out.println(socketChannel.getRemoteAddress()+" 上线了");
+                            System.out.println(socketChannel.getRemoteAddress() + " 上线了");
                         }
                         //                相当于Reactor 单线程中处理请求
                         if (selectionKey.isReadable()) {
-                            System.out.println("处理读请求:"+Thread.currentThread().getName());
+                            System.out.println("处理读请求:" + Thread.currentThread().getName());
                             readContent(selectionKey);
                         }
 //                        将事件从迭代器中移除
@@ -90,7 +90,7 @@ public class ChatServer {
 
             int read = socketChannel.read(byteBuffer);
             String msg = new String(byteBuffer.array());
-            if (read>0) {
+            if (read > 0) {
                 System.out.println("from 客户端：" + msg);
 
 //                转发消息

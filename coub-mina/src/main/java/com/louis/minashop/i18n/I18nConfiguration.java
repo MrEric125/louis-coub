@@ -32,7 +32,7 @@ import java.util.Locale;
 @Configuration
 @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
 @EnableConfigurationProperties()
-@ConditionalOnProperty(name = "i18n",prefix = "louis",havingValue = "true")
+@ConditionalOnProperty(name = "i18n", prefix = "louis", havingValue = "true")
 public class I18nConfiguration {
 
     static {
@@ -73,11 +73,11 @@ public class I18nConfiguration {
             locale = LocaleContextHolder.getLocale();
         }
         cookieLocaleResolver.setDefaultLocale(locale);
-        Integer cookieMaxAge =properties.getCookieMaxAge();
-        if ( cookieMaxAge!= null) {
+        Integer cookieMaxAge = properties.getCookieMaxAge();
+        if (cookieMaxAge != null) {
             cookieLocaleResolver.setCookieMaxAge(cookieMaxAge);
         }
-        String cookieName =properties.getCookieName();
+        String cookieName = properties.getCookieName();
 //        Locale.
         // 如果没有设置那就使用默认的值 org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE
         if (StringUtils.hasText(cookieName)) {

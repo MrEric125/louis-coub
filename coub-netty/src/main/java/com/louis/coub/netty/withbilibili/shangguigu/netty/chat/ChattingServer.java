@@ -29,7 +29,7 @@ public class ChattingServer {
 
     }
 
-    public void run()  {
+    public void run() {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
 
         EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -54,7 +54,7 @@ public class ChattingServer {
             channelFuture.channel().closeFuture().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }

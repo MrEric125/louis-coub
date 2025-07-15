@@ -45,7 +45,7 @@ public class NettyServer {
             ChannelFuture channelFuture = bootstrap.bind(8899).sync();
 //            对关闭通道进行监听
             channelFuture.channel().closeFuture().sync();
-        }finally {
+        } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }

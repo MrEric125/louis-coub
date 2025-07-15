@@ -43,7 +43,7 @@ class Calculate extends RecursiveTask<Long> {
     protected Long compute() {
         long length = end - start;
         //小于临界值，则不进行拆分，直接计算初始值到结束值之间所有数之和
-        if(length <= THURSHOLD){
+        if (length <= THURSHOLD) {
             long sum = 0L;
 
             for (long i = start; i <= end; i++) {
@@ -51,13 +51,13 @@ class Calculate extends RecursiveTask<Long> {
             }
 
             return sum;
-        }else{  //大于临界值，取中间值进行拆分，递归调用
+        } else {  //大于临界值，取中间值进行拆分，递归调用
             long middle = (start + end) / 2;
 
             Calculate left = new Calculate(start, middle);
             left.fork(); //进行拆分，同时压入线程队列
 
-            Calculate right = new Calculate(middle+1, end);
+            Calculate right = new Calculate(middle + 1, end);
             right.fork(); //
 
             return left.join() + right.join();
@@ -65,7 +65,7 @@ class Calculate extends RecursiveTask<Long> {
     }
 }
 
-class PrintTask extends RecursiveAction{
+class PrintTask extends RecursiveAction {
 
     private static final int THRESHOLD = 50;
 
@@ -81,12 +81,12 @@ class PrintTask extends RecursiveAction{
 
     @Override
     protected void compute() {
-        if(end - start < THRESHOLD){
-            for(int i=start;i<end;i++){
-                System.out.println(Thread.currentThread().getName()+"的i值："+i);
+        if (end - start < THRESHOLD) {
+            for (int i = start; i < end; i++) {
+                System.out.println(Thread.currentThread().getName() + "的i值：" + i);
             }
-        }else {
-            int middle =(start+end)/2;
+        } else {
+            int middle = (start + end) / 2;
             PrintTask left = new PrintTask(start, middle);
             PrintTask right = new PrintTask(middle, end);
             //并行执行两个“小任务”

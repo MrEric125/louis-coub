@@ -9,6 +9,7 @@ public class Solution2572 {
      * word.length == n
      * word 由数字 0 到 9 组成
      * 1 <= m <= 10^9
+     *
      * @param word
      * @param m
      * @return
@@ -23,9 +24,9 @@ public class Solution2572 {
             remain = (remain * 10 + c) % m;
 //            String subString = word.substring(pre, i);
             // 小数子可以这么操作，数字大了就操作不了了
-            if (remain==0) {
+            if (remain == 0) {
                 div[i] = 1;
-            }else {
+            } else {
                 div[i] = 0;
             }
         }

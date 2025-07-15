@@ -27,9 +27,9 @@ public class ConditionNotify implements Runnable {
             condition.signal();
             System.out.println("end - notify");
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
-        }finally {
+        } finally {
             lock.unlock();
         }
 

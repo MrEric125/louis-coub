@@ -18,24 +18,25 @@ public class SemaphoreTest {
     private static int totalcount = 5000;
     //    private static AtomicInteger sum = new AtomicInteger();
     private static int sum = 0;
+
     public static void main(String[] args) {
-     Semaphore semaphore = new Semaphore(totalcount,true);
+        Semaphore semaphore = new Semaphore(totalcount, true);
         ReentrantLock reentrantLock = new ReentrantLock();
         ExecutorService executorService = Executors.newCachedThreadPool();
-         Runnable runnable = () -> {
+        Runnable runnable = () -> {
 
-             try {
+            try {
 //                 semaphore.acquire(2);
-                 reentrantLock.lock();
-                 log.info("thread-name:{}", Thread.currentThread().getName());
-                 sum();
+                reentrantLock.lock();
+                log.info("thread-name:{}", Thread.currentThread().getName());
+                sum();
 //                 semaphore.release();
-             } catch (Exception e) {
-                 e.printStackTrace();
-             }finally {
-                 reentrantLock.unlock();
-             }
-         };
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                reentrantLock.unlock();
+            }
+        };
         for (int i = 0; i < totalcount; i++) {
             executorService.execute(runnable);
         }

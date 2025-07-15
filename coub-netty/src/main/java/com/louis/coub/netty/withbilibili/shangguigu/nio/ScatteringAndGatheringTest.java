@@ -31,7 +31,7 @@ public class ScatteringAndGatheringTest {
         while (true) {
             long byteRead = 0;
             while (byteRead < messageLength) {
-                byteRead= socketChannel.read(byteBuffers);
+                byteRead = socketChannel.read(byteBuffers);
                 byteRead += byteRead;
                 Arrays.stream(byteBuffers)
                         .map(byteBuffer -> "position=" + byteBuffer.position() + ",limit=" + byteBuffer.limit())
@@ -41,7 +41,7 @@ public class ScatteringAndGatheringTest {
             Arrays.stream(byteBuffers).forEach(Buffer::flip);
 
             long byteWrite = 0;
-            while (byteWrite<messageLength){
+            while (byteWrite < messageLength) {
                 byteWrite += socketChannel.read(byteBuffers);
             }
 

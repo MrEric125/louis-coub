@@ -32,7 +32,7 @@
 //        generator.templateConfig(mpg);
 //        generator.injectionConfig(mpg);
 //
-////        mpg.setTemplateEngine(new FreemarkerTemplateEngine());
+/// /        mpg.setTemplateEngine(new FreemarkerTemplateEngine());
 //        mpg.execute();
 //    }
 //

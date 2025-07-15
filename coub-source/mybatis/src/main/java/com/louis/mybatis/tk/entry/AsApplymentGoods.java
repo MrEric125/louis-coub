@@ -199,7 +199,6 @@ public class AsApplymentGoods extends Model<AsApplymentGoods> {
     private LocalDateTime createTime;
 
 
-
     /**
      * 实际退款数量
      */

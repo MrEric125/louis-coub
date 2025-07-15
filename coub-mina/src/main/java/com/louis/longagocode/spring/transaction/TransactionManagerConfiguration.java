@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
  * @date 2019-10-10 19:53:46
  */
 //@Configuration
@@ -67,7 +66,6 @@ public class TransactionManagerConfiguration {
 
     /**
      * @description 利用AspectJExpressionPointcut设置切面=切点+通知（写成内部bean的方式）
-     *  
      */
 //    @Bean
     public Advisor txAdviceAdvisor() {

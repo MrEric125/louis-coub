@@ -21,6 +21,7 @@ public class People {
         System.out.println("吃饭");
         myListener.doEat(new Event(this));
     }
+
     public void sleep() {
         System.out.println("睡觉");
         myListener.doSleep(new Event(this));

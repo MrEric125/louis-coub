@@ -19,7 +19,7 @@ public class Solution345 {
         e.add('I');
         e.add('O');
         e.add('U');
-        int i = 0, j = len-1;
+        int i = 0, j = len - 1;
         while (i < j) {
             char at = charArray[i];
             if (!e.contains(at)) {

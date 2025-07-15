@@ -36,9 +36,11 @@ public class ZkClient {
 //        sessionId = zkClient.getSessionId();
 //        sessionPasswd = zkClient.getSessionPasswd();
     }
+
     public ZooKeeper getZkClient() {
         return zkClient;
     }
+
     public CustomerWatch getCustomerWatch() {
         return customerWatch;
     }

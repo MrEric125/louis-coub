@@ -37,7 +37,6 @@ public class MinaController {
         MutablePropertySources propertySources = configurableEnvironment.getPropertySources();
 
 
-
         Map<String, String> maps = Maps.newHashMap();
         maps.put("source", JSON.toJSONString(propertySources, true));
         log.info("to" + maps);
@@ -46,6 +45,7 @@ public class MinaController {
         return HttpResult.ok(maps);
 
     }
+
     @RequestMapping("numJson")
     public HttpResult numJson() {
         Long number = 10000001462545303L;
@@ -54,7 +54,6 @@ public class MinaController {
         return HttpResult.ok(JSON.toJSONString(userInfo));
 
     }
-
 
 
 }

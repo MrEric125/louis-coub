@@ -25,11 +25,10 @@ public class MinaLoginController {
     private LoginRepository repository;
 
 
-
     @PostMapping("/login")
     public HttpResult login(@RequestParam(required = false) Login loginUser, @RequestParam Long sprite) {
 
-        double x=loginUser.getId() / sprite;
+        double x = loginUser.getId() / sprite;
         log.info("{},{},{}", loginUser.getId(), loginUser.getCode(), sprite);
 
         return HttpResult.ok(x);
@@ -39,7 +38,7 @@ public class MinaLoginController {
     public HttpResult add(Long iterator) {
         List<Login> loginList = Lists.newArrayList();
         for (int i = 0; i < iterator; i++) {
-            Login login =Login.builder()
+            Login login = Login.builder()
                     .code(this.uuidBuilder())
                     .encryptedData(this.uuidBuilder())
                     .userInfo(this.uuidBuilder())
@@ -57,6 +56,7 @@ public class MinaLoginController {
         }
         return HttpResult.ok();
     }
+
     @RequestMapping(path = "search", method = RequestMethod.GET)
     public HttpResult search(Login login) {
 

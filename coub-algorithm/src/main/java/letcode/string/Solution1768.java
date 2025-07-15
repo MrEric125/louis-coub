@@ -31,6 +31,7 @@ class Solution1768 {
 
     /**
      * 双向指针优化
+     *
      * @param word1
      * @param word2
      * @return
@@ -47,9 +48,9 @@ class Solution1768 {
         }
         int minLen = Math.min(len1, len2);
         String head = "";
-        String middle="";
+        String middle = "";
 
-        int j = minLen-1;
+        int j = minLen - 1;
 
         for (int i = 0; i < minLen; i++) {
 
@@ -66,6 +67,6 @@ class Solution1768 {
 
     public static void main(String[] args) {
 //        apbqcrds
-        System.out.println(new Solution1768().mergeAlternately2("abcd","pqrs"));
+        System.out.println(new Solution1768().mergeAlternately2("abcd", "pqrs"));
     }
 }

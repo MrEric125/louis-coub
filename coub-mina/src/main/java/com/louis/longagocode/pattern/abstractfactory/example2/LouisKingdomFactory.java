@@ -5,7 +5,7 @@ package com.louis.longagocode.pattern.abstractfactory.example2;
  * @date created on 2020/7/19
  * description:
  */
-public class LouisKingdomFactory  implements KingdomFactory{
+public class LouisKingdomFactory implements KingdomFactory {
     @Override
     public Castle createCastle() {
         return new LouisCastle();

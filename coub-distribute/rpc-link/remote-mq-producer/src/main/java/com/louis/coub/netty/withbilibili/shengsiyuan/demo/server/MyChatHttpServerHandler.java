@@ -9,21 +9,21 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 
 /**
  * @author John·Louis
- *  create in 2019/10/4
+ * create in 2019/10/4
  * description:
  * 自己定义的处理器
  */
 public class MyChatHttpServerHandler extends SimpleChannelInboundHandler<String> {
 
-//    保存建立连接的channel
+    //    保存建立连接的channel
     private static ChannelGroup channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, String msg){
+    protected void channelRead0(ChannelHandlerContext ctx, String msg) {
 
         Channel channel = ctx.channel();
-        channelGroup.forEach(ch->{
+        channelGroup.forEach(ch -> {
             if (channel != ch) {
                 ch.writeAndFlush(channel.remoteAddress() + " 发送的消息: " + msg + "\n");
             } else {
@@ -49,28 +49,28 @@ public class MyChatHttpServerHandler extends SimpleChannelInboundHandler<String>
      * 服务端和客户端建立连接
      */
     @Override
-    public void handlerAdded(ChannelHandlerContext ctx)  {
+    public void handlerAdded(ChannelHandlerContext ctx) {
         Channel channel = ctx.channel();
-        channelGroup.flushAndWrite("[服务器]- "+ channel.remoteAddress() + " 加入\n");
+        channelGroup.flushAndWrite("[服务器]- " + channel.remoteAddress() + " 加入\n");
         channelGroup.add(channel);
     }
 
     @Override
-    public void handlerRemoved(ChannelHandlerContext ctx)  {
+    public void handlerRemoved(ChannelHandlerContext ctx) {
         Channel channel = ctx.channel();
-        channelGroup.flushAndWrite("[服务器]- "+ channel.remoteAddress() + " 离开\n");
+        channelGroup.flushAndWrite("[服务器]- " + channel.remoteAddress() + " 离开\n");
         System.out.println(channelGroup.size());
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
         Channel channel = ctx.channel();
-        System.out.println(channel.remoteAddress()+" 上线");
+        System.out.println(channel.remoteAddress() + " 上线");
     }
 
     @Override
-    public void channelInactive(ChannelHandlerContext ctx)  {
+    public void channelInactive(ChannelHandlerContext ctx) {
         Channel channel = ctx.channel();
-        System.out.println(channel.remoteAddress()+" 下线");
+        System.out.println(channel.remoteAddress() + " 下线");
     }
 }

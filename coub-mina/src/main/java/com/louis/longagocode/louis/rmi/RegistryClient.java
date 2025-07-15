@@ -1,6 +1,6 @@
 package com.louis.longagocode.louis.rmi;
 
-import com.louis.rmi.server.HelloRegistryFacade;
+import com.louis.longagocode.louis.rmi.server.HelloRegistryFacade;
 import lombok.extern.slf4j.Slf4j;
 
 import java.rmi.NotBoundException;

@@ -1,7 +1,6 @@
 package com.louis.minashop.searchable;
 
 
-
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
@@ -124,6 +123,7 @@ public abstract class Searchable {
 
     /**
      * 移除指定属性 和 操作符的过滤条件
+     *
      * @param searchProperty
      * @param operator
      * @return

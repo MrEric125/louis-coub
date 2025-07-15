@@ -15,6 +15,7 @@ public class Solution4 {
             return median;
         }
     }
+
     public int getKthElement(int[] nums1, int[] nums2, int k) {
         /* 主要思路：要找到第 k (k>1) 小的元素，那么就取 pivot1 = nums1[k/2-1] 和 pivot2 = nums2[k/2-1] 进行比较
          * 这里的 "/" 表示整除

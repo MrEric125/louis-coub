@@ -10,11 +10,11 @@ import java.io.Serializable;
  */
 public interface CanalFetchHandler<T extends Serializable> {
 
-     void handle(String msg);
+    void handle(String msg);
 
-     void insert(CanalMessage<T> t);
+    void insert(CanalMessage<T> t);
 
-     void update(CanalMessage<T> t);
+    void update(CanalMessage<T> t);
 
-     void delete(CanalMessage<T> t);
+    void delete(CanalMessage<T> t);
 }

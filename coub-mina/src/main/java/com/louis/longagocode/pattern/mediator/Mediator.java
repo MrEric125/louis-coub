@@ -1,6 +1,5 @@
 package com.louis.longagocode.pattern.mediator;
 
-import com.pattern.mediator.Colleague;
 
 /**
  * @author John·Louis

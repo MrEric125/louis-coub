@@ -1,4 +1,4 @@
-baseMapper  封装思路
+baseMapper 封装思路
 baseMapper 提供的基本功能， add、delete、update、selectById、selectByOne
 baseMapper中可以通过注解`@SelectProvider` 来指定一个默认的实现类 BaseProvider
 **关键**

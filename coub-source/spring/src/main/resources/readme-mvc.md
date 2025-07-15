@@ -9,10 +9,10 @@ mvc 启动过程
 
 ![img_6.png](img_6.png)
 
-
     2. 加载配置的Servlet    DispatcherServlet
         找刚才创建的上下文，如果找到了，会将刚才的那个上下文作为当前上下文的父上下文，(合并 envirment,目前看到的是这些)
         如果没有找到，那么就创建一个对应的上下文，然后往上下文中塞数据，但是需要塞进去的数据时从哪儿来的，找到这个confiLocation,如下图，默认是 SpringMvc-servlet.xml ，
+
 ![img.png](img.png)
 
         当然咯，这个配置的路径我们是可以在web.xml中修改的
@@ -35,32 +35,34 @@ mvc 启动过程
         在加载的过程中还有一些特殊的逻辑，比方说是客户加的处理器，适配器等，如果客户没有加呢？还会有兜底的处理器，和适配器
 
 ### 基于java代码
-​    servlet 3.0之后，可以以编程方式注册Servlet,如下图注解说明
+
+​ servlet 3.0之后，可以以编程方式注册Servlet,如下图注解说明
 ![img_2.png](img_2.png)
 
     如果我们需要以编程方式而不是通过web.xml方式启动一个基于servlet的项目，那么可以实现这个接口，我们可以根据我们自己的需求，自由的创建或者使用DispartcherServlet 
+
 ![img_3.png](img_3.png)
 
     其中图中的McvConfig类就相当于configLocation中需要加载的spring 配置，我们可以将自己的处理器，视图解析器等放在这里加载
     接下来初始化web容器的上下文逻辑基本上是一致，但是这个时候我们其实已经创建了一个ApplicationContext, 所以执行的逻辑稍稍有一点区别，如下图
+
 ![img_5.png](img_5.png)
-    
+
     不同点在图中已经标记出来，其他逻辑基本保持一致。
+
 ### spring-boot 内置tomcat启动过程
-​    基于spring-boot启动的 mvc项目的顺序会和原生的mvc项目有些不一样，但是整体的逻辑还是一样的。
+
+​ 基于spring-boot启动的 mvc项目的顺序会和原生的mvc项目有些不一样，但是整体的逻辑还是一样的。
 
     1. 初始化上下文
     2. 启动内置tomcat 服务器
     3. 创建DispartcherServlet
     4. 访问的时候调用GenericServlet#init()
-    
 
 #### 如何启动tomcat
 
 #### 如何将tomcat 需要的servlet加载到tomcat中
 
 ### DispatcherServlet 的初始化
-
-
 
 ### 访问页面

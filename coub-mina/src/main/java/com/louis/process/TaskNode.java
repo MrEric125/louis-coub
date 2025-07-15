@@ -26,11 +26,9 @@ public class TaskNode<ID extends Serializable> {
 
     public static void main(String[] args) {
         TaskNode taskNode = new TaskNode();
-            List<String> collect = Arrays.stream(taskNode.getClass().getDeclaredFields()).map(Field::getName).collect(Collectors.toList());
-            System.out.println(collect);
+        List<String> collect = Arrays.stream(taskNode.getClass().getDeclaredFields()).map(Field::getName).collect(Collectors.toList());
+        System.out.println(collect);
     }
-
-
 
 
 }

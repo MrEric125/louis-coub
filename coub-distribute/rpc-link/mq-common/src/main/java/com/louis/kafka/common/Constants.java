@@ -35,6 +35,7 @@ public class Constants {
         BUILT_IN_MSG_HEADERS.add(MSG_PROP_VID_KEY);
 //        BUILT_IN_MSG_HEADERS.add(MSG_PROP_RMQ_OMID_KEY);
     }
+
     /**
      * http header key name
      */
@@ -160,8 +161,6 @@ public class Constants {
         public static final String DEF_MG_AUTO_COMMIT_ENABLE_VAL = "true";
 
         public static final String CONSUME_STUCK_THRESHOLD_MS_NAME = "consume.stuck.threshold.ms";
-
-
 
 
         /**********************************************

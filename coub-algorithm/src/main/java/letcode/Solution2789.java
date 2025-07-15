@@ -13,7 +13,7 @@ public class Solution2789 {
 
         int max = 0;
 
-        for (int i = 0; i < len-1; i++) {
+        for (int i = 0; i < len - 1; i++) {
 
             if (nums[i] <= nums[i + 1]) {
                 max = nums[i + 1] = nums[i + 1] + nums[i];
@@ -27,7 +27,7 @@ public class Solution2789 {
             if (nums[i] <= nums[i + 1]) {
                 max = nums[i + 1] = nums[i + 1] + nums[i];
                 i++;
-            }else {
+            } else {
 
 
             }

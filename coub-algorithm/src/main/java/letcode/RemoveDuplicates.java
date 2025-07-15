@@ -14,6 +14,7 @@ public class RemoveDuplicates {
         Arrays.stream(ints).forEach(System.out::println);
 
     }
+
     private static int[] removeDuplicates(int[] nums) {
         int j = 1;
         for (int i = 1; i < nums.length; i++) {

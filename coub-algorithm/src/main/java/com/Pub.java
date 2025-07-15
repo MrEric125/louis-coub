@@ -13,6 +13,7 @@ public class Pub {
     public Pub() {
         System.out.println("construct pub");
     }
+
     public static void tt() {
         System.out.println("static method pub");
 

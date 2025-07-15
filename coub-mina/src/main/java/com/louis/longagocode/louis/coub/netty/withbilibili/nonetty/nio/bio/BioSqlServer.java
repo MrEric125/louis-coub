@@ -12,6 +12,7 @@ import java.net.Socket;
  */
 public class BioSqlServer {
     static byte[] bs = new byte[1024];
+
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket();
         while (true) {

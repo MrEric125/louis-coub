@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class Solution1137 {
 
-    public int tribonacciCache(int n, Map<Integer,Integer> cache) {
-        if (n <=1) {
+    public int tribonacciCache(int n, Map<Integer, Integer> cache) {
+        if (n <= 1) {
             cache.put(n, n);
             return n;
         }
@@ -22,6 +22,7 @@ public class Solution1137 {
 
     /**
      * 这种解法，结果其实是满足的，但是时间复杂度超过题目要求
+     *
      * @param n
      * @return
      */
@@ -42,7 +43,7 @@ public class Solution1137 {
     }
 
     public int tribonacci2(int n) {
-        int[] result =  new int[n+3];
+        int[] result = new int[n + 3];
         result[0] = 0;
         result[1] = 1;
         result[2] = 1;

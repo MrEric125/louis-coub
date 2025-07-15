@@ -20,8 +20,6 @@ import java.nio.CharBuffer;
  * slice()
  * position()
  * 等等方法吧
- *
- *
  */
 @Setter
 @Getter
@@ -65,7 +63,8 @@ public class DemoBuffer implements Cloneable {
             "Help Me! Help Me!",
     };
 
-
-
-
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

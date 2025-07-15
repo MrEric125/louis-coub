@@ -16,16 +16,16 @@ public class InsertionX<T extends Comparable<T>> implements ISorting<T> {
     public void sort(T[] a) {
         int n = a.length;
         int exchanges = 0;
-        for (int i = n-1;i>0; i--) {
+        for (int i = n - 1; i > 0; i--) {
             if (SortUtils.less(a[i], a[i - 1])) {
                 SortUtils.exch(a, i, i - 1);
                 exchanges++;
             }
         }
-        if (exchanges==0) {
+        if (exchanges == 0) {
             return;
         }
-        for (int i = 2; i <n ; i++) {
+        for (int i = 2; i < n; i++) {
             T v = a[i];
             int j = i;
             while (SortUtils.less(v, a[j - 1])) {

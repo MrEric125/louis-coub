@@ -14,7 +14,6 @@ import java.util.concurrent.Executors;
  * @date create in 2019/12/19
  * description:
  * 如果没有客户端可以通过telnet来连接
- *
  */
 @Slf4j
 public class BIOServer {
@@ -30,7 +29,7 @@ public class BIOServer {
             Socket accept = serverSocket.accept();
             log.info("链接到一个客户端了");
 
-            executorService.execute(()-> handler(accept));
+            executorService.execute(() -> handler(accept));
         }
     }
 
@@ -51,7 +50,7 @@ public class BIOServer {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 socket.close();
             } catch (IOException e) {

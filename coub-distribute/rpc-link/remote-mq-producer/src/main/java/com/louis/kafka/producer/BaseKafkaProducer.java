@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 /**
  * kafka 生产者基类，主要实现初始化一些基本操作，
+ *
  * @param <Key>
  * @param <Value>
  */
@@ -59,7 +60,7 @@ public class BaseKafkaProducer<Key extends Serializable, Value extends Serializa
 
     }
 
-    private KafkaProducer<Key,Value> createProducer(ClusterInfo clusterInfo) throws Exception {
+    private KafkaProducer<Key, Value> createProducer(ClusterInfo clusterInfo) throws Exception {
         if (clusterInfo == null) {
             throw new KafkaInitException("kafka 初始化没有配置信息");
         }
@@ -70,13 +71,14 @@ public class BaseKafkaProducer<Key extends Serializable, Value extends Serializa
     private void initContext() {
     }
 
-    private void initClusterInfo(){
+    private void initClusterInfo() {
         ClusterInfo clusterInfo = new ClusterInfo();
         AuthInfo authInfo = getAuthInfo();
         clusterInfo.setBrokers(authInfo.getServerAddr());
         super.setClusterInfo(clusterInfo);
 
     }
+
     private void setUpProperties() {
         if (properties == null) {
             properties = new Properties();
@@ -99,7 +101,8 @@ public class BaseKafkaProducer<Key extends Serializable, Value extends Serializa
         log.info(JSON.toJSONString(properties, true));
 
     }
-    private void fillEmptyPropWithDefVal (Properties props, String pname, String defVal) {
+
+    private void fillEmptyPropWithDefVal(Properties props, String pname, String defVal) {
         Object originVal = props.get(pname);
         String realVal = originVal == null ? defVal : ((String) originVal).trim();
         props.put(pname, realVal);
@@ -107,7 +110,7 @@ public class BaseKafkaProducer<Key extends Serializable, Value extends Serializa
 
     private String genProducerClientId() {
         StringBuilder builder = new StringBuilder(Constants.DEF_CLIENT_ID_VAL).append("@");
-        for (String topic:getTopics()) {
+        for (String topic : getTopics()) {
             builder.append(topic).append("@");
         }
         return builder.deleteCharAt(builder.length() - 1).toString();
@@ -118,6 +121,7 @@ public class BaseKafkaProducer<Key extends Serializable, Value extends Serializa
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
     }
+
     protected void printStartInfo() {
 
 //        log.info("mg client info: [{}]; [{}, {}, {}, {}]; [{}, {}, {}]; {}; {} init...","");
@@ -143,17 +147,18 @@ public class BaseKafkaProducer<Key extends Serializable, Value extends Serializa
 
     }
 
-    private ProducerRecord<Key,Value> parseMessage(Message<Key,Value> message) {
+    private ProducerRecord<Key, Value> parseMessage(Message<Key, Value> message) {
 
         ProducerRecord<Key, Value> record = null;
         Integer partition = partition();
         if (partition != null) {
-            record = new ProducerRecord<>(message.getTopic(),partition, message.getKey(), message.getValue());
+            record = new ProducerRecord<>(message.getTopic(), partition, message.getKey(), message.getValue());
         } else {
             record = new ProducerRecord<>(message.getTopic(), message.getKey(), message.getValue());
         }
         return record;
     }
+
     private Integer partition() {
         return null;
     }

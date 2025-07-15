@@ -23,6 +23,7 @@ public class AutoSysConfigAspect {
     public void pointCut() {
 
     }
+
     @Around(" pointCut()")
     public Object afterReturning(ProceedingJoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getName();
@@ -31,7 +32,7 @@ public class AutoSysConfigAspect {
 
         Object proceedReturn = null;
         try {
-            proceedReturn= joinPoint.proceed();
+            proceedReturn = joinPoint.proceed();
 
         } catch (Throwable throwable) {
             log.error("切面数据", throwable);
@@ -49,11 +50,12 @@ public class AutoSysConfigAspect {
 
     /**
      * 获取当前对象以及其父类中 某个get方法或者set方法的属性
+     *
      * @param targetObj
      * @param methodName
      * @return
      */
-    private Field getFieldFromGetMethodName(Object targetObj,String methodName)  {
+    private Field getFieldFromGetMethodName(Object targetObj, String methodName) {
 
         String generalField = getGeneralField(methodName);
         if (generalField == null) {
@@ -97,7 +99,7 @@ public class AutoSysConfigAspect {
         final String getOrSetMethodNameStr = getOrSetMethodName.toString();
         if (getOrSetMethodNameStr.startsWith("get") || getOrSetMethodNameStr.startsWith("set")) {
             return removePreAndLowerFirst(getOrSetMethodName, 3);
-        } else if(getOrSetMethodNameStr.startsWith("is")) {
+        } else if (getOrSetMethodNameStr.startsWith("is")) {
             return removePreAndLowerFirst(getOrSetMethodName, 2);
         }
         return null;
@@ -106,6 +108,7 @@ public class AutoSysConfigAspect {
 
     /**
      * 获取这个对象上，这个属性值，
+     *
      * @param obj
      * @param targetField
      * @return
@@ -128,7 +131,7 @@ public class AutoSysConfigAspect {
             if (fieldValue != null) {
                 defaultTargetFieldValue = fieldValue.toString();
             }
-            if (annotation!=null ) {
+            if (annotation != null) {
                 Value valueAnnotation = targetField.getAnnotation(Value.class);
 
                 String value = valueAnnotation.value();

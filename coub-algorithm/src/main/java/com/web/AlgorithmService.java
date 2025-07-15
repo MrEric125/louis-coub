@@ -28,6 +28,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class AlgorithmService {
 
     private Map<String, ISorting<Integer>> sortingMap = new ConcurrentHashMap<>();
+
     @PostConstruct()
     public void init() {
         sortingMap.put("BinaryInsertion", new BinaryInsertion<>());
@@ -54,6 +55,7 @@ public class AlgorithmService {
 
     /**
      * 去掉一个最低的，去掉一个最高的，然后求平均值
+     *
      * @param costList
      * @return
      */
@@ -66,7 +68,7 @@ public class AlgorithmService {
 
     }
 
-    public  long maxCost(List<Long> costList) {
+    public long maxCost(List<Long> costList) {
         return costList.stream().mapToLong(x -> x).max().orElse(0);
     }
 

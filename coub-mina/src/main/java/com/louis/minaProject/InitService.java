@@ -20,6 +20,7 @@ public class InitService implements InitializingBean {
     public void init() {
         log.info("init");
     }
+
     @Override
     public void afterPropertiesSet() throws Exception {
         log.info("afterPropertiesSet");

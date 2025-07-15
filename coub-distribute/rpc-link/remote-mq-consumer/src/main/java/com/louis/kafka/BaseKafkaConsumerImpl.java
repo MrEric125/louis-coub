@@ -116,7 +116,7 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
 
                             int totalSize = 0;
                             for (ConsumerRecord<byte[], byte[]> record : records) {
-                                totalSize = totalSize+record.serializedValueSize();
+                                totalSize = totalSize + record.serializedValueSize();
                             }
                             log.info("当前拉取消息数量为：{},总大小为：{}", records.count(), totalSize);
 

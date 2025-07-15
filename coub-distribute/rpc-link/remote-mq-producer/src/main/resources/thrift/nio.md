@@ -1,7 +1,6 @@
- java.io
- java.nio
- 
- 
+java.io
+java.nio
+
 java.io的核心概念是（Stream）.面向流的编程（要么是输入流，要么是输出流）
 java.nio 的核心概念有三个，（Selector,Channel,Buffer）,在java.nio中是面向块（Block）和缓冲区（Buffer）编程的
 buffer,其实就是一块内存，底层上的实现其实就是一个数组，数据的读与写，都是通过Buffer来实现的，Buffer既可以读也可以写
@@ -20,11 +19,11 @@ Channel是值得可以通过向其中写入数据或是从其中读取数据的�
 
 通过NIO读取文件涉及到三个不住
 
-
 1. 从FileInputStream 获取到FileChannel 对象
 2. 创建Buffer
 3. 将数据从Channel读取到Buffer中
 
 绝对方法与相对方法的含义：
- 1. 相对方法:  limit值与position值会在操作时会被考虑到
- 2. 绝对方法，完全忽略到limit和Position的值
+
+1. 相对方法:  limit值与position值会在操作时会被考虑到
+2. 绝对方法，完全忽略到limit和Position的值

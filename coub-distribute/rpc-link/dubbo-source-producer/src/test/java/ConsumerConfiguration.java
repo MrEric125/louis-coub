@@ -16,10 +16,12 @@ public class ConsumerConfiguration {
         config.setName("echo-annotation-consumer");
         return config;
     }
+
     @Bean
     public ConsumerConfig consumerConfig() {
         return new ConsumerConfig();
     }
+
     @Bean
     public RegistryConfig registryConfig() {
         RegistryConfig registryConfig = new RegistryConfig();
@@ -35,7 +37,7 @@ public class ConsumerConfiguration {
         return new ProviderConfig();
     }
 
-//    @Bean
+    //    @Bean
 //    public ApplicationConfig applicationConfig() {
 //        ApplicationConfig applicationConfig=new ApplicationConfig();
 //        applicationConfig.setName("echo-annotation-provider");

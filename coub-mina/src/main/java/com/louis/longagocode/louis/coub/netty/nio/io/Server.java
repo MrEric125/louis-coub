@@ -24,7 +24,7 @@ public class Server {
             System.out.println("wait conn");
             Socket socket = serverSocket.accept();
 
-            while (true){
+            while (true) {
 
                 //阻塞,当时可能会放弃cpu资源
 
@@ -45,23 +45,6 @@ public class Server {
         }
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

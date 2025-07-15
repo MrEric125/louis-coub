@@ -14,5 +14,4 @@ import com.louis.mybatis.tk.entry.AsApplymentGoods;
 public interface IAsApplymentGoodsService extends IService<AsApplymentGoods> {
 
 
-
 }

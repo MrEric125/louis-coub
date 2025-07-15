@@ -24,7 +24,7 @@ public class NetSocketIO {
 
         ServerSocket serverSocket = new ServerSocket(portNumber);
 
-        Socket client =serverSocket.accept();
+        Socket client = serverSocket.accept();
 
         BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 

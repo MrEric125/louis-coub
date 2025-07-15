@@ -8,14 +8,14 @@ import java.util.concurrent.atomic.AtomicReference;
  * <p>
  * Date: 2019/9/6
  * Description:
- *
+ * <p>
  * 跨域，jsonp,搭建一个服务，使用请求头，允许跨域
  */
 @ThreadSafe
 public class LinkedQueue<E> {
 
 
-    private static class Node<E>{
+    private static class Node<E> {
         private final E item;
         final AtomicReference<Node<E>> next;
 
@@ -23,6 +23,7 @@ public class LinkedQueue<E> {
             this.item = item;
             this.next = new AtomicReference<>(next);
         }
+
         public E get() {
             return item;
         }
@@ -40,7 +41,7 @@ public class LinkedQueue<E> {
         while (true) {
             Node<E> curTail = tail.get();
             Node<E> tailNext = curTail.next.get();
-            if (curTail==tail.get()) {
+            if (curTail == tail.get()) {
 //                检测是否处于中间状态
                 if (tailNext != null) {
 //                    队列处于中间状态，推进尾节点

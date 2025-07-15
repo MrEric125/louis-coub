@@ -19,7 +19,7 @@ public class Demo {
         // Turn on:
 // - auto null reference initialization
 // - auto collection growing
-        SpelParserConfiguration config = new SpelParserConfiguration(true,true);
+        SpelParserConfiguration config = new SpelParserConfiguration(true, true);
 
         ExpressionParser parser = new SpelExpressionParser(config);
 

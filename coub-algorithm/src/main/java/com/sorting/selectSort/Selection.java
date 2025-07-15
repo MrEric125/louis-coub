@@ -9,10 +9,10 @@ import java.util.Arrays;
  * create by louis
  * <p> Date: 2018-12-04
  * <p> Version:1.0
- *
+ * <p>
  * 选择排序，选择要求的值放在指定的位置上
  * 和插入排序的思想很像，都是分为已排序区间和未排序区间
- *
+ * <p>
  * 插入排序是拿无需区间(初始大小为1)最前面一个做插入操作
  * 选择排序是选择无序区间(初始大小为0)最小值放在有序区间最后面
  */
@@ -25,7 +25,7 @@ public class Selection<T extends Comparable<T>> implements ISorting<T> {
             //将最小的拿到最前面
             int min = i;
             for (int j = i + 1; j < n; j++) {
-                if (SortUtils.less(a[j],a[min])) {
+                if (SortUtils.less(a[j], a[min])) {
                     min = j;
                 }
             }
@@ -37,16 +37,16 @@ public class Selection<T extends Comparable<T>> implements ISorting<T> {
 
 
     public static void main(String[] args) {
-        int N =50 ;
+        int N = 50;
         Integer[] arr = SortUtils.generateOrderArray(N);
         SortUtils.shuffle(arr);
         System.out.println("before: ");
 
-        Arrays.stream(arr).forEach(x-> System.out.print(x+"\t"));
+        Arrays.stream(arr).forEach(x -> System.out.print(x + "\t"));
         Selection<Integer> insertion = new Selection<>();
         insertion.sort(arr);
         System.out.println("\nafter: ");
-        Arrays.stream(arr).forEach(x-> System.out.print(x+"\t"));
+        Arrays.stream(arr).forEach(x -> System.out.print(x + "\t"));
 
     }
 }

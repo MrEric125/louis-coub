@@ -31,7 +31,7 @@ public class NIOSelectorServer {
 
         while (true) {
 //            如果1秒钟内没有连接事件发生，那么就就直接返回
-            if (selector.select(2000)==0) {
+            if (selector.select(2000) == 0) {
                 System.out.println("服务器等待了一秒，没有连接");
                 continue;
             }
@@ -58,10 +58,10 @@ public class NIOSelectorServer {
 
                     SocketChannel socketChannel = (SocketChannel) selectionKey.channel();
 //                        获取到该channel中关联的buffer
-                        ByteBuffer attachment = (ByteBuffer) selectionKey.attachment();
+                    ByteBuffer attachment = (ByteBuffer) selectionKey.attachment();
 //                      todo 2019年12月22日15:49:48  这里当客户端断开连接的时候，服务端也会停止服务，需要优化
-                        int read = socketChannel.read(attachment);
-                        System.out.println("from 客户端： " + new String(attachment.array()));
+                    int read = socketChannel.read(attachment);
+                    System.out.println("from 客户端： " + new String(attachment.array()));
 
 
                 }

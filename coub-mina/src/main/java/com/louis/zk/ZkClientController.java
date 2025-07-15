@@ -44,11 +44,11 @@ public class ZkClientController {
     }
 
     @GetMapping("/putData")
-    public HttpResult putData(String path,String data) throws KeeperException, InterruptedException {
+    public HttpResult putData(String path, String data) throws KeeperException, InterruptedException {
 
         ACL acl = new ACL();
         acl.setPerms(0);
-        acl.setId(new Id("zhangSan","zhangSan"));
+        acl.setId(new Id("zhangSan", "zhangSan"));
 
         String s = zkClient.getZkClient().create(path, data.getBytes(), Lists.newArrayList(acl), CreateMode.EPHEMERAL_SEQUENTIAL);
         return HttpResult.ok(s);

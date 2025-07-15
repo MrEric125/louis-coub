@@ -30,7 +30,7 @@ import java.util.Map;
 @Slf4j
 @EnableTransactionManagement
 //@MapperScan()
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.louis"})
 @Import({DingTalkConfig.class})
 public class MinaProject implements ApplicationContextInitializer<ConfigurableApplicationContext>, CommandLineRunner {
 
@@ -58,7 +58,7 @@ public class MinaProject implements ApplicationContextInitializer<ConfigurableAp
     }
 
     @Override
-    public void run(String... args)  {
+    public void run(String... args) {
         String property = configurableEnvironment.getProperty("scrm.sys.available");
         if (StringUtils.isBlank(property) || StringUtils.equals("false", property)) {
             Map<String, Object> systemProperties =

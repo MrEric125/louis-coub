@@ -4,7 +4,7 @@ kind: ReplicationController
 metadata:
   name: mysql
 spec:
-# 集群数量，当集群中运行的pod 数量少于replicas 时候，RC 会根据spect.template中定义的pod 创建一个新的实例
+  # 集群数量，当集群中运行的pod 数量少于replicas 时候，RC 会根据spect.template中定义的pod 创建一个新的实例
   replicas: 1
   selector:
     app: mysql

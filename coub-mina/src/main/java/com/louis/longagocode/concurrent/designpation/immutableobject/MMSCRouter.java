@@ -1,6 +1,5 @@
 package com.louis.longagocode.concurrent.designpation.immutableobject;
 
-import com.concurrent.designpation.immutableobject.ImmutableObject;
 import com.google.common.collect.Maps;
 
 import java.util.Collections;
@@ -11,7 +10,7 @@ import java.util.stream.Collectors;
  * @author John·Louis
  * @date created on 2020/2/2
  * description:
- *
+ * <p>
  * {@link ImmutableObject}
  */
 public class MMSCRouter {
@@ -29,6 +28,7 @@ public class MMSCRouter {
 
     /**
      * 从数据库获取的数据
+     *
      * @return
      */
     private static Map<String, MMSCInfo> retrieveRouteMapFromDB() {
@@ -39,6 +39,7 @@ public class MMSCRouter {
 
     /**
      * 根据手机号码前缀获取响应的彩信中心信息
+     *
      * @param msisdnPrefix 手机号码前缀
      * @return 彩信中心信息
      */
@@ -48,6 +49,7 @@ public class MMSCRouter {
 
     /**
      * 将当前MMSCRourter的实例更新为指定的新实例
+     *
      * @param newInstance
      */
     public static void setInstance(MMSCRouter newInstance) {
@@ -58,12 +60,10 @@ public class MMSCRouter {
         return routeMap.keySet().stream().collect(Collectors.toMap(x -> x, y -> new MMSCInfo(routeMap.get(y))));
     }
 
-    public Map<String,MMSCInfo> getRouteMap() {
+    public Map<String, MMSCInfo> getRouteMap() {
 //        做防御性复制
         return Collections.unmodifiableMap(deepCop(routeMap));
     }
-
-
 
 
 }

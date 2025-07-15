@@ -1,6 +1,5 @@
 package com.louis.longagocode.pattern.mediator;
 
-import com.pattern.mediator.Colleague;
 import org.assertj.core.util.Lists;
 
 import java.util.List;

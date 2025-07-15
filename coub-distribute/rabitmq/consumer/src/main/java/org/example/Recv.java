@@ -25,7 +25,7 @@ public class Recv {
                 doWork(msg);
             } catch (Exception e) {
                 e.printStackTrace();
-            }finally {
+            } finally {
                 System.out.println("done");
             }
 

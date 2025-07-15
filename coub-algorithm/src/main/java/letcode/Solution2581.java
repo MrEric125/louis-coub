@@ -2,8 +2,7 @@ package letcode;
 
 
 /**
- * @description:
- *  https://leetcode.cn/problems/count-number-of-possible-root-nodes/
+ * @description: https://leetcode.cn/problems/count-number-of-possible-root-nodes/
  */
 public class Solution2581 {
 

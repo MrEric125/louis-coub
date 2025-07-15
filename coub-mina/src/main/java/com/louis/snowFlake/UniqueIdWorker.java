@@ -88,7 +88,11 @@ public class UniqueIdWorker {
      */
     private long lastTimestamp = -1L;
 
-    public UniqueIdWorker(){};
+    public UniqueIdWorker() {
+    }
+
+    ;
+
     /**
      * 构造函数
      *

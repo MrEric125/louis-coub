@@ -15,10 +15,10 @@ package com.sorting.heap;
  * left child (i)=2*i
  * right child (i)=2*i+1
  * 将n个元素逐个插入到空堆中，算法复杂度是O(nlogn)
- *
- *  堆可以很容易来获取前多少名的数据，也可以很容易
- *  来是实现多路归并排序，和d叉堆（d-ary com.sorting.heap）,我们的
- *  案例使用的是二叉堆
+ * <p>
+ * 堆可以很容易来获取前多少名的数据，也可以很容易
+ * 来是实现多路归并排序，和d叉堆（d-ary com.sorting.heap）,我们的
+ * 案例使用的是二叉堆
  */
 public class MaxHeap<Item extends Comparable<Item>> {
 
@@ -36,12 +36,13 @@ public class MaxHeap<Item extends Comparable<Item>> {
 
     /**
      * heapify的一个过程 算法的复杂度是O(n)
+     *
      * @param arr
      * @param n
      */
     @SuppressWarnings("unchecked")
     public MaxHeap(Item[] arr, int n) {
-        this.items = (Item[]) new Comparable[count+1];
+        this.items = (Item[]) new Comparable[count + 1];
         capacity = n;
         for (int i = 0; i < n; i++)
             items[i + 1] = arr[i];
@@ -54,6 +55,7 @@ public class MaxHeap<Item extends Comparable<Item>> {
     public int size() {
         return count;
     }
+
     public boolean isEmply() {
         return count == 0;
     }
@@ -70,6 +72,7 @@ public class MaxHeap<Item extends Comparable<Item>> {
         items[i] = items[j];
         items[j] = item;
     }
+
     public Item extractMax() {
         assert count > 0;
         Item ret = items[1];
@@ -97,10 +100,11 @@ public class MaxHeap<Item extends Comparable<Item>> {
 
     /**
      * 将第k个元素shiftup 来保证MaxHeap满足最大堆的定义
+     *
      * @param k
      */
     private void shiftUp(int k) {
-        while (k > 1 && items[k / 2] .compareTo( items[k])<0) {
+        while (k > 1 && items[k / 2].compareTo(items[k]) < 0) {
             swap(k, k / 2);
             k = k / 2;
         }

@@ -21,6 +21,7 @@ public class TraceIdHandlerInterceptor implements HandlerInterceptor {
         TraceIdUtils.generateTraceIdToRequest(request);
         return true;
     }
+
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         TraceIdUtils.removeTraceId();

@@ -4,20 +4,20 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    # ports:
+      # ports:
       # - 80:80
       # - 443:443
       # - 32:22
-# 使用宿主机网络，这样宿主机与挂载机网络互通
+  # 使用宿主机网络，这样宿主机与挂载机网络互通
   my-ubuntu-2:
     build:
       context: ./
       dockerfile: Dockerfile
   my-ubuntu-3:
-    build: 
+    build:
       context: ./
       dockerfile: Dockerfile
-      
+
     # ports:
 networks:
   host:

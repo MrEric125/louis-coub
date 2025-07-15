@@ -11,4 +11,4 @@ services:
       ZK_HOSTS: "172.17.158.130:2181,172.17.158.129:2181,172.17.158.132:2181"
       APPLICATION_SECRET: "hd!QAZ2wsx"
     volumes:
-      -  /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock

@@ -23,7 +23,7 @@ public class CopyFIleByChannel {
         while (true) {
             buffer.clear();
             int read = inputStreamChannel.read(buffer);
-            if (read==-1) {
+            if (read == -1) {
                 break;
             }
             buffer.flip();

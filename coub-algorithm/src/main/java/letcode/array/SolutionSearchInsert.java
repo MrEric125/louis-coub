@@ -29,10 +29,10 @@ public class SolutionSearchInsert {
             }
             //todo 新的数据集必须不能包含原来那个中间值
             if (target > nums[middle]) {
-                left = middle+1;
+                left = middle + 1;
             }
             if (target < nums[middle]) {
-                right = middle-1;
+                right = middle - 1;
             }
         }
         return left;

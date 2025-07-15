@@ -15,6 +15,7 @@ public class CountDownLatchTest {
 
     private static final int N = 5000;
     private static final int Num = 10;
+
     public static void main(String[] args) {
         CountDownLatch countDownLatch = new CountDownLatch(Num);
         ExecutorService executorService = Executors.newCachedThreadPool();

@@ -3,12 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>demoProject</artifactId>
+        <artifactId>louis-coub-parent</artifactId>
         <groupId>com.louis</groupId>
         <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../louis-coub-parent</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>minaproject</artifactId>
+    <artifactId>coub-mina</artifactId>
 
     <properties>
         <docker.image.prefix>louis</docker.image.prefix>
@@ -107,19 +108,44 @@
             <artifactId>pdfbox</artifactId>
             <version>2.0.8</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents.client5</groupId>
+            <artifactId>httpclient5</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-javanica</artifactId>
+            <version>1.5.18</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>3.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+            <version>6.3.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.annotation</groupId>
+            <artifactId>jboss-annotations-api_1.3_spec</artifactId>
+            <version>2.0.1.Final</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
     <build>
         <plugins>
-             <plugin>
-                 <groupId>org.springframework.boot</groupId>
-                 <artifactId>spring-boot-maven-plugin</artifactId>
-                 <version>2.2.4.RELEASE</version>
-                 <configuration>
-                     <mainClass>com.louis.MinaProject</mainClass>
-                     <layout>zip</layout>
-                 </configuration>
-             </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.2.4.RELEASE</version>
+                <configuration>
+                    <mainClass>com.louis.MinaProject</mainClass>
+                    <layout>zip</layout>
+                </configuration>
+            </plugin>
 
             <plugin>
                 <groupId>com.spotify</groupId>
@@ -139,7 +165,6 @@
             </plugin>
         </plugins>
     </build>
-
 
 
 </project>

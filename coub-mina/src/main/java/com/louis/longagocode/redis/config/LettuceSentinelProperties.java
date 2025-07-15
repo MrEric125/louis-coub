@@ -1,6 +1,5 @@
 package com.louis.longagocode.redis.config;
 
-import com.redis.config.LettuceSingleProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,7 +9,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class LettuceSentinelProperties  extends LettuceSingleProperties {
+public class LettuceSentinelProperties extends LettuceSingleProperties {
     private String masterId;
 
 }

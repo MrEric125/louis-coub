@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.context.MessageSourceProperties;
 /**
  * 添加配置默认的语言环境
  * default
+ *
  * @author jun.liu
  * @date 2020/5/22 13:40
  */

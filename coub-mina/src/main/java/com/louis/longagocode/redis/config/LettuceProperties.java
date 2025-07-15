@@ -1,8 +1,5 @@
 package com.louis.longagocode.redis.config;
 
-import com.redis.config.LettuceClusterProperties;
-import com.redis.config.LettuceSentinelProperties;
-import com.redis.config.LettuceSingleProperties;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -12,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Data
 @ConfigurationProperties(prefix = "lettuce")
-public class LettuceProperties  {
+public class LettuceProperties {
 
     private LettuceSingleProperties single;
     private LettuceReplicaProperties replica;

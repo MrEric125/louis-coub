@@ -12,6 +12,7 @@ import java.util.Timer;
 public class TimerManager {
     //时间间隔:24h
     private static final long PERIOD_DAY = 24 * 60 * 60 * 1000;
+
     public TimerManager() {
         Calendar calendar = Calendar.getInstance();
 

@@ -42,7 +42,7 @@ class Solution76 {
         return ansL == -1 ? "" : s.substring(ansL, ansR);
     }
 
-    public boolean check(Map<Character,Integer> cnt,Map<Character,Integer> ori) {
+    public boolean check(Map<Character, Integer> cnt, Map<Character, Integer> ori) {
         for (Map.Entry<Character, Integer> characterIntegerEntry : ori.entrySet()) {
             if (cnt.getOrDefault(characterIntegerEntry.getKey(), 0) < characterIntegerEntry.getValue()) {
                 return false;

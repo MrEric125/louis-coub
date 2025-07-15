@@ -15,8 +15,8 @@ import java.lang.instrument.Instrumentation;
 /**
  * @author jun.liu
  * @since 2020/11/14 14:34
- *  {@link SpringBootApplication} 起作用的核心配置是@EnableAutoConfiguration
- *
+ * {@link SpringBootApplication} 起作用的核心配置是@EnableAutoConfiguration
+ * <p>
  * {@link org.springframework.context.annotation.ComponentScan} 只是spring mvc xml功能迁移而已，扫描当前包下的所有带配置类
  * -Xms20m    JVM初始分配的内存20m
  * -Xmx20m   JVM最大可用内存为20m
@@ -25,7 +25,7 @@ import java.lang.instrument.Instrumentation;
  */
 @Slf4j
 @EnableTransactionManagement
-@MapperScan(basePackages= {"com.source"})
+@MapperScan(basePackages = {"com.source"})
 @RestController
 @SpringBootApplication
 @EnableAdminServer
@@ -45,6 +45,7 @@ public class SpringSourceApplication implements CommandLineRunner {
 
     /**
      * 通过 -javaAgent的方式执行参数.. 通常用于拦截，代理等方式，会在main方法之前注入参数，相当于给jar运行时加参数，例如jrebel的热部署就是通过这个方式加的
+     *
      * @param agentOps
      * @param inst
      */
@@ -53,7 +54,6 @@ public class SpringSourceApplication implements CommandLineRunner {
         System.out.println(agentOps);
 
     }
-
 
 
 }

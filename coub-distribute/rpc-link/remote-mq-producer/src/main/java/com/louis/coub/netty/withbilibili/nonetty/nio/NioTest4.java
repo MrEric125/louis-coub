@@ -9,7 +9,7 @@ import java.nio.channels.Selector;
  * @author John·Louis
  * @date create in 2019/10/21
  * description:
- *
+ * <p>
  * 关于selector
  */
 public class NioTest4 {
@@ -25,7 +25,6 @@ public class NioTest4 {
         ports[4] = 5004;
 
         Selector selector = Selector.open();
-
 
 
     }

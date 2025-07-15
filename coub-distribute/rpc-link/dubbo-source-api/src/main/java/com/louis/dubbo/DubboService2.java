@@ -8,7 +8,7 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/DubboService2")
 @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_HTML, MediaType.TEXT_PLAIN, MediaType.TEXT_XML})
-@Produces({MediaType.APPLICATION_JSON })
+@Produces({MediaType.APPLICATION_JSON})
 public interface DubboService2 {
 
     @GET

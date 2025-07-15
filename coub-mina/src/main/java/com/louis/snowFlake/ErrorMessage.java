@@ -20,8 +20,4 @@ public class ErrorMessage {
     private Long tableId;
 
 
-
-
-
-
 }

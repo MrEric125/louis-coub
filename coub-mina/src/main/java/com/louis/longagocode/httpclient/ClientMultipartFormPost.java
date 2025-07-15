@@ -21,7 +21,7 @@ import java.io.File;
 public class ClientMultipartFormPost {
 
     public static void main(String[] args) throws Exception {
-        if (args.length != 1)  {
+        if (args.length != 1) {
             System.out.println("File path not given");
             System.exit(1);
         }

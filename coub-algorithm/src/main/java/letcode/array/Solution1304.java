@@ -13,7 +13,7 @@ public class Solution1304 {
         int[] ans = new int[n];
         int index = 0;
         int length = n / 2;
-        for (int i = 0; i <length; i++) {
+        for (int i = 0; i < length; i++) {
 //            ans[index++] = -i;
 //            ans[index++] = i;
         }

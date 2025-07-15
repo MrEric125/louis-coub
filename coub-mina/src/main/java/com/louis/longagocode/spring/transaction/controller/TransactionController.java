@@ -1,9 +1,9 @@
 package com.louis.longagocode.spring.transaction.controller;
 
 import com.louis.common.common.HttpResult;
-import com.spring.transaction.Tb1;
-import com.spring.transaction.Tb1Repository;
-import com.spring.transaction.Tb1Service;
+import com.louis.longagocode.spring.transaction.Tb1;
+import com.louis.longagocode.spring.transaction.Tb1Repository;
+import com.louis.longagocode.spring.transaction.Tb1Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.web.bind.annotation.*;

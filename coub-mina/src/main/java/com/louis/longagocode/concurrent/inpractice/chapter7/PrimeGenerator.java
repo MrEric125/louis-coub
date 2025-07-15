@@ -34,6 +34,7 @@ public class PrimeGenerator implements Runnable {
     public void cancel() {
         cancelled = true;
     }
+
     public synchronized List<BigInteger> get() {
         return Lists.newArrayList(primes);
     }
@@ -44,7 +45,7 @@ public class PrimeGenerator implements Runnable {
         try {
             Thread.sleep(100);
 
-        }finally {
+        } finally {
             generator.cancel();
 
         }

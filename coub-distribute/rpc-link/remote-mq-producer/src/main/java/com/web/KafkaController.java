@@ -39,15 +39,15 @@ public class KafkaController implements ApplicationContextAware {
     private KafkaAdminServiceImpl kafkaAdminService;
 
     @Autowired(required = true)
-    private LouisKafkaProducerImpl<String,String> kafkaSender;
+    private LouisKafkaProducerImpl<String, String> kafkaSender;
 
     @RequestMapping("sendTopic")
-    public HttpResult sentKafkaToTopic(@RequestParam String param,@RequestParam String pTopic) throws Exception {
-        Message<String,String> message = new Message<>();
+    public HttpResult sentKafkaToTopic(@RequestParam String param, @RequestParam String pTopic) throws Exception {
+        Message<String, String> message = new Message<>();
         message.setTopic(pTopic);
         message.setValue(param);
         message.setSendTime(new Date());
-        String topic=pTopic;
+        String topic = pTopic;
 
         boolean exist = kafkaAdminService.isExist(topic);
 
@@ -79,11 +79,9 @@ public class KafkaController implements ApplicationContextAware {
     }
 
 
-
-
     @RequestMapping("send")
     public HttpResult sentKafka(@RequestBody Event param) {
-        Message<String,String> message = new Message<>();
+        Message<String, String> message = new Message<>();
         message.setTopic(topic);
         String s = JSON.toJSONString(param);
         message.setValue(s);
@@ -100,7 +98,7 @@ public class KafkaController implements ApplicationContextAware {
     }
 
     @Data
-    public static class Event{
+    public static class Event {
         private String fkId;
         /**
          * fkType=1 meeting
@@ -123,7 +121,7 @@ public class KafkaController implements ApplicationContextAware {
     }
 
     @Data
-    private class DynamicEvent{
+    private class DynamicEvent {
         private String topic;
 
         private String dynamicTopic;

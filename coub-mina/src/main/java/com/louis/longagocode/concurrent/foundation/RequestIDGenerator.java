@@ -34,7 +34,6 @@ public class RequestIDGenerator implements CircularSeqGenerator {
     }
 
     /**
-     *
      * @return
      */
     @Override

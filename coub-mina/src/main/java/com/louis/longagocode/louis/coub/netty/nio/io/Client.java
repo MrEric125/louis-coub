@@ -9,7 +9,6 @@ import java.util.Scanner;
  * @date created on 2021/1/20
  * description:
  * todo 客户端和服务端总共有多少个socket,总共会有多少个地方阻塞
- *
  */
 public class Client {
 

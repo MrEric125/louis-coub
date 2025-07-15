@@ -16,7 +16,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 public class RedisConfig {
 
     @Bean("redisTemplate")
-    public <String,T> RedisTemplate<String,T> redisTemplate(RedisConnectionFactory factory) {
+    public <String, T> RedisTemplate<String, T> redisTemplate(RedisConnectionFactory factory) {
         RedisTemplate<String, T> templates = new RedisTemplate<>();
         templates.setConnectionFactory(factory);
         ObjectMapper om = new ObjectMapper();

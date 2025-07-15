@@ -5,9 +5,9 @@ import lombok.Data;
 import java.util.NoSuchElementException;
 
 @Data
-public class SingleLink implements MyList<Integer>{
+public class SingleLink implements MyList<Integer> {
 
-    private int size=0;
+    private int size = 0;
 
     private Node first;
 
@@ -29,25 +29,25 @@ public class SingleLink implements MyList<Integer>{
 
 
     public void compare(Node node1, Node node2, SingleLink singleLink) {
-        if (node1==null && node2==null){
+        if (node1 == null && node2 == null) {
             return;
         }
-        if (node1==null){
+        if (node1 == null) {
             singleLink.add(node2.data);
             compare(node1, node2.next, singleLink);
             return;
         }
-        if (node2==null){
+        if (node2 == null) {
             singleLink.add(node1.data);
             compare(node1.next, node2, singleLink);
             return;
         }
-        
-        if (node1.data-node2.data>0){
+
+        if (node1.data - node2.data > 0) {
             singleLink.add(node2.data);
             compare(node1, node2.next, singleLink);
 
-        }else {
+        } else {
             singleLink.add(node1.data);
             compare(node1.next, node2, singleLink);
         }
@@ -83,10 +83,11 @@ public class SingleLink implements MyList<Integer>{
         }
         size++;
     }
+
     public void deleteLast() {
         Node l = last;
         if (l == null) {
-            throw  new NoSuchElementException();
+            throw new NoSuchElementException();
         }
         this.last = null;
         size--;

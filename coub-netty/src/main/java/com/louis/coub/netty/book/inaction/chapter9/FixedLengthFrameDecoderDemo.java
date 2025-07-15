@@ -14,7 +14,7 @@ public class FixedLengthFrameDecoderDemo {
     @Test
     public void test() {
         ByteBuf buffer = Unpooled.buffer();
-        for (int i =6; i < 9; i++) {
+        for (int i = 6; i < 9; i++) {
             buffer.writeInt(i);
         }
 

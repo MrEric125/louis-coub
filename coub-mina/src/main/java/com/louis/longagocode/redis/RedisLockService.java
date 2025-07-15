@@ -18,7 +18,7 @@ public class RedisLockService {
     private static final Long DEFAULT_TIME = 3000L;
 
     @Autowired
-    RedisTemplate<String,String> redisTemplate;
+    RedisTemplate<String, String> redisTemplate;
 
     public boolean tryLock(String lockKey, String value) {
         return tryLock(lockKey, value, DEFAULT_TIME, TimeUnit.MILLISECONDS);
@@ -34,7 +34,7 @@ public class RedisLockService {
 
     }
 
-    public Boolean releaseLock(String lockKey,String value) {
+    public Boolean releaseLock(String lockKey, String value) {
 
         try {
             String script = "if redis.call('get', KEYS[1]) == ARGV[1] " +
@@ -51,7 +51,7 @@ public class RedisLockService {
             }
             return false;
         } catch (Exception e) {
-            log.error("释放锁（" + lockKey + "）发生异常：{}",e);
+            log.error("释放锁（" + lockKey + "）发生异常：{}", e);
             return false;
         }
     }

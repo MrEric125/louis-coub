@@ -16,7 +16,6 @@ import java.util.Arrays;
 public class Merge<T extends Comparable<T>> extends BaseMergeSort<T> implements ISorting<T> {
 
     /**
-     *
      * @param a
      * @param aux
      * @param lo
@@ -36,70 +35,71 @@ public class Merge<T extends Comparable<T>> extends BaseMergeSort<T> implements 
     public void sort(T[] a) {
         T[] aux = Arrays.copyOfRange(a, 0, a.length);
 
-        sort(a,0,a.length-1);
+        sort(a, 0, a.length - 1);
 //        sort(a, aux);
         assert SortUtils.isSort(a);
     }
 
     /**
      * 这种方式的排序还有问题，后期优化
+     *
      * @param a
      * @param aux
      */
-    public void sort(T[] a,T[] aux) {
-        sort(a,aux,0,a.length-1);
+    public void sort(T[] a, T[] aux) {
+        sort(a, aux, 0, a.length - 1);
         assert SortUtils.isSort(a);
     }
 
     /**
      * 递归方式实现
+     *
      * @param a
      * @param aux
      * @param lo
      * @param hi
      */
     public void sort(T[] a, T[] aux, int lo, int hi) {
-        if (hi<=lo) return;
+        if (hi <= lo) return;
         //取到中位数
         int mid = lo + (hi - lo) / 2;
         sort(a, aux, lo, mid);
         sort(a, aux, mid + 1, hi);
-        if (a[mid].compareTo(a[mid+1])>0) {
-            merge(a, aux,lo, mid, hi);
+        if (a[mid].compareTo(a[mid + 1]) > 0) {
+            merge(a, aux, lo, mid, hi);
         }
     }
 
     public void sort(T[] arr, int lo, int hi) {
-        if (hi<=lo) return;
+        if (hi <= lo) return;
 //        if (hi-lo<=15) {
 //        小数组的是时候优化点
 //            可以使用插入排序的方式让归并排序优化
 //        }
         //取到中位数
         int mid = lo + (hi - lo) / 2;
-        sort(arr,  lo, mid);
-        sort(arr,  mid + 1, hi);
+        sort(arr, lo, mid);
+        sort(arr, mid + 1, hi);
 //        对于近乎有序的数组的优化
-        if (arr[mid].compareTo(arr[mid+1])>0) {
+        if (arr[mid].compareTo(arr[mid + 1]) > 0) {
             merge(arr, lo, mid, hi);
         }
     }
 
     public static void main(String[] args) {
-        int N =8 ;
+        int N = 8;
         Integer[] arr = SortUtils.generateOrderArray(N);
         SortUtils.shuffle(arr);
 
         System.out.println("before: ");
 
-        Arrays.stream(arr).forEach(x-> System.out.print(x+"\t"));
+        Arrays.stream(arr).forEach(x -> System.out.print(x + "\t"));
 
         ISorting<Integer> insertion = new Merge<>();
         insertion.sort(arr);
         System.out.println("\nafter: ");
-        Arrays.stream(arr).forEach(x-> System.out.print(x+"\t"));
+        Arrays.stream(arr).forEach(x -> System.out.print(x + "\t"));
     }
-
 
 
 }

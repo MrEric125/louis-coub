@@ -12,8 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-public class MyListener  implements ApplicationListener<MyEvent> {
-
+public class MyListener implements ApplicationListener<MyEvent> {
 
 
     @Override

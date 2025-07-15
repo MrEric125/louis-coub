@@ -26,12 +26,14 @@ public abstract class BaseGraph {
         this.directed = directed;
 
     }
-    public int V(){
+
+    public int V() {
         return n;
     }
 
     /**
      * 边的个数
+     *
      * @return
      */
     public int E() {
@@ -40,6 +42,7 @@ public abstract class BaseGraph {
 
     /**
      * 验证是否有从v到w的边
+     *
      * @param v
      * @param w
      * @return
@@ -61,5 +64,5 @@ public abstract class BaseGraph {
      */
     public abstract Iterable<Integer> adj(int v);
 
-    public abstract  void show();
+    public abstract void show();
 }

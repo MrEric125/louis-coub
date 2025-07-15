@@ -12,7 +12,8 @@ public class PrototypeCaretaker {
     public void setMemento(OriginatorPrototype opt) {
         this.opt = opt;
     }
-    public OriginatorPrototype  getMemento() {
+
+    public OriginatorPrototype getMemento() {
         return opt;
     }
 }

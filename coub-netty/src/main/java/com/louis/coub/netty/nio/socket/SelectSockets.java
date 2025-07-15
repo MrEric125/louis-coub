@@ -28,13 +28,14 @@ public class SelectSockets {
     public static void main(String[] args) throws IOException {
         new SelectSockets().go(args);
     }
-    public void go(String []argv) throws IOException {
+
+    public void go(String[] argv) throws IOException {
         int port = PORT;
         if (argv.length > 0) {
             // Override default listen port
-           port = Integer.parseInt(argv[0]);
-             }
-            System.out.println("Listening on port " + port);
+            port = Integer.parseInt(argv[0]);
+        }
+        System.out.println("Listening on port " + port);
         ServerSocketChannel socketChannel = ServerSocketChannel.open();
         ServerSocket serverSocket = socketChannel.socket();
         Selector selector = Selector.open();
@@ -46,7 +47,7 @@ public class SelectSockets {
 
         while (true) {
             int select = selector.select();
-            if (select==0) {
+            if (select == 0) {
                 continue;
             }
             Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
@@ -90,7 +91,6 @@ public class SelectSockets {
         }
 
 
-
     }
 
     private void sayHello(SocketChannel channel) throws IOException {
@@ -101,7 +101,7 @@ public class SelectSockets {
     }
 
     private void registerChannel(Selector selector, SocketChannel channel, int opRead) throws IOException {
-        if (channel==null) {
+        if (channel == null) {
             return;
         }
         channel.configureBlocking(false);

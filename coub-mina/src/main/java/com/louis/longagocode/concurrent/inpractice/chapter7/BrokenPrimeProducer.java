@@ -17,6 +17,7 @@ public class BrokenPrimeProducer extends Thread {
     public BrokenPrimeProducer(BlockingQueue<BigInteger> queue) {
         this.queue = queue;
     }
+
     public void run() {
         try {
             BigInteger p = BigInteger.ONE;
@@ -42,7 +43,7 @@ public class BrokenPrimeProducer extends Thread {
             while (needMorePrimes()) {
                 consumer(primes.take());
             }
-        }finally {
+        } finally {
             primeProducer.cancel();
         }
     }

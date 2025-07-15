@@ -13,7 +13,6 @@ import java.util.List;
  * description:
  * @see org.springframework.web.bind.annotation.RequestBody
  * @see org.springframework.web.bind.annotation.ResponseBody
- *
  */
 @Slf4j
 public class MyRequestResponseBodyMethod extends RequestResponseBodyMethodProcessor {

@@ -24,6 +24,7 @@ public class ConcurrentStack<E> {
             newHead.next = oldHead;
         } while (!top.compareAndSet(oldHead, newHead));
     }
+
     public E pop() {
         Node<E> oldHead;
         Node<E> newHead;
@@ -37,7 +38,7 @@ public class ConcurrentStack<E> {
         return oldHead.item;
     }
 
-    private static class Node<E>{
+    private static class Node<E> {
         public final E item;
         public Node<E> next;
 
@@ -45,7 +46,6 @@ public class ConcurrentStack<E> {
             this.item = item;
         }
     }
-
 
 
 }

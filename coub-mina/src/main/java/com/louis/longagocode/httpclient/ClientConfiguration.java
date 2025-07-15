@@ -112,7 +112,7 @@ public class ClientConfiguration {
             @Override
             public InetAddress[] resolve(final String host) throws UnknownHostException {
                 if (host.equalsIgnoreCase("myhost")) {
-                    return new InetAddress[] { InetAddress.getByAddress(new byte[] {127, 0, 0, 1}) };
+                    return new InetAddress[]{InetAddress.getByAddress(new byte[]{127, 0, 0, 1})};
                 } else {
                     return super.resolve(host);
                 }

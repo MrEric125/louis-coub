@@ -8,8 +8,7 @@ package com.louis.longagocode.web;
  */
 public class Timers {
 
-    public static void main(String[] args)  {
-
+    public static void main(String[] args) {
 
 
     }

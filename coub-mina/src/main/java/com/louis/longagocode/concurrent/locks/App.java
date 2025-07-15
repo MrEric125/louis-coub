@@ -1,6 +1,5 @@
 package com.louis.longagocode.concurrent.locks;
 
-import com.concurrent.locks.ConditionWait;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -20,8 +19,8 @@ public class App {
 
         // 保证两个线程获取的是同一把锁 和 同一个COndition
 
-        new Thread(new ConditionWait(condition,lock )).start();
-        new Thread(new ConditionNotify(condition,lock)).start();
+        new Thread(new ConditionWait(condition, lock)).start();
+        new Thread(new ConditionNotify(condition, lock)).start();
 
 
     }

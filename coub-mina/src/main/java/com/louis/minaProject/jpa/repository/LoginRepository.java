@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @date created on 2020/3/13
  * description:
  */
-public interface LoginRepository extends JpaRepository<Login,Long> {
+public interface LoginRepository extends JpaRepository<Login, Long> {
 }

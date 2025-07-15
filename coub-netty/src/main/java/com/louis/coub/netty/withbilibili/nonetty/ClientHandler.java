@@ -4,17 +4,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
 
-public class ClientHandler{
+public class ClientHandler {
 
-    public static final int Max_DATA_LEN=1024;
+    public static final int Max_DATA_LEN = 1024;
     private final Socket socket;
-    public ClientHandler(Socket socket){
-        this.socket=socket;
+
+    public ClientHandler(Socket socket) {
+        this.socket = socket;
     }
-    public void start(){
+
+    public void start() {
         new Thread(this::doStart).start();
     }
-    private void doStart(){
+
+    private void doStart() {
         try {
             InputStream inputStream = socket.getInputStream();
             while (true) {

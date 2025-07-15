@@ -21,7 +21,7 @@ public class FileChannelTransfer {
         FileOutputStream output = new FileOutputStream(new File(oF));
         WritableByteChannel targetChannel = output.getChannel();
 
-        Arrays.stream(iF).forEach(item->{
+        Arrays.stream(iF).forEach(item -> {
             try {
 
                 FileInputStream input = new FileInputStream(item);

@@ -9,25 +9,24 @@ import org.springframework.context.annotation.Configuration;
  * @author jun.liu
  * @since 2021/5/18 17:30
  * {@literal https://docs.spring.io/spring-framework/docs/5.1.3.RELEASE/spring-framework-reference/integration.html#remoting }
- *
+ * <p>
  * RMI
  * {@link org.springframework.remoting.rmi.RmiProxyFactoryBean}
  * {@link org.springframework.remoting.rmi.RmiServiceExporter}
- *
+ * <p>
  * HTTP invoke
  * {@link org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean}
  * {@link org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter}
- *
+ * <p>
  * Hession
  * {@link org.springframework.remoting.caucho.HessianProxyFactoryBean}
  * {@link org.springframework.remoting.caucho.HessianServiceExporter}
- *
- *JAX-ws
- *
+ * <p>
+ * JAX-ws
+ * <p>
  * JMS
  * {@link JmsInvokerServiceExporter }
  * {@link JmsInvokerProxyFactoryBean }
- *
  */
 @Configuration
 public class SpringRpcMessage implements ApplicationContextAware {

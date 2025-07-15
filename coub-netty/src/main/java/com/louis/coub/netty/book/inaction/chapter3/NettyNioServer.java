@@ -43,7 +43,7 @@ public class NettyNioServer {
             channelFuture.channel().closeFuture().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             group.shutdownGracefully().sync();
         }
 

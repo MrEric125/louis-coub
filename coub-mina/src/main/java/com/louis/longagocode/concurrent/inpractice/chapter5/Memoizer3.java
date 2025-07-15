@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 
-public class Memoizer3 <A,V> implements Computable<A,V>{
+public class Memoizer3<A, V> implements Computable<A, V> {
 
     private final Map<A, Future<V>> cache = Maps.newConcurrentMap();
 
@@ -19,7 +19,7 @@ public class Memoizer3 <A,V> implements Computable<A,V>{
     @Override
     public V compute(A arg) throws InterruptedException {
         Future<V> f = cache.get(arg);
-        if (f==null) {
+        if (f == null) {
             FutureTask<V> futureTask = new FutureTask<>(() -> avComputable.compute(arg));
 
             f = futureTask;

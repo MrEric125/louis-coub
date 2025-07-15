@@ -30,7 +30,6 @@ public class MySelectorDemo {
         listenHandler(selector);
 
 
-
     }
 
     public static void listenHandler(Selector selector) {
@@ -75,8 +74,8 @@ public class MySelectorDemo {
             SocketChannel client = (SocketChannel) key.channel();
             ByteBuffer rBuffer = ByteBuffer.allocate(1024);
             int count = client.read(rBuffer);
-            if(count >0){
-                String receiveText = new String( rBuffer.array(),0, count);
+            if (count > 0) {
+                String receiveText = new String(rBuffer.array(), 0, count);
                 System.out.println(receiveText);
                 client = (SocketChannel) key.channel();
                 client.register(selector, SelectionKey.OP_READ);
@@ -86,7 +85,7 @@ public class MySelectorDemo {
             ByteBuffer buffer = (ByteBuffer) key.attachment();
 
             while (buffer.hasRemaining()) {
-                if (client.write(buffer)==0) {
+                if (client.write(buffer) == 0) {
                     break;
                 }
             }

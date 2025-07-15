@@ -5,11 +5,11 @@ import java.io.FileFilter;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-public class FileCrawler implements Runnable{
+public class FileCrawler implements Runnable {
 
-    private final BlockingQueue<File> fileQueue=new ArrayBlockingQueue<File>(10);
+    private final BlockingQueue<File> fileQueue = new ArrayBlockingQueue<File>(10);
 
-    private final FileFilter fileFilter=new FileFilter() {
+    private final FileFilter fileFilter = new FileFilter() {
         @Override
         public boolean accept(File pathname) {
             return false;

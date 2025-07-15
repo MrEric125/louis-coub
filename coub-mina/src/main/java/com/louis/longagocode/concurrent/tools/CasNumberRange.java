@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class CasNumberRange {
     @Immutable
-    public static class IntPair{
+    public static class IntPair {
         final int lower;
         final int upper;
 
@@ -23,9 +23,11 @@ public class CasNumberRange {
 
     private final AtomicReference<IntPair> values =
             new AtomicReference<>(new IntPair(0, 0));
+
     public int getLower() {
         return values.get().lower;
     }
+
     public int getUpper() {
         return values.get().upper;
     }
@@ -33,7 +35,7 @@ public class CasNumberRange {
     public void setLower(int i) {
         while (true) {
             IntPair oldv = values.get();
-            if (i>oldv.upper) {
+            if (i > oldv.upper) {
                 throw new IllegalArgumentException(
                         "can't set lover(" + i + ")bigger than upper(" + oldv.upper + ")");
             }

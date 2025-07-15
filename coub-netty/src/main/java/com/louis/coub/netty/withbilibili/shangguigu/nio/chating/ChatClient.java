@@ -48,7 +48,7 @@ public class ChatClient {
 
         ExecutorService service = Executors.newCachedThreadPool();
 //        读取从服务端发送过来的数据
-        service.execute(()->{
+        service.execute(() -> {
             while (true) {
                 client.readInfo();
                 try {
@@ -82,7 +82,8 @@ public class ChatClient {
             e.printStackTrace();
         }
     }
-//    获取回复消息
+
+    //    获取回复消息
     public void readInfo() {
         try {
             int select = selector.select();

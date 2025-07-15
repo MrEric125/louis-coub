@@ -1,6 +1,5 @@
 package com.louis.longagocode.pattern.visitor;
 
-import com.pattern.visitor.Visitor;
 
 /**
  * @author John·Louis
@@ -8,7 +7,6 @@ import com.pattern.visitor.Visitor;
  * description:
  */
 public class ConcreteElementA implements Element {
-
 
 
     @Override

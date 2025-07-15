@@ -7,7 +7,6 @@ import java.text.MessageFormat;
 import java.util.Locale;
 
 /**
- *
  * @author jun.liu
  * @date 2020/5/21 17:29
  * <p>
@@ -17,10 +16,10 @@ import java.util.Locale;
 public class I18nResourceBundleMessageSourceService extends ResourceBundleMessageSource {
 
 
-
     /**
      * 重写该方法，便于以后扩展获取自定义参数
-     *当 没有参数的时候调用的方法
+     * 当 没有参数的时候调用的方法
+     *
      * @param code
      * @param locale
      * @return
@@ -39,6 +38,7 @@ public class I18nResourceBundleMessageSourceService extends ResourceBundleMessag
     /**
      * 重写该方法，便于以后扩展获取自定义参数
      * 当有参数的时候的方法
+     *
      * @param code
      * @param locale
      * @return

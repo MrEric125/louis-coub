@@ -42,13 +42,15 @@ public class ZkClientLouis {
         if (StringUtils.isBlank(zkServerPath)) {
             return;
         }
-        zkClient = new ZooKeeper(zkServerPath, 5000,customerWatch);
+        zkClient = new ZooKeeper(zkServerPath, 5000, customerWatch);
         sessionId = zkClient.getSessionId();
         sessionPasswd = zkClient.getSessionPasswd();
     }
+
     public ZooKeeper getZkClient() {
         return zkClient;
     }
+
     public CustomerWatch getCustomerWatch() {
         return customerWatch;
     }

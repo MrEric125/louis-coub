@@ -23,9 +23,10 @@ public class StopThread {
         setStopRequested(true);
     }
 
-    private static synchronized void setStopRequested(boolean b){
+    private static synchronized void setStopRequested(boolean b) {
         stopRequested = b;
     }
+
     private static synchronized boolean getStopRequested() {
         return stopRequested;
     }

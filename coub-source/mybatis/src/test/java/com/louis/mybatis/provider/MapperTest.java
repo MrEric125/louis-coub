@@ -38,12 +38,12 @@ public class MapperTest {
 
     /**
      * 计算对象的偏移量
+     *
      * @param args
      */
     public static void main(String[] args) throws IOException {
 
     }
-
 
 
 }

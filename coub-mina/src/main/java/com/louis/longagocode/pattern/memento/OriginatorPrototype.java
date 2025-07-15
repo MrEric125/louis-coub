@@ -6,7 +6,7 @@ package com.louis.longagocode.pattern.memento;
  * @date created on 2020/2/15
  * description:
  */
-public class OriginatorPrototype implements Cloneable{
+public class OriginatorPrototype implements Cloneable {
 
     private String state;
 

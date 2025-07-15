@@ -15,12 +15,12 @@ public class QuickSortApp {
     public static void main(String[] args) {
 
         AbstractQuickSort<Integer> quickSort = new QuickSortBase<>();
-        int N =50 ;
+        int N = 50;
         Integer[] arr = SortUtils.generateOrderArray(N);
         SortUtils.shuffle(arr);
         System.out.println("before: ");
 
-        Arrays.stream(arr).forEach(x-> System.out.print(x+"\t"));
+        Arrays.stream(arr).forEach(x -> System.out.print(x + "\t"));
 
         long timeMillis = System.currentTimeMillis();
         quickSort.sort(arr);
@@ -28,7 +28,7 @@ public class QuickSortApp {
         System.out.println("after: ");
         long endTime = System.currentTimeMillis();
         System.out.println("快排1： 消耗时间" + (endTime - timeMillis));
-        Arrays.stream(arr).forEach(x-> System.out.print(x+"\t"));
+        Arrays.stream(arr).forEach(x -> System.out.print(x + "\t"));
 
     }
 }

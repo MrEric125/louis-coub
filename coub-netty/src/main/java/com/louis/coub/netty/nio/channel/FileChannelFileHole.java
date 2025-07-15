@@ -13,9 +13,8 @@ import java.nio.charset.StandardCharsets;
  * Date: 2019/12/9
  * Description:
  * 文件通道总是阻塞式的，不能被设置为异步模式
- *
+ * <p>
  * 可能会造成文件空洞的问题
- *
  */
 public class FileChannelFileHole {
     private static void putData(int positiopn, ByteBuffer byteBuffer, FileChannel fileChannel) throws IOException {

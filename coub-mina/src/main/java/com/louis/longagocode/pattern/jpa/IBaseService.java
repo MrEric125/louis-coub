@@ -5,7 +5,7 @@ package com.louis.longagocode.pattern.jpa;
  * @date created on 2020/7/18
  * description:
  */
-public interface IBaseService<T,S> {
+public interface IBaseService<T, S> {
 
     String queryById(String id);
 
@@ -20,8 +20,7 @@ public interface IBaseService<T,S> {
      * @param paramTypes
      * @return
      */
-    void cacheByMethod(String key,String methodName, Class<?>... paramTypes);
-
+    void cacheByMethod(String key, String methodName, Class<?>... paramTypes);
 
 
 }

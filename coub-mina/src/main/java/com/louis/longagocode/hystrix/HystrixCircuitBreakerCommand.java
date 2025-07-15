@@ -1,5 +1,6 @@
 package com.louis.longagocode.hystrix;
 
+import com.netflix.hystrix.*;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -8,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
  * description:
  */
 @Slf4j
-public class HystrixCircuitBreakerCommand extends HystrixCommand<String > {
+public class HystrixCircuitBreakerCommand extends HystrixCommand<String> {
 
     public long getProductId() {
         return productId;
@@ -19,7 +20,6 @@ public class HystrixCircuitBreakerCommand extends HystrixCommand<String > {
     }
 
     private long productId;
-
 
 
     public HystrixCircuitBreakerCommand(long productId) {
@@ -59,9 +59,6 @@ public class HystrixCircuitBreakerCommand extends HystrixCommand<String > {
                 .withCircuitBreakerSleepWindowInMilliseconds(4000);
 
 
-
-
-
         return HystrixCommand.Setter.withGroupKey(groupKey)
                 .andCommandKey(serviceKey)
                 .andThreadPoolKey(hystrixThreadPoolKey)
@@ -73,7 +70,7 @@ public class HystrixCircuitBreakerCommand extends HystrixCommand<String > {
     protected String run() throws Exception {
         System.out.println("===========================================");
         log.info("模拟断路器降级调用:productId:{}", productId);
-        if (productId<20) {
+        if (productId < 20) {
             throw new Exception("调用服务出错");
         }
 //        String url = "http://localhost:808/circuit?productId=" + productId;

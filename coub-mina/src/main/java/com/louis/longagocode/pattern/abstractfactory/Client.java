@@ -1,8 +1,9 @@
 package com.louis.longagocode.pattern.abstractfactory;
 
-import com.pattern.abstractfactory.example2.EricKingdomFactory;
-import com.pattern.abstractfactory.example2.KingdomFactory;
-import com.pattern.abstractfactory.example2.LouisKingdomFactory;
+
+import com.louis.longagocode.pattern.abstractfactory.example2.EricKingdomFactory;
+import com.louis.longagocode.pattern.abstractfactory.example2.KingdomFactory;
+import com.louis.longagocode.pattern.abstractfactory.example2.LouisKingdomFactory;
 
 import java.util.List;
 import java.util.Set;
@@ -34,7 +35,6 @@ public class Client {
     public static void example2() {
 
 
-
         System.out.println("louis");
         KingdomFactory factory = FactoryCreator.createFactory(FactoryCreator.KingdomType.LOUIS);
 
@@ -52,8 +52,8 @@ public class Client {
     }
 
 
-    public static class FactoryCreator{
-        public enum KingdomType{
+    public static class FactoryCreator {
+        public enum KingdomType {
             LOUIS, ERIC,
         }
 

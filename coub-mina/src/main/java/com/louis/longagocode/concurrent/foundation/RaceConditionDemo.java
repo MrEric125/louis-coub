@@ -1,6 +1,5 @@
 package com.louis.longagocode.concurrent.foundation;
 
-import com.concurrent.foundation.WorkerThread;
 
 /**
  * @author John·Louis

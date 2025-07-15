@@ -23,7 +23,7 @@ import java.util.Arrays;
 public class NioTest3 {
 
     @Test
-    public void test() throws Exception{
+    public void test() throws Exception {
 //        获取的是编译完之后的目录（target目录中的resource）
         ClassPathResource resource = new ClassPathResource("NioTest3.txt");
         File file = resource.getFile();
@@ -38,9 +38,10 @@ public class NioTest3 {
 
     /**
      * 传递buffer数组
+     *
      * @throws IOException
      */
-    public static void main(String[] args)throws IOException {
+    public static void main(String[] args) throws IOException {
 
 
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
@@ -67,7 +68,7 @@ public class NioTest3 {
 
                 System.out.println("bytesRead: " + byteRead);
 
-                Arrays.asList(buffers).forEach(x->{
+                Arrays.asList(buffers).forEach(x -> {
                     String s = "position: " + x.position() + ", limit: " + x.limit();
                     System.out.println(s);
 

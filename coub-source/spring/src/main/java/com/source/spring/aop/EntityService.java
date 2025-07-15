@@ -8,6 +8,6 @@ package com.source.spring.aop;
 public interface EntityService {
 
 
-    public String test() ;
+    public String test();
 
 }

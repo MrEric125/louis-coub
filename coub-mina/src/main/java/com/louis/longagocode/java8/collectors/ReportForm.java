@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
-public class ReportForm{
+public class ReportForm {
 
     private String time;
 

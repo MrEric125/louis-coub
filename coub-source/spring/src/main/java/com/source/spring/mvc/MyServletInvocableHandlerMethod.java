@@ -10,13 +10,13 @@ import java.lang.reflect.Method;
 
 /**
  * <a>
- *     https://www.cnblogs.com/java-chen-hao/p/11187914.html
+ * https://www.cnblogs.com/java-chen-hao/p/11187914.html
  * </a>
+ *
  * @author jun.liu
  * @date created on 2020/11/17
  * description:
  * controller中的方法被封装成
- *
  * @see org.springframework.stereotype.Controller
  */
 @Slf4j
@@ -34,6 +34,7 @@ public class MyServletInvocableHandlerMethod extends ServletInvocableHandlerMeth
 
     /**
      * 获取方法请求的参数
+     *
      * @param request
      * @param mavContainer
      * @param providedArgs

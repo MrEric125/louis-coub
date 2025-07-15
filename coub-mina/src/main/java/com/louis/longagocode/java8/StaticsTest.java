@@ -24,7 +24,7 @@ public class StaticsTest {
         person.setContrary("");
         person.setType("");
 
-        Person format = format(person,Lists.<String>newArrayList("serialVersionUID"),"",null);
+        Person format = format(person, Lists.<String>newArrayList("serialVersionUID"), "", null);
         System.out.println(format);
 
 
@@ -42,11 +42,11 @@ public class StaticsTest {
         System.out.println(average);
     }
 
-    private static <T> T format(T obj,List<String> excludeFields,String initialValue,String formatValue) {
+    private static <T> T format(T obj, List<String> excludeFields, String initialValue, String formatValue) {
         Class clazz = obj.getClass();
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
-            String fieldName=field.getName();
+            String fieldName = field.getName();
             if (excludeFields.contains(fieldName)) {
                 continue;
             }
@@ -59,12 +59,12 @@ public class StaticsTest {
                     String fieldValue = (String) invoke;
                     if (fieldValue.equals(initialValue)) {
                         field.setAccessible(true);
-                        field.set(obj,formatValue);
+                        field.set(obj, formatValue);
                     }
                 }
 
             } catch (Exception e) {
-                log.warn("format exception:{}",e.getMessage(),e);
+                log.warn("format exception:{}", e.getMessage(), e);
             }
 
         }

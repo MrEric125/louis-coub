@@ -29,8 +29,6 @@ import java.util.Objects;
  * ========
  * 2. 获取j job 列表（其实不需要，查看自己有权限项目，将项目与Jenkins job 关系做一个映射）
  * 3. 构建job 传参
- *
- *
  */
 @Slf4j
 public class JenkinsTest {
@@ -46,6 +44,7 @@ public class JenkinsTest {
 
         return jenkinsClient.api().jobsApi();
     }
+
     public static void viewList() {
 
     }
@@ -56,11 +55,12 @@ public class JenkinsTest {
 
         return jenkinsClient.api().pluginManagerApi();
     }
+
     public static QueueApi queueApi() {
         JenkinsTest test = new JenkinsTest();
         JenkinsClient jenkinsClient = test.jenkinsClient();
 
-       return jenkinsClient.api().queueApi();
+        return jenkinsClient.api().queueApi();
     }
 
 
@@ -87,7 +87,6 @@ public class JenkinsTest {
             }
         }
     }
-
 
 
     @Test
@@ -117,6 +116,7 @@ public class JenkinsTest {
     public void getGtiBranchList() {
 
     }
+
     public JenkinsClient jenkinsClient() {
         JenkinsClient client = JenkinsClient.builder()
                 .endPoint("") // Optional. Defaults to http://127.0.0.1:8080

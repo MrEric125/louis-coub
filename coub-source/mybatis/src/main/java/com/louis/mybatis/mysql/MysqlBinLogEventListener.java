@@ -37,8 +37,6 @@ public class MysqlBinLogEventListener implements BinaryLogClient.EventListener {
 
     /**
      * 监听器初始化
-     *
-     *
      */
     public MysqlBinLogEventListener(Conf conf, Set<EventType> eventList,
                                     BlockingQueue<BinLogItem> blockingQueue,
@@ -111,7 +109,7 @@ public class MysqlBinLogEventListener implements BinaryLogClient.EventListener {
     /**
      * 注册监听
      *
-     * @param schema       数据库
+     * @param schema   数据库
      * @param table    操作表
      * @param listener 监听器
      * @throws Exception exception

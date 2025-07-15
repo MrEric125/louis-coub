@@ -16,13 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class AlgorithmAppTest {
 
     /**
-     *
      * Tests the core pool size of the asynchronous executor.
      * <p>
      * This test verifies that the core pool size of the ThreadPoolTaskExecutor
      * returned by the asyncExecutor method of AlgorithmApp is set to 8.
      * </p>
-     *
      */
     @Test
     public void testAsyncExecutorCorePoolSize() {

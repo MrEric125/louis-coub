@@ -12,8 +12,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Date: 2019/12/20
  * Description:
  */
-public class DefaultMKThreadFactory  implements ThreadFactory {
-    private static  AtomicInteger poolNumber ;
+public class DefaultMKThreadFactory implements ThreadFactory {
+    private static AtomicInteger poolNumber;
     private final ThreadGroup group;
     private final AtomicInteger threadNumber = new AtomicInteger(1);
     private final String namePrefix;
@@ -45,8 +45,8 @@ public class DefaultMKThreadFactory  implements ThreadFactory {
         this.group = ((s != null) ? s.getThreadGroup() : Thread.currentThread()
                 .getThreadGroup());
         this.namePrefix = DefaultMKThreadFactory
-                .join(new String[] { sysCode, prefix,
-                                String.valueOf(poolNumber.getAndIncrement()), "thread" },
+                .join(new String[]{sysCode, prefix,
+                                String.valueOf(poolNumber.getAndIncrement()), "thread"},
                         "-");
     }
 
@@ -59,6 +59,7 @@ public class DefaultMKThreadFactory  implements ThreadFactory {
             t.setPriority(5);
         return t;
     }
+
     public static String join(String[] pieces, String separator) {
         return join(Arrays.asList(pieces), separator);
     }
@@ -67,8 +68,8 @@ public class DefaultMKThreadFactory  implements ThreadFactory {
         StringBuilder buffer = new StringBuilder();
         Iterator iter = pieces.iterator();
 
-        while(iter.hasNext()) {
-            buffer.append((String)iter.next());
+        while (iter.hasNext()) {
+            buffer.append((String) iter.next());
             if (iter.hasNext()) {
                 buffer.append(separator);
             }

@@ -18,24 +18,28 @@ import java.util.Locale;
 @Component
 public class LocaleMessageSourceService {
 
+
     @Resource
     private MessageSource messageSource;
 
     @Autowired
     CookieLocaleResolver cookieLocaleResolver;
 
+
     /**
      * 无参数  无默认值
-     * @param code ：对应messages配置的key.
-     * @return
-     */
-    public String getMessage(String code){
+     *
+     * @param code ：对应messages配置的key.
+     * @return
+     */
+    public String getMessage(String code) {
         return getMessage(code, null, null);
     }
 
     /**
      * 无参数，有默认值
-     * @param code code ：对应messages配置的key.
+     *
+     * @param code           code ：对应messages配置的key.
      * @param defaultMessage 默认值
      * @return
      */
@@ -45,10 +49,10 @@ public class LocaleMessageSourceService {
 
     /**
      * 有参数 无默认值
-     *  @param code ：对应messages配置的key.
-     *  @param args : 数组参数.占位符使用
-     *  @return
-     *     
+     *
+     * @param code ：对应messages配置的key.
+     * @param args : 数组参数.占位符使用
+     * @return
      */
     public String getMessageWithOutDefault(String code, Object[] args) {
         return getMessage(code, args, null);
@@ -56,26 +60,26 @@ public class LocaleMessageSourceService {
 
     /**
      * 有参数 默认值为code
-     * @param code ：对应messages配置的key.
-     * @param args : 数组参数.占位符使用
-     * @return
-     */
-    public String getMessageCodeAsDefault(String code,Object[] args){
+     *
+     * @param code ：对应messages配置的key.
+     * @param args : 数组参数.占位符使用
+     * @return
+     */
+    public String getMessageCodeAsDefault(String code, Object[] args) {
         return getMessage(code, args, code);
     }
 
 
-     /**
-     *
-     * @param code ：对应messages配置的key.
-     * @param args : 数组参数.占位符使用
-     * @param defaultMessage : 没有设置key的时候的默认值.若从{@link MessageSource} 中未取到数据不会报错
-     * @return 返回国际化配置中的数据
-     */
-    public String getMessage(String code,Object[] args,String defaultMessage){
+    /**
+     * @param code           ：对应messages配置的key.
+     * @param args           : 数组参数.占位符使用
+     * @param defaultMessage : 没有设置key的时候的默认值.若从{@link MessageSource} 中未取到数据不会报错
+     * @return 返回国际化配置中的数据
+     */
+    public String getMessage(String code, Object[] args, String defaultMessage) {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         Locale locale = cookieLocaleResolver.resolveLocale(request);
         return messageSource.getMessage(code, args, defaultMessage, locale);
-     }
+    }
 
 }

@@ -22,7 +22,6 @@ public class TomcatServer {
     private static List<SocketChannel> socketChannels = Lists.newArrayList();
 
 
-
     public static void main(String[] args) {
         try {
             ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
@@ -32,7 +31,7 @@ public class TomcatServer {
             while (true) {
                 for (SocketChannel socketChannel : socketChannels) {
                     int read = socketChannel.read(byteBuffer);
-                    if (read>0) {
+                    if (read > 0) {
 
                     }
                 }

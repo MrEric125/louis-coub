@@ -5,14 +5,13 @@ public class SlidingWindow {
     public static void main(String[] args) {
 
 
-
     }
 
     /**
      * 使用滑动床都的方式计算
      * 给定一个整数数组，计算长度为 'k' 的连续子数组的最大总和。
      * 输入： arr [] ={100,200,300,400}
-     *          k=2
+     * k=2
      * 输出：700
      *
      * @param arr
@@ -22,7 +21,7 @@ public class SlidingWindow {
     public static Integer slidingWindows(Integer[] arr, int k) {
         int length = arr.length;
         int maxSum = 0;
-        if (k>length){
+        if (k > length) {
             // 所有数据相加
             for (int i = 0; i < k; i++) {
                 maxSum += arr[i];
@@ -42,7 +41,6 @@ public class SlidingWindow {
         }
         return maxSum;
     }
-
 
 
 }

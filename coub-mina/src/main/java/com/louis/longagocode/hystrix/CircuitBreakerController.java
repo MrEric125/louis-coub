@@ -1,6 +1,5 @@
 package com.louis.longagocode.hystrix;
 
-import com.hystrix.TimeOutUtils;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import lombok.extern.slf4j.Slf4j;
@@ -20,10 +19,10 @@ public class CircuitBreakerController {
 
 
     @HystrixCommand(commandProperties = {
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "4000")
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "4000")
     })
-    @GetMapping ("/circuit")
-    public String circuit(@RequestParam int num,@RequestParam long sleepTime) {
+    @GetMapping("/circuit")
+    public String circuit(@RequestParam int num, @RequestParam long sleepTime) {
         int runLong = TimeOutUtils.randomlyRunLong(num, sleepTime);
         return runLong + "";
 
@@ -31,7 +30,7 @@ public class CircuitBreakerController {
 
     @GetMapping("fallback")
     @HystrixCommand(fallbackMethod = "fallback")
-    public String hystrixFallback(@RequestParam int num,@RequestParam long sleepTime) {
+    public String hystrixFallback(@RequestParam int num, @RequestParam long sleepTime) {
         int runLong = TimeOutUtils.randomlyRunLong(num, sleepTime);
 
         return runLong + "";
@@ -39,11 +38,11 @@ public class CircuitBreakerController {
 
 
     @GetMapping("/bulkhead")
-    @HystrixCommand(fallbackMethod = "fallback",threadPoolKey = "bulkhead",threadPoolProperties = {
-            @HystrixProperty(name = "coreSize",value = "30"),
-            @HystrixProperty(name = "maxQueueSize",value = "10")
+    @HystrixCommand(fallbackMethod = "fallback", threadPoolKey = "bulkhead", threadPoolProperties = {
+            @HystrixProperty(name = "coreSize", value = "30"),
+            @HystrixProperty(name = "maxQueueSize", value = "10")
     })
-    public String bulkhead(@RequestParam int num,@RequestParam long sleepTime) {
+    public String bulkhead(@RequestParam int num, @RequestParam long sleepTime) {
         int runLong = TimeOutUtils.randomlyRunLong(num, sleepTime);
 
         return runLong + "";
@@ -53,7 +52,6 @@ public class CircuitBreakerController {
         log.info("fallback");
         return nums + sleepTime + "\n fallback";
     }
-
 
 
 }

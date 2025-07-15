@@ -25,11 +25,11 @@ import java.util.concurrent.BlockingQueue;
 @Slf4j
 public class MessageConsumer {
 
-    private static BlockingQueue<KeyValue<Long,String>> messageQueue = new ArrayBlockingQueue<>(100);
+    private static BlockingQueue<KeyValue<Long, String>> messageQueue = new ArrayBlockingQueue<>(100);
 
     private static BlockingQueue<String> stringMessageQueue = new ArrayBlockingQueue<>(100);
     @Autowired
-    private KafkaConsumer<Long,String> kafkaConsumer;
+    private KafkaConsumer<Long, String> kafkaConsumer;
 
     @Value("${kafka.topic.base}")
     private String baseTopic;
@@ -51,7 +51,7 @@ public class MessageConsumer {
     //之后看能不能将其改为事件监控型的
     public void defaultMessageConsumer() {
 
-        ConsumerRecords<Long,String> records = kafkaConsumer.poll(Duration.ofMillis(1000));
+        ConsumerRecords<Long, String> records = kafkaConsumer.poll(Duration.ofMillis(1000));
         log.info("total consumer data count:{}", records.count());
         Optional.ofNullable(records).ifPresent(consumerRecords -> {
             records.forEach(record -> messageQueue.offer(new KeyValue<>(record.key(), record.value())));
@@ -64,6 +64,7 @@ public class MessageConsumer {
     public KeyValue<Long, String> getQueueMessage() {
         return messageQueue.poll();
     }
+
     public String getStringQueueMessage() {
         return stringMessageQueue.poll();
     }

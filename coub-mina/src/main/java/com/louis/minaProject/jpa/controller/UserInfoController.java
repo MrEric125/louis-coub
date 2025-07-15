@@ -31,7 +31,7 @@ public class UserInfoController {
 
     @Transactional(rollbackFor = Exception.class)
     @RequestMapping(path = "/insert", method = RequestMethod.POST)
-    public HttpResult add(@RequestBody UserInfo login,Boolean throwable) throws Exception {
+    public HttpResult add(@RequestBody UserInfo login, Boolean throwable) throws Exception {
         String s = JSON.toJSONString(login);
         login.setJson(s);
         UserInfo save = userInfoRepository.save(login);
@@ -41,6 +41,7 @@ public class UserInfoController {
 
         return HttpResult.ok(save);
     }
+
     @RequestMapping(path = "/search", method = RequestMethod.GET)
     public HttpResult search() {
 
@@ -49,9 +50,8 @@ public class UserInfoController {
     }
 
 
-
     @RequestMapping(path = "/txDemo", method = RequestMethod.GET)
-    public HttpResult txDemo(){
+    public HttpResult txDemo() {
         userService.tx1();
         return HttpResult.ok();
     }

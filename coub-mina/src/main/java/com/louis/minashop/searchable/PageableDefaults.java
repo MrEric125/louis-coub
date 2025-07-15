@@ -1,4 +1,3 @@
-
 package com.louis.minashop.searchable;
 
 import java.lang.annotation.*;

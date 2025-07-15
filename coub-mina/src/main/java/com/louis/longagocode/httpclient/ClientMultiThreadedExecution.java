@@ -12,7 +12,6 @@ import org.apache.http.util.EntityUtils;
 
 /**
  * An example that performs GETs from multiple threads.
- *
  */
 public class ClientMultiThreadedExecution {
 

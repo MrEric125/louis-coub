@@ -25,7 +25,7 @@ public class ReentrantReadWriteLockTest {
             rrwl.readLock().unlock();
             rrwl.writeLock().lock();
             if (!cacheValid) {
-                object=writeSomething();
+                object = writeSomething();
                 cacheValid = true;
             }
             rrwl.readLock().lock();
@@ -39,6 +39,7 @@ public class ReentrantReadWriteLockTest {
     private Object writeSomething() {
         return null;
     }
+
     private void userDate(Object object) {
 
     }

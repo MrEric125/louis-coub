@@ -119,7 +119,7 @@ public final class SearchRequest extends Searchable {
             searchFilterMap.put(key, condition);
         }
         int index = searchFilters.indexOf(searchFilter);
-        if(index != -1) {
+        if (index != -1) {
             searchFilters.set(index, searchFilter);
         } else {
             searchFilters.add(searchFilter);
@@ -154,12 +154,12 @@ public final class SearchRequest extends Searchable {
     }
 
 
-
     @Override
     public Searchable removeSearchFilter(final String searchProperty, final SearchOperator operator) {
         this.removeSearchFilter(searchProperty + Condition.separator + operator);
         return this;
     }
+
     /**
      * @param key 查询条件
      * @return searchable
@@ -197,7 +197,7 @@ public final class SearchRequest extends Searchable {
 
     @Override
     public Searchable setPage(int pageNumber, int pageSize) {
-        merge(sort,  PageRequest.of(pageNumber, pageSize));
+        merge(sort, PageRequest.of(pageNumber, pageSize));
         return this;
     }
 
@@ -281,7 +281,7 @@ public final class SearchRequest extends Searchable {
                 searchFilterMap.containsKey(key) ||
                         searchFilterMap.containsKey(getCustomKey(key));
 
-        if(contains) {
+        if (contains) {
             return true;
         }
 
@@ -291,22 +291,22 @@ public final class SearchRequest extends Searchable {
 
     private boolean containsSearchKey(List<SearchFilter> searchFilters, String key) {
         boolean contains = false;
-        for(SearchFilter searchFilter : searchFilters) {
-            if(searchFilter instanceof OrCondition) {
+        for (SearchFilter searchFilter : searchFilters) {
+            if (searchFilter instanceof OrCondition) {
                 OrCondition orCondition = (OrCondition) searchFilter;
                 contains = containsSearchKey(orCondition.getOrFilters(), key);
             }
-            if(searchFilter instanceof AndCondition) {
+            if (searchFilter instanceof AndCondition) {
                 AndCondition andCondition = (AndCondition) searchFilter;
                 contains = containsSearchKey(andCondition.getAndFilters(), key);
             }
 
-            if(searchFilter instanceof Condition) {
+            if (searchFilter instanceof Condition) {
                 Condition condition = (Condition) searchFilter;
                 contains = condition.getKey().equals(key) || condition.getSearchProperty().equals(key);
             }
 
-            if(contains) {
+            if (contains) {
                 return true;
             }
         }

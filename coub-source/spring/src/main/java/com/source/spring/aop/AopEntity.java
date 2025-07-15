@@ -8,18 +8,19 @@ import lombok.Data;
  * description:
  */
 @Data
-public class AopEntity implements Cloneable{
+public class AopEntity implements Cloneable {
 
-    private String name="default";
+    private String name = "default";
 
-    private Long id=0L;
+    private Long id = 0L;
 
-    private String title="default";
+    private String title = "default";
 
 
-    public  void  test() {
+    public void test() {
         System.out.println("test");
     }
+
     public void noInvoke() {
         System.out.println("noInvoke");
     }

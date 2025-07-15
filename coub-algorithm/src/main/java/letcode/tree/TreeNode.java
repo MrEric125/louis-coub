@@ -31,12 +31,12 @@ public class TreeNode {
 /**
  * 读题需要的前置知识： 树用数组表达的方式：
  * [1,2,3,4,5,6,7,8,9,10]
- *           1
- *        2     3
- *     4     5   6  7
- *   8  9  10
+ * 1
+ * 2     3
+ * 4     5   6  7
+ * 8  9  10
  */
-class FindElements{
+class FindElements {
 
     private Set<Integer> set;
 
@@ -46,7 +46,7 @@ class FindElements{
     }
 
     private void init(TreeNode root) {
-        dfs(root,0);
+        dfs(root, 0);
     }
 
     private void dfs(TreeNode node, int val) {

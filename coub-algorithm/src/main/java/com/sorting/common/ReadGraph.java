@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class ReadGraph {
     private Scanner scanner;
 
-    public ReadGraph(BaseGraph graph,String filename) {
+    public ReadGraph(BaseGraph graph, String filename) {
         readFile(filename);
         try {
             int V = scanner.nextInt();
@@ -36,12 +36,10 @@ public class ReadGraph {
                 assert w >= 0 && w < V;
                 graph.addEdge(v, w);
             }
-        }
-        catch (InputMismatchException | IllegalAccessException e) {
+        } catch (InputMismatchException | IllegalAccessException e) {
             String token = scanner.next();
             throw new InputMismatchException("attempts to read an 'int' value from input stream, but the next token is \"" + token + "\"");
-        }
-        catch (NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             throw new NoSuchElementException("attemps to read an 'int' value from input stream, but there are no more tokens available");
         }
     }

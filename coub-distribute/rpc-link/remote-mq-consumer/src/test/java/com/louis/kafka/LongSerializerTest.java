@@ -15,11 +15,12 @@ public class LongSerializerTest {
         System.out.println(deserialize);
 
     }
+
     public static byte[] serialize(String topic, Long data) {
         if (data == null)
             return null;
 
-        return new byte[] {
+        return new byte[]{
                 (byte) (data >>> 56),
                 (byte) (data >>> 48),
                 (byte) (data >>> 40),

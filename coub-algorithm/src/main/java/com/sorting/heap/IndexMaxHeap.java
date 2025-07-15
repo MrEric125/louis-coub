@@ -36,6 +36,7 @@ public class IndexMaxHeap<Item extends Comparable<Item>> {
 
     /**
      * heapify的一个过程 算法的复杂度是O(n)
+     *
      * @param
      * @param
      */
@@ -50,17 +51,17 @@ public class IndexMaxHeap<Item extends Comparable<Item>> {
 //            shiftDown(i);
 //
 //    }
-
     public int size() {
         return count;
     }
+
     public boolean isEmply() {
         return count == 0;
     }
 
-    public void insert(int i,Item item) {
+    public void insert(int i, Item item) {
         assert count + 1 <= capacity;
-        assert  i + 1 >= 1 && i + 1 <= capacity;
+        assert i + 1 >= 1 && i + 1 <= capacity;
         i += 1;
         data[i] = item;
         indexes[count + 1] = 1;
@@ -71,6 +72,7 @@ public class IndexMaxHeap<Item extends Comparable<Item>> {
 
     /**
      * 交换的数据是索引的位置
+     *
      * @param i
      * @param j
      */
@@ -80,6 +82,7 @@ public class IndexMaxHeap<Item extends Comparable<Item>> {
         indexes[i] = indexes[j];
         indexes[j] = index;
     }
+
     public Item extractMax() {
         assert count > 0;
         Item ret = data[indexes[1]];
@@ -94,11 +97,12 @@ public class IndexMaxHeap<Item extends Comparable<Item>> {
 
     /**
      * 从1开始的索引转成从0开始的索引
+     *
      * @return
      */
     public int extractMaxIndex() {
         assert count > 0;
-        int ret = indexes[1]-1;
+        int ret = indexes[1] - 1;
         swap(1, count);
         count--;
         shiftDown(1);
@@ -111,6 +115,7 @@ public class IndexMaxHeap<Item extends Comparable<Item>> {
 
     /**
      * 优化前的change,
+     *
      * @param i
      * @param newItem
      */
@@ -131,15 +136,14 @@ public class IndexMaxHeap<Item extends Comparable<Item>> {
 
     /**
      * 优化完之后的change
-     * @param i
-     * @param newItem
-     * 维护一个reverse,来直接获取数据
-     * 满足以下条件
-     * indexes[i]=j
-     * reverse[j]=1
-     * indexes[reverse[i]]=i
-     * reverse[indexes[i]]=i
      *
+     * @param i
+     * @param newItem 维护一个reverse,来直接获取数据
+     *                满足以下条件
+     *                indexes[i]=j
+     *                reverse[j]=1
+     *                indexes[reverse[i]]=i
+     *                reverse[indexes[i]]=i
      */
     public void change2(int i, Item newItem) {
         assert contain(i);
@@ -176,10 +180,11 @@ public class IndexMaxHeap<Item extends Comparable<Item>> {
 
     /**
      * 将第k个元素shiftup 来保证MaxHeap满足最大堆的定义
+     *
      * @param k 索引中的位置
      */
     private void shiftUp(int k) {
-        while (k > 1 && data[indexes[k / 2]] .compareTo( data[indexes[k]])<0) {
+        while (k > 1 && data[indexes[k / 2]].compareTo(data[indexes[k]]) < 0) {
             swap(k, k / 2);
             reverse[indexes[k / 2]] = k / 2;
             reverse[indexes[k]] = k;

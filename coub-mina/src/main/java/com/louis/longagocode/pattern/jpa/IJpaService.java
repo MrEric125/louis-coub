@@ -1,6 +1,5 @@
 package com.louis.longagocode.pattern.jpa;
 
-import com.pattern.jpa.IBaseService;
 
 /**
  * @author jun.liu

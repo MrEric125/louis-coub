@@ -43,8 +43,8 @@ public class KafkaConfig {
     private CreateTopicMessageHandler createTopicMessageHandler;
 
     @Bean("louisMessageConsumerImpl")
-    public LouisKafkaConsumerImpl<String,String> kafkaConsumer() throws Exception {
-        LouisKafkaConsumerImpl<String,String> kafkaConsumer = new LouisKafkaConsumerImpl<>();
+    public LouisKafkaConsumerImpl<String, String> kafkaConsumer() throws Exception {
+        LouisKafkaConsumerImpl<String, String> kafkaConsumer = new LouisKafkaConsumerImpl<>();
         kafkaConsumer.setGroup(groupId);
         kafkaConsumer.setTopic(topic);
         AuthInfo authInfo = new AuthInfo();
@@ -58,6 +58,7 @@ public class KafkaConfig {
 
         return kafkaConsumer;
     }
+
     @Bean
     public AdminClient kafkaAdminClient() {
         Properties props = new Properties();
@@ -82,8 +83,6 @@ public class KafkaConfig {
 //
 //        return kafkaConsumer;
 //    }
-
-
 
 
 //    @Bean("canalMessageConsumerImpl")

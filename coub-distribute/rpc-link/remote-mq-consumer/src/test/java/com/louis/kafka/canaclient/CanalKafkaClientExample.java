@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Kafka client example
- *
+ * <p>
  * ========================
  * 服务端配置 canal.mq.flatMessage = false  才是protobuf 格式 设置为true 是json 格式
  * ========================
@@ -21,32 +21,32 @@ import java.util.concurrent.TimeUnit;
  */
 public class CanalKafkaClientExample {
 
-    protected final static Logger           logger  = LoggerFactory.getLogger(CanalKafkaClientExample.class);
+    protected final static Logger logger = LoggerFactory.getLogger(CanalKafkaClientExample.class);
 
     static {
 
 
     }
 
-    private KafkaCanalConnector             connector;
+    private KafkaCanalConnector connector;
 
-    private static volatile boolean         running = false;
+    private static volatile boolean running = false;
 
-    private Thread                          thread  = null;
+    private Thread thread = null;
 
     private Thread.UncaughtExceptionHandler handler = (t, e) -> logger.error("parse events has an error", e);
 
-    public CanalKafkaClientExample(String zkServers, String servers, String topic, Integer partition, String groupId){
+    public CanalKafkaClientExample(String zkServers, String servers, String topic, Integer partition, String groupId) {
         connector = new KafkaCanalConnector(servers, topic, partition, groupId, null, false);
     }
 
     public static void main(String[] args) {
         try {
             final CanalKafkaClientExample kafkaCanalClientExample = new CanalKafkaClientExample(AbstractKafkaTest.zkServers,
-                AbstractKafkaTest.servers,
-                AbstractKafkaTest.topic,
-                AbstractKafkaTest.partition,
-                AbstractKafkaTest.groupId);
+                    AbstractKafkaTest.servers,
+                    AbstractKafkaTest.topic,
+                    AbstractKafkaTest.partition,
+                    AbstractKafkaTest.groupId);
             logger.info("## start the kafka consumer: {}-{}", AbstractKafkaTest.topic, AbstractKafkaTest.groupId);
             kafkaCanalClientExample.start();
             logger.info("## the canal kafka consumer is running now ......");

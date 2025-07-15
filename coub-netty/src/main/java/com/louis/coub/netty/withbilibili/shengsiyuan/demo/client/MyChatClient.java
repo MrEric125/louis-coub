@@ -30,10 +30,10 @@ public class MyChatClient {
             Channel channel = bootstrap.connect("localhost", 8899).sync().channel();
 
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            for (;;){
+            for (; ; ) {
                 channel.writeAndFlush(br.readLine() + "\r\n");
             }
-        }finally {
+        } finally {
             eventLoopGroup.shutdownGracefully();
         }
     }

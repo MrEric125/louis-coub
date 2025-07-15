@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class LouisMessageHandler implements KafkaMessageHandler<String,String>, InitializingBean {
+public class LouisMessageHandler implements KafkaMessageHandler<String, String>, InitializingBean {
 
     @Value("${kafka.topic}")
     public String topic;
@@ -21,7 +21,7 @@ public class LouisMessageHandler implements KafkaMessageHandler<String,String>, 
     }
 
     @Override
-    public void onMessage(MessageExt<String,String> messageExt) throws Exception{
+    public void onMessage(MessageExt<String, String> messageExt) throws Exception {
 
         log.info("====consumer message=====");
         log.info(JSON.toJSONString(messageExt));

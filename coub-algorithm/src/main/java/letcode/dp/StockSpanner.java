@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 class StockSpanner {
     private List<Integer> stock;
-//     表示第I 个位置上的span
+    //     表示第I 个位置上的span
     private Map<Integer, Integer> spanMap = new HashMap<>();
+
     public StockSpanner() {
         stock = new ArrayList<>();
     }
@@ -21,15 +23,15 @@ class StockSpanner {
         stock.add(price);
         int size = stock.size();
         int span = 1;
-        int compareIndex = size-1, preIndex = size - 2;
+        int compareIndex = size - 1, preIndex = size - 2;
         // 比较当前位置的数据与上一次位置数据 其实是一个动态规划的思路
-        while (preIndex >= 0 && price >= stock.get(preIndex) && price>= stock.get(compareIndex)) {
+        while (preIndex >= 0 && price >= stock.get(preIndex) && price >= stock.get(compareIndex)) {
             Integer preSpan = spanMap.get(preIndex);
             span = span + preSpan;
             compareIndex = preIndex;
             preIndex = preIndex - preSpan;
         }
-        spanMap.put(stock.size()-1, span);
+        spanMap.put(stock.size() - 1, span);
         return span;
     }
 
@@ -37,7 +39,7 @@ class StockSpanner {
 
         String[] param = new String[]{"StockSpanner", "next", "next", "next", "next", "next", "next", "next"};
 
-        int[][] prices = new int[][]{{}, {28},{14},{28},{35},{46},{53},{66},{80},{87},{88}};
+        int[][] prices = new int[][]{{}, {28}, {14}, {28}, {35}, {46}, {53}, {66}, {80}, {87}, {88}};
 
 
         StockSpanner stockSpanner = new StockSpanner();

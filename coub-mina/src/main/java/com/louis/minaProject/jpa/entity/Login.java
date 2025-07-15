@@ -42,9 +42,4 @@ public class Login {
     private String signature;
 
 
-
-
-
-
-
 }

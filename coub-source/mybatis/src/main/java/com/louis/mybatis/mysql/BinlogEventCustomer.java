@@ -24,7 +24,7 @@ public class BinlogEventCustomer {
     private final ExecutorService consumer;
 
     public BinlogEventCustomer(Conf conf, BinaryLogClient.EventListener eventListener,
-                               BlockingQueue<BinLogItem> blockingQueue,Multimap<String, BinLogListener> listeners) {
+                               BlockingQueue<BinLogItem> blockingQueue, Multimap<String, BinLogListener> listeners) {
         binaryLogClient = new BinaryLogClient(conf.getHost(), conf.getPort(), conf.getUsername(), conf.getPasswd());
         EventDeserializer eventDeserializer = new EventDeserializer();
         binaryLogClient.setEventDeserializer(eventDeserializer);
@@ -34,6 +34,7 @@ public class BinlogEventCustomer {
         binaryLogClient.registerEventListener(eventListener);
 
     }
+
     /**
      * 开启多线程消费
      *

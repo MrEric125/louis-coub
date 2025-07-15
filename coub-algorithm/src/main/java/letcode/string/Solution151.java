@@ -33,7 +33,7 @@ class Solution151 {
             swap(split, left, right);
             head = head + split[left];
             tail = split[right] + tail;
-            if (left+1 < right ) {
+            if (left + 1 < right) {
                 head = head + " ";
                 tail = " " + tail;
             }
@@ -43,11 +43,11 @@ class Solution151 {
         if (mid.isEmpty()) {
             return head.trim() + " " + tail.trim();
         }
-        return head.trim() + " " +mid +" " + tail.trim();
+        return head.trim() + " " + mid + " " + tail.trim();
     }
 
 
-    public void swap(String[] split,int i,int j) {
+    public void swap(String[] split, int i, int j) {
         String tmp = split[i];
         split[i] = split[j];
         split[j] = tmp;

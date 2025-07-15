@@ -7,7 +7,7 @@ package com.louis.longagocode.pattern.singleton;
  */
 public class Emperor {
     /**
-     *第一种实例
+     * 第一种实例
      */
     private static Emperor ourInstance = new Emperor();
 

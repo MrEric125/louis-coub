@@ -14,22 +14,22 @@ public class Algo1 {
         Arrays.stream(ints).forEach(System.out::println);
 
     }
+
     public static int[] twoSum(int[] nums, int target) {
         int[] backNum = new int[2];
-        int len=nums.length;
+        int len = nums.length;
         for (int i = 0; i < len; i++) {
             int a = nums[i];
-            for (int j = i+1; j < len; j++) {
+            for (int j = i + 1; j < len; j++) {
                 int b = nums[j];
                 if (a + b == target) {
-                    backNum= new int[]{i, j};
+                    backNum = new int[]{i, j};
 
                 }
 
             }
         }
         return backNum;
-
 
 
     }

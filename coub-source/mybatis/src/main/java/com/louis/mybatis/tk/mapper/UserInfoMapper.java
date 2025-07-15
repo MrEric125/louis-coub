@@ -11,5 +11,4 @@ import com.louis.mybatis.tk.entry.UserInfo;
 public interface UserInfoMapper extends BaseMapper<UserInfo> {
 
 
-
 }

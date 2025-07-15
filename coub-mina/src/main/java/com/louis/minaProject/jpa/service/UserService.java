@@ -112,6 +112,7 @@ public class UserService {
 
         log.info("insert tx2_1");
     }
+
     @Transactional(rollbackFor = Exception.class)
     public void tx1_1() {
         ErrorMessage errorMessage = new ErrorMessage();

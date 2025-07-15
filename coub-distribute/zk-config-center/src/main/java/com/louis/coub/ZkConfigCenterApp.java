@@ -21,10 +21,8 @@ public class ZkConfigCenterApp {
         SpringApplication.run(ZkConfigCenterApp.class);
     }
 
-//    @Autowired
+    //    @Autowired
     private ZookeeperConfigProperties zookeeperConfigProperties;
-
-
 
 
     @Value("${foo:hello}")

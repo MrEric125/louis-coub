@@ -13,7 +13,6 @@
     <packaging>pom</packaging>
 
 
-
     <developers>
         <developer>
             <id>liujun</id>
@@ -40,7 +39,6 @@
 
         <!-- https://mvnrepository.com/artifact/org.apache.skywalking/apm-toolkit-trace -->
 
-        
 
         <!-- https://mvnrepository.com/artifact/org.apache.skywalking/apm-toolkit-logback-1.x -->
         <dependency>

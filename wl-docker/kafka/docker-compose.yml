@@ -17,9 +17,9 @@ services:
       - zoo3
     environment:
       KAFKA_BROKER_ID: 1
-#      然后再宿主机配置好kafka1 对应的ip就可以
+      #      然后再宿主机配置好kafka1 对应的ip就可以
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-#    配置volumes 与docker 使用同一个sock,使 producer 与consumer 无需频繁变更ip
+      #    配置volumes 与docker 使用同一个sock,使 producer 与consumer 无需频繁变更ip
       ## 宿主机IP
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://172.30.48.1:9092
       KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181,zoo2:2181,zoo3:2181"
@@ -42,8 +42,8 @@ services:
       KAFKA_ADVERTISED_PORT: 9093
       KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181,zoo2:2181,zoo3:2181"
 
-#    volumes:
-#      - "./kafka/kafka2/data/:/kafka"
+  #    volumes:
+  #      - "./kafka/kafka2/data/:/kafka"
 
   kafka3:
     image: wurstmeister/kafka:2.12-2.5.0

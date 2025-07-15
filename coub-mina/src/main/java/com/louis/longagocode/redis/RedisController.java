@@ -27,9 +27,7 @@ import java.util.Set;
 public class RedisController {
 
     @Autowired
-    RedisTemplate<String,String> redisTemplate;
-
-
+    RedisTemplate<String, String> redisTemplate;
 
 
     @RequestMapping("/get")
@@ -60,6 +58,7 @@ public class RedisController {
         return HttpResult.ok(clientList);
 
     }
+
     @RequestMapping("/zSetOperate")
     public HttpResult zSetOperate() {
 //        redisTemplate.opsForZSet().range()

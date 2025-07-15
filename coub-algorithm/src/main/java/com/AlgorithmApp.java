@@ -20,7 +20,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Slf4j
 @EnableAsync
 @SpringBootApplication(scanBasePackages = "com.web")
-public class AlgorithmApp extends Pub{
+public class AlgorithmApp extends Pub {
 
     public static void main(String[] args) {
         SpringApplication.run(AlgorithmApp.class, args);
@@ -35,9 +35,9 @@ public class AlgorithmApp extends Pub{
 
     }
 
-        /**
+    /**
      * Creates and configures a {@link TaskExecutor} for asynchronous task execution.
-     * 
+     *
      * <p>This method sets up a {@link ThreadPoolTaskExecutor} with specific configurations
      * such as core pool size, maximum pool size, queue capacity, and thread name prefix.
      * It also defines the behavior for handling tasks when the pool is at maximum capacity

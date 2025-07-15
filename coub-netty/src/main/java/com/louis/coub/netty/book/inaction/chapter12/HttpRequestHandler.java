@@ -16,25 +16,26 @@ import java.net.URL;
  * description:
  */
 public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
-    private  final String wsUrl;
+    private final String wsUrl;
 
-    private static  String path;
+    private static String path;
 
     static {
 //        获取URL的时候将空格转换了，以至于找不到index.html文件
         URL location = HttpRequestHandler.class.getProtectionDomain()
                 .getCodeSource()
                 .getLocation();
-            try {
-                path=location.toURI() + "index.html";
-                path = !path.contains("%20") ? path : path.replace("%20", " ");
-                path = !path.contains("file:") ? path : path.substring(5);
+        try {
+            path = location.toURI() + "index.html";
+            path = !path.contains("%20") ? path : path.replace("%20", " ");
+            path = !path.contains("file:") ? path : path.substring(5);
 
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            }
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
-//   无法在静态常量中定义，在静态代码块中实例化
+
+    //   无法在静态常量中定义，在静态代码块中实例化
     private static final File INDEX = new File(path);
 
     public HttpRequestHandler(String wsUrl) {

@@ -11,7 +11,8 @@ public enum Operation {
     public abstract double apply(double x, double y);
 
     private final String symbol;
-    Operation(String symbol){
+
+    Operation(String symbol) {
         this.symbol = symbol;
     }
 }

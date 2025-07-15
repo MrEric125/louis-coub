@@ -12,7 +12,6 @@ import java.util.concurrent.TimeoutException;
 public class RabitMQConfig {
 
 
-
     @Bean
     public Connection connect() throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();

@@ -14,18 +14,21 @@ public enum Plant {
     private final double surfacegravity;
     private static final double g = 6.6730e-11;
 
-     Plant(double mass, double radius) {
-         this.mass = mass;
-         this.radius = radius;
-         surfacegravity = g * mass / (radius * mass);
+    Plant(double mass, double radius) {
+        this.mass = mass;
+        this.radius = radius;
+        surfacegravity = g * mass / (radius * mass);
     }
+
     public double mass() {
         return mass;
     }
+
     public double radius() {
         return radius;
     }
-    public double surfacegravity(){
+
+    public double surfacegravity() {
         return surfacegravity;
     }
 

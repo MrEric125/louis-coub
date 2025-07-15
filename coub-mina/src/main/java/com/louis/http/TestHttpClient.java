@@ -20,10 +20,10 @@ public class TestHttpClient {
     public HttpResult httpClientPool(@RequestParam String url, @RequestParam String method) throws Exception {
         String result = null;
         if (StringUtils.isNotBlank(method) && StringUtils.equals(method, "POST")) {
-            result= HttpClientUtils.doGet(url, null);
+            result = HttpClientUtils.doGet(url, null);
 //            result=HttpClient2.getHttpClient(url);
         } else {
-            result= HttpClientUtils.doGet(url, null);
+            result = HttpClientUtils.doGet(url, null);
             log.info(result);
 
         }
@@ -32,7 +32,7 @@ public class TestHttpClient {
     }
 
     @RequestMapping("/httpClient")
-    public HttpResult httpClient(@RequestParam String url, @RequestParam String method,@RequestBody(required = false) String data) throws Exception {
+    public HttpResult httpClient(@RequestParam String url, @RequestParam String method, @RequestBody(required = false) String data) throws Exception {
         String result = null;
         if (StringUtils.isNotBlank(method) && StringUtils.equals(method, "POST")) {
             if (StringUtils.isNotBlank(data)) {

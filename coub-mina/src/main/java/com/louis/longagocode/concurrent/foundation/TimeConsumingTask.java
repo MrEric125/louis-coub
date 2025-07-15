@@ -36,9 +36,10 @@ public class TimeConsumingTask implements Runnable {
         return isDone;
 
     }
+
     public void cancel() {
         toCancel = true;
-        System.out.println(this+" caceled .");
+        System.out.println(this + " caceled .");
     }
 
 }

@@ -6,5 +6,5 @@ package com.louis.longagocode.concurrent.unsafe;
  * description:
  * 动态跟踪
  */
- public class ThreadCounter {
+public class ThreadCounter {
 }

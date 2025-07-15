@@ -16,9 +16,9 @@ public class GroupingToOptional {
 
     @Test
     public void test2() {
-        ReportForm reportForm11 = new ReportForm("8",null,11);
-        ReportForm reportForm21 = new ReportForm("8",13,null);
-        ReportForm reportForm12 = new ReportForm("9",null,12);
+        ReportForm reportForm11 = new ReportForm("8", null, 11);
+        ReportForm reportForm21 = new ReportForm("8", 13, null);
+        ReportForm reportForm12 = new ReportForm("9", null, 12);
         ReportForm reportForm22 = new ReportForm("9", 14, null);
         ReportForm reportForm31 = new ReportForm("9", 14, null);
         ReportForm reportForm32 = new ReportForm("9", 14, null);
@@ -87,14 +87,14 @@ public class GroupingToOptional {
 
         for (String s : collect3.keySet()) {
             List<ReportForm> reportForms = collect3.get(s);
-            int getHotLine = reportForms.stream().mapToInt(item->{
+            int getHotLine = reportForms.stream().mapToInt(item -> {
                 if (Objects.isNull(item.getHotLine())) {
                     return 0;
                 } else {
                     return item.getHotLine();
                 }
             }).sum();
-            int getOnLine = reportForms.stream().mapToInt(item->{
+            int getOnLine = reportForms.stream().mapToInt(item -> {
                 if (Objects.isNull(item.getOnLine())) {
                     return 0;
                 } else {
@@ -109,12 +109,10 @@ public class GroupingToOptional {
         }
         long end2 = System.currentTimeMillis();
 
-        System.out.println("==========第二次============"+(end2 - start2));
+        System.out.println("==========第二次============" + (end2 - start2));
 
 //        System.out.println(JSON.toJSONString(formList, true));
     }
-
-
 
 
 }

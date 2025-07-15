@@ -59,7 +59,7 @@ public class WebSocketServer {
 
             ChannelFuture channelFuture = bootstrap.bind(9999).sync();
             channelFuture.channel().closeFuture().sync();
-        }finally {
+        } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }

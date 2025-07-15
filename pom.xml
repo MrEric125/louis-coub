@@ -12,10 +12,8 @@
         <module>coub-distribute</module>
         <module>coub-mina</module>
         <module>coub-source</module>
-        <module>hanlpmodule</module>
         <module>coub-netty</module>
         <module>louis-coub-parent</module>
-        <module>rabitmq</module>
 
     </modules>
 

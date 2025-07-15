@@ -21,7 +21,7 @@ public class BinaryInsertion<T extends Comparable<T>> implements ISorting<T> {
             return;
         }
 
-        for(int i = 1; i < arr.length; i++) {
+        for (int i = 1; i < arr.length; i++) {
             T temp = arr[i];
             // 通过二分查找找到插入的位置
             int insertIndex = findInsertIndex(arr, 0, i - 1, arr[i]);
@@ -36,9 +36,9 @@ public class BinaryInsertion<T extends Comparable<T>> implements ISorting<T> {
     /**
      * 在有序数组 nums 的[L, R]部分上，找到 value 的插入位置
      */
-    private  int findInsertIndex(T[] arr, int lo, int hi, T value) {
+    private int findInsertIndex(T[] arr, int lo, int hi, T value) {
 
-        while(lo <=hi ) {
+        while (lo <= hi) {
             int mid = lo + ((hi - lo) / 2);
             if (SortUtils.less(arr[mid], value)) {
                 lo = mid + 1;
@@ -52,16 +52,16 @@ public class BinaryInsertion<T extends Comparable<T>> implements ISorting<T> {
     }
 
     public static void main(String[] args) {
-        int N =50 ;
+        int N = 50;
         Integer[] arr = SortUtils.generateOrderArray(N);
         SortUtils.shuffle(arr);
         System.out.println("before: ");
 
-        Arrays.stream(arr).forEach(x-> System.out.print(x+"\t"));
+        Arrays.stream(arr).forEach(x -> System.out.print(x + "\t"));
         BinaryInsertion<Integer> shell = new BinaryInsertion<>();
         shell.sort(arr);
         System.out.println("\nafter: ");
-        Arrays.stream(arr).forEach(x-> System.out.print(x+"\t"));
+        Arrays.stream(arr).forEach(x -> System.out.print(x + "\t"));
 
     }
 }

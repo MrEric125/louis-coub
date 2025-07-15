@@ -46,7 +46,7 @@ public class DingTalkSupport {
         }
     }
 
-    public  void sendDingTalk(String msg)  {
+    public void sendDingTalk(String msg) {
         OapiRobotSendRequest request = new OapiRobotSendRequest();
         request.setMsgtype("text");
         request.setTimestamp(System.currentTimeMillis());

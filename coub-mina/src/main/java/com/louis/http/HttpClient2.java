@@ -42,7 +42,7 @@ public class HttpClient2 {
 
     private static final int CONNECT_TIMEOUT = 10000;// 设置连接建立的超时时间为10s
 
-    private static final int SOCKET_TIMEOUT =10000;
+    private static final int SOCKET_TIMEOUT = 10000;
 
     private static final int MAX_CONN = 10; // 最大连接数
 

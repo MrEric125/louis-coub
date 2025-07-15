@@ -11,7 +11,7 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class ResponseData <T>{
+public class ResponseData<T> {
 
 
     private String message;
@@ -25,7 +25,7 @@ public class ResponseData <T>{
         this.result = result;
     }
 
-    public  ResponseData(T result) {
+    public ResponseData(T result) {
         this("success", 200, result);
     }
 

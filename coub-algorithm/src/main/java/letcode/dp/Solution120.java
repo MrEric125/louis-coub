@@ -14,6 +14,7 @@ public class Solution120 {
      * 将不规则的三角形 转变成一个矩形
      * 设最后一行最小路径为 dp[i][n] 则可以表示为
      * dp[i][n]=num[i][n]+min{dp[i-1][n-1],dp[i][n-1]}
+     *
      * @param triangle
      * @return
      */
@@ -27,12 +28,12 @@ public class Solution120 {
 
         int[][] dp = new int[n][m];
         dp[0][0] = triangle.get(0).get(0);
-        for (int i = 2; i <=n; i++) {
+        for (int i = 2; i <= n; i++) {
             for (int j = 0; j < m; j++) {
 
                 // 逻辑很清晰，主要就是确认边界问题
                 if (j == 0) {
-                    dp[i-1][0] = triangle.get(i-1).get(0) + dp[i-2][0];
+                    dp[i - 1][0] = triangle.get(i - 1).get(0) + dp[i - 2][0];
                     continue;
                 }
 
@@ -52,7 +53,6 @@ public class Solution120 {
         }
         return result;
     }
-
 
 
     public static void main(String[] args) {

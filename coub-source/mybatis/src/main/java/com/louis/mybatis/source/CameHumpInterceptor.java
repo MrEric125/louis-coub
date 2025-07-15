@@ -10,7 +10,6 @@ import java.sql.Statement;
 import java.util.*;
 
 
-
 /**
  * @author louis
  * <p>
@@ -19,8 +18,8 @@ import java.util.*;
  */
 @Intercepts(
         @Signature(type = ResultSetHandler.class,
-        method = "handleResultSets",
-        args = {Statement.class})
+                method = "handleResultSets",
+                args = {Statement.class})
 )
 public class CameHumpInterceptor implements Interceptor {
     @Override
@@ -50,7 +49,7 @@ public class CameHumpInterceptor implements Interceptor {
     }
 
     private void processMap(Map map) {
-        Set<String> keySet = new HashSet<String>(map . keySet());
+        Set<String> keySet = new HashSet<String>(map.keySet());
         for (String key : keySet) {
 // 将以大写开头的字符串转换为小写，如采包含下画线也会处理为驼峰
 // 此处只通过这两个简单的标识来判断是否进行转换
@@ -68,11 +67,11 @@ public class CameHumpInterceptor implements Interceptor {
         boolean nextUpperCase = false;
         for (int i = 0; i < inputString.length(); i++) {
             char c = inputString.charAt(i);
-            if (c=='_') {
-                if (sb.length()>0) {
+            if (c == '_') {
+                if (sb.length() > 0) {
                     nextUpperCase = true;
                 }
-            }else {
+            } else {
                 if (nextUpperCase) {
                     sb.append(Character.toUpperCase(c));
                     nextUpperCase = false;

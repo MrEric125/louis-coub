@@ -28,10 +28,10 @@ public class LogController {
 
     @GetMapping("/log/{path}")
     public String log(@PathVariable String path) {
-        log.info("this is info{}",path);
-        log.error("this is error{}",path);
-        log.debug("this is debug{}",path);
-        log.warn("this is warn{}",path);
+        log.info("this is info{}", path);
+        log.error("this is error{}", path);
+        log.debug("this is debug{}", path);
+        log.warn("this is warn{}", path);
         return path;
     }
 

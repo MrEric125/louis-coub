@@ -13,11 +13,11 @@ public class KafkaMsgHandlerUtils {
 
     private static Map<String, KafkaMessageHandler> msgHandlerMap = Maps.newConcurrentMap();
 
-    public static void putHandler(String topicTemp,KafkaMessageHandler msgHandler) {
+    public static void putHandler(String topicTemp, KafkaMessageHandler msgHandler) {
         msgHandlerMap.put(topicTemp, msgHandler);
     }
 
     public static KafkaMessageHandler getHandler(String topicTemp) {
-       return msgHandlerMap.get(topicTemp);
+        return msgHandlerMap.get(topicTemp);
     }
 }

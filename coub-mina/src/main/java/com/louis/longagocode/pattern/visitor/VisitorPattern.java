@@ -7,13 +7,13 @@ package com.louis.longagocode.pattern.visitor;
  */
 public class VisitorPattern {
     public static void main(String[] args) {
-        ObjectStructure os=new ObjectStructure();
+        ObjectStructure os = new ObjectStructure();
         os.add(new ConcreteElementA());
         os.add(new ConcreteElementB());
-        Visitor visitor=new ConcreateVisitorA();
+        Visitor visitor = new ConcreateVisitorA();
         os.accept(visitor);
         System.out.println("------------------------");
-        visitor=new ConcreateVisitorB();
+        visitor = new ConcreateVisitorB();
         os.accept(visitor);
     }
 }

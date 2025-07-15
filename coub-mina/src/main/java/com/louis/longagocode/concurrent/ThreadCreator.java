@@ -22,7 +22,7 @@ public class ThreadCreator {
             }
         });
 
-        Thread threadB=new Thread(()->{
+        Thread threadB = new Thread(() -> {
             try {
                 Thread.sleep(1000);
                 synchronized (resourceA) {
@@ -36,7 +36,7 @@ public class ThreadCreator {
                         System.out.println("thread B release resource A lock");
                     }
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
 
             }
@@ -48,9 +48,8 @@ public class ThreadCreator {
         System.out.println("main over");
     }
 
-    private  static final Object resourceA = new Object();
+    private static final Object resourceA = new Object();
     private static final Object resourceB = new Object();
-
 
 
 }

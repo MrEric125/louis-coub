@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  */
 @Data
 @Service
-@ConfigurationProperties(prefix =LouisBootProperties.PREFIX)
+@ConfigurationProperties(prefix = LouisBootProperties.PREFIX)
 public class LouisBootProperties {
 
     static final String PREFIX = "louis.boot";

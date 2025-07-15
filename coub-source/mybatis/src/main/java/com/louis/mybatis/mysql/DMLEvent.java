@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class DMLEvent implements BinLogListener{
+public class DMLEvent implements BinLogListener {
 
 
     @Override

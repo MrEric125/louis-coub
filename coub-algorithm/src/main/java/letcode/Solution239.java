@@ -17,11 +17,12 @@ public class Solution239 {
 
     /**
      * 时间复杂度稳定在O(n)
+     *
      * @param nums
      * @param k
      * @return
      */
-    public int[] maxSlidingWindow(int[] nums, int k){
+    public int[] maxSlidingWindow(int[] nums, int k) {
 
         /**
          * 这个优先队列不能直接存int值，是因为当狂口往后面滑动的时候，是需要将窗口外的数据移除
@@ -51,12 +52,11 @@ public class Solution239 {
         return ans;
 
 
-
-
     }
 
     /**
      * 时间复杂度：最坏的情况下，是O(n^2) 最好的情况下是O(n)
+     *
      * @param nums
      * @param k
      * @return
@@ -102,6 +102,7 @@ public class Solution239 {
 
     /**
      * 这种时间复杂度为n^3
+     *
      * @param nums
      * @param k
      * @return
@@ -116,7 +117,7 @@ public class Solution239 {
             int[] subArr = new int[k];
 
             for (int j = i; j < k + i; j++) {
-                    subArr[j - i] = nums[j];
+                subArr[j - i] = nums[j];
             }
             int maxValue = findMaxValue(subArr);
 

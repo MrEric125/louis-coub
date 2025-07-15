@@ -62,8 +62,10 @@ public class BinLogUtils {
         }
         return null;
     }
+
     /**
      * 将逗号拼接字符串转List
+     *
      * @param str
      * @return
      */

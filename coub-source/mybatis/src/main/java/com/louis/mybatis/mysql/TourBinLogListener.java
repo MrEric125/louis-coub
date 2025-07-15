@@ -23,8 +23,8 @@ import java.util.concurrent.BlockingQueue;
  * CommandLineRunner去实现此操作
  * 在有多个可被执行的业务时，通过使用 @Order 注解，设置各个线程的启动顺序（value值由小到大表示启动顺序）。
  * 多个实现CommandLineRunner接口的类必须要设置启动顺序，不让程序启动会报错！
- *
- *
+ * <p>
+ * <p>
  * 监听的库,表
  * 时间类型的处理，比如查询的处理，插入的处理，都拆分下来
  *
@@ -58,7 +58,7 @@ public class TourBinLogListener implements CommandLineRunner {
 
         Multimap<String, BinLogListener> multimap = ArrayListMultimap.create();
 
-        MysqlBinLogEventListener mysqlBinLogEventListener = new MysqlBinLogEventListener(conf, eventType,blockingQueue,multimap);
+        MysqlBinLogEventListener mysqlBinLogEventListener = new MysqlBinLogEventListener(conf, eventType, blockingQueue, multimap);
 
         // 获取table集合
         List<String> tableList = BinLogUtils.getListByStr(binLogConstants.getTable());
@@ -72,7 +72,7 @@ public class TourBinLogListener implements CommandLineRunner {
                 //todo  这里可以新增自定义事件,来处理 监听到的binlog 事件
                 mysqlBinLogEventListener.regListener(binLogConstants.getSchema(), table, dmlEvent);
             } catch (Exception e) {
-                log.error("BinLog监听异常：" ,e);
+                log.error("BinLog监听异常：", e);
             }
         });
         // 初始化监听器

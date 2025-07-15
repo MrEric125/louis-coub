@@ -47,61 +47,61 @@
 
 
         <!--        dubbo dependencies-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.dubbo</groupId>-->
-<!--            <artifactId>dubbo</artifactId>-->
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.springframework</groupId>-->
-<!--                    <artifactId>spring</artifactId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <groupId>javax.servlet</groupId>-->
-<!--                    <artifactId>servlet-api</artifactId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <groupId>log4j</groupId>-->
-<!--                    <artifactId>log4j</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.dubbo</groupId>-->
+        <!--            <artifactId>dubbo</artifactId>-->
+        <!--            <exclusions>-->
+        <!--                <exclusion>-->
+        <!--                    <groupId>org.springframework</groupId>-->
+        <!--                    <artifactId>spring</artifactId>-->
+        <!--                </exclusion>-->
+        <!--                <exclusion>-->
+        <!--                    <groupId>javax.servlet</groupId>-->
+        <!--                    <artifactId>servlet-api</artifactId>-->
+        <!--                </exclusion>-->
+        <!--                <exclusion>-->
+        <!--                    <groupId>log4j</groupId>-->
+        <!--                    <artifactId>log4j</artifactId>-->
+        <!--                </exclusion>-->
+        <!--            </exclusions>-->
+        <!--        </dependency>-->
 
-<!--        <dependency>-->
-<!--            <groupId>org.apache.dubbo</groupId>-->
-<!--            <artifactId>dubbo-spring-boot-starter</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.dubbo</groupId>-->
+        <!--            <artifactId>dubbo-spring-boot-starter</artifactId>-->
+        <!--        </dependency>-->
 
 
-<!--        &lt;!&ndash; Zookeeper dependencies &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.dubbo</groupId>-->
-<!--            <artifactId>dubbo-dependencies-zookeeper</artifactId>-->
-<!--            <type>pom</type>-->
+        <!--        &lt;!&ndash; Zookeeper dependencies &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.dubbo</groupId>-->
+        <!--            <artifactId>dubbo-dependencies-zookeeper</artifactId>-->
+        <!--            <type>pom</type>-->
 
-<!--        </dependency>-->
+        <!--        </dependency>-->
 
         <!--        rest start-->
         <!--        使用netty服务器-->
 
         <!--        java.lang.NoClassDefFoundError: org/jboss/resteasy/plugins/server/netty/NettyJaxrsServer-->
-<!--        <dependency>-->
-<!--            <groupId>org.jboss.resteasy</groupId>-->
-<!--            <artifactId>resteasy-netty4</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.jboss.resteasy</groupId>-->
+        <!--            <artifactId>resteasy-netty4</artifactId>-->
+        <!--        </dependency>-->
 
-<!--        <dependency>-->
-<!--            <groupId>org.apache.thrift</groupId>-->
-<!--            <artifactId>libthrift</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.thrift</groupId>-->
+        <!--            <artifactId>libthrift</artifactId>-->
+        <!--        </dependency>-->
 
 
         <!--        使用jetty服务器-->
 
         <!--        java.lang.NoClassDefFoundError: org/eclipse/jetty/util/log/StdErrLog-->
-<!--        <dependency>-->
-<!--            <groupId>org.eclipse.jetty</groupId>-->
-<!--            <artifactId>jetty-servlet</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.eclipse.jetty</groupId>-->
+        <!--            <artifactId>jetty-servlet</artifactId>-->
+        <!--        </dependency>-->
 
 
         <!--Caused by: java.lang.NoClassDefFoundError: javax/ws/rs/WebApplicationException-->
@@ -128,7 +128,6 @@
 
 
     </dependencies>
-
 
 
 </project>

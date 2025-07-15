@@ -39,7 +39,8 @@ public class OneConsumerTest {
             }
         });
 
-        for (;;){}
+        for (; ; ) {
+        }
         // zkClient.close();
     }
 

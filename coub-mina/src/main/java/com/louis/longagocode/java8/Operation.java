@@ -12,7 +12,7 @@ public enum Operation {
     PLUS("+", Double::sum),
     MINUS("-", (x, y) -> x - y),
     TIMES("*", (x, y) -> x * y),
-    DIVIDE("/",(x,y)-> x/y);
+    DIVIDE("/", (x, y) -> x / y);
 
     private final String symbol;
 
@@ -24,7 +24,7 @@ public enum Operation {
 
     }
 
-    public  double apply(double x, double y){
+    public double apply(double x, double y) {
         return operator.applyAsDouble(x, y);
 
     }

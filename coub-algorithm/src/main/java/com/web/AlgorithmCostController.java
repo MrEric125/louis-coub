@@ -28,12 +28,11 @@ public class AlgorithmCostController {
     private TaskExecutor taskExecutor;
 
 
-
-
     /**
      * 计算某个算法所花费的平均时间
+     *
      * @param algoName 算法名字
-     * @param runTime 运行次数
+     * @param runTime  运行次数
      * @return 算法计算最后花费的平均时间
      */
     @RequestMapping("/costAsync/{algoName}/{runTime}")
@@ -49,14 +48,13 @@ public class AlgorithmCostController {
         }
 
 
-
         long start = System.currentTimeMillis();
         List<Long> costList = completableFutureList.stream().map(CompletableFuture<Long>::join).collect(Collectors.toList());
         long end = System.currentTimeMillis();
         log.info("异步执行总共花费的时间:{} ", (end - start));
         log.info("执行花费时间详细情况:{}", JSON.toJSONString(costList));
 
-        double avgCost= algorithmService.avgCost(costList);
+        double avgCost = algorithmService.avgCost(costList);
         return avgCost + "";
     }
 
@@ -72,16 +70,9 @@ public class AlgorithmCostController {
             costList.add(algorithmService.calculateCost(sortService, arr));
         }
         log.info("执行花费时间详细情况:{}", JSON.toJSONString(costList));
-        double avgCost= algorithmService.avgCost(costList);
+        double avgCost = algorithmService.avgCost(costList);
         return avgCost + "";
     }
-
-
-
-
-
-
-
 
 
 }

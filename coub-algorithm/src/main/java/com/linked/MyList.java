@@ -14,6 +14,7 @@ public interface MyList<E extends Serializable> extends Serializable {
 
 
     void deleteLast();
+
     void deleteFirst();
 
     void deleteIndex(int index);

@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Setter
 @Getter
-public class MessageExt <Key extends Serializable, Value extends Serializable> extends Message<Key,Value>{
+public class MessageExt<Key extends Serializable, Value extends Serializable> extends Message<Key, Value> {
 
     private long offset;
 
@@ -29,6 +29,7 @@ public class MessageExt <Key extends Serializable, Value extends Serializable> e
         super(key, value, topic, new Date());
         this.messageId = messageId;
     }
+
     public static class MessageWrapper {
         private String message;
         private String messageId;

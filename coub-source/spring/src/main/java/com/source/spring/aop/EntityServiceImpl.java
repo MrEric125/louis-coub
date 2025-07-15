@@ -6,15 +6,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Data
-public class EntityServiceImpl  {
+public class EntityServiceImpl {
 
     @AutoSysConfig
     @Value("${domain.url:}")
     private String domainUrl;
 
 
-
-    public String test(){
+    public String test() {
         System.out.println("aopEntiity");
         return "aopentity";
     }

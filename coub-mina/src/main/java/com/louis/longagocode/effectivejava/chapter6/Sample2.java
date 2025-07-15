@@ -1,12 +1,10 @@
 package com.louis.longagocode.effectivejava.chapter6;
 
-import com.effectivejava.chapter6.ExceptionTest;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class Sample2 {
-
 
 
     @ExceptionTest(NullPointerException.class)
@@ -17,7 +15,7 @@ public class Sample2 {
     }
 
     public static void main(String[] args) {
-        int passed=0;
+        int passed = 0;
         Class<Sample2> testClass = Sample2.class;
         for (Method method : testClass.getDeclaredMethods()) {
             if (method.isAnnotationPresent(ExceptionTest.class)) {

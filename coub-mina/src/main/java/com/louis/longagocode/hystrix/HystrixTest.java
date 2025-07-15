@@ -1,6 +1,5 @@
 package com.louis.longagocode.hystrix;
 
-import com.hystrix.HystrixCircuitBreakerCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -18,28 +17,28 @@ public class HystrixTest {
         HystrixCircuitBreakerCommand circuitBreakerCommand = null;
 
         for (int i = 0; i < 30; i++) {
-            circuitBreakerCommand=new HystrixCircuitBreakerCommand(i);
+            circuitBreakerCommand = new HystrixCircuitBreakerCommand(i);
             String execute = null;
             try {
                 execute = circuitBreakerCommand.toObservable().toBlocking().toFuture().get();
             } catch (Exception e) {
                 log.error(e.getMessage());
             }
-            log.info("execute:>>>>>>>>>:{}",execute);
+            log.info("execute:>>>>>>>>>:{}", execute);
         }
         Thread.sleep(2000);
         System.out.println("====================================");
         log.info("休眠一段时间之后");
         System.out.println("====================================");
-        for (int i = 31; i <40 ; i++) {
-            circuitBreakerCommand=new HystrixCircuitBreakerCommand(i);
+        for (int i = 31; i < 40; i++) {
+            circuitBreakerCommand = new HystrixCircuitBreakerCommand(i);
             String execute = null;
             try {
                 execute = circuitBreakerCommand.execute();
             } catch (Exception e) {
                 log.error(e.getMessage());
             }
-            log.info("execute:>>>>>>>>>:{}",execute);
+            log.info("execute:>>>>>>>>>:{}", execute);
 
         }
 

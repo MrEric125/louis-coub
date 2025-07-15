@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 public class MatchNumRomanNumerals {
 
     /**
-     *  performace can be greatly improved!
+     * performace can be greatly improved!
      *
      * @param s
      * @return
@@ -35,10 +35,10 @@ public class MatchNumRomanNumerals {
 
     public static void main(String[] args) {
         long start1 = System.currentTimeMillis();
-        Long sum1=sum();
+        Long sum1 = sum();
         long end1 = System.currentTimeMillis();
         long start2 = System.currentTimeMillis();
-        long sum2=sum2();
+        long sum2 = sum2();
         long end2 = System.currentTimeMillis();
         log.info("message sum 1: sum={}; totalTime:{}", sum1, end1 - start1);
         log.info("message sum 1: sum={}; totalTime:{}", sum2, end2 - start2);

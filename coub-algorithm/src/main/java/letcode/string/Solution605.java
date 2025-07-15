@@ -6,7 +6,7 @@ public class Solution605 {
         int len = flowerbed.length;
 
         if (len <= 1) {
-            if (flowerbed[0] == 1 ){
+            if (flowerbed[0] == 1) {
                 return n < 1;
             }
             if (flowerbed[0] == 0) {
@@ -16,7 +16,7 @@ public class Solution605 {
 
         for (int i = 0; i < len; i++) {
             if (i == 0) {
-                if (compareAfter(i,flowerbed) ){
+                if (compareAfter(i, flowerbed)) {
                     flowerbed[i] = 1;
                     n--;
                 }
@@ -25,7 +25,7 @@ public class Solution605 {
                     n--;
                     flowerbed[i] = 1;
                 }
-            }else {
+            } else {
                 if (compareAfter(i, flowerbed) && comparePre(i, flowerbed)) {
                     n--;
                     flowerbed[i] = 1;
@@ -38,17 +38,16 @@ public class Solution605 {
         return n <= 0;
     }
 
-    public boolean comparePre(int i,int[] flowerbed) {
+    public boolean comparePre(int i, int[] flowerbed) {
         return flowerbed[i] == flowerbed[i - 1] && flowerbed[i] == 0;
     }
 
-    public boolean compareAfter(int i,int[] flowerbed) {
+    public boolean compareAfter(int i, int[] flowerbed) {
         return flowerbed[i] == flowerbed[i + 1] && flowerbed[i] == 0;
     }
 
 
-
     public static void main(String[] args) {
-        System.out.println(new Solution605().canPlaceFlowers(new int[]{1, 0,0, 0, 1}, 1));
+        System.out.println(new Solution605().canPlaceFlowers(new int[]{1, 0, 0, 0, 1}, 1));
     }
 }

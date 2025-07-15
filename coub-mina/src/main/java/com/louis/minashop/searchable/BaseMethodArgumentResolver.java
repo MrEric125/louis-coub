@@ -1,4 +1,3 @@
-
 package com.louis.minashop.searchable;
 
 import org.springframework.web.context.request.NativeWebRequest;
@@ -14,9 +13,8 @@ import java.util.Map;
 
 /**
  * @author John·Louis
- *
  * @date 2019年5月30日22:53:36
- *
+ * <p>
  * description
  */
 public abstract class BaseMethodArgumentResolver implements HandlerMethodArgumentResolver {

@@ -12,7 +12,7 @@ import java.nio.IntBuffer;
  * 1.ByteBuffer
  * 2.Selector
  * 3.Channel
- *
+ * <p>
  * 1. 每个channel 一般对应一个buffer
  * 2.一个selector 对应一个线程  一个selector 对应过个channel
  * 3.nio 网络模型，反应的是channel 注册到selector的过程
@@ -21,7 +21,6 @@ import java.nio.IntBuffer;
  * 6. buffer就是一个内存块，底层其实就是一个数组
  * 7. 数据的读写都是通过buffer, buffer 是可以读也可以写，但是需要flip切换一下
  * 8. channel是双向的，可以范湖底层操作系统的情况，比如linux底层操作系统通道就是双向的
-
  */
 @Slf4j
 public class BasicBuffer {

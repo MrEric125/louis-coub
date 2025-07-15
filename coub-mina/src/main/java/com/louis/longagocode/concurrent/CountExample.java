@@ -34,7 +34,7 @@ public class CountExample {
         final Semaphore semaphore = new Semaphore(threadNum);
         for (int i = 0; i < clientNum; i++) {
             final int num = i;
-            executorService.execute(()->{
+            executorService.execute(() -> {
                 try {
                     semaphore.acquire();
                     addByMap(num);
@@ -58,6 +58,7 @@ public class CountExample {
     public static void add() {
         count++;
     }
+
     public static void addByMap(int num) {
         map.put(num, num);
     }

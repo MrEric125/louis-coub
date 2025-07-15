@@ -21,8 +21,8 @@ public class KafkaConfig {
     private String brokers;
 
     @Bean("louisKafkaProducer")
-    public LouisKafkaProducerImpl<String,String> louisKafkaProducer() throws Exception{
-        LouisKafkaProducerImpl<String,String> louisKafkaProducer = new LouisKafkaProducerImpl<>();
+    public LouisKafkaProducerImpl<String, String> louisKafkaProducer() throws Exception {
+        LouisKafkaProducerImpl<String, String> louisKafkaProducer = new LouisKafkaProducerImpl<>();
 
         louisKafkaProducer.setTopics(Sets.newHashSet(topic));
         AuthInfo authInfo = new AuthInfo();

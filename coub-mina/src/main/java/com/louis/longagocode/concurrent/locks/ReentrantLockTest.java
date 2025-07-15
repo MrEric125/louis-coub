@@ -16,6 +16,7 @@ public class ReentrantLockTest {
     private static int totalcount = 5000;
     //    private static AtomicInteger sum = new AtomicInteger();
     private static int sum = 0;
+
     public static void main(String[] args) {
 //        Semaphore semaphore = new Semaphore(totalcount,true);
         ReentrantLock reentrantLock = new ReentrantLock();
@@ -29,13 +30,13 @@ public class ReentrantLockTest {
 //                 semaphore.release();
             } catch (Exception e) {
                 e.printStackTrace();
-            }finally {
+            } finally {
                 reentrantLock.unlock();
             }
         };
         for (int i = 0; i < 30; i++) {
 //            executorService.execute(runnable);
-             new Thread(runnable).start();
+            new Thread(runnable).start();
         }
         try {
             Thread.sleep(400);

@@ -10,7 +10,7 @@ public interface Builder {
 
     void add(Integer name, String supplier);
 
-    default void delete(Integer name){
+    default void delete(Integer name) {
         System.out.println(name);
     }
 }

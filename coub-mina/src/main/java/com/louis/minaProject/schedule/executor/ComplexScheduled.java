@@ -34,9 +34,8 @@ public class ComplexScheduled {
     }
 
 
-
     public static Calendar getEarliestDate(Calendar currentDate, int dayOfWeek,
-                                    int hourOfDay, int minuteOfHour, int secondOfMinite) {
+                                           int hourOfDay, int minuteOfHour, int secondOfMinite) {
         //计算当前时间的WEEK_OF_YEAR,DAY_OF_WEEK, HOUR_OF_DAY, MINUTE,SECOND等各个字段值
         int currentWeekOfYear = currentDate.get(Calendar.WEEK_OF_YEAR);
         int currentDayOfWeek = currentDate.get(Calendar.DAY_OF_WEEK);

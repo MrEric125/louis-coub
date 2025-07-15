@@ -12,7 +12,7 @@ import org.apache.dubbo.rpc.*;
  * @date 2022/7/26
  */
 @Slf4j
-@Activate(group ={CommonConstants.PROVIDER})
+@Activate(group = {CommonConstants.PROVIDER})
 public class TraceProducerFilter implements Filter {
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {

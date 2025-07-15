@@ -1,7 +1,5 @@
 package com.louis.longagocode.future;
 
-import com.future.Discount;
-import com.future.Shop;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +27,7 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class ShopServiceImpl {
 
-    private  List<Shop> shopList = Lists.newCopyOnWriteArrayList();
+    private List<Shop> shopList = Lists.newCopyOnWriteArrayList();
 
     private Random random = new Random();
 
@@ -49,6 +47,7 @@ public class ShopServiceImpl {
 
     /**
      * 通过商店名字找寻商店
+     *
      * @param name
      * @return
      */
@@ -61,10 +60,11 @@ public class ShopServiceImpl {
 
     /**
      * 创建一个shopList
+     *
      * @param shopNames
      * @return
      */
-    public  List<Shop> creatShop(List<String> shopNames) {
+    public List<Shop> creatShop(List<String> shopNames) {
         List<Shop> shops = Arrays.asList(new Shop("BestPrice"),
                 new Shop("LetsSaveBig"),
                 new Shop("MyFavoriteShop"),
@@ -89,7 +89,8 @@ public class ShopServiceImpl {
 
 
     /**
-     *  不适用线程池 批量获取不同产品在不同商店的价格
+     * 不适用线程池 批量获取不同产品在不同商店的价格
+     *
      * @param product
      * @return
      */
@@ -103,10 +104,11 @@ public class ShopServiceImpl {
 
     /**
      * 通过异步的方式获取商品价格
+     *
      * @param product
      * @return
      */
-    public Future<Double> getPriceAsync(String product){
+    public Future<Double> getPriceAsync(String product) {
         CompletableFuture<Double> futurePrice = new CompletableFuture<>();
         new Thread(() -> {
             try {
@@ -122,10 +124,11 @@ public class ShopServiceImpl {
 
     /**
      * 通过产品名称计算产品价格
+     *
      * @param product
      * @return
      */
-    public Future<Double> getPriceAsync2(String product){
+    public Future<Double> getPriceAsync2(String product) {
         return CompletableFuture.supplyAsync(() -> calculatePrice(product));
     }
 
@@ -139,6 +142,7 @@ public class ShopServiceImpl {
 
     /**
      * 获取计算到的价格
+     *
      * @param produce
      * @return
      */
@@ -168,11 +172,12 @@ public class ShopServiceImpl {
 
     /**
      * 直接使用流的方式来计算产品价格
+     *
      * @param shops
      * @param product
      * @return
      */
-    private   List<String>  findPrices1(List<Shop> shops,String product) {
+    private List<String> findPrices1(List<Shop> shops, String product) {
         return shops.stream()
                 .map(shop -> {
                     BigDecimal price = shop.getProductList()
@@ -191,11 +196,12 @@ public class ShopServiceImpl {
 
     /**
      * 通过并行流的方式来计算
+     *
      * @param shops
      * @param product
      * @return
      */
-    public  List<String> findPrices2(List<Shop> shops,String product) {
+    public List<String> findPrices2(List<Shop> shops, String product) {
         return shops.parallelStream()
                 .map(shop -> String.format("%s price is %.2f",
                         shop.getShopName(), shop.getProductPrice(product)))
@@ -204,11 +210,12 @@ public class ShopServiceImpl {
 
     /**
      * 通过CompletableFuture 默认的线程池的方式来计算价格
+     *
      * @param shops
      * @param product
      * @return
      */
-    private   List<String>  findPrices3(List<Shop> shops,String product) {
+    private List<String> findPrices3(List<Shop> shops, String product) {
 
         return shops.stream()
                 .map(shop -> CompletableFuture.supplyAsync(() ->
@@ -220,13 +227,14 @@ public class ShopServiceImpl {
 
 
     /**
-     *重新新建一个线程池来执行
+     * 重新新建一个线程池来执行
+     *
      * @param shops
      * @param product
      * @param threadNum 线程数量
      * @return
      */
-    private   List<String> findPrices4(List<Shop> shops,String product,int threadNum) {
+    private List<String> findPrices4(List<Shop> shops, String product, int threadNum) {
         ExecutorService executor = Executors.newFixedThreadPool(threadNum);
         List<CompletableFuture<String>> collect = shops
                 .stream()
@@ -242,13 +250,13 @@ public class ShopServiceImpl {
     }
 
     /**
-     *ThreadPoolTaskExecutor 来作为线程池执行任务
+     * ThreadPoolTaskExecutor 来作为线程池执行任务
+     *
      * @param shops
      * @param product
-
      * @return
      */
-    private   List<String> findPrices5(List<Shop> shops,String product) {
+    private List<String> findPrices5(List<Shop> shops, String product) {
         List<CompletableFuture<String>> collect = shops
                 .stream()
                 .map(shop -> CompletableFuture.supplyAsync(() ->
@@ -263,27 +271,27 @@ public class ShopServiceImpl {
     /**
      * 运行策略，具体使用哪种计算方式来计算
      */
-    public   List<String> runStratage( String product, int stratageCode,int threadNum) {
+    public List<String> runStratage(String product, int stratageCode, int threadNum) {
         List<String> object;
         switch (stratageCode) {
             case 1:
-                object= findPrices1(shopList, product);
+                object = findPrices1(shopList, product);
                 break;
             case 2:
-                object= findPrices2(shopList, product);
+                object = findPrices2(shopList, product);
                 break;
             case 3:
-                object= findPrices3(shopList, product);
+                object = findPrices3(shopList, product);
                 break;
             case 4:
-                object= findPrices4(shopList, product,threadNum);
+                object = findPrices4(shopList, product, threadNum);
                 break;
             case 5:
                 object = findPrices5(shopList, product);
                 break;
 
             default:
-                object=findPrices1(shopList, product);
+                object = findPrices1(shopList, product);
                 break;
         }
         return object;
@@ -292,11 +300,11 @@ public class ShopServiceImpl {
     public static void main(String[] args) {
         CompletableFuture<Long> future = CompletableFuture.supplyAsync(() -> {
             long result = new Random().nextInt(100);
-            System.out.println("result1="+result);
+            System.out.println("result1=" + result);
             return result;
         }).thenApply(t -> {
-            long result = t*5;
-            System.out.println("result2="+result);
+            long result = t * 5;
+            System.out.println("result2=" + result);
             return result;
         });
 

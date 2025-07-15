@@ -12,7 +12,7 @@ class MyStack225 {
         queue = new LinkedList<>();
 
     }
-    
+
     public void push(int x) {
         int size = queue.size();
         queue.offer(x);
@@ -22,15 +22,15 @@ class MyStack225 {
         }
 
     }
-    
+
     public int pop() {
         return queue.poll();
     }
-    
+
     public int top() {
         return queue.peek();
     }
-    
+
     public boolean empty() {
         return queue.isEmpty();
 

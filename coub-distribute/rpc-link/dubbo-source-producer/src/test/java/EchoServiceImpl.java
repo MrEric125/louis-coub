@@ -1,7 +1,7 @@
 import org.apache.dubbo.config.annotation.Service;
 
 @Service
-public class EchoServiceImpl implements EchoService{
+public class EchoServiceImpl implements EchoService {
 
 
     @Override

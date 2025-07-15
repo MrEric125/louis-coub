@@ -6,7 +6,7 @@ public class Solution63 {
 
     /**
      * 如果这里面只有一个障碍物，则与62题基本相似,但是需要考虑跳过有障碍物的那个路线，解法如下
-     *
+     * <p>
      * 但事实是可能有多个障碍物，并且这些障碍物可能会连成一条线，导致动态规划没法往前溯源
      *
      * @param obstacleGrid
@@ -14,8 +14,8 @@ public class Solution63 {
      */
     public int uniquePathsWithObstacles1(int[][] obstacleGrid) {
         int m = obstacleGrid.length;
-        int n=obstacleGrid[0].length;
-        int[][] dp=new int[m][n];
+        int n = obstacleGrid[0].length;
+        int[][] dp = new int[m][n];
         // 两个特殊情况，如果障碍在目标位置
 //        if (obstacleGrid[m - 1][n - 1] == 1) {
 //            return 0;
@@ -49,7 +49,7 @@ public class Solution63 {
                 }
             }
         }
-        return dp[m-1][n-1];
+        return dp[m - 1][n - 1];
     }
 
     public static void main(String[] args) {

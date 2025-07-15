@@ -37,7 +37,7 @@ public class ZipOps {
                     Workbook workbook = new SXSSFWorkbook();
                     String itemFileName = DateUtils.format(new Date());
 
-                    try (ByteArrayOutputStream bos = new ByteArrayOutputStream()){
+                    try (ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
                         ZipEntry zipEntry = new ZipEntry(UUID.randomUUID().toString() + ".xlsx");
                         zipOutputStream.putNextEntry(zipEntry);
                         workbook.write(bos);
@@ -97,19 +97,19 @@ public class ZipOps {
     }
 
     public void direact() {
-                try (ByteArrayOutputStream os = new ByteArrayOutputStream();
+        try (ByteArrayOutputStream os = new ByteArrayOutputStream();
              ZipOutputStream zipOutputStream = new ZipOutputStream(os)) {
 
-                for (int i = 0; i < 3; i++) {
-                    String itemFileName = DateUtils.format(new Date());
-                    Workbook workbook = new SXSSFWorkbook();
-                    ZipEntry zipEntry = new ZipEntry("数据导出" + i+ ".xlsx");
-                    zipOutputStream.putNextEntry(zipEntry);
-                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                    workbook.write(bos);
-                    bos.writeTo(zipOutputStream);
+            for (int i = 0; i < 3; i++) {
+                String itemFileName = DateUtils.format(new Date());
+                Workbook workbook = new SXSSFWorkbook();
+                ZipEntry zipEntry = new ZipEntry("数据导出" + i + ".xlsx");
+                zipOutputStream.putNextEntry(zipEntry);
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                workbook.write(bos);
+                bos.writeTo(zipOutputStream);
 
-                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

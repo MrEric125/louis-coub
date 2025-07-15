@@ -14,7 +14,7 @@ public class TryResource {
         BufferedReader reader = new BufferedReader(new FileReader(path));
         try {
             return reader.readLine();
-        }finally {
+        } finally {
             reader.close();
 
         }
@@ -31,10 +31,10 @@ public class TryResource {
                 while ((n = in.read(buf)) >= 0) {
                     outputStream.write(buf, 0, n);
                 }
-            }finally {
+            } finally {
                 outputStream.close();
             }
-        }finally {
+        } finally {
             in.close();
         }
     }
@@ -42,14 +42,14 @@ public class TryResource {
 
     static void copy2(String src, String dst) throws IOException {
 
-        try( InputStream in = new FileInputStream(src);
+        try (InputStream in = new FileInputStream(src);
              FileOutputStream outputStream = new FileOutputStream(dst);
         ) {
-                byte[] buf = new byte[1024];
-                int n = 0;
-                while ((n = in.read(buf)) >= 0) {
-                    outputStream.write(buf, 0, n);
-                }
+            byte[] buf = new byte[1024];
+            int n = 0;
+            while ((n = in.read(buf)) >= 0) {
+                outputStream.write(buf, 0, n);
+            }
         }
     }
 }

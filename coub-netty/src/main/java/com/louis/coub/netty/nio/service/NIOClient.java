@@ -29,15 +29,16 @@ public class NIOClient {
     private final Charset charset = StandardCharsets.UTF_8;
     private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.US);
 
-    public NIOClient(){
+    public NIOClient() {
 
         SERVER = new InetSocketAddress("localhost", 8888);
         init();
     }
+
     /**
      *
      */
-    public void init(){
+    public void init() {
 
         try {
             /*
@@ -54,7 +55,7 @@ public class NIOClient {
             while (true) {
                 selector.select();
                 Set<SelectionKey> keySet = selector.selectedKeys();
-                for(final SelectionKey key : keySet){
+                for (final SelectionKey key : keySet) {
                     handle(key);
                 }
                 keySet.clear();
@@ -74,7 +75,7 @@ public class NIOClient {
      * @throws IOException
      * @throws ParseException
      */
-    private void handle(SelectionKey selectionKey) throws IOException, ParseException{
+    private void handle(SelectionKey selectionKey) throws IOException, ParseException {
 
         if (selectionKey.isConnectable()) {
             /*
@@ -129,8 +130,8 @@ public class NIOClient {
                 client = (SocketChannel) selectionKey.channel();
                 rBuffer.clear();
                 int count = client.read(rBuffer);
-                if(count >0){
-                    receiveText = new String( rBuffer.array(),0, count);
+                if (count > 0) {
+                    receiveText = new String(rBuffer.array(), 0, count);
                     System.out.println(receiveText);
                     client = (SocketChannel) selectionKey.channel();
                     client.register(selector, SelectionKey.OP_READ);

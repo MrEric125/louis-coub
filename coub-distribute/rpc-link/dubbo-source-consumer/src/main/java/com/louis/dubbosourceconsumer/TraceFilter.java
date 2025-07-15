@@ -11,7 +11,7 @@ import org.apache.dubbo.rpc.*;
  * @date 2022/7/26
  */
 @Slf4j
-@Activate(group ={CommonConstants.CONSUMER})
+@Activate(group = {CommonConstants.CONSUMER})
 public class TraceFilter implements Filter {
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
@@ -22,9 +22,6 @@ public class TraceFilter implements Filter {
         if (StringUtils.isNotBlank(traceId)) {
             RpcContext.getContext().setAttachment("traceId", traceId);
         }
-
-
-
 
 
         return invoker.invoke(invocation);

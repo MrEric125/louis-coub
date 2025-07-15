@@ -1,6 +1,5 @@
 package com.louis.longagocode.spring.transaction;
 
-import com.spring.transaction.Tb1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Service;
@@ -47,8 +46,7 @@ public class Tb1Service {
 //        }
 
 
-
-        new Thread(()->{
+        new Thread(() -> {
             Tb1 tb2 = tb1;
             tb2.setName(new Date().toString());
             tb1Repository.save(tb2);
@@ -64,7 +62,6 @@ public class Tb1Service {
         Tb1 save2 = tb1Repository.findById(id).get();
         return save2;
     }
-
 
 
 }

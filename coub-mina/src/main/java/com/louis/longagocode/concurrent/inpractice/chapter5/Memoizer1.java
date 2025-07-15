@@ -1,12 +1,10 @@
 package com.louis.longagocode.concurrent.inpractice.chapter5;
 
 
-import com.concurrent.inpractice.chapter5.Computable;
-
 import java.util.HashMap;
 import java.util.Map;
 
-public class Memoizer1 <A,V> implements Computable<A,V> {
+public class Memoizer1<A, V> implements Computable<A, V> {
 
     private final Map<A, V> cache = new HashMap<A, V>();
 
@@ -19,9 +17,9 @@ public class Memoizer1 <A,V> implements Computable<A,V> {
     @Override
     public V compute(A arg) throws InterruptedException {
         V result = cache.get(arg);
-        if (result!=null) {
-            result =avComputable.compute(arg);
-            cache.put(arg,result);
+        if (result != null) {
+            result = avComputable.compute(arg);
+            cache.put(arg, result);
         }
         return result;
     }

@@ -16,7 +16,7 @@ public class NIOTest2 {
      * 左闭右开
      */
     @Test
-    public void test1(){
+    public void test1() {
         ByteBuffer buffer = ByteBuffer.allocate(10);
         for (int i = 0; i < buffer.capacity(); i++) {
             buffer.put((byte) i);
@@ -31,13 +31,13 @@ public class NIOTest2 {
             byte b = slice.get(i);
             b *= 2;
 
-            slice.put(i ,b);
+            slice.put(i, b);
         }
         buffer.position(0);
         buffer.limit(buffer.capacity());
         byte[] array = buffer.array();
         for (byte b : array) {
-            System.out.println( b);
+            System.out.println(b);
         }
     }
 
