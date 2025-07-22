@@ -1,0 +1,31 @@
+services:
+  gitlab:
+    image: gitlab/gitlab-ce
+    container_name: gitlab-docker
+    hostname: "gitlab.letswrite"
+    restart: always
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url "http://192.168.112.1:8807"
+        letsencrypt['enable'] = false
+        TZ = "Asia/Shanghai"
+    volumes:
+      - "./config:/etc/gitlab"
+      - "./logs:/var/log/gitlab"
+      - "./data:/var/opt/gitlab"
+    ports:
+      - "8807:8807"
+      - "8808:22"
+  gitlab-runner:
+    image: gitlab/gitlab-runner
+    container_name: gitlab-runner-docker
+    restart: always
+    depends_on:
+      - gitlab
+    volumes:
+      - "./gitlab-runner/config:/etc/gitlab-runner"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    environment:
+      - DOCKER_DRIVER=overlay2
+      - DOCKER_TLS_CERTDIR=/certs
+      - DOCKER_HOST=tcp://docker:2375/
