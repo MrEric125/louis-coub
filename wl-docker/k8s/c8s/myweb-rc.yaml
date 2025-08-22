@@ -1,3 +1,4 @@
+# kubectl create -f .\myweb-rc.yaml
 apiVersion: v1
 kind: ReplicationController
 metadata:
@@ -17,3 +18,9 @@ spec:
           image: kubeguide/tomcat-app:v1
           ports:
             - containerPort: 8080
+          env:
+#            启动了很多回，一直都报错，提示连不上mysql，一是这里的配置没加，另一方面是mysql-rc.yaml 没有指定镜像的版本，驱动连不上。
+            - name: MYSQL_SERVICE_HOST
+              value: "mysql"  # MySQL服务的名称
+            - name: MYSQL_SERVICE_PORT
+              value: "3306"  # MySQL服务的端口

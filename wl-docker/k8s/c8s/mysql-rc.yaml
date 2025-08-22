@@ -2,24 +2,22 @@ apiVersion: v1
 # 此资源对象的类型
 kind: ReplicationController
 metadata:
-  name: mysql
+  name: mysql                                  # RC的名称，全局唯一
 spec:
-  # 集群数量，当集群中运行的pod 数量少于replicas 时候，RC 会根据spect.template中定义的pod 创建一个新的实例
-  replicas: 1
+  replicas: 1                                  # Pod副本的期待数量
   selector:
-    app: mysql
+    app: mysql                                 # 符合目标的Pod拥有此标签
   template:
     metadata:
-      name: mysql
-      # 这里的labels 必须匹配selector.app
+      # 需要特别注意的是：这里的labels必须匹配之前的spec.selector，否则此RC每创建一个无法匹配Label的Pod，就会不停地尝试创建新的Pod，陷入恶性循环中
       labels:
-        app: mysql
+        app: mysql                             # Pod副本拥有的标签，对应RC的Selector
     spec:
       containers:
         - name: mysql
-          image: mysql/mysql-server
+          image:  mysql:5.7             # 容器镜像名称
           ports:
-            - containerPort: 3306
-          env:
+            - containerPort: 3306                # 容器应用监听的端口号
+          env:                                    # 注入容器内的环境变量
             - name: MYSQL_ROOT_PASSWORD
               value: "123456"
