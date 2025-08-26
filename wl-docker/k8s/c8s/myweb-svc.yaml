@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: myweb
 spec:
+#  nodePort 是k8s集群外部访问k8s集群内的服务的端口,一般所有在任意node上都能访问这个端口
   type: NodePort
   selector:
     app: myweb
