@@ -42,7 +42,7 @@ public class KafkaController implements ApplicationContextAware {
     private LouisKafkaProducerImpl<String, String> kafkaSender;
 
     @RequestMapping("sendTopic")
-    public HttpResult sentKafkaToTopic(@RequestParam String param, @RequestParam String pTopic) throws Exception {
+    public HttpResult sentKafkaToTopic(@RequestParam("param") String param, @RequestParam("topic") String pTopic) throws Exception {
         Message<String, String> message = new Message<>();
         message.setTopic(pTopic);
         message.setValue(param);
