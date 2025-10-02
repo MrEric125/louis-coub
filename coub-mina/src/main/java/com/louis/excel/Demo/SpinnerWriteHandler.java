@@ -65,7 +65,7 @@ public class SpinnerWriteHandler implements SheetWriteHandler {
      */
     public static CellStyle setStyle(Workbook wb) {
         Font dataFont = wb.createFont();
-        dataFont.setColor(HSSFColor.RED.index);
+        dataFont.setColor(HSSFColor.HSSFColorPredefined.RED.getIndex());
         dataFont.setFontName("宋体");
         dataFont.setFontHeight((short) 240);
         dataFont.setBold(true);

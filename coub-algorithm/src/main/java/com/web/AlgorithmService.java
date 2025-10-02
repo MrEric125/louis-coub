@@ -12,9 +12,9 @@ import com.sorting.quick.QuickSortNearOrder;
 import com.sorting.quick.QuickSortThreadWay;
 import com.sorting.selectSort.Selection;
 import com.sorting.selectSort.Shell;
+import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

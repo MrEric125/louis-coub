@@ -1,5 +1,6 @@
 package com.louis.minashop.i18n;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionMessage;
 import org.springframework.boot.autoconfigure.condition.ConditionOutcome;
@@ -43,9 +44,8 @@ public class I18nConfiguration {
     @Conditional(I18nConfiguration.ResourceBundleCondition.class)
     public MessageSource messageSource(MessageSourceProperties properties) {
         I18nResourceBundleMessageSourceService messageSource = new I18nResourceBundleMessageSourceService();
-        if (StringUtils.hasText(properties.getBasename())) {
-            messageSource.setBasenames(StringUtils
-                    .commaDelimitedListToStringArray(StringUtils.trimAllWhitespace(properties.getBasename())));
+        if (CollectionUtils.isNotEmpty(properties.getBasename())) {
+            messageSource.setBasenames(properties.getBasename().toArray(new String[0]));
         }
         if (properties.getEncoding() != null) {
             messageSource.setDefaultEncoding(properties.getEncoding().name());

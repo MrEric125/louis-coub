@@ -1,11 +1,16 @@
 ### docker 中自带的k8s(kubeadmin)  配置kubernetes-dashboard
 
+#### 目标： 会用
+
 https://artifacthub.io/packages/helm/k8s-dashboard/kubernetes-dashboard?modal=install
 
 运行： 
  kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8443:443
  创建用户参考
  https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
+
+ 生成token:
+ kubectl -n kubernetes-dashboard create token admin-user
 
 访问： https://localhost:8443/
 

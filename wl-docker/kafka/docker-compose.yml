@@ -1,4 +1,5 @@
 version: '3.1'
+#  集群部署参考文档： https://github.com/bitnami/containers/blob/main/bitnami/kafka/docker-compose-cluster.yml
 services:
   kafka:
     image: bitnami/kafka:4.0.0

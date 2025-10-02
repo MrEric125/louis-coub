@@ -35,9 +35,9 @@ spring:
   #  main:
   #    allow-bean-definition-overriding: true
   #    lazy-initialization: true
-  #  redis:
-  #    port: 32102
-  #    host: 10.12.231.27
+    redis:
+      port: 32102
+      host: 10.12.231.27
   task:
     scheduling:
       pool:

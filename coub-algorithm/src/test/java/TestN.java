@@ -9,7 +9,7 @@ public class TestN {
      * @param args
      */
     public static void main(String[] args) {
-
+        System.out.println(getTargetTime(3f,1f,100f));
 
     }
 
@@ -30,5 +30,15 @@ public class TestN {
         String formattedValue = df.format(i);
 
         System.out.println("i = " + formattedValue);
+    }
+
+
+    public static Float getTargetTime(Float startMoney, Float rate, Float targetMoney) {
+        Float month = 0f;
+        while (startMoney < targetMoney) {
+            startMoney = startMoney * (1 + rate);
+            month++;
+        }
+        return month;
     }
 }
