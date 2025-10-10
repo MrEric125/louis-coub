@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/redis")
 public class LouisRedisPubController {
-
-    @Autowired
-    private RedisTemplate redisTemplate;
-
-    @RequestMapping("/publish/{channel}")
-    public HttpResult publish(@PathVariable String channel, @RequestParam String message) {
-        redisTemplate.convertAndSend(channel, message);
-        return HttpResult.ok();
-    }
+//
+//    @Autowired
+//    private RedisTemplate redisTemplate;
+//
+//    @RequestMapping("/publish/{channel}")
+//    public HttpResult publish(@PathVariable String channel, @RequestParam String message) {
+//        redisTemplate.convertAndSend(channel, message);
+//        return HttpResult.ok();
+//    }
 }

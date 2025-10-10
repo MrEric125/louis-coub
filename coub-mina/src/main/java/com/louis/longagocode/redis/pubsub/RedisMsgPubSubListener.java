@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RedisMsgPubSubListener implements MessageListener {
 
-    @Autowired
+//    @Autowired
     RedisTemplate redisTemplate;
 
     @Override
