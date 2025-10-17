@@ -16,6 +16,7 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -97,9 +98,9 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
             log.info("clientId:{}", clientId);
             final KafkaConsumer<byte[], byte[]> consumer = new KafkaConsumer<>(properties);
 
-//            Set<String> topics = consumer.listTopics().keySet();
-//
-//            log.info("topics:{}", JSON.toJSONString(topics));
+            Set<String> topics = consumer.listTopics().keySet();
+
+            log.info("topics:{}", JSON.toJSONString(topics));
 
             consumer.subscribe(Collections.singletonList(getTopic()));
 

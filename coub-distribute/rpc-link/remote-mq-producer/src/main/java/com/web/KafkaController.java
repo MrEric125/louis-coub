@@ -2,6 +2,7 @@ package com.web;
 
 import com.KafkaAdminServiceImpl;
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
 import com.louis.common.common.HttpResult;
 import com.louis.kafka.common.Message;
 import com.louis.kafka.producer.LouisKafkaProducerImpl;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * @author John·Louis
@@ -40,6 +43,23 @@ public class KafkaController implements ApplicationContextAware {
 
     @Autowired(required = true)
     private LouisKafkaProducerImpl<String, String> kafkaSender;
+
+    @RequestMapping("batchSendTopic")
+    public HttpResult batchSendToTopic(@RequestParam("topic") String topic) throws Exception{
+
+        List<Message<String,String>> messages = Lists.newArrayList();
+        for (int i = 0; i < 100; i++) {
+            Message<String, String> message = new Message<>();
+            message.setTopic(topic);
+            message.setValue(i+"--"+ UUID.randomUUID());
+            message.setSendTime(new Date());
+            message.setKey(i + "");
+            message.setTopic(topic);
+            messages.add(message);
+        }
+        log.info("info:{}", "sende message");
+        return HttpResult.ok(kafkaSender.send(messages));
+    }
 
     @RequestMapping("sendTopic")
     public HttpResult sentKafkaToTopic(@RequestParam("param") String param, @RequestParam("topic") String pTopic) throws Exception {

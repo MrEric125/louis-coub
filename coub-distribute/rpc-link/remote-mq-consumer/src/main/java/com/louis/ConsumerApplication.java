@@ -17,8 +17,6 @@ public class ConsumerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ConsumerApplication.class, args);
-        Map<String, String> hashMpa = new HashMap<>();
-        hashMpa.put("zhangsan", "33");
 
     }
 }

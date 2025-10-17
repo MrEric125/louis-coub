@@ -38,6 +38,10 @@ spring:
   redis:
     port: 6380
     host: localhost
+  elasticsearch:
+    uris: http://localhost:9200
+
+
   task:
     scheduling:
       pool:
