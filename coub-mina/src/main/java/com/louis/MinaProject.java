@@ -12,8 +12,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -28,6 +30,8 @@ import java.util.Map;
 @EnableJpaRepositories
 @EnableScheduling
 @Slf4j
+@EnableElasticsearchRepositories
+//@EnableAspectJAutoProxy(exposeProxy = true)
 @EnableTransactionManagement
 //@MapperScan()
 @SpringBootApplication(scanBasePackages = {"com.louis"})

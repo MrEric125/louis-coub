@@ -2,6 +2,7 @@ package com.louis.minaProject.jpa.controller;
 
 import com.google.common.collect.Lists;
 import com.louis.common.common.HttpResult;
+import com.louis.minaProject.LoginService;
 import com.louis.minaProject.jpa.entity.Login;
 import com.louis.minaProject.jpa.repository.LoginRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -24,14 +25,23 @@ public class MinaLoginController {
     @Autowired
     private LoginRepository repository;
 
+    @Autowired
+    private LoginService loginService;
+
 
     @PostMapping("/login")
     public HttpResult login(@RequestParam(required = false) Login loginUser, @RequestParam Long sprite) {
 
         double x = loginUser.getId() / sprite;
         log.info("{},{},{}", loginUser.getId(), loginUser.getCode(), sprite);
-
         return HttpResult.ok(x);
+    }
+
+    @GetMapping("/add2")
+    public HttpResult add(@RequestParam(value = "rollback", required = false) boolean rollback,
+                          @RequestParam(value = "useTransactional", required = false) boolean useTransactional) {
+        loginService.create(rollback, useTransactional);
+        return HttpResult.ok();
     }
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)

@@ -1,2 +1,4 @@
 ## 配置文档参考 https://learnku.com/docs/elasticsearch73/7.3/331-networkhost/6607
 
+xpack.security.enabled: true
+xpack.security.authc.api_key.enabled: true
