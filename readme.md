@@ -48,6 +48,7 @@ https://zhuanlan.zhihu.com/p/481574024
 1. 一个日志监控，收集系统
 
 
+org.apache.kafka.clients.consumer.CommitFailedException: Offset commit cannot be completed since the consumer is not part of an active group for auto partition assignment; it is likely that the consumer was kicked out of the group.
 
 
 

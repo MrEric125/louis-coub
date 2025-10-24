@@ -8,6 +8,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+
 @Slf4j
 @Service
 public class LouisMessageHandler implements KafkaMessageHandler<String, String>, InitializingBean {
@@ -23,8 +25,15 @@ public class LouisMessageHandler implements KafkaMessageHandler<String, String>,
     @Override
     public void onMessage(MessageExt<String, String> messageExt) throws Exception {
 
-        log.info("====consumer message=====");
-        log.info(JSON.toJSONString(messageExt));
+        Random random = new Random();
+        int sleepTime = random.nextInt(100);
+        Thread.sleep(sleepTime);
+
+//        log.info("====consumer message cost time:{}=====", sleepTime);
+
+//        log.info(JSON.toJSONString(messageExt));
+
 
     }
+
 }

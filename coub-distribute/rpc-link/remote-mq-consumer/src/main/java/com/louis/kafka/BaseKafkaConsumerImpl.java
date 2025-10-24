@@ -17,11 +17,9 @@ import java.util.Collections;
 import java.util.Properties;
 import java.util.Random;
 import java.util.Set;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Slf4j
 public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Serializable> extends ClientTemplate {
@@ -42,6 +40,11 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
 
     private CountDownLatch destroyLatch;
     private volatile boolean mgAutoCommitEnabled = true;
+
+    // 每分钟拉取的数量
+    private static final AtomicLong messageCount = new AtomicLong(0);
+    private ScheduledExecutorService statsScheduler;
+
 
     public String getGroup() {
         return group;
@@ -119,7 +122,8 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
                             for (ConsumerRecord<byte[], byte[]> record : records) {
                                 totalSize = totalSize + record.serializedValueSize();
                             }
-                            log.info("当前拉取消息数量为：{},总大小为：{}", records.count(), totalSize);
+                            log.info("topic_name:{},当前拉取消息数量为：{},总大小为：{}", topic,records.count(), totalSize);
+                            messageCount.addAndGet(records.count());
 
 
                             for (ConsumerRecord<byte[], byte[]> record : records) {
@@ -147,6 +151,9 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
                 } catch (Throwable throwable) {
                     log.error("consumer error ", throwable);
                 } finally {
+                    if (statsScheduler != null && !statsScheduler.isShutdown()) {
+                        statsScheduler.shutdown();
+                    }
                     consumer.close();
                     destroyLatch.countDown();
                     log.info("{}:{} consume over!", getTopic(), getGroup());
@@ -204,6 +211,23 @@ public class BaseKafkaConsumerImpl<Key extends Serializable, Value extends Seria
             }
         });
         log.info(JSON.toJSONString(this.properties, true));
+
+
+        // 在 createConsumer 方法中的适当位置添加
+        statsScheduler = Executors.newSingleThreadScheduledExecutor(new ThreadFactory() {
+            private AtomicInteger idx = new AtomicInteger(0);
+
+            @Override
+            public Thread newThread(Runnable r) {
+                return new Thread(r, String.format("Kafka-Stats-Thread-%s-%s", getTopic(), getGroup()));
+            }
+        });
+
+// 启动每分钟统计一次消息数量的任务
+        statsScheduler.scheduleAtFixedRate(() -> {
+            long count = messageCount.getAndSet(0);
+            log.info("Topic: {}, Group: {}, Messages per minute: {}", getTopic(), getGroup(), count);
+        }, 60, 60, TimeUnit.SECONDS);
 
     }
 

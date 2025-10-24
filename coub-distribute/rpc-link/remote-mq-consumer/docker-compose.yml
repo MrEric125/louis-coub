@@ -1,0 +1,73 @@
+# docker-compose.yml
+#version: '3.1'
+
+services:
+  node1:
+    build: .
+    container_name: cluster-node-1
+    ports:
+      - "8081:8089"
+    environment:
+      - NODE_ID=node-1
+      - SERVER_PORT=8089
+      - SPRING_APPLICATION_NAME=cluster-app-1
+      - JAVA_OPTS=-Xmx512m -Xms256m -Djava.net.preferIPv4Stack=true
+      - KAFKA_BOOTSTRAP_SERVERS=kafka-1:9092,kafka-2:9092,kafka-3:9092
+    networks:
+#      - cluster-network
+      - kafka_kafka-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8089/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  node2:
+    build: .
+    container_name: cluster-node-2
+    ports:
+      - "8082:8089"
+    environment:
+      - NODE_ID=node-2
+      - SERVER_PORT=8089
+      - SPRING_APPLICATION_NAME=cluster-app-2
+      - JAVA_OPTS=-Xmx512m -Xms256m -Djava.net.preferIPv4Stack=true
+      - KAFKA_BOOTSTRAP_SERVERS=kafka-1:9092,kafka-2:9092,kafka-3:9092
+    networks:
+#      - cluster-network
+      - kafka_kafka-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8089/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  node3:
+    build: .
+    container_name: cluster-node-3
+    ports:
+      - "8083:8089"
+    environment:
+      - NODE_ID=node-3
+      - SERVER_PORT=8089
+      - SPRING_APPLICATION_NAME=cluster-app-3
+      - JAVA_OPTS=-Xmx512m -Xms256m -Djava.net.preferIPv4Stack=true
+      - KAFKA_BOOTSTRAP_SERVERS=kafka-1:9092,kafka-2:9092,kafka-3:9092
+    networks:
+#      - cluster-network
+      - kafka_kafka-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8089/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+#  cluster-network:
+#    driver: bridge
+  kafka_kafka-net:
+    external: true
+
+volumes:
+  shared-data:
+    driver: local

@@ -26,52 +26,52 @@ services:
       - 9300:9300
     networks:
       - elastic
-#  es-2:
-#    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.16
-#    container_name: es-2
-#    environment:
-#      - node.name=es-2
-#      - cluster.name=docker-cluster
-#      - network.host=0.0.0.0
-#      - bootstrap.memory_lock=true
-#      - node.master=true
-#      - discovery.seed_hosts=es-2,es-3
-#      - cluster.initial_master_nodes=es-1,es-2,es-3
-#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-#    ulimits:
-#      memlock:
-#        soft: -1
-#        hard: -1
-#    # volumes:
-#    networks:
-#      - elastic
-#    ports:
-#      - 9201:9200
-#      - 9301:9300
-#  es-3:
-#    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.16
-#    container_name: es-3
-#    environment:
-#      - node.name=es-3
-#      - cluster.name=docker-cluster
-#      - network.host=0.0.0.0
-#      - bootstrap.memory_lock=true
-#      - node.master=true
-#      - discovery.seed_hosts=es-1,es-2,es-3
-#      - cluster.initial_master_nodes=es-1,es-2,es-3
-#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-#    ulimits:
-#      memlock:
-#        soft: -1
-#        hard: -1
-#    # volumes:
-#    networks:
-#      - elastic
-#    #    depends_on:
-#    #      - es
-#    ports:
-#      - 9202:9200
-#      - 9302:9300
+  es-2:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.16
+    container_name: es-2
+    environment:
+      - node.name=es-2
+      - cluster.name=docker-cluster
+      - network.host=0.0.0.0
+      - bootstrap.memory_lock=true
+      - node.master=true
+      - discovery.seed_hosts=es-2,es-3
+      - cluster.initial_master_nodes=es-1,es-2,es-3
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    # volumes:
+    networks:
+      - elastic
+    ports:
+      - 9201:9200
+      - 9301:9300
+  es-3:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.16
+    container_name: es-3
+    environment:
+      - node.name=es-3
+      - cluster.name=docker-cluster
+      - network.host=0.0.0.0
+      - bootstrap.memory_lock=true
+      - node.master=true
+      - discovery.seed_hosts=es-1,es-2,es-3
+      - cluster.initial_master_nodes=es-1,es-2,es-3
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    # volumes:
+    networks:
+      - elastic
+    #    depends_on:
+    #      - es
+    ports:
+      - 9202:9200
+      - 9302:9300
   kibana:
     image: docker.elastic.co/kibana/kibana:7.17.16
     container_name: kibana

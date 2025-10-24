@@ -1,11 +1,11 @@
 package com.source.spring.mvc;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.PostConstruct;
 
 @RestController
 @RequestMapping(value = "api")
